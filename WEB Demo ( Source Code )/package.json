@@ -1,0 +1,12 @@
+{
+  "name": "courtconnect-cse122",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vanilla HTML CSS JS CourtConnect prototype",
+  "scripts": {
+    "start": "node tests/serve.cjs",
+    "test:smoke": "node tests/smoke.cjs",
+    "test:integration": "node tests/integration.cjs",
+    "test:edge": "node tests/edge-cases.cjs"
+  }
+}
