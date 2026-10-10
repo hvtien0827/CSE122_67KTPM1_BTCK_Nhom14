@@ -18,12 +18,12 @@ Các phần dùng chung gồm đăng nhập/đăng ký, xác minh, khôi phục 
 
 | Thư mục | Nội dung |
 |---|---|
-| [Docs](Docs/) | Đề bài và yêu cầu học phần gốc. |
-| [Prompt markdown](Prompt%20markdown/README.md) | Prompt thiết kế và tài liệu phân loại 28 giao diện hiện tại. |
-| [UI FIgma Design](UI%20FIgma%20Design/README.md) | Các bản PDF giao diện tham khảo xuất từ Figma. |
-| [WEB Demo ( Source Code )](WEB%20Demo%20%28%20Source%20Code%20%29/TOM_TAT.md) | Mã nguồn website, tài nguyên, tài liệu kỹ thuật và kiểm thử. |
+| [docs](docs/) | Đề bài và yêu cầu học phần gốc. |
+| [prompt](prompt/) — [Tóm tắt](docs/Prompt.md) | Prompt thiết kế và tài liệu phân loại 28 giao diện hiện tại. |
+| [figma](figma/) — [Tóm tắt](docs/UI_Figma.md) | Các bản PDF giao diện tham khảo xuất từ Figma. |
+| [demo_web_source_code](demo_web_source_code/) — [Tóm tắt](docs/TOM_TAT.md) | Mã nguồn website, tài nguyên, tài liệu kỹ thuật và kiểm thử. |
 
-Đề bài gốc và một số mẫu Figma mô tả phiên bản trước. Danh mục giao diện của bản demo được đối chiếu theo [tài liệu phân loại giao diện](Prompt%20markdown/phan_loai_giao_dien_he_thong.md).
+Đề bài gốc và một số mẫu Figma mô tả phiên bản trước. Danh mục giao diện của bản demo được đối chiếu theo [tài liệu phân loại giao diện](prompt/phan_loai_giao_dien_he_thong.md).
 
 ## Phân công 4 thành viên
 
@@ -38,4 +38,4 @@ Các phần dùng chung gồm đăng nhập/đăng ký, xác minh, khôi phục 
 
 ## Chạy thử
 
-Mở thư mục **WEB Demo ( Source Code )** bằng VS Code, dùng Live Server để chạy `index.html`. Xem [hướng dẫn và tài khoản demo](WEB%20Demo%20%28%20Source%20Code%20%29/README.md).
+Mở thư mục **demo_web_source_code** bằng VS Code, dùng Live Server để chạy `index.html`. Xem [hướng dẫn và tài khoản demo](demo_web_source_code/README.md).
