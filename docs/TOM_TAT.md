@@ -1,32 +1,26 @@
 # Tóm tắt mã nguồn demo CourtConnect
 
-Website demo sử dụng **HTML, CSS, JavaScript thuần**, gồm **28 trang HTML** với 3 vai trò: người chơi, chủ sân và quản trị viên. Giao diện hỗ trợ mobile và chế độ sáng/tối.
+Mã nguồn hiện tại nằm trong [web_demo_source_code](../web_demo_source_code/), sử dụng HTML/CSS/JavaScript thuần với **4 vai trò**, **42 trang chức năng** và **2 URL chuyển hướng cũ**.
 
-## Chức năng chính
-
-- **Người chơi:** tìm/đặt sân, tạo và tham gia trận, theo dõi hoạt động, nhận gợi ý ghép trận theo quy tắc, đánh giá và báo cáo.
-- **Chủ sân:** quản lý sân, xem lịch khung giờ, xử lý đơn đặt và theo dõi doanh thu.
-- **Admin:** quản lý tài khoản, duyệt chủ sân/sân, xử lý báo cáo và gửi thông báo.
-- **Dùng chung:** đăng nhập/đăng ký, xác minh, khôi phục mật khẩu, hồ sơ, trò chuyện, thông báo và hỗ trợ.
-
-## Cấu trúc
-
-| Thành phần | Nội dung |
+| Vai trò | Chức năng |
 |---|---|
-| Các file HTML | Điểm vào của 28 giao diện; `index.html` là trang chủ. |
-| css/ | Kiểu hiển thị, responsive và theme. |
-| js/ | Dữ liệu mẫu, xử lý chức năng, phân vai trò và thành phần dùng chung. |
-| assets/ | Ảnh và tài nguyên giao diện. |
-| design/ | Tài liệu thiết kế đi kèm mã nguồn. |
-| docs/ | Danh sách màn hình, luồng sử dụng, phân công và tài liệu kỹ thuật. |
-| tests/ | Máy chủ chạy thử và các kịch bản kiểm thử. |
+| Người chơi | Tìm/đặt sân, tạo/tham gia trận, quản lý hoạt động, Skill Match, đánh giá và báo cáo sau trận. |
+| Chủ sân | Quản lý sân và lịch khung giờ, đơn đặt, No-show Risk, doanh thu và đánh giá sân. |
+| Điều phối CLB | Quản lý sự kiện, danh sách người chơi, đội hình và Team Balancer. |
+| Quản trị viên | Quản lý môn, tài khoản, báo cáo hoạt động/CSV và báo cáo người chơi. |
 
-## Chạy thử và tài liệu
+Trang chủ, luồng tài khoản, hồ sơ cá nhân/công khai, cài đặt, thông báo, trợ giúp, điều khoản, bảo mật và lỗi là **phần làm chung của cả nhóm**. Trò chuyện đã gỡ; quản lý khung giờ tích hợp trong lịch sân. Hai file `chat.html` và `venue-slot-management.html` chỉ chuyển hướng.
 
-Mở thư mục này bằng VS Code rồi chạy `index.html` bằng Live Server. Nếu đã cài Node.js, có thể chạy `npm start` trong thư mục này và truy cập http://localhost:4173.
+## Phân công xây dựng
 
-Xem [README chi tiết và tài khoản demo](README.md), [danh sách màn hình](docs/screen-list.md), [luồng sử dụng](docs/user-flows.md) và [phân công](docs/team-assignment.md).
+Thành viên 1 xây dựng người chơi trên `feat/player`; Thành viên 2 xây dựng chủ sân trên `feat/venue`; Thành viên 3 xây dựng điều phối CLB trên `feat/organizer`; Thành viên 4 xây dựng quản trị viên trên `feat/admin`. Các phần còn lại làm chung.
 
-Dữ liệu được lưu cục bộ bằng `localStorage`. OTP, gợi ý ghép trận và các tương tác được mô phỏng trong trình duyệt; chưa có backend, SMS, thanh toán thật hay đồng bộ trò chuyện giữa thiết bị.
+## Cấu trúc và chạy thử
+
+Trong web_demo_source_code: các file HTML là điểm vào; `css/` chứa kiểu hiển thị; `js/` chứa xử lý/dữ liệu; `assets/` chứa ảnh; `docs/` và `design/` chứa tài liệu; `tests/` chứa máy chủ và kiểm thử.
+
+Chạy `index.html` bằng Live Server, hoặc chạy `npm start` trong web_demo_source_code và mở http://127.0.0.1:4173. Website hỗ trợ mobile và sáng/tối. Dữ liệu lưu cục bộ bằng localStorage; OTP email và ba trải nghiệm AI được mô phỏng, chưa có backend, email hoặc thanh toán thật.
+
+Xem [README và tài khoản mẫu](../web_demo_source_code/README.md), [màn hình](../web_demo_source_code/docs/screen-list.md), [luồng sử dụng](../web_demo_source_code/docs/user-flows.md) và [phân công 4 vai trò](../web_demo_source_code/docs/team-assignment.md).
 
 [Quay lại giới thiệu dự án](../README.md)
