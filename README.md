@@ -1,41 +1,37 @@
 # CourtConnect — Bài tập lớn nhóm 14
 
-CourtConnect là website tìm và đặt sân thể thao, tạo trận và ghép người chơi theo trình độ, thuộc học phần **Phát triển ứng dụng Web cơ bản (CSE122)**. Nhóm gồm **4 thành viên**, sử dụng **HTML, CSS và JavaScript thuần**.
+CourtConnect là website tìm và đặt sân thể thao, ghép người chơi theo trình độ và tổ chức hoạt động CLB, thuộc học phần **Phát triển ứng dụng Web cơ bản (CSE122)**. Nhóm gồm **4 thành viên**, sử dụng **HTML, CSS và JavaScript thuần**.
 
-## Tổng quan bản demo
+## Phạm vi hiện tại
 
-Bản demo hiện tại gồm **28 trang HTML**, hỗ trợ desktop/mobile và chế độ sáng/tối, với 3 vai trò:
+Nhóm sử dụng bản mã nguồn trong **[web_demo_source_code](web_demo_source_code/)**, giữ đủ 4 vai trò theo [đề bài gốc](docs/BTL-28_courtconnect-at-san-va-ghep-nguoi-choi-theo-trinh-o.md): **Người chơi, Chủ sân, Điều phối CLB, Quản trị viên**.
 
-- **Người chơi:** tìm sân, đặt sân, tạo/tham gia trận, quản lý hoạt động, nhận gợi ý ghép trận và đánh giá sau khi chơi.
-- **Chủ sân:** quản lý sân, lịch khung giờ, đơn đặt sân và thống kê doanh thu.
-- **Quản trị viên:** quản lý tài khoản, duyệt chủ sân/sân, xử lý báo cáo và gửi thông báo hệ thống.
+Bản hiện tại có **42 trang chức năng và 2 file HTML chuyển hướng tương thích**. Ba trải nghiệm AI được mô phỏng theo quy tắc: **Skill Match**, **No-show Risk** và **Team Balancer**. Giao diện hỗ trợ desktop/mobile và chế độ sáng/tối. Dữ liệu lưu bằng localStorage; chưa kết nối backend, email, thanh toán hoặc AI thật.
 
-Các phần dùng chung gồm đăng nhập/đăng ký, xác minh, khôi phục mật khẩu, hồ sơ cá nhân, trò chuyện, thông báo và trợ giúp.
+## Phân công 4 thành viên
 
-Đây là demo frontend: dữ liệu lưu bằng `localStorage` trên trình duyệt; OTP và gợi ý ghép trận được mô phỏng, chưa kết nối backend, SMS hay thanh toán thật.
+| Thành viên | Vai trò phụ trách | Công việc chính | Nhánh phụ trách |
+|---|---|---|---|
+| Thành viên 1 | Người chơi | Xây dựng giao diện và chức năng cho người chơi: tìm/đặt sân, hoạt động, tạo/tham gia trận, Skill Match, đánh giá sân và bạn chơi. | `feat/player` |
+| Thành viên 2 | Chủ sân | Xây dựng giao diện và chức năng cho chủ sân: quản lý sân và lịch khung giờ, xử lý đơn đặt, No-show Risk, doanh thu và đánh giá sân. | `feat/venue` |
+| Thành viên 3 | Điều phối CLB | Xây dựng giao diện và chức năng cho điều phối CLB: quản lý sự kiện, danh sách người chơi, đội hình và Team Balancer. | `feat/organizer` |
+| Thành viên 4 | Quản trị viên | Xây dựng giao diện và chức năng cho quản trị viên: quản lý môn thể thao, tài khoản, báo cáo hoạt động/CSV và xử lý báo cáo người chơi. | `feat/admin` |
+
+**Phần làm chung:** trang chủ; đăng nhập/đăng ký, xác minh email và khôi phục mật khẩu; hồ sơ cá nhân/công khai; cài đặt, thông báo, trợ giúp, điều khoản, bảo mật và trang lỗi. Cả nhóm cùng xây dựng thành phần giao diện, dữ liệu mẫu, responsive, sáng/tối, kiểm thử tích hợp, tài liệu và minh chứng thuyết trình. Trò chuyện đã được gỡ khỏi bản hiện tại.
+
+Mỗi người xây dựng HTML/CSS/JS, kiểm tra phần vai trò của mình và phụ trách nhánh tương ứng trong bảng. Các nhánh công việc được đề nghị ghép vào `main` qua Pull Request sau khi kiểm tra. Với phần làm chung, nhóm chia các đầu việc nhỏ và thống nhất người thực hiện trước khi sửa file chung. Xem [phân công chi tiết](web_demo_source_code/docs/team-assignment.md); bổ sung họ tên/MSSV khi chốt nhóm.
 
 ## Nội dung repository
 
 | Thư mục | Nội dung |
 |---|---|
-| [docs](docs/) | Đề bài và yêu cầu học phần gốc. |
-| [prompt](prompt/) — [Tóm tắt](docs/Prompt.md) | Prompt thiết kế và tài liệu phân loại 28 giao diện hiện tại. |
-| [figma](figma/) — [Tóm tắt](docs/UI_Figma.md) | Các bản PDF giao diện tham khảo xuất từ Figma. |
-| [demo_web_source_code](demo_web_source_code/) — [Tóm tắt](docs/TOM_TAT.md) | Mã nguồn website, tài nguyên, tài liệu kỹ thuật và kiểm thử. |
+| [docs](docs/) | Đề bài gốc và các tài liệu tóm tắt. |
+| [prompt](prompt/) — [Tóm tắt](docs/Prompt.md) | Prompt thiết kế; có tài liệu phương án 28 trang cũ để tham khảo. |
+| [figma](figma/) — [Tóm tắt](docs/UI_Figma.md) | PDF giao diện trang chủ và luồng tài khoản. |
+| [web_demo_source_code](web_demo_source_code/) — [Tóm tắt](docs/TOM_TAT.md) | Mã nguồn demo 4 vai trò, tài nguyên và kiểm thử. |
 
-Đề bài gốc và một số mẫu Figma mô tả phiên bản trước. Danh mục giao diện của bản demo được đối chiếu theo [tài liệu phân loại giao diện](prompt/phan_loai_giao_dien_he_thong.md).
-
-## Phân công 4 thành viên
-
-| Thành viên | Phần phụ trách | Công việc chính |
-|---|---|---|
-| Thành viên 1 | Giao diện người chơi | Tìm/đặt sân, hoạt động, tạo/tham gia trận, duyệt yêu cầu tham gia và ghép trận theo trình độ. |
-| Thành viên 2 | Giao diện chủ sân | Quản lý sân, lịch khung giờ, đơn đặt sân và thống kê doanh thu. |
-| Thành viên 3 | Đăng nhập, đăng ký và giao diện chung | Xác minh, khôi phục mật khẩu, trang chủ, hồ sơ, cài đặt, trò chuyện, thông báo và các trang hỗ trợ. |
-| Thành viên 4 | Giao diện quản trị viên | Quản lý tài khoản, duyệt chủ sân/sân, báo cáo vi phạm và thông báo hệ thống. |
-
-Đây là phân công dự kiến; thay nhãn thành viên bằng họ tên khi chốt nhóm. Mỗi người phụ trách HTML/CSS/JS và kiểm tra trên mobile cho phần của mình; cả nhóm thống nhất thành phần dùng chung và kiểm tra các luồng liên quan giữa các vai trò.
+Danh mục hiện hành xem tại [bảng màn hình](web_demo_source_code/docs/screen-list.md). Tài liệu 28 trang/3 vai trò trong prompt thuộc phương án trước, không dùng để cắt phạm vi bản hiện tại. Đề gốc ghi 3 sinh viên; phân công thực tế của nhóm là 4 người.
 
 ## Chạy thử
 
-Mở thư mục **demo_web_source_code** bằng VS Code, dùng Live Server để chạy `index.html`. Xem [hướng dẫn và tài khoản demo](demo_web_source_code/README.md).
+Mở **web_demo_source_code** bằng VS Code và chạy `index.html` qua Live Server. Hoặc chạy `npm start` trong thư mục đó rồi truy cập http://127.0.0.1:4173. Xem [hướng dẫn và 4 tài khoản demo](web_demo_source_code/README.md).
