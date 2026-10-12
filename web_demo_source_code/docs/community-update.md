@@ -18,7 +18,7 @@
 
 Đây vẫn là nguyên mẫu HTML/CSS/JS dùng localStorage. Quyền và tùy chọn riêng tư là hành vi giao diện demo, không thay thế kiểm soát truy cập phía máy chủ.
 
-## Kết quả kiểm tra thực tế
+## Kết quả đã ghi nhận của đợt cập nhật (lịch sử)
 
 - Kiểm tra trang: 84 lượt (42 trang × 2 kích thước), không lỗi tải hoặc tràn trang.
 - Giao diện: 168 lượt kiểm tra sáng/tối, lưu lựa chọn, bàn phím và đồng bộ tab đều đạt.
@@ -31,3 +31,10 @@
 - Hoạt động của tôi có bộ lọc Tất cả / Lịch đặt sân / Trận đấu của tôi, giữ lựa chọn khi cập nhật trong trang.
 - Mobile: bảng hoạt động và quản lý đặt sân chuyển thành thẻ có nhãn và nút thao tác; lịch sân chuyển thành danh sách theo ngày với nút ngày trước/sau. Desktop giữ bảng và lịch tuần.
 - `tests/mobile-activities.cjs`: kiểm tra ba thông báo, bộ lọc, mobile 320/390/760 px, mở chi tiết khung giờ và lịch desktop; đã chạy đạt.
+
+
+## Đồng bộ với bản hiện tại
+
+Bản đang dùng là web_demo_source_code, 4 vai trò, 42 trang chức năng và 2 URL chuyển hướng. Phân công: Người chơi — `feat/player`; Chủ sân — `feat/venue`; Điều phối CLB — `feat/organizer`; Quản trị viên — `feat/admin`; còn lại làm chung. Xem [phân công](team-assignment.md).
+
+Sửa lỗi tương thích dữ liệu ngày 12/10/2026: tải lại sẽ khôi phục tài khoản/dữ liệu CLB bị ngừng hỗ trợ trong bản 28 trang, giữ khóa thủ công và dữ liệu hiện hành. Kết quả kiểm chứng mới tại [test-report.md](test-report.md).

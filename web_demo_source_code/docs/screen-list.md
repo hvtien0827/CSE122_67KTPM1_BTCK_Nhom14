@@ -4,7 +4,7 @@
 
 Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã hoàn tất. Nhóm bổ sung Figma và OBS/kiểm tra thực tế theo đề bài. CRUD dùng dialog trên trang quản lý; lỗi/tải là trạng thái của trang.
 
-| Mã | Vai trò | Mục tiêu / Nhiệm vụ | Màn hình | Tệp | CRUD / Trạng thái | AI | Phụ trách | Module |
+| Mã | Vai trò | Mục tiêu / Nhiệm vụ | Màn hình | Tệp | CRUD / Trạng thái | AI | Phụ trách / nhánh | Module |
 |---|---|---|---|---|---|---|---|---|
 | UI-01 | Dùng chung | Kết nối cộng đồng thể thao | Kết nối cộng đồng thể thao | `index.html` | R; bình thường / rỗng / lỗi | — | Cả nhóm | Player.home |
 | UI-02 | Dùng chung | Đăng nhập | Đăng nhập | `login.html` | Form / xử lý / lỗi / thành công theo bước | — | Cả nhóm | Auth.render / js/auth.js |
@@ -17,25 +17,25 @@ Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã 
 | UI-09 | Dùng chung | Xác minh khôi phục | Xác minh khôi phục | `verify-reset.html` | Form / xử lý / lỗi / thành công theo bước | — | Cả nhóm | Auth.render / js/auth.js |
 | UI-10 | Dùng chung | Đặt mật khẩu mới | Đặt mật khẩu mới | `reset-password.html` | Form / xử lý / lỗi / thành công theo bước | — | Cả nhóm | Auth.render / js/auth.js |
 | UI-11 | Dùng chung | Đổi mật khẩu thành công | Đổi mật khẩu thành công | `reset-success.html` | Form / xử lý / lỗi / thành công theo bước | — | Cả nhóm | Auth.render / js/auth.js |
-| UI-12 | Người chơi | Tìm sân | Tìm sân | `player-court-search.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 | Player.searchCourts |
-| UI-13 | Người chơi | Tìm trận đấu | Tìm trận đấu | `player-open-matches.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 | Player.openMatches |
-| UI-14 | Người chơi | Hoạt động của tôi | Hoạt động của tôi | `player-my-sports.html` | R/U; hủy booking, rút/hủy trận | — | Thành viên 1 | Player.mySports |
-| UI-15 | Người chơi | Chi tiết sân | Chi tiết sân | `court-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 | Player.courtDetail |
-| UI-16 | Người chơi | Xác nhận đặt sân | Xác nhận đặt sân | `booking.html` | C; pending / validation / slot không trống | — | Thành viên 1 | Player.bookingPage |
-| UI-17 | Người chơi | Đặt sân thành công | Đặt sân thành công | `booking-success.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 | js/app.js |
-| UI-18 | Người chơi | Chi tiết trận | Chi tiết trận | `match-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 | Player.matchDetail |
-| UI-19 | Người chơi | Tạo và sửa trận | Tạo và sửa trận | `player-match-create.html` | C/U; validation / chưa có booking phù hợp | — | Thành viên 1 | Player.matchCreate |
-| UI-20 | Người chơi | Ghép trận thông minh | Ghép trận thông minh | `player-skill-match.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | Skill Match | Thành viên 1 | AI.skill |
-| UI-21 | Chủ sân | Quản lý sân | Quản lý sân | `venue-court-management.html` | C/R/U; lịch khung giờ trong cửa sổ lịch sân | — | Thành viên 2 | Manage.courts |
-| UI-22 | Chủ sân | Quản lý đặt sân | Quản lý đặt sân | `venue-booking-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 2 | Manage.bookings |
-| UI-23 | Chủ sân | Cảnh báo vắng mặt | Cảnh báo vắng mặt | `venue-no-show-risk.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | No-show Risk | Thành viên 2 | AI.risk |
-| UI-24 | Điều phối CLB | Sự kiện CLB | Sự kiện CLB | `organizer-event-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 | Manage.events |
-| UI-25 | Điều phối CLB | Chi tiết sự kiện | Chi tiết sự kiện | `organizer-event-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 3 | Manage.eventDetail |
-| UI-26 | Điều phối CLB | Danh sách người chơi | Danh sách người chơi | `organizer-player-roster.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 | Manage.roster |
-| UI-27 | Điều phối CLB | Đội hình và chia đội | Đội hình và chia đội | `organizer-team-lineup.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | Team Balancer | Thành viên 3 | AI.teams |
-| UI-28 | Quản trị viên | Quản lý môn thể thao | Quản lý môn thể thao | `admin-sport-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 | Manage.sports |
-| UI-29 | Quản trị viên | Quản lý tài khoản | Quản lý tài khoản | `admin-user-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 | Manage.users |
-| UI-30 | Quản trị viên | Báo cáo hoạt động | Báo cáo hoạt động | `admin-sports-report.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 | Manage.reports |
+| UI-12 | Người chơi | Tìm sân | Tìm sân | `player-court-search.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 / `feat/player` | Player.searchCourts |
+| UI-13 | Người chơi | Tìm trận đấu | Tìm trận đấu | `player-open-matches.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 / `feat/player` | Player.openMatches |
+| UI-14 | Người chơi | Hoạt động của tôi | Hoạt động của tôi | `player-my-sports.html` | R/U; hủy booking, rút/hủy trận | — | Thành viên 1 / `feat/player` | Player.mySports |
+| UI-15 | Người chơi | Chi tiết sân | Chi tiết sân | `court-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 / `feat/player` | Player.courtDetail |
+| UI-16 | Người chơi | Xác nhận đặt sân | Xác nhận đặt sân | `booking.html` | C; pending / validation / slot không trống | — | Thành viên 1 / `feat/player` | Player.bookingPage |
+| UI-17 | Người chơi | Đặt sân thành công | Đặt sân thành công | `booking-success.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 / `feat/player` | js/app.js |
+| UI-18 | Người chơi | Chi tiết trận | Chi tiết trận | `match-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 / `feat/player` | Player.matchDetail |
+| UI-19 | Người chơi | Tạo và sửa trận | Tạo và sửa trận | `player-match-create.html` | C/U; validation / chưa có booking phù hợp | — | Thành viên 1 / `feat/player` | Player.matchCreate |
+| UI-20 | Người chơi | Ghép trận thông minh | Ghép trận thông minh | `player-skill-match.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | Skill Match | Thành viên 1 / `feat/player` | AI.skill |
+| UI-21 | Chủ sân | Quản lý sân | Quản lý sân | `venue-court-management.html` | C/R/U; lịch khung giờ trong cửa sổ lịch sân | — | Thành viên 2 / `feat/venue` | Manage.courts |
+| UI-22 | Chủ sân | Quản lý đặt sân | Quản lý đặt sân | `venue-booking-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 2 / `feat/venue` | Manage.bookings |
+| UI-23 | Chủ sân | Cảnh báo vắng mặt | Cảnh báo vắng mặt | `venue-no-show-risk.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | No-show Risk | Thành viên 2 / `feat/venue` | AI.risk |
+| UI-24 | Điều phối CLB | Sự kiện CLB | Sự kiện CLB | `organizer-event-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Manage.events |
+| UI-25 | Điều phối CLB | Chi tiết sự kiện | Chi tiết sự kiện | `organizer-event-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 3 / `feat/organizer` | Manage.eventDetail |
+| UI-26 | Điều phối CLB | Danh sách người chơi | Danh sách người chơi | `organizer-player-roster.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Manage.roster |
+| UI-27 | Điều phối CLB | Đội hình và chia đội | Đội hình và chia đội | `organizer-team-lineup.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | Team Balancer | Thành viên 3 / `feat/organizer` | AI.teams |
+| UI-28 | Quản trị viên | Quản lý môn thể thao | Quản lý môn thể thao | `admin-sport-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Manage.sports |
+| UI-29 | Quản trị viên | Quản lý tài khoản | Quản lý tài khoản | `admin-user-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Manage.users |
+| UI-30 | Quản trị viên | Báo cáo hoạt động | Báo cáo hoạt động | `admin-sports-report.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Manage.reports |
 | UI-31 | Dùng chung | Hồ sơ cá nhân | Hồ sơ cá nhân | `profile.html` | R; bình thường / rỗng / lỗi | — | Cả nhóm | js/app.js |
 | UI-32 | Dùng chung | Cài đặt | Cài đặt | `settings.html` | R; bình thường / rỗng / lỗi | — | Cả nhóm | js/app.js |
 | UI-33 | Dùng chung | Thông báo | Thông báo | `notifications.html` | R; bình thường / rỗng / lỗi | — | Cả nhóm | js/app.js |
@@ -44,10 +44,10 @@ Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã 
 | UI-36 | Dùng chung | Chính sách bảo mật | Chính sách bảo mật | `privacy.html` | R; bình thường / rỗng / lỗi | — | Cả nhóm | js/app.js |
 | UI-37 | Dùng chung | Không có quyền truy cập | Không có quyền truy cập | `403.html` | Lỗi; quay lại / đổi tài khoản | — | Cả nhóm | js/app.js |
 | UI-38 | Dùng chung | Không tìm thấy trang | Không tìm thấy trang | `404.html` | Lỗi; quay lại / đổi tài khoản | — | Cả nhóm | js/app.js |
-| UI-39 | Chủ sân | Thống kê doanh thu | Thống kê doanh thu | `venue-revenue.html` | R; lọc ngày/tuần/tháng/năm và sân | — | Thành viên 2 | Community.revenue |
-| UI-40 | Chủ sân | Đánh giá sân | Đánh giá sân | `venue-reviews.html` | R; lọc đánh giá theo sân | — | Thành viên 2 | Community.courtReviews |
+| UI-39 | Chủ sân | Thống kê doanh thu | Thống kê doanh thu | `venue-revenue.html` | R; lọc ngày/tuần/tháng/năm và sân | — | Thành viên 2 / `feat/venue` | Community.revenue |
+| UI-40 | Chủ sân | Đánh giá sân | Đánh giá sân | `venue-reviews.html` | R; lọc đánh giá theo sân | — | Thành viên 2 / `feat/venue` | Community.courtReviews |
 | UI-41 | Dùng chung | Hồ sơ công khai | Hồ sơ công khai | `profile-public.html` | R; điện thoại công khai, mạng xã hội, thống kê | — | Cả nhóm | Community.publicProfile |
-| UI-42 | Quản trị viên | Báo cáo người chơi | Báo cáo người chơi | `admin-player-reports.html` | R/U; xem xét báo cáo | — | Thành viên 4 | Community.reports |
+| UI-42 | Quản trị viên | Báo cáo người chơi | Báo cáo người chơi | `admin-player-reports.html` | R/U; xem xét báo cáo | — | Thành viên 4 / `feat/admin` | Community.reports |
 
 ## URL chuyển hướng tương thích
 

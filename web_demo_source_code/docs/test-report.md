@@ -1,8 +1,10 @@
-# Báo cáo kiểm thử thực tế
+# Báo cáo kiểm thử và phạm vi xác nhận
+
+Kết quả bên dưới được ghi lại từ ngày 22/09/2026, khi bản demo có 40 trang. Không coi các con số này là kết quả chạy lại cho mã nguồn hiện tại.
 
 Ngày: 22/09/2026. Môi trường kiểm tra: Windows, trình duyệt Thorium (Chromium) headless qua Playwright, hồ sơ thử riêng. Website phục vụ bằng HTTP localhost, không dựa vào kết nối dịch vụ ngoài.
 
-## Kết quả
+## Kết quả lịch sử — phiên bản ngày 22/09/2026
 
 | Nhóm | Kết quả |
 |---|---|
@@ -35,7 +37,7 @@ Các test là minh chứng kỹ thuật của bản sinh mã, không thay video 
 
 Chưa chạy trên điện thoại vật lý, Safari/iOS hoặc Firefox; không khẳng định tương thích mọi trình duyệt. Chưa có load test, backend, email/Google OAuth/LLM thật. Bảng rộng cuộn ngang bên trong vùng bảng trên mobile; toàn trang không tràn ngang. Chưa phải bài kiểm tra WCAG đầy đủ.
 
-## Bổ sung kiểm tra giao diện sáng/tối và cỡ chữ
+## Kiểm tra sáng/tối của phiên bản 40 trang (lịch sử)
 
 - `tests/theme.cjs`: 40 trang × 2 chế độ × 2 chiều rộng (1440px, 390px) = 160 lượt, không tràn ngang toàn trang hoặc lỗi runtime.
 - Xác nhận nút ở cả trang công khai, trang role và auth; chuyển bằng chuột/bàn phím; giữ focus; ghi nhớ khi tải lại/chuyển trang; đồng bộ giữa tab.
@@ -43,3 +45,12 @@ Chưa chạy trên điện thoại vật lý, Safari/iOS hoặc Firefox; không 
 - Đã xem ảnh desktop/mobile của trang hỗ trợ, Skill Match và đăng nhập trong cả hai chế độ.
 - Chữ phụ trước đây 10–13px được tăng lên 13–14px; FAQ 15px.
 - Kết quả chi tiết: `tests/artifacts/theme-results.json`.
+
+
+## Bản hiện tại và kiểm tra cần chạy lại
+
+Danh mục hiện tại có 42 trang chức năng và 2 URL chuyển hướng. Các kết quả lịch sử cập nhật cộng đồng nằm trong [community-update.md](community-update.md); chúng không phải kết quả chạy mới ngày 12/10/2026. Các trang hoạt động/đặt sân dùng thẻ trên mobile, lịch sân dùng danh sách theo ngày. Chat đã gỡ, URL cũ chỉ chuyển hướng.
+
+Ngày 12/10/2026: chạy `node tests/restore-four-roles.cjs` đạt các trường hợp dữ liệu mới, khôi phục organizer/sự kiện từ bản 28 trang, đăng nhập/phân quyền, giữ booking, không nhân đôi khi tải lại và giữ tài khoản khóa thủ công. `node --check js/store.js` đạt.
+
+Lượt kiểm tra nút đăng nhập nhanh CLB trên trình duyệt chưa thực hiện được do thiếu executable Playwright. Không ghi nhận kết quả trình duyệt thành công cho sửa lỗi này. Nhóm cần chạy lại smoke, integration, edge, community, theme và mobile activities trên bản hiện tại theo [README](../README.md).

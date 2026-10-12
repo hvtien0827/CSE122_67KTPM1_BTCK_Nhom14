@@ -25,6 +25,15 @@ Sự kiện → danh sách → thêm/bỏ người → đề xuất hai đội �
 ## Quản trị
 Danh mục môn → tạo/sửa/lưu trữ khi không còn ràng buộc. Tài khoản → tạo/sửa/vô hiệu hóa/kích hoạt. Báo cáo → chọn khoảng ngày → lưu snapshot → sửa/tạo lại snapshot → tải CSV hoặc lưu trữ.
 
+## Đánh giá và báo cáo sau khi chơi
+Người chơi → Hoạt động của tôi → lọc lịch đặt sân/trận đấu → chọn lượt đã hoàn thành → đánh giá sân hoặc bạn chơi bằng sao, nhãn và bình luận → gửi → thông báo thành công. Báo cáo bạn chơi trong cùng trận → gửi → admin mở Báo cáo người chơi → xem xét. Không tự đánh giá/báo cáo hoặc gửi khi chưa đủ điều kiện.
+
+## Lịch sân và doanh thu
+Chủ sân → Quản lý sân → bấm sân → lịch tuần trên desktop hoặc danh sách theo ngày trên mobile → chọn/tạo/sửa/đóng khung giờ. Chủ sân → Doanh thu → chọn ngày/tuần/tháng/năm và sân → xem đơn hoàn thành và doanh thu; đơn đã duyệt là dự kiến.
+
+## Hồ sơ công khai
+Mọi vai trò → Hồ sơ → cập nhật điện thoại và tùy chọn công khai, các liên kết mạng xã hội → lưu → xem hồ sơ công khai. Điện thoại ẩn mặc định; liên kết mạng xã hội hiển thị biểu tượng.
+
 ## Tài khoản
 Đăng ký → gửi mã mô phỏng → nhập OTP → xác minh → đăng nhập. Quên mật khẩu → gửi yêu cầu → OTP → đặt mật khẩu mới → đăng nhập. Mã sai/hết hạn giữ người dùng tại bước kiểm tra và cho gửi lại theo thời gian chờ.
 
@@ -34,3 +43,6 @@ Danh mục môn → tạo/sửa/lưu trữ khi không còn ràng buộc. Tài kh
 - đăng nhập → trang đầu theo role → menu chức năng và tài khoản.
 - hồ sơ, thông báo, cài đặt và trợ giúp dùng chung.
 - các màn hình auth là trang riêng theo bản Figma; biến thể lỗi/tải là trạng thái cùng trang.
+
+
+Nếu đã dùng bản 28 trang, tải lại bản hiện tại sẽ khôi phục dữ liệu CLB bị ngừng hỗ trợ; không cần xóa localStorage. Tài khoản bị khóa thủ công vẫn cần admin xử lý. Trò chuyện không còn là luồng chức năng.

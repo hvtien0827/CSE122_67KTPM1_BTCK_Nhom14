@@ -2,12 +2,12 @@
 
 Nhóm giữ Người chơi, Chủ sân, Điều phối CLB và Quản trị viên theo đề bài gốc. Mỗi thành viên phụ trách một vai trò; các phần còn lại do cả nhóm phối hợp làm. Bảng này là kế hoạch phân công, không phải ghi nhận tác giả hoặc công việc đã hoàn thành.
 
-| Thành viên | Vai trò phụ trách | Công việc chính |
-|---|---|---|
-| Thành viên 1 | Người chơi | Tìm/đặt sân, hoạt động, tạo/tham gia trận, Skill Match, đánh giá sân và bạn chơi. |
-| Thành viên 2 | Chủ sân | Quản lý sân và lịch khung giờ, xử lý đơn đặt, No-show Risk, doanh thu và đánh giá sân. |
-| Thành viên 3 | Điều phối CLB | Quản lý sự kiện, danh sách người chơi, đội hình và Team Balancer. |
-| Thành viên 4 | Quản trị viên | Quản lý môn thể thao, tài khoản, báo cáo hoạt động/CSV và xử lý báo cáo người chơi. |
+| Thành viên | Vai trò phụ trách | Công việc chính | Nhánh phụ trách |
+|---|---|---|---|
+| Thành viên 1 | Người chơi | Xây dựng giao diện và chức năng cho người chơi: tìm/đặt sân, hoạt động, tạo/tham gia trận, Skill Match, đánh giá sân và bạn chơi. | `feat/player` |
+| Thành viên 2 | Chủ sân | Xây dựng giao diện và chức năng cho chủ sân: quản lý sân và lịch khung giờ, xử lý đơn đặt, No-show Risk, doanh thu và đánh giá sân. | `feat/venue` |
+| Thành viên 3 | Điều phối CLB | Xây dựng giao diện và chức năng cho điều phối CLB: quản lý sự kiện, danh sách người chơi, đội hình và Team Balancer. | `feat/organizer` |
+| Thành viên 4 | Quản trị viên | Xây dựng giao diện và chức năng cho quản trị viên: quản lý môn thể thao, tài khoản, báo cáo hoạt động/CSV và xử lý báo cáo người chơi. | `feat/admin` |
 
 ## Phạm vi từng người
 
@@ -32,4 +32,4 @@ Phần làm chung được chia thành đầu việc nhỏ có người thực h
 
 Review chéo Thành viên 1–2 và Thành viên 3–4. Kiểm tra cùng nhau các luồng đặt sân → chủ sân duyệt → người chơi tạo trận; CLB → danh sách → chia đội; báo cáo người chơi → admin xử lý.
 
-Mỗi người phải tự hiểu, sửa và giải thích HTML/CSS/JS phần mình; cập nhật công việc và minh chứng thực tế. Điền họ tên/MSSV khi chốt nhóm. Mỗi đầu việc dùng nhánh riêng, mở Pull Request để thành viên khác xem và kiểm tra trước khi ghép vào main.
+Mỗi người phải tự hiểu, sửa và giải thích HTML/CSS/JS phần mình; cập nhật công việc và minh chứng thực tế. Điền họ tên/MSSV khi chốt nhóm. Mỗi người xây dựng phần vai trò trên nhánh `feat/...` trong bảng; mở Pull Request để thành viên khác xem và kiểm tra trước khi ghép vào `main`. Với phần làm chung, cả nhóm chia đầu việc và thống nhất người thực hiện, nhánh công việc và người kiểm tra.

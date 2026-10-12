@@ -13,3 +13,8 @@ Phạm vi: frontend nhiều trang, danh mục nhiều môn; dữ liệu ban đ�
 ## Tình trạng duyệt
 
 Tài liệu này và bảng kiểm kê được xây dựng cùng bản triển khai theo yêu cầu của người dùng; chưa có bằng chứng giảng viên duyệt trước khi code. Nhóm cần trình duyệt và bổ sung Figma cho các màn hình nghiệp vụ. Không ghi nhận đã duyệt khi chưa được xác nhận.
+
+
+## Tổ chức triển khai hiện tại
+
+Mỗi thành viên xây dựng một trong 4 vai trò theo [phân công](team-assignment.md), trên các nhánh `feat/player`, `feat/venue`, `feat/organizer`, `feat/admin`. Các trang còn lại, UI/dữ liệu dùng chung và kiểm thử tích hợp do cả nhóm phối hợp. Bản web_demo_source_code có 42 trang chức năng và 2 URL chuyển hướng; tham khảo [bảng màn hình](screen-list.md).

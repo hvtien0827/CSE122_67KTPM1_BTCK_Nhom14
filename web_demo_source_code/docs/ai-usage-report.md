@@ -21,10 +21,10 @@ Codex được người dùng yêu cầu tạo website HTML/CSS/JS từ đề Ma
 - Bổ sung validation liên kết: sửa lịch trận xét lịch thành viên; hoàn thành booking cập nhật trận; dữ liệu localStorage hỏng không bị ghi đè ngầm.
 
 ## Kiểm chứng
-Chạy kiểm tra cú pháp JS, kiểm tra các trang desktop/mobile bằng trình duyệt headless, kiểm thử xuyên vai trò và tình huống lỗi, xem ảnh render. Kết quả cụ thể trong test-report.md.
+Chạy kiểm tra cú pháp JS, kiểm tra các trang desktop/mobile bằng trình duyệt headless, kiểm thử xuyên vai trò và tình huống lỗi, xem ảnh render. Kết quả lịch sử và kiểm thử bản hiện tại được phân biệt tại [test-report.md](test-report.md).
 
 ## Phân biệt mock / API thật
-Tất cả auth, OTP, booking, chat, thanh toán (không thu tiền) và 3 AI là mô phỏng. Không gọi API mạng. Thuật toán AI đọc được trong js/ai.js.
+Auth, OTP email, booking và 3 AI là mô phỏng. Không xử lý thanh toán thật; trò chuyện đã gỡ trong bản hiện tại. Không gọi API mạng. Thuật toán AI đọc được trong js/ai.js.
 
 ## Sinh viên cần bổ sung trung thực
 | Thành viên | Phần tự chỉnh | Lỗi tự tìm / cách kiểm chứng | Điều học được | Commit/PR thật |
@@ -33,3 +33,10 @@ Tất cả auth, OTP, booking, chat, thanh toán (không thu tiền) và 3 AI l�
 | SV2 | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | |
 | SV3 | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | |
 | SV4 | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | |
+
+
+## Phạm vi cập nhật hiện tại
+
+Nhóm giữ 4 vai trò; mỗi người xây dựng một vai trò trên `feat/player`, `feat/venue`, `feat/organizer`, `feat/admin`; các phần dùng chung do cả nhóm phối hợp. Danh mục hiện hành là 42 trang chức năng và 2 URL chuyển hướng.
+
+AI đã hỗ trợ sửa lỗi tài khoản CLB còn bị khóa do dữ liệu bản 28 trang: khôi phục có điều kiện, giữ khóa thủ công, dữ liệu hiện hành và thêm `tests/restore-four-roles.cjs`. Kiểm thử dữ liệu đạt; lượt kiểm thử trình duyệt cho sửa lỗi này chưa chạy được vì môi trường thiếu trình duyệt Playwright. Bảng công việc sinh viên phía trên phải được cập nhật từ công việc thực tế.

@@ -33,7 +33,7 @@ Tài khoản tự đăng ký có vai trò Người chơi. Mã xác minh/khôi ph
 
 ## Phân công nhóm
 
-Mỗi người phụ trách một vai trò: Thành viên 1 — Người chơi; Thành viên 2 — Chủ sân; Thành viên 3 — Điều phối CLB; Thành viên 4 — Quản trị viên. Trang chủ, auth, hồ sơ, thông báo, cài đặt, trợ giúp, điều khoản/bảo mật, lỗi, thành phần giao diện/dữ liệu và kiểm thử tích hợp là phần làm chung. Xem [phân công chi tiết](docs/team-assignment.md) và [bảng màn hình hiện hành](docs/screen-list.md).
+Mỗi người phụ trách một vai trò: Thành viên 1 — Người chơi; Thành viên 2 — Chủ sân; Thành viên 3 — Điều phối CLB; Thành viên 4 — Quản trị viên. Trang chủ, auth, hồ sơ, thông báo, cài đặt, trợ giúp, điều khoản/bảo mật, lỗi, thành phần giao diện/dữ liệu và kiểm thử tích hợp là phần làm chung. Các nhánh phụ trách lần lượt là `feat/player`, `feat/venue`, `feat/organizer`, `feat/admin`. Xem [phân công chi tiết](docs/team-assignment.md) và [bảng màn hình hiện hành](docs/screen-list.md).
 
 ## Những luồng đã triển khai
 
@@ -104,3 +104,10 @@ Có thể đặt `BROWSER_PATH` tới trình duyệt Chromium tương thích và
 ## Cập nhật ngày 24/09/2026
 
 Xem [luồng mới và cách kiểm tra](docs/community-update.md): lịch sân, doanh thu, đánh giá/báo cáo, nhóm tài khoản và hồ sơ công khai. Danh mục trang hiện hành: [pages.json](docs/pages.json).
+
+
+## Khôi phục dữ liệu khi quay về 4 vai trò
+
+Ứng dụng vẫn dùng khóa localStorage `courtconnect.v1`. Nếu dữ liệu từng được chuyển sang bản 28 trang, khi tải lại ứng dụng sẽ khôi phục tài khoản CLB bị ngừng hỗ trợ cùng sự kiện, báo cáo và lịch sử AI đã lưu trữ. Tài khoản bị admin khóa thủ công vẫn bị khóa. Dữ liệu đang chỉnh sửa được ưu tiên, không tự reset dữ liệu mẫu.
+
+Kiểm tra hồi quy bằng `node tests/restore-four-roles.cjs`. Xem [báo cáo kiểm thử](docs/test-report.md).

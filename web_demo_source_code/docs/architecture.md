@@ -19,6 +19,8 @@ HTML nhiều trang, CSS dùng chung, JavaScript chia theo vai trò. Không dùng
 | reports | khoảng ngày, snapshot số đơn và doanh thu hoàn thành |
 | notifications | userId, nội dung, href, read |
 | aiHistory | người dùng, loại, đầu vào, kết quả, saved/rejected |
+| courtReviews / opponentReviews | đánh giá sân theo booking / bạn chơi theo trận |
+| playerReports | báo cáo người chơi, admin đánh dấu đã xem xét |
 | messages | dữ liệu chat cũ có thể còn trong localStorage; chức năng chat đã gỡ |
 
 ## Các quy tắc quan trọng
@@ -38,3 +40,10 @@ HTML nhiều trang, CSS dùng chung, JavaScript chia theo vai trò. Không dùng
 Guard ở giao diện và hàm nghiệp vụ giúp mô phỏng phân quyền, không chống được người dùng sửa JavaScript/localStorage. Mật khẩu là giá trị giả lập trong localStorage. Không dùng dữ liệu thật. Chuỗi nhập vào được escape khi kết xuất; CSV xử lý dấu nháy và tiền tố công thức.
 
 Không có đồng bộ nhiều máy hoặc đặt sân đồng thời như hệ thống production. `storage` event giúp các tab cùng trình duyệt tải lại khi dữ liệu thay đổi.
+
+
+## Tương thích dữ liệu 4 vai trò
+
+`store.js` dùng `restoreFourRoles()` khi dữ liệu có `scope28` và chưa có `fourRoleRestoreVersion = 1`. Chỉ organizer có đúng lý do ngừng hỗ trợ vai trò mới được khôi phục trạng thái từ bản lưu. Tài khoản khóa thủ công giữ nguyên. Hợp nhất sự kiện, báo cáo, lịch sử AI, đánh giá và hồ sơ mạng xã hội từ `legacy`, ưu tiên bản hiện hành nếu trùng ID. Sau khi ghi thành công, đánh dấu đã khôi phục để không lặp lại.
+
+Các module `manage.js`, `ai.js`, `community.js` chứa phần của nhiều vai trò; nhóm thống nhất hàm cần sửa. CSS, UI, auth và dữ liệu dùng chung là trách nhiệm phối hợp của cả nhóm. Xem [phân công](team-assignment.md).

@@ -31,3 +31,8 @@ Nguồn: [đề bài gốc](../../docs/BTL-28_courtconnect-at-san-va-ghep-nguoi-
 - Trò chuyện đã gỡ theo bản cập nhật; URL chat cũ chỉ chuyển hướng. Quản lý khung giờ được tích hợp trong lịch sân.
 - Sports Report có create/read/update/archive snapshot và CSV, không phải dashboard tĩnh.
 - Chưa có bằng chứng duyệt thiết kế trước khi code. Không tự đánh dấu DONE theo định nghĩa của đề chỉ vì mã đã chạy.
+
+
+## Phân công và danh mục hiện hành
+
+Công việc chính của mỗi người là xây dựng giao diện/chức năng của vai trò mình đảm nhiệm, trên `feat/player`, `feat/venue`, `feat/organizer`, `feat/admin`. Phần còn lại làm chung. Xem [phân công](team-assignment.md) và [42 màn hình hiện hành](screen-list.md). Sửa lỗi hồi phục dữ liệu CLB đã có kiểm thử dữ liệu; kết quả trình duyệt và minh chứng học phần xem [báo cáo kiểm thử](test-report.md), không suy ra từ việc đã có mã nguồn.
