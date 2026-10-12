@@ -19,7 +19,7 @@ Bản hiện tại có **42 trang chức năng và 2 file HTML chuyển hướng
 
 **Phần làm chung:** trang chủ; đăng nhập/đăng ký, xác minh email và khôi phục mật khẩu; hồ sơ cá nhân/công khai; cài đặt, thông báo, trợ giúp, điều khoản, bảo mật và trang lỗi. Cả nhóm cùng xây dựng thành phần giao diện, dữ liệu mẫu, responsive, sáng/tối, kiểm thử tích hợp, tài liệu và minh chứng thuyết trình. Trò chuyện đã được gỡ khỏi bản hiện tại.
 
-Mỗi người xây dựng HTML/CSS/JS, kiểm tra phần vai trò của mình và phụ trách nhánh tương ứng trong bảng. Các nhánh công việc được đề nghị ghép vào `main` qua Pull Request sau khi kiểm tra. Với phần làm chung, nhóm chia các đầu việc nhỏ và thống nhất người thực hiện trước khi sửa file chung. Xem [phân công chi tiết](web_demo_source_code/docs/team-assignment.md); bổ sung họ tên/MSSV khi chốt nhóm.
+Mỗi người xây dựng HTML/CSS/JS, kiểm tra phần vai trò của mình và phụ trách nhánh tương ứng trong bảng. Các nhánh công việc được đề nghị ghép vào `main` qua Pull Request sau khi kiểm tra. Với phần làm chung, nhóm chia các đầu việc nhỏ và thống nhất người thực hiện trước khi sửa file chung. Xem [phân công chi tiết](web_demo_source_code/docs/team-assignment.md).
 
 ## Nội dung repository
 
