@@ -1,0 +1,41 @@
+﻿Mã công việc,Tên,Giao diện/tệp,Người phụ trách,Hạn,Trạng thái,Nhánh đề xuất,Commit,PR,Review,OBS,Ghi chú
+TASK-01,Kiểm chứng và hoàn thiện Kết nối cộng đồng thể thao,index.html,SV3,Chưa chốt,CẦN LÀM,feature/index,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-02,Kiểm chứng và hoàn thiện Đăng nhập,login.html,SV4,Chưa chốt,CẦN LÀM,feature/login,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-03,Kiểm chứng và hoàn thiện Tạo tài khoản,register.html,SV2,Chưa chốt,CẦN LÀM,feature/register,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-04,Kiểm chứng và hoàn thiện Quên mật khẩu,forgot-password.html,SV3,Chưa chốt,CẦN LÀM,feature/forgot-password,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-05,Kiểm chứng và hoàn thiện Đã gửi mã xác minh,verification-sent.html,SV4,Chưa chốt,CẦN LÀM,feature/verification-sent,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-06,Kiểm chứng và hoàn thiện Xác minh email,verify-email.html,SV2,Chưa chốt,CẦN LÀM,feature/verify-email,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-07,Kiểm chứng và hoàn thiện Đăng ký thành công,registration-success.html,SV3,Chưa chốt,CẦN LÀM,feature/registration-success,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-08,Kiểm chứng và hoàn thiện Yêu cầu khôi phục,recovery-sent.html,SV4,Chưa chốt,CẦN LÀM,feature/recovery-sent,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-09,Kiểm chứng và hoàn thiện Xác minh khôi phục,verify-reset.html,SV2,Chưa chốt,CẦN LÀM,feature/verify-reset,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-10,Kiểm chứng và hoàn thiện Đặt mật khẩu mới,reset-password.html,SV3,Chưa chốt,CẦN LÀM,feature/reset-password,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-11,Kiểm chứng và hoàn thiện Đổi mật khẩu thành công,reset-success.html,SV4,Chưa chốt,CẦN LÀM,feature/reset-success,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-12,Kiểm chứng và hoàn thiện Tìm sân,player-court-search.html,SV1,Chưa chốt,CẦN LÀM,feature/player-court-search,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-13,Kiểm chứng và hoàn thiện Tìm trận đấu,player-open-matches.html,SV1,Chưa chốt,CẦN LÀM,feature/player-open-matches,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-14,Kiểm chứng và hoàn thiện Hoạt động của tôi,player-my-sports.html,SV1,Chưa chốt,CẦN LÀM,feature/player-my-sports,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-15,Kiểm chứng và hoàn thiện Chi tiết sân,court-detail.html,SV1,Chưa chốt,CẦN LÀM,feature/court-detail,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-16,Kiểm chứng và hoàn thiện Xác nhận đặt sân,booking.html,SV1,Chưa chốt,CẦN LÀM,feature/booking,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-17,Kiểm chứng và hoàn thiện Đặt sân thành công,booking-success.html,SV1,Chưa chốt,CẦN LÀM,feature/booking-success,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-18,Kiểm chứng và hoàn thiện Chi tiết trận,match-detail.html,SV1,Chưa chốt,CẦN LÀM,feature/match-detail,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-19,Kiểm chứng và hoàn thiện Tạo và sửa trận,player-match-create.html,SV1,Chưa chốt,CẦN LÀM,feature/player-match-create,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-20,Kiểm chứng và hoàn thiện Ghép trận thông minh,player-skill-match.html,SV1,Chưa chốt,CẦN LÀM,feature/player-skill-match,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-21,Kiểm chứng và hoàn thiện Quản lý sân,venue-court-management.html,SV2,Chưa chốt,CẦN LÀM,feature/venue-court-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-22,Kiểm chứng và hoàn thiện Quản lý khung giờ,venue-slot-management.html,SV2,Chưa chốt,CẦN LÀM,feature/venue-slot-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-23,Kiểm chứng và hoàn thiện Quản lý đặt sân,venue-booking-management.html,SV2,Chưa chốt,CẦN LÀM,feature/venue-booking-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-24,Kiểm chứng và hoàn thiện Cảnh báo vắng mặt,venue-no-show-risk.html,SV2,Chưa chốt,CẦN LÀM,feature/venue-no-show-risk,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-25,Kiểm chứng và hoàn thiện Sự kiện CLB,organizer-event-management.html,SV3,Chưa chốt,CẦN LÀM,feature/organizer-event-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-26,Kiểm chứng và hoàn thiện Chi tiết sự kiện,organizer-event-detail.html,SV3,Chưa chốt,CẦN LÀM,feature/organizer-event-detail,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-27,Kiểm chứng và hoàn thiện Danh sách người chơi,organizer-player-roster.html,SV3,Chưa chốt,CẦN LÀM,feature/organizer-player-roster,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-28,Kiểm chứng và hoàn thiện Đội hình và chia đội,organizer-team-lineup.html,SV3,Chưa chốt,CẦN LÀM,feature/organizer-team-lineup,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-29,Kiểm chứng và hoàn thiện Quản lý môn thể thao,admin-sport-management.html,SV4,Chưa chốt,CẦN LÀM,feature/admin-sport-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-30,Kiểm chứng và hoàn thiện Quản lý tài khoản,admin-user-management.html,SV4,Chưa chốt,CẦN LÀM,feature/admin-user-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-31,Kiểm chứng và hoàn thiện Báo cáo hoạt động,admin-sports-report.html,SV4,Chưa chốt,CẦN LÀM,feature/admin-sports-report,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-32,Kiểm chứng và hoàn thiện Hồ sơ cá nhân,profile.html,SV4,Chưa chốt,CẦN LÀM,feature/profile,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-33,Kiểm chứng và hoàn thiện Cài đặt,settings.html,SV2,Chưa chốt,CẦN LÀM,feature/settings,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-34,Kiểm chứng và hoàn thiện Thông báo,notifications.html,SV3,Chưa chốt,CẦN LÀM,feature/notifications,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-35,Kiểm chứng và hoàn thiện Trò chuyện,chat.html,SV4,Chưa chốt,CẦN LÀM,feature/chat,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-36,Kiểm chứng và hoàn thiện Trung tâm hỗ trợ,help.html,SV2,Chưa chốt,CẦN LÀM,feature/help,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-37,Kiểm chứng và hoàn thiện Điều khoản sử dụng,terms.html,SV3,Chưa chốt,CẦN LÀM,feature/terms,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-38,Kiểm chứng và hoàn thiện Chính sách bảo mật,privacy.html,SV4,Chưa chốt,CẦN LÀM,feature/privacy,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-39,Kiểm chứng và hoàn thiện Không có quyền truy cập,403.html,SV2,Chưa chốt,CẦN LÀM,feature/403,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
+TASK-40,Kiểm chứng và hoàn thiện Không tìm thấy trang,404.html,SV3,Chưa chốt,CẦN LÀM,feature/404,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế

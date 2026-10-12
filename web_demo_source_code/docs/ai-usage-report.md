@@ -1,0 +1,35 @@
+# Báo cáo sử dụng AI
+
+## Công cụ
+Codex được người dùng yêu cầu tạo website HTML/CSS/JS từ đề Markdown và các PDF giao diện Figma. Không sử dụng LLM API trong sản phẩm.
+
+## Prompt chính
+“Review toàn bộ file markdown, xem toàn bộ UI figma degisn, tạo trang web đủ role/tính năng, phong cách và màu sắc theo Figma; không giới hạn số trang; HTML CSS JS trong source_code.” Người dùng sau đó yêu cầu tiếp tục từ trạng thái đã làm và hoàn thành task.
+
+## Phần AI tạo
+- Mã HTML/CSS/JS của nguyên mẫu, dữ liệu mẫu và ba thuật toán theo quy tắc.
+- Tài liệu kỹ thuật, kiểm kê, mẫu phân công, task/OBS và các script kiểm thử.
+- Không tạo video OBS, lịch sử commit cá nhân, PR/review, bằng chứng giảng viên duyệt hoặc bảng Trello thật.
+
+## Nguồn do nhóm cung cấp
+Đề BTL-28 và 43 PDF. Ảnh sân/ảnh hero được trích từ PDF trang chủ. Các role chưa có bản Figma được thiết kế mở rộng cùng phong cách, không phải ảnh mẫu đã được thầy duyệt.
+
+## Lỗi / điều chỉnh trong quá trình tạo
+- Thư mục dự án đã chuyển đường dẫn, cần tìm lại nguồn hiện tại.
+- Trình đọc ảnh mặc định bị ảnh hưởng bởi cwd cũ; đã render PDF bằng Python và kiểm tra ảnh qua dữ liệu ảnh.
+- Xử lý submit bất đồng bộ phải giữ tham chiếu form trước await vì event.currentTarget có thể trở thành null.
+- Bổ sung validation liên kết: sửa lịch trận xét lịch thành viên; hoàn thành booking cập nhật trận; dữ liệu localStorage hỏng không bị ghi đè ngầm.
+
+## Kiểm chứng
+Chạy kiểm tra cú pháp JS, kiểm tra các trang desktop/mobile bằng trình duyệt headless, kiểm thử xuyên vai trò và tình huống lỗi, xem ảnh render. Kết quả cụ thể trong test-report.md.
+
+## Phân biệt mock / API thật
+Tất cả auth, OTP, booking, chat, thanh toán (không thu tiền) và 3 AI là mô phỏng. Không gọi API mạng. Thuật toán AI đọc được trong js/ai.js.
+
+## Sinh viên cần bổ sung trung thực
+| Thành viên | Phần tự chỉnh | Lỗi tự tìm / cách kiểm chứng | Điều học được | Commit/PR thật |
+|---|---|---|---|---|
+| SV1 | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | |
+| SV2 | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | |
+| SV3 | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | |
+| SV4 | Chưa ghi nhận | Chưa ghi nhận | Chưa ghi nhận | |
