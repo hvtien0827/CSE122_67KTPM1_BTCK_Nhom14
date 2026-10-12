@@ -26,11 +26,11 @@ Mỗi người xây dựng HTML/CSS/JS, kiểm tra phần vai trò của mình v
 | Thư mục | Nội dung |
 |---|---|
 | [docs](docs/) | Đề bài gốc và các tài liệu tóm tắt. |
-| [prompt](prompt/) — [Tóm tắt](docs/Prompt.md) | Prompt thiết kế; có tài liệu phương án 28 trang cũ để tham khảo. |
+| [prompt](prompt/) — [Tóm tắt](docs/Prompt.md) | Prompt thiết kế và danh mục giao diện hiện hành. |
 | [figma](figma/) — [Tóm tắt](docs/UI_Figma.md) | PDF giao diện trang chủ và luồng tài khoản. |
 | [web_demo_source_code](web_demo_source_code/) — [Tóm tắt](docs/TOM_TAT.md) | Mã nguồn demo 4 vai trò, tài nguyên và kiểm thử. |
 
-Danh mục hiện hành xem tại [bảng màn hình](web_demo_source_code/docs/screen-list.md). Tài liệu 28 trang/3 vai trò trong prompt thuộc phương án trước, không dùng để cắt phạm vi bản hiện tại. Đề gốc ghi 3 sinh viên; phân công thực tế của nhóm là 4 người.
+Danh mục 42 trang chức năng của 4 vai trò được mô tả tại [bảng màn hình](web_demo_source_code/docs/screen-list.md) và [tài liệu phân loại giao diện](prompt/phan_loai_giao_dien_he_thong.md).
 
 ## Chạy thử
 
