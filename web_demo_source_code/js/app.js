@@ -219,14 +219,17 @@
       return;
     }
     const u = CC.me();
+    if (page === 'index' && u && u.role !== 'player') {
+      location.replace(UI.homeFor(u.role));
+      return;
+    }
     if (!publicPages.includes(page) && !u) {
       sessionStorage.setItem('cc.next', page + '.html' + location.search);
       location.replace('login.html');
       return;
     }
-    let required = page.split('-')[0];
-    if (['booking', 'booking-success'].includes(page)) required = 'player';
-    if (!publicPages.includes(page) && CC.roles[required] && u.role !== required) {
+    const required = UI.roleForPage(page);
+    if (u && required && u.role !== required) {
       error(403);
       return;
     }

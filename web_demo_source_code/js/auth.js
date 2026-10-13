@@ -26,7 +26,7 @@
     const allowed =
       next &&
       /^[a-z0-9-]+\.html(?:\?[^\s<>]*)?$/.test(next) &&
-      (!/^(venue|organizer|admin)-/.test(next) || next.startsWith(u.role + '-'));
+      (!UI.roleForPage(next) || UI.roleForPage(next) === u.role);
     location.href = allowed ? next : homeFor(u.role);
   }
   function validPassword(p) {

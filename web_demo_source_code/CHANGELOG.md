@@ -4,6 +4,24 @@ Ngày tổng hợp: **13/10/2026**. Áp dụng cho thư mục `web_demo_source_c
 
 Nhật ký tổng hợp từ các thay đổi đã xác nhận trong cuộc trao đổi và mã nguồn/tài liệu hiện có. Đây không phải bản trích xuất lịch sử Git. Những cải tiến cũ không xác định được ngày thực hiện được ghi theo nhóm chức năng, không gán ngày hay người thực hiện. Bản thiết kế lại đã bị loại bỏ không thuộc nhật ký này.
 
+## 13/10/2026 — Khôi phục menu mobile cho bốn vai trò
+
+- Sửa lệch tên thao tác giữa nút `toggle-sidebar` và bộ xử lý menu mobile cũ; nút mở được menu trên các trang chức năng, không chỉ trang chủ.
+- Dùng cùng nút cho đóng/mở, bấm ngoài menu, Escape và quản lý focus; bổ sung `aria-controls`.
+- Định vị menu dưới nút phía trái, giới hạn chiều rộng và chiều cao theo màn hình; menu có thể cuộn để xem đầy đủ chức năng.
+- Đồng nhất menu trang chủ trên mobile, giữ thanh bên desktop.
+- File thay đổi: `js/ui.js`, `css/style.css`.
+- Kiểm tra bằng Chromium mô phỏng cảm ứng 402 × 874, DPR 3: bốn vai trò, trang hồ sơ, tạo trận và trang chủ; đóng/mở, chạm ngoài, Escape, chuyển trang và giới hạn hiển thị đều đạt. Kiểm tra thanh bên desktop đạt. Chưa kiểm tra trên thiết bị iPhone thật.
+
+## 13/10/2026 — Sửa nút Đăng ký và phân quyền điều hướng
+
+- Loại nút khỏi quy tắc CSS dành cho liên kết thường trên header, giữ chữ trắng của nút Đăng ký ở trạng thái thường và hover.
+- Khi tài khoản Chủ sân, Điều phối CLB hoặc Quản trị viên mở trang chủ (kể cả qua logo), chuyển về trang chức năng của đúng vai trò.
+- Kiểm tra vai trò cả trên các trang tìm sân, tìm trận, chi tiết sân/trận vốn cho khách xem trước. Tài khoản đã đăng nhập sai vai trò nhận trang 403; khách vẫn xem trước được.
+- Dùng chung quy tắc vai trò cho kiểm tra trang và đường dẫn tiếp tục sau đăng nhập; tránh chuyển tài khoản quản lý vào luồng người chơi từ liên kết lưu trước đó.
+- File thay đổi: `css/style.css`, `js/ui.js`, `js/app.js`, `js/auth.js`.
+- Kiểm tra: cú pháp JavaScript đạt; trình duyệt xác nhận 44 tổ hợp trang/vai trò và đường dẫn tiếp tục sau đăng nhập của cả bốn vai trò, không có lỗi JavaScript.
+
 ## 13/10/2026 — Tách nhãn trình độ khỏi nút xem trận
 
 - Thêm khoảng cách **12px** giữa nhãn trình độ và nút **Xem trận & tham gia** trong thành phần thẻ trận đấu dùng chung.

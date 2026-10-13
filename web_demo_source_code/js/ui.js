@@ -189,6 +189,13 @@
     ],
   };
   const homeFor = (role) => navs[role]?.[0][0] || 'index.html';
+  // Guest previews remain public, but signed-in accounts must use their own role.
+  const roleForPage = (href) => {
+    const page = href.split('?')[0].replace(/\.html$/, '');
+    if (['court-detail', 'match-detail', 'booking', 'booking-success'].includes(page)) return 'player';
+    const prefix = page.split('-')[0];
+    return Object.hasOwn(navs, prefix) ? prefix : null;
+  };
   const brand =
     '<a class="brand" href="index.html"><span class="brand-icon">C</span>CourtConnect</a>';
   const courtImage = c => esc(/^data:image\/(jpeg|png|webp);base64,/.test(c.imageData || '') ? c.imageData : `assets/images/figma-${[1,2,4].includes(Number(c.image)) ? Number(c.image) : 4}.jpg`);
@@ -198,7 +205,7 @@
   }
   function header(auth = false) {
     const u = CC.me();
-    const sidebarToggle = u ? `<button type="button" class="icon-btn sidebar-toggle-btn" data-action="toggle-sidebar" aria-label="Menu điều hướng" aria-expanded="false">${icon('menu')}</button>` : '';
+    const sidebarToggle = u ? `<button type="button" class="icon-btn sidebar-toggle-btn" data-action="toggle-sidebar" aria-label="Menu điều hướng" aria-controls="site-navigation" aria-expanded="false">${icon('menu')}</button>` : '';
     const account = u ? `<details class="account-menu"><summary aria-label="Tài khoản và đăng xuất"><span class="avatar">${esc(u.name.split(' ').pop()[0])}</span><span class="user-name">${esc(u.name)}</span></summary><div class="account-dropdown"><strong>${esc(u.name)}</strong><span class="small muted">${CC.roles[u.role]}</span><div class="account-menu-items">${link(icon('home') + 'Trang của tôi', homeFor(u.role), 'account-menu-item')}${link(icon('users') + 'Hồ sơ cá nhân', 'profile.html', 'account-menu-item')}${link(icon('settings') + 'Cài đặt', 'settings.html', 'account-menu-item')}${btn(icon('logout') + 'Đăng xuất / đổi vai trò', 'logout', 'account-menu-item account-logout')}</div></div></details>` : '';
     return `<a class="skip" href="#main">Bỏ qua điều hướng</a><header class="header ${!u && !auth ? 'guest-header' : ''}"><div class="container header-inner"><div class="header-left">${sidebarToggle}${brand}</div>${auth ? `<nav class="auth-header-nav" aria-label="Điều hướng tài khoản">${Theme.button()}${account}<a href="index.html" class="small">← Về trang chủ</a></nav>` : `<nav class="header-nav" aria-label="Điều hướng chính">${Theme.button()}${u ? `<a class="optional" href="${homeFor(u.role)}">${CC.roles[u.role]}</a><a class="icon-btn" href="notifications.html" aria-label="Thông báo">${icon('bell')}</a>${account}` : `<a class="optional" href="player-court-search.html">Tìm sân</a><a class="optional" href="player-open-matches.html">Tìm trận đấu</a>${link('Đăng nhập', 'login.html', 'ghost')}${link('Đăng ký', 'register.html')}`}</nav>`}</div></header>`;
   }
@@ -233,7 +240,7 @@
   // The mobile navigation is a non-modal dropdown anchored to its trigger.
   const mobileViewport = window.matchMedia('(max-width: 760px)');
   function positionMobileMenu() {
-    const trigger = $('[data-action="menu"]');
+    const trigger = $('button[data-action="toggle-sidebar"]');
     const menu = $('#site-navigation');
     if (!trigger || !menu || !mobileViewport.matches) return;
     const rect = trigger.getBoundingClientRect();
@@ -241,19 +248,21 @@
       ? window.visualViewport.offsetTop + window.visualViewport.height
       : window.innerHeight;
     const top = rect.bottom + 10;
+    const width = Math.min(320, window.innerWidth - 24);
+    const left = Math.max(12, Math.min(rect.left, window.innerWidth - width - 12));
     menu.style.setProperty('--mobile-menu-top', `${top}px`);
     menu.style.setProperty(
       '--mobile-menu-width',
-      `${Math.min(320, Math.max(0, rect.right - 12))}px`
+      `${width}px`
     );
     menu.style.setProperty(
       '--mobile-menu-right',
-      `${Math.max(12, window.innerWidth - rect.right)}px`
+      `${window.innerWidth - left - width}px`
     );
     menu.style.setProperty('--mobile-menu-height', `${Math.max(0, viewportBottom - top - 12)}px`);
   }
   function setMobileMenu(open, moveFocus = false) {
-    const trigger = $('[data-action="menu"]');
+    const trigger = $('button[data-action="toggle-sidebar"]');
     const menu = $('#site-navigation');
     if (!trigger || !menu) return;
     open = open && mobileViewport.matches;
@@ -261,14 +270,14 @@
     menu.classList.toggle('is-open', open);
     trigger.setAttribute('aria-expanded', String(open));
     trigger.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
-    trigger.textContent = open ? '×' : '☰';
+    trigger.innerHTML = open ? '<span aria-hidden="true">×</span>' : icon('menu');
     if (moveFocus) {
       if (open) menu.querySelector('a, button')?.focus({ preventScroll: true });
       else trigger.focus({ preventScroll: true });
     }
   }
   document.addEventListener('pointerdown', (event) => {
-    if (!event.target.closest('#site-navigation, [data-action="menu"]')) setMobileMenu(false);
+    if (!event.target.closest('#site-navigation, button[data-action="toggle-sidebar"]')) setMobileMenu(false);
   });
   document.addEventListener('click', (event) => {
     if (event.target.closest('#site-navigation a, #site-navigation button')) setMobileMenu(false);
@@ -280,7 +289,7 @@
     }
   });
   document.addEventListener('focusin', (event) => {
-    if (!event.target.closest('#site-navigation, [data-action="menu"]')) setMobileMenu(false);
+    if (!event.target.closest('#site-navigation, button[data-action="toggle-sidebar"]')) setMobileMenu(false);
   });
   window.addEventListener('resize', () => {
     if (!mobileViewport.matches) setMobileMenu(false);
@@ -296,10 +305,11 @@
       CC.logout();
       location.href = 'login.html';
     }
-    if (a.dataset.action === 'menu') {
-      setMobileMenu(!$('.sidebar')?.classList.contains('is-open'), e.detail === 0);
-    }
     if (a.dataset.action === 'toggle-sidebar') {
+      if (mobileViewport.matches) {
+        setMobileMenu(!$('#site-navigation')?.classList.contains('is-open'), e.detail === 0);
+        return;
+      }
       const page = location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
       if (page === 'index') {
         const sb = $('.home-sidebar');
@@ -436,6 +446,7 @@
     formDialog,
     requireLogin,
     homeFor,
+    roleForPage,
     header,
     footer,
     shell,
