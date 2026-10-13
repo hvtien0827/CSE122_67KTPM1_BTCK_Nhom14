@@ -29,7 +29,7 @@
     statusFilter = '';
   const q = () => new URLSearchParams(location.search);
   const controls = (create, tableName) =>
-    `<div class="filter-bar">${field('Tìm kiếm', 'manage-search', 'search', filter, 'placeholder="Tên, email, địa điểm…"')}${select('Trạng thái', 'manage-status', option('', 'Tất cả', statusFilter) + ['active', 'open', 'pending', 'approved', 'rejected', 'cancelled', 'completed', 'archived', 'disabled'].map((s) => option(s, CC.statuses[s], statusFilter)).join(''))}${create ? btn('+ ' + create, 'entity-new', '', `data-table="${tableName}"`) : ''}</div>`;
+    `<div class="filter-bar">${field('Tìm kiếm', 'manage-search', 'search', filter, 'placeholder="Tên, email, địa điểm…"')}${select('Trạng thái', 'manage-status', option('', 'Tất cả', statusFilter) + ({ courts: ['active', 'archived'], slots: ['open', 'archived'], events: ['open', 'completed', 'archived'], players: ['active', 'disabled'], users: ['active', 'disabled'], sports: ['active', 'archived'], reports: ['active', 'archived'], bookings: ['pending', 'approved', 'rejected', 'cancelled', 'completed'] }[tableName || 'bookings']).map((s) => option(s, CC.statuses[s], statusFilter)).join(''))}${create ? btn('+ ' + create, 'entity-new', '', `data-table="${tableName}"`) : ''}</div>`;
   function bind() {
     const input = $('[name=manage-search]');
     if (input)
@@ -48,10 +48,10 @@
     (!filter || JSON.stringify(x).toLowerCase().includes(filter.toLowerCase())) &&
     (!statusFilter || x.status === statusFilter);
   const acts = (table, x) =>
-    `<div class="actions">${x.status !== 'archived' && x.status !== 'disabled' ? btn('Sửa', 'entity-edit', 'secondary small', `data-table="${table}" data-id="${x.id}"`) + btn(['users', 'players'].includes(table) ? 'Vô hiệu hóa' : 'Lưu trữ', 'entity-archive', 'ghost small', `data-table="${table}" data-id="${x.id}"`) : '<span class="muted">Đã ngừng hoạt động</span>'}</div>`;
+    `<div class="actions">${x.status !== 'archived' && x.status !== 'disabled' ? btn('Sửa', 'entity-edit', 'secondary small', `data-table="${table}" data-id="${x.id}"`) + btn(['users', 'players'].includes(table) ? 'Vô hiệu hóa' : 'Lưu trữ', 'entity-archive', 'ghost small', `data-table="${table}" data-id="${x.id}"`) : '<span class="muted">Đã ngừng hoạt động</span>'}${['courts', 'events', 'reports'].includes(table) ? btn('Xoá', 'entity-delete', 'danger small', `data-table="${table}" data-id="${x.id}"`) : ''}</div>`;
   const activeCourts = () =>
     CC.db.courts.filter((c) => c.ownerId === CC.me().id && c.status === 'active');
-  const ownEvents = () => CC.db.events.filter((e) => e.organizerId === CC.me().id);
+  const ownEvents = () => CC.db.events.filter((e) => e.organizerId === CC.me().id && e.status !== 'deleted');
   const eventSelector = (selected) =>
     select(
       'Sự kiện',
@@ -62,11 +62,11 @@
         .join('') || option('', 'Chưa có sự kiện')
     );
   function courts() {
-    const rows = CC.db.courts.filter((c) => c.ownerId === CC.me().id);
+    const rows = CC.db.courts.filter((c) => c.ownerId === CC.me().id && c.status !== 'deleted');
     shell(
       pageHead(
         'Quản lý sân',
-        'Chăm sóc không gian của bạn, sẵn sàng đón người chơi.',
+        'Thêm sân, chọn ảnh và bấm Xem lịch sân để quản lý các giờ trống/đã thuê.',
         btn('+ Thêm sân', 'entity-new', '', 'data-table="courts"')
       ) +
         stats([
@@ -81,14 +81,15 @@
           rows
             .filter(match)
             .map((c) => [
-              `<div class="row"><img src="assets/images/figma-${c.image ?? 4}.jpg" alt="" width="64" height="48" style="object-fit:cover;border-radius:7px"><div>${btn(esc(c.name), 'court-calendar', 'ghost', `data-id="${c.id}"`)}<div class="muted">${esc(c.location)}</div></div></div>`,
+              `<div class="court-table-info"><img src="${UI.courtImage(c)}" alt="" width="88" height="72"><div>${btn(esc(c.name), 'court-calendar', 'court-name-button', `data-id="${c.id}"`)}<p class="court-table-address">${esc(c.location)}</p></div></div>`,
               sport(c.sportId),
               money(c.price),
               badge(c.status),
-              acts('courts', c),
+              `<div class="court-table-actions">${btn(UI.icon('calendar') + 'Xem lịch sân', 'court-calendar', 'court-calendar-button', `data-id="${c.id}"`)}${acts('courts', c)}</div>`,
             ])
         )
     );
+    $('#main').classList.add('court-management');
     bind();
   }
   function slots() {
@@ -141,8 +142,7 @@
     shell(
       pageHead(
         'Quản lý đặt sân',
-        'Xử lý yêu cầu đặt sân và theo dõi trạng thái.',
-        btn('+ Tạo đơn hộ người chơi', 'new-booking')
+        'Chọn yêu cầu để duyệt, từ chối hoặc hủy. Hoàn thành đơn sau khi giờ thuê kết thúc.'
       ) +
         stats([
           ['Tổng yêu cầu', rows.length],
@@ -153,7 +153,7 @@
             rows.filter((b) => ['cancelled', 'rejected'].includes(b.status)).length,
           ],
         ]) +
-        `<div class="ai-banner"><div class="ai-icon">✧</div><div><h2>Chủ động trước mỗi lịch hẹn</h2><p>No-show Risk phân tích lịch sử mẫu; quyết định cuối cùng luôn thuộc về bạn.</p></div>${link('Phân tích rủi ro →', 'venue-no-show-risk.html')}</div>` +
+        `<p class="mb small muted">Cần xem lịch sử vắng mặt trước khi duyệt? ${link('Xem phân tích rủi ro →', 'venue-no-show-risk.html', 'ghost small')}</p>` +
         controls() +
         table(
           ['Người đặt / Sân', 'Thời gian', 'Giá', 'Trạng thái', 'Thao tác'],
@@ -169,7 +169,7 @@
                 `${day(s.date)}<br>${s.start} – ${s.end}`,
                 money(s.price),
                 badge(b.status),
-                `<div class="actions">${b.status === 'pending' ? btn('Duyệt', 'booking-status', 'small', `data-id="${b.id}" data-status="approved"`) + btn('Từ chối', 'booking-status', 'danger small', `data-id="${b.id}" data-status="rejected"`) : ''}${b.status === 'approved' ? btn('Hoàn thành', 'booking-status', 'secondary small', `data-id="${b.id}" data-status="completed"`) : ''}${['pending', 'approved'].includes(b.status) ? btn('Hủy', 'booking-status', 'ghost small', `data-id="${b.id}" data-status="cancelled"`) : ''}</div>`,
+                `<div class="actions">${b.status === 'pending' ? btn('Duyệt', 'booking-status', 'small', `data-id="${b.id}" data-status="approved"`) + btn('Từ chối', 'booking-status', 'danger small', `data-id="${b.id}" data-status="rejected"`) : ''}${b.status === 'approved' ? btn('Hoàn thành', 'booking-status', 'secondary small', `data-id="${b.id}" data-status="completed" ${Community.ended(s) ? "" : 'disabled title="Có thể hoàn thành sau khi hết giờ thuê"'}`) : ''}${['pending', 'approved'].includes(b.status) ? btn('Hủy', 'booking-status', 'ghost small', `data-id="${b.id}" data-status="cancelled"`) : ''}</div>`,
               ];
             })
         )
@@ -183,7 +183,7 @@
     shell(
       pageHead(
         'Sự kiện câu lạc bộ',
-        'Tạo những cuộc hẹn thể thao đáng nhớ.',
+        'Tạo sự kiện có ngày, giờ; sau đó thêm người chơi và chia đội.',
         btn('+ Tạo sự kiện', 'entity-new', '', 'data-table="events"')
       ) +
         stats([
@@ -198,7 +198,7 @@
             .filter(match)
             .map(
               (e) =>
-                `<article class="card"><div class="card-body"><div class="row mb"><span class="tag">${sport(e.sportId)}</span>${badge(e.status)}</div><h3>${esc(e.name)}</h3><p class="meta">${UI.icon('calendar')}${day(e.date)}</p><p class="meta">${UI.icon('pin')}${esc(e.location)}</p><p class="muted small">${e.playerIds.length}/${e.capacity} thành viên · ${e.teams ? 'Đã có đội hình' : 'Chưa chia đội'}</p>${link('Xem sự kiện', `organizer-event-detail.html?id=${e.id}`, 'full secondary')}<div class="mt">${acts('events', e)}</div></div></article>`
+                `<article class="card"><div class="card-body"><div class="row mb"><span class="tag">${sport(e.sportId)}</span>${badge(e.status)}</div><h3>${esc(e.name)}</h3><p class="meta">${UI.icon('calendar')}${day(e.date)} · ${e.start || '08:00'}–${e.end || '10:00'}</p><p class="meta">${UI.icon('pin')}${esc(e.location)}</p><p class="muted small">${e.playerIds.length}/${e.capacity} thành viên · ${e.teams ? 'Đã có đội hình' : 'Chưa chia đội'}</p>${link('Xem sự kiện', `organizer-event-detail.html?id=${e.id}`, 'full secondary')}<div class="mt">${acts('events', e)}</div></div></article>`
             )
             .join('') || empty('Chưa có sự kiện', 'Tạo sự kiện để bắt đầu thêm người chơi.')
         }</div>`
@@ -207,7 +207,7 @@
   }
   function eventDetail() {
     const e = CC.find('events', q().get('id'));
-    if (!e) {
+    if (!e || e.status === 'deleted') {
       App.error(404);
       return;
     }
@@ -221,22 +221,23 @@
         'Theo dõi kế hoạch và đội hình của CLB.',
         btn('Chỉnh sửa', 'entity-edit', 'secondary', `data-table="events" data-id="${e.id}"`)
       ) +
-        `<div class="two-col"><section class="panel"><div class="row mb">${badge(e.status)}<span class="tag">${sport(e.sportId)}</span></div><h2>Thông tin sự kiện</h2><p class="muted">${esc(e.note)}</p><p>${day(e.date)} · ${esc(e.location)}</p><div class="actions">${link('Quản lý danh sách', `organizer-player-roster.html?event=${e.id}`)}${link('Chia đội', `organizer-team-lineup.html?event=${e.id}`, 'secondary')}${e.status === 'open' ? btn('Hoàn thành sự kiện', 'complete-event', 'secondary', `data-id="${e.id}"`) : ''}</div></section><section class="panel"><h2>Thành viên (${e.playerIds.length}/${e.capacity})</h2>${e.playerIds.map((p) => `<div class="player-row"><span class="avatar">${esc(CC.find('players', p)?.name.slice(0, 1))}</span>${esc(CC.find('players', p)?.name)}</div>`).join('') || '<p class="muted">Chưa có thành viên.</p>'}</section></div>`
+        `<div class="two-col"><section class="panel"><div class="row mb">${badge(e.status)}<span class="tag">${sport(e.sportId)}</span></div><h2>Thông tin sự kiện</h2><p class="muted">${esc(e.note)}</p><p>${day(e.date)} · ${e.start || '08:00'}–${e.end || '10:00'} · ${esc(e.location)}</p><div class="actions">${link('Quản lý danh sách', `organizer-player-roster.html?event=${e.id}`)}${link('Chia đội', `organizer-team-lineup.html?event=${e.id}`, 'secondary')}${e.status === 'open' ? btn('Hoàn thành sự kiện', 'complete-event', 'secondary', `data-id="${e.id}" ${Community.ended(e) ? '' : 'disabled title="Có thể hoàn thành sau khi sự kiện kết thúc"'}`) : ''}</div></section><section class="panel"><h2>Thành viên (${e.playerIds.length}/${e.capacity})</h2>${e.playerIds.map((p) => `<div class="player-row"><span class="avatar">${esc(CC.find('players', p)?.name.slice(0, 1))}</span>${esc(CC.find('players', p)?.name)}</div>`).join('') || '<p class="muted">Chưa có thành viên.</p>'}</section></div>`
     );
   }
   function roster() {
     const es = ownEvents().filter((e) => e.status === 'open'),
       e = es.find((e) => e.id === q().get('event')) || es[0];
-    const rows = CC.db.players.filter(match);
+    const rows = e ? CC.db.players.filter(p => e.playerIds.includes(p.id)).filter(match) : [];
+    const canAdd = e && e.playerIds.length < e.capacity && CC.db.players.some(p => p.status === 'active' && !e.playerIds.includes(p.id));
     shell(
       pageHead(
         'Danh sách người chơi',
-        'Quản lý hồ sơ và lựa chọn thành viên cho sự kiện.',
-        btn('+ Thêm người chơi', 'entity-new', '', 'data-table="players"')
+        'Chọn sự kiện để xem đúng người đã tham gia. Dùng Thêm vào sự kiện để chọn người mới.',
+        `<div class="actions">${btn('+ Thêm vào sự kiện', 'roster-add', '', `data-event="${e?.id || ''}" ${canAdd ? '' : 'disabled'}`)}${btn('Tạo hồ sơ người chơi', 'entity-new', 'secondary', 'data-table="players"')}</div>`
       ) +
         `<div class="panel">${eventSelector(e?.id)}<div class="row"><span class="muted small">${e ? `${e.playerIds.length}/${e.capacity} người đã chọn · ${sport(e.sportId)}` : 'Tạo sự kiện trước để thêm thành viên.'}</span><span class="spacer"></span>${e ? link('Chia đội →', `organizer-team-lineup.html?event=${e.id}`, 'secondary small') : link('Tạo sự kiện', 'organizer-event-management.html', 'secondary small')}</div></div>` +
         controls('', 'players') +
-        table(
+        (rows.length ? table(
           ['Người chơi', 'Trình độ', 'Lịch sử mẫu', 'Trong sự kiện', 'Thao tác'],
           rows.map((p) => [
             `<strong>${esc(p.name)}</strong><div class="muted">${p.userId ? 'Tài khoản thành viên' : 'Khách CLB'}</div>`,
@@ -245,7 +246,7 @@
             e?.playerIds.includes(p.id) ? '<span class="tag">Đã thêm</span>' : '—',
             `<div class="actions">${e && p.status === 'active' ? btn(e.playerIds.includes(p.id) ? 'Bỏ khỏi sự kiện' : 'Thêm vào sự kiện', 'roster-toggle', 'secondary small', `data-id="${p.id}" data-event="${e.id}"`) : ''}${acts('players', p)}</div>`,
           ])
-        )
+        ) : empty(e ? (e.playerIds.length ? 'Không có người phù hợp bộ lọc' : 'Sự kiện chưa có người tham gia') : 'Chưa có sự kiện đang mở', e ? 'Bấm Thêm vào sự kiện để chọn người chơi; danh sách này chỉ hiển thị người thuộc sự kiện đã chọn.' : 'Tạo sự kiện trước, sau đó thêm người chơi vào danh sách.'))
     );
     bind();
     $('[name=event]').onchange = (ev) => {
@@ -338,6 +339,18 @@
     );
     bind();
   }
+  async function readCourtPhoto(file) {
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) throw Error('Chọn ảnh JPG, PNG hoặc WebP.');
+    if (file.size > 5 * 1024 * 1024) throw Error('Ảnh quá lớn. Vui lòng chọn ảnh dưới 5 MB.');
+    const bitmap = await createImageBitmap(file).catch(() => { throw Error('Không thể đọc ảnh. Hãy chọn ảnh khác.'); });
+    const scale = Math.min(1, 1000 / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+    canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+    canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+    return canvas.toDataURL('image/jpeg', 0.78);
+  }
   function edit(tableName, key) {
     const x = key ? CC.find(tableName, key) : {};
     const labels = {
@@ -370,8 +383,10 @@
           x.amenities || 'Gửi xe, Nước uống',
           'maxlength="200"'
         ) +
+        `<label class="field">Tải ảnh sân từ máy<input type="file" name="courtPhoto" accept="image/jpeg,image/png,image/webp"></label><p class="small muted">Chọn JPG, PNG hoặc WebP, tối đa 5 MB. Ảnh được thu nhỏ để lưu trên trình duyệt.</p><img id="court-photo-preview" class="court-photo-preview" src="${UI.courtImage(x)}" alt="Xem trước ảnh sân">` +
+        `<label class="check"><input type="checkbox" name="autoSchedule" ${x.autoSchedule !== false ? 'checked' : ''}> Tự mở lịch 08:00–22:00, mỗi lượt 2 giờ, cho 30 ngày tới</label><p class="small muted">Có thể tắt tự mở và tạo giờ riêng trong Lịch sân. Tắt không xoá các khung giờ đã mở.</p>` +
         select(
-          'Ảnh sân',
+          'Hoặc chọn ảnh mẫu',
           'image',
           [4, 1, 2].map((n, i) => option(n, 'Ảnh sân ' + (i + 1), x.image ?? 4)).join('')
         );
@@ -405,6 +420,7 @@
         ) +
         select('Môn thể thao', 'sportId', sports(x.sportId)) +
         field('Ngày tổ chức', 'date', 'date', x.date || CC.date(3), `required min="${CC.date()}"`) +
+        `<div class="form-grid">${field('Giờ bắt đầu', 'start', 'time', x.start || '08:00', 'required')}${field('Giờ kết thúc', 'end', 'time', x.end || '10:00', 'required')}</div>` +
         field('Địa điểm', 'location', 'text', x.location || '', 'required maxlength="180"') +
         field(
           'Số người tối đa',
@@ -470,7 +486,14 @@
         field('Từ ngày', 'from', 'date', x.from || CC.date(), 'required') +
         field('Đến ngày', 'to', 'date', x.to || CC.date(7), 'required') +
         textarea('Ghi chú', 'note', x.note || '');
-    formDialog((key ? 'Chỉnh sửa ' : 'Thêm ') + labels[tableName], fields, 'Lưu thay đổi', (d) => {
+    formDialog((key ? 'Chỉnh sửa ' : 'Thêm ') + labels[tableName], fields, key ? 'Lưu thay đổi' : 'Tạo ' + labels[tableName], async (d) => {
+      if (tableName === 'courts') {
+        d.autoSchedule = d.autoSchedule === 'on';
+        const file = d.courtPhoto;
+        delete d.courtPhoto;
+        if (file?.size) d.imageData = await readCourtPhoto(file);
+        else if (String(d.image) !== String(x.image ?? 4)) d.imageData = '';
+      }
       for (const k of ['price', 'image', 'capacity', 'played', 'noShows'])
         if (k in d) d[k] = Number(d[k]);
       if (tableName === 'players') {
@@ -500,7 +523,20 @@
         };
       }
       CC.saveEntity(tableName, d, key);
+      if (tableName === 'courts') CC.ensureSchedules();
     });
+    if (tableName === 'courts') {
+      $('[name=courtPhoto]').onchange = async (event) => {
+        try {
+          const file = event.target.files[0];
+          $('#court-photo-preview').src = file ? await readCourtPhoto(file) : UI.courtImage(x);
+        } catch (err) { event.target.value = ''; toast(err.message, true); }
+      };
+      $('[name=image]').onchange = event => {
+        $('[name=courtPhoto]').value = '';
+        $('#court-photo-preview').src = UI.courtImage({ image: event.target.value });
+      };
+    }
   }
   document.addEventListener('click', (e) => {
     const a = e.target.closest('[data-action]');
@@ -515,6 +551,18 @@
         case 'entity-edit':
           edit(t, id);
           break;
+        case 'entity-delete':
+          confirm('Xoá ' + ({courts: 'sân', events: 'sự kiện', reports: 'báo cáo'}[t] || 'bản ghi') + '?',
+            t === 'courts' ? 'Sân sẽ ngừng hiển thị và nhận đặt lịch. Lịch sử đơn đặt/đánh giá được giữ lại; cần xử lý các đơn đang chờ hoặc đã duyệt trước.' : t === 'events' ? 'Sự kiện sẽ bị xoá khỏi danh sách; danh sách tham gia và đội hình không còn sử dụng.' : 'Báo cáo đã lưu sẽ bị xoá. Dữ liệu đặt sân gốc không thay đổi.',
+            () => { CC.deleteEntity(t, id); renderPage(); toast('Đã xoá thành công.'); });
+          break;
+        case 'roster-add': {
+          const ev = CC.find('events', a.dataset.event);
+          const candidates = CC.db.players.filter(p => p.status === 'active' && !ev.playerIds.includes(p.id));
+          formDialog('Thêm người vào ' + esc(ev.name), select('Người chơi', 'playerId', candidates.map(p => option(p.id, p.name)).join(''), 'required'), 'Thêm vào sự kiện',
+            d => CC.roster(ev.id, d.playerId, true));
+          break;
+        }
         case 'entity-archive':
           confirm(
             'Ngừng sử dụng bản ghi?',
@@ -537,35 +585,6 @@
             }
           );
           break;
-        case 'new-booking': {
-          const slots = CC.db.slots.filter(
-            (s) => CC.courtFor(s)?.ownerId === CC.me().id && CC.available(s)
-          );
-          formDialog(
-            'Tạo đơn hộ người chơi',
-            select(
-              'Người chơi',
-              'playerId',
-              CC.db.users
-                .filter((u) => u.role === 'player' && u.status === 'active')
-                .map((u) => option(u.id, u.name))
-                .join(''),
-              'required'
-            ) +
-              select(
-                'Khung giờ',
-                'slotId',
-                slots
-                  .map((s) => option(s.id, `${CC.courtFor(s).name} · ${s.date} ${s.start}`))
-                  .join(''),
-                'required'
-              ) +
-              textarea('Ghi chú', 'note'),
-            'Tạo đơn',
-            (d) => CC.booking(d.slotId, d.note, d.playerId)
-          );
-          break;
-        }
         case 'roster-toggle': {
           const ev = CC.find('events', a.dataset.event);
           CC.roster(ev.id, id, !ev.playerIds.includes(id));
@@ -580,8 +599,8 @@
             () => {
               const ev = CC.find('events', id);
               CC.requireRole('organizer');
-              if (ev.organizerId !== CC.me().id || ev.date > CC.date())
-                throw Error('Chỉ hoàn thành sự kiện thuộc bạn đã tới ngày tổ chức.');
+              if (ev.organizerId !== CC.me().id || new Date(`${ev.date}T${ev.end || '23:59'}`) > new Date())
+                throw Error('Chỉ hoàn thành sự kiện thuộc bạn sau giờ kết thúc.');
               CC.transaction(() => (ev.status = 'completed'));
               renderPage();
             }

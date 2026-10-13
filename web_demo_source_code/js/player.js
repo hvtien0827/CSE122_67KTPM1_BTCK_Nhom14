@@ -60,10 +60,11 @@
       matches = CC.db.matches
         .filter((m) => m.status === 'open' && CC.future(CC.find('slots', m.slotId)))
         .slice(0, 3);
-    document.body.innerHTML =
-      UI.header() +
-      `<main id="main"><section class="hero"><div class="container hero-grid"><div><h1>Tìm cộng đồng thể thao của bạn</h1><p>Kết nối với người chơi gần bạn, tạo trận đấu và tìm sân phù hợp chỉ trong vài bước.</p><div class="actions">${link('Tìm người chơi', 'player-open-matches.html')}${btn('Tạo trận đấu', 'create-match', 'secondary')}</div></div><img class="hero-image" src="assets/images/figma-9.jpg" alt="Những người chơi cầu lông cùng thi đấu trong nhà"></div></section><section class="section"><div class="container"><div class="section-heading"><div><div class="eyebrow">Kết nối ngay</div><h2>Gợi ý trận đấu</h2><p class="muted">Những trận đấu đang tìm thêm đồng đội gần bạn.</p></div>${link('Xem tất cả →', 'player-open-matches.html', 'ghost')}</div><div class="cards">${matches.map(matchCard).join('') || empty()}</div></div></section><section class="section soft"><div class="container"><div class="section-heading"><div><div class="eyebrow">Sân nổi bật</div><h2>Đặt sân gần bạn</h2><p class="muted">Chọn sân phù hợp và sẵn sàng cho trận đấu tiếp theo.</p></div>${link('Khám phá sân →', 'player-court-search.html', 'ghost')}</div><div class="cards">${courts.map(courtCard).join('') || empty()}</div></div></section><section class="cta"><h2>Sẵn sàng ra sân ngay?</h2><p>Tham gia CourtConnect và bắt đầu kết nối với người chơi quanh bạn.</p>${link('Bắt đầu', CC.me() ? 'player-open-matches.html' : 'register.html')}</section></main>` +
+    const content =
+      (CC.me() ? `${UI.sidebar('index.html', CC.me(), 'home-sidebar')}<div class="home-sidebar-backdrop" data-action="toggle-sidebar"></div>` : '') +
+      `<main id="main"><section class="hero"><div class="container hero-grid"><div class="hero-content"><h1>Kết nối người chơi, tìm sân và bắt đầu trận đấu</h1><p>Đặt khung giờ trống tại các sân cầu lông và pickleball uy tín, ghép trận theo trình độ và kết nối cùng cộng đồng thể thao quanh bạn.</p><div class="actions">${link('Tìm sân đặt lịch', 'player-court-search.html')}${link('Tham gia trận đấu', 'player-open-matches.html', 'secondary')}</div><div class="hero-sports-strip"><span class="sport-pill">Cầu lông</span><span class="sport-pill">Pickleball</span><span class="sport-pill">Ghép trận tự động</span><span class="sport-pill">Đặt lịch trực tiếp</span></div></div><div class="hero-visual"><img class="hero-image" src="assets/images/figma-9.jpg" alt="Những người chơi cầu lông cùng thi đấu trong nhà"></div></div></section><section class="section"><div class="container"><div class="section-heading"><div><h2>Trận đấu đang mở</h2><p class="muted">Những trận đấu đang tìm thêm bạn chơi cùng trình độ.</p></div>${link('Xem tất cả trận đấu', 'player-open-matches.html', 'ghost')}</div><div class="cards">${matches.map(matchCard).join('') || empty()}</div></div></section><section class="section soft"><div class="container"><div class="section-heading"><div><h2>Sân thể thao sẵn sàng</h2><p class="muted">Chọn sân phù hợp với thời gian và vị trí của bạn.</p></div>${link('Xem danh sách sân', 'player-court-search.html', 'ghost')}</div><div class="cards">${courts.map(courtCard).join('') || empty()}</div></div></section><section class="cta"><h2>Sẵn sàng ra sân hôm nay?</h2><p>Tạo tài khoản để theo dõi lịch đặt sân, tham gia trận đấu và kết nối bạn chơi.</p>${link('Bắt đầu ngay', CC.me() ? 'player-open-matches.html' : 'register.html')}</section></main>` +
       UI.footer();
+    document.body.innerHTML = UI.header() + content;
   }
   function searchCourts() {
     const f = getFilters(),
@@ -78,7 +79,7 @@
             CC.db.slots.some((s) => s.courtId === c.id && s.date === f.date && CC.available(s)))
       );
     shell(
-      pageHead('Tìm sân cho trận đấu tiếp theo', 'Khám phá không gian thể thao phù hợp với bạn.') +
+      pageHead('Tìm và đặt sân', 'Chọn sân → chọn ngày và giờ trống → gửi yêu cầu. Theo dõi xác nhận trong Hoạt động của tôi.') +
         filterBar('courts') +
         `<div class="row mb"><strong>${rows.length} sân phù hợp</strong><span class="spacer"></span><span class="muted small">Cầu lông · Pickleball · Cộng đồng</span></div><div class="cards">${rows.map(courtCard).join('') || empty('Không tìm thấy sân', 'Thử đổi tên, môn thể thao hoặc ngày chơi.')}</div>`
     );
@@ -120,34 +121,23 @@
       App.error(404);
       return;
     }
-    const dates = [
-      ...new Set(
-        CC.db.slots
-          .filter((s) => s.courtId === c.id && CC.future(s) && s.status === 'open')
-          .map((s) => s.date)
-      ),
-    ].sort();
-    const chosen = q().get('date') || dates[0] || CC.date(1);
-    const slots = CC.db.slots.filter(
-      (s) => s.courtId === c.id && s.date === chosen && s.status === 'open'
-    );
+    const dates = [...new Set(CC.db.slots.filter(s => s.courtId === c.id && CC.future(s) && s.status === 'open').map(s => s.date))].sort();
+    const requested = q().get('date');
+    const chosen = /^\d{4}-\d{2}-\d{2}$/.test(requested || '') ? requested : dates[0] || CC.date();
+    const slots = CC.db.slots.filter(s => s.courtId === c.id && s.date === chosen && s.status === 'open').sort((a,b) => a.start.localeCompare(b.start));
+    const availableCount = slots.filter(CC.available).length;
     shell(
-      pageHead(
-        esc(c.name),
-        esc(c.location),
-        link('← Tìm sân', 'player-court-search.html', 'secondary')
-      ) +
-        `<div class="two-col"><div><img class="details-hero" src="assets/images/figma-${c.image ?? 4}.jpg" alt="${esc(c.name)}"><section class="panel"><span class="tag">${sport(c.sportId)}</span><h2 class="mt">Một không gian để hết mình</h2><p class="muted">${esc(c.description)}</p><div class="divider"></div><h3>Tiện ích sân</h3><div class="actions">${(
-          c.amenities || 'Gửi xe, Nước uống'
-        )
-          .split(',')
-          .map((x) => `<span class="tag">✓ ${esc(x.trim())}</span>`)
-          .join(
-            ''
-          )}</div></section></div><section class="panel"><div class="eyebrow">Lịch sân trực tiếp trong demo</div><h2>${money(c.price)} <small class="muted">/ giờ</small></h2><p class="muted small">Chọn ngày và khung giờ. Đơn cần chủ sân xác nhận.</p>${select('Ngày chơi', 'slotDate', dates.map((d) => option(d, day(d), chosen)).join('') || option('', 'Chưa có lịch'))}<div class="slot-grid">${slots.map((s) => `<button class="slot" data-action="choose-slot" data-id="${s.id}" ${CC.available(s) ? '' : 'disabled'}>${s.start} – ${s.end}<small>${CC.available(s) ? money(s.price) : 'Không còn trống'}</small></button>`).join('') || '<p class="muted">Chưa có khung giờ.</p>'}</div><div class="notice mt">Bạn có thể xem trạng thái và hủy đơn trong Hoạt động của tôi.</div></section></div>`
+      pageHead(esc(c.name), esc(c.location), link('← Tìm sân', 'player-court-search.html', 'secondary')) +
+      `<div class="booking-layout"><section class="panel booking-picker" aria-labelledby="booking-title"><div class="eyebrow">Đặt sân</div><h2 id="booking-title">Chọn lịch chơi của bạn</h2><p class="muted">Chọn ngày → chọn giờ trống → gửi yêu cầu đặt sân.</p><p><strong class="green">${money(c.price)}</strong> / giờ</p>
+      ${UI.bookingDatePicker(chosen)}
+      <div class="panel-title"><h3>2. Chọn khung giờ</h3><span class="tag">${availableCount} giờ trống</span></div><div class="slot-grid" role="group" aria-label="Khung giờ đặt sân">${slots.map(slot => `<button type="button" class="slot" data-action="choose-slot" data-id="${slot.id}" aria-pressed="false" ${CC.available(slot) ? '' : 'disabled'}><strong>${slot.start}–${slot.end}</strong><small>${money(slot.price)}</small><span>${CC.available(slot) ? 'Còn trống · Chọn' : CC.future(slot) ? 'Đã có người đặt' : 'Đã qua giờ'}</span></button>`).join('') || '<div class="notice">Ngày này chưa mở lịch. Chọn ngày khác hoặc xem ngày có lịch bên dưới.</div>'}</div>
+      ${!availableCount && dates.some(d => d !== chosen) ? link('Xem ngày có lịch gần nhất', `court-detail.html?id=${c.id}&date=${dates.find(d => d !== chosen)}`, 'secondary full mt') : ''}
+      <div class="booking-summary mt"><p id="selected-slot-summary" role="status">Chưa chọn giờ. Chọn một khung còn trống ở trên.</p>${btn('3. Đặt sân · Tiếp tục', 'book-selected', 'full', 'disabled')}<p class="small muted">Bạn sẽ kiểm tra lại thông tin trước khi gửi. Chủ sân xác nhận yêu cầu trong Hoạt động của tôi.</p></div></section>
+      <div class="court-information"><img class="details-hero" src="${UI.courtImage(c)}" alt="${esc(c.name)}"><section class="panel"><span class="tag">${sport(c.sportId)}</span><h2 class="mt">Thông tin sân</h2><p class="muted">${esc(c.description)}</p><div class="divider"></div><h3>Tiện ích</h3><div class="actions">${(c.amenities || 'Gửi xe, Nước uống').split(',').map(x => `<span class="tag">✓ ${esc(x.trim())}</span>`).join('')}</div></section></div></div>`
     );
-    $('[name=slotDate]').onchange = (e) => {
-      location.href = `court-detail.html?id=${c.id}&date=${e.target.value}`;
+    UI.bindBookingDatePicker();
+    $('[name=slotDate]').onchange = event => {
+      if (event.target.value) location.href = `court-detail.html?id=${c.id}&date=${event.target.value}`;
     };
   }
   function bookingPage() {
@@ -159,7 +149,7 @@
     }
     shell(
       pageHead('Xác nhận đặt sân', 'Kiểm tra lịch và gửi yêu cầu tới chủ sân.') +
-        `<div class="two-col"><form id="booking-form" class="panel"><h2>Thông tin đặt sân</h2><div class="notice error" id="booking-error" hidden role="alert"></div>${field('Người đặt', 'name', 'text', CC.me().name, 'readonly')}${textarea('Ghi chú cho chủ sân', 'note')}<label class="check"><input name="accept" type="checkbox" required><span>Tôi đã kiểm tra lịch và đồng ý gửi yêu cầu đặt sân.</span></label><button class="btn" ${CC.available(s) ? '' : 'disabled'}>Gửi yêu cầu đặt sân</button>${!CC.available(s) ? '<p class="notice warning mt">Khung giờ không còn trống. Vui lòng chọn lại.</p>' : ''}</form><aside class="panel"><img class="card-image" src="assets/images/figma-${c.image ?? 4}.jpg" alt="${esc(c.name)}"><h3 class="mt">${esc(c.name)}</h3><p class="muted">${esc(c.location)}</p><div class="details-list"><div><span>Ngày</span><strong>${day(s.date)}</strong></div><div><span>Khung giờ</span><strong>${s.start} – ${s.end}</strong></div><div><span>Tổng giá</span><strong class="green">${money(s.price)}</strong></div></div><div class="notice mt">Không thu tiền thật trong nguyên mẫu.</div></aside></div>`
+        `<div class="two-col"><form id="booking-form" class="panel"><h2>Thông tin đặt sân</h2><div class="notice error" id="booking-error" hidden role="alert"></div>${field('Người đặt', 'name', 'text', CC.me().name, 'readonly')}${textarea('Ghi chú cho chủ sân', 'note')}<label class="check"><input name="accept" type="checkbox" required><span>Tôi đã kiểm tra lịch và đồng ý gửi yêu cầu đặt sân.</span></label><button class="btn" ${CC.available(s) ? '' : 'disabled'}>Gửi yêu cầu đặt sân</button>${!CC.available(s) ? '<p class="notice warning mt">Khung giờ không còn trống. Vui lòng chọn lại.</p>' : ''}</form><aside class="panel"><img class="card-image" src="${UI.courtImage(c)}" alt="${esc(c.name)}"><h3 class="mt">${esc(c.name)}</h3><p class="muted">${esc(c.location)}</p><div class="details-list"><div><span>Ngày</span><strong>${day(s.date)}</strong></div><div><span>Khung giờ</span><strong>${s.start} – ${s.end}</strong></div><div><span>Tổng giá</span><strong class="green">${money(s.price)}</strong></div></div><div class="notice mt">Không thu tiền thật trong nguyên mẫu.</div></aside></div>`
     );
     $('#booking-form').onsubmit = (e) => {
       e.preventDefault();
@@ -187,7 +177,7 @@
         'Cùng ra sân, cùng kết nối.',
         link('← Tìm trận', 'player-open-matches.html', 'secondary')
       ) +
-        `<div class="two-col"><div><img class="details-hero" src="assets/images/figma-${c.image ?? 4}.jpg" alt="${esc(c.name)}"><section class="panel"><div class="row mb"><span class="tag">${sport(c.sportId)}</span>${badge(m.status)}<span class="tag">${level(m.level)}</span></div><h2>Thông tin trận đấu</h2><p class="muted">${esc(m.note)}</p><p class="meta">${icon('pin')}${esc(c.name)} · ${esc(c.location)}</p><p class="meta">${icon('calendar')}${day(s.date)} · ${s.start} – ${s.end}</p></section></div><section class="panel"><h2>Đồng đội của bạn</h2><p class="muted">${m.playerIds.length}/${m.capacity} người đã tham gia</p><div class="progress-track"><div class="progress-fill" style="width:${Math.min(100, (m.playerIds.length / m.capacity) * 100)}%"></div></div>${m.playerIds.map((id) => `<div class="player-row"><span class="avatar">${esc((CC.find('players', id)?.name || '?').slice(0, 1))}</span><div><strong>${esc(CC.find('players', id)?.name || 'Người chơi')}</strong><div class="small muted">${id === m.hostId ? 'Chủ trận' : 'Thành viên'}</div></div></div>`).join('')}<div class="mt">${joined ? `<div class="notice">Bạn đang tham gia trận này.</div>${link('Quản lý hoạt động', 'player-my-sports.html', 'full')}` : btn(m.playerIds.length >= m.capacity ? 'Trận đã đủ người' : 'Tham gia trận', 'join-match', 'full', `data-id="${m.id}" ${m.playerIds.length >= m.capacity || m.status !== 'open' || !CC.future(s) ? 'disabled' : ''}`)}</div></section></div>`
+        `<div class="two-col"><div><img class="details-hero" src="${UI.courtImage(c)}" alt="${esc(c.name)}"><section class="panel"><div class="row mb"><span class="tag">${sport(c.sportId)}</span>${badge(m.status)}<span class="tag">${level(m.level)}</span></div><h2>Thông tin trận đấu</h2><p class="muted">${esc(m.note)}</p><p class="meta">${icon('pin')}${esc(c.name)} · ${esc(c.location)}</p><p class="meta">${icon('calendar')}${day(s.date)} · ${s.start} – ${s.end}</p></section></div><section class="panel"><h2>Đồng đội của bạn</h2><p class="muted">${m.playerIds.length}/${m.capacity} người đã tham gia</p><div class="progress-track"><div class="progress-fill" style="width:${Math.min(100, (m.playerIds.length / m.capacity) * 100)}%"></div></div>${m.playerIds.map((id) => `<div class="player-row"><span class="avatar">${esc((CC.find('players', id)?.name || '?').slice(0, 1))}</span><div><strong>${esc(CC.find('players', id)?.name || 'Người chơi')}</strong><div class="small muted">${id === m.hostId ? 'Chủ trận' : 'Thành viên'}</div></div></div>`).join('')}<div class="mt">${joined ? `<div class="notice">Bạn đang tham gia trận này.</div>${link('Quản lý hoạt động', 'player-my-sports.html', 'full')}` : btn(m.playerIds.length >= m.capacity ? 'Trận đã đủ người' : 'Tham gia trận', 'join-match', 'full', `data-id="${m.id}" ${m.playerIds.length >= m.capacity || m.status !== 'open' || !CC.future(s) ? 'disabled' : ''}`)}</div></section></div>`
     );
   }
   let activityView = 'all';
@@ -323,7 +313,18 @@
           if (requireLogin('player-match-create.html'))
             location.href = CC.me().role === 'player' ? 'player-match-create.html' : '403.html';
           break;
-        case 'choose-slot':
+        case 'choose-slot': {
+          const slot = CC.find('slots', id);
+          if (!CC.available(slot)) throw Error('Khung giờ không còn trống. Chọn khung giờ khác.');
+          $$('[data-action=choose-slot]').forEach(button => button.setAttribute('aria-pressed', String(button === a)));
+          $('#selected-slot-summary').textContent = `${day(slot.date)} · ${slot.start}–${slot.end} · Tổng ${money(slot.price)}`;
+          const button = $('[data-action=book-selected]');
+          button.disabled = false;
+          button.dataset.id = id;
+          button.textContent = `Đặt sân · ${money(slot.price)}`;
+          break;
+        }
+        case 'book-selected':
           if (requireLogin('booking.html?slot=' + id))
             location.href = CC.me().role === 'player' ? 'booking.html?slot=' + id : '403.html';
           break;

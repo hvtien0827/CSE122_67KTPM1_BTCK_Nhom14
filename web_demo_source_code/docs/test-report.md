@@ -1,6 +1,40 @@
 # Báo cáo kiểm thử và phạm vi xác nhận
 
-Kết quả bên dưới được ghi lại từ ngày 22/09/2026, khi bản demo có 40 trang. Không coi các con số này là kết quả chạy lại cho mã nguồn hiện tại.
+## Chỉnh giao diện tiếp theo — 13/10/2026
+
+- Căn lại thẻ sân; lịch chọn ngày tiếng Việt dùng cùng màu sáng/tối, hỗ trợ chuyển tháng, bàn phím, Escape và chặn ngày quá khứ.
+- Nhóm Tài khoản có nền cho trang hiện tại; menu ảnh đại diện dùng biểu tượng ba gạch và các dòng thao tác thống nhất.
+- Icon SVG cho Facebook, Instagram, TikTok, YouTube, Zalo; chỉ hiện liên kết hợp lệ đã lưu trong hồ sơ.
+- Bảng quản lý sân có ảnh/tên/địa chỉ rõ hơn và nhóm nút tách khoảng; mobile vẫn hiển thị dạng thẻ.
+- `interface-polish.cjs`: **88 xác nhận đạt**, kiểm tra sáng/tối tại 1440/390/320px, chọn ngày, liên kết mạng xã hội và mở lịch sân. Đã xem ảnh desktop/mobile.
+- Chạy lại `smoke.cjs`: **84 lượt đạt**; `usability-regression.cjs`: **145 xác nhận đạt**; `integration.cjs`: **38 xác nhận đạt**; `community.cjs`: đạt. Không ghi nhận lỗi JavaScript trong các lượt này.
+
+Bằng chứng: [kết quả giao diện](../tests/artifacts/interface-polish-results.json), [bảng sân tối](../tests/artifacts/polish-venue-dark-1440.png), [hồ sơ tối](../tests/artifacts/polish-profile-dark.png), [lịch sáng](../tests/artifacts/polish-calendar-light-1440.png).
+
+## Kiểm tra bản sửa ngày 13/10/2026
+
+Môi trường: Windows, Google Chrome headless qua Playwright, hồ sơ và dữ liệu thử riêng, HTTP localhost. Không sửa dữ liệu trình duyệt đang dùng, Git hay GitHub.
+
+| Bộ kiểm tra | Kết quả |
+|---|---|
+| `smoke.cjs` | 42 trang × desktop/mobile = 84 lượt; không lỗi JavaScript hoặc tràn ngang |
+| `usability-regression.cjs` | 145 xác nhận: dữ liệu cũ, đặt/duyệt sân, ảnh sân, xoá sân/báo cáo/sự kiện, roster trống, menu tài khoản, mobile 320/390/760px |
+| `integration.cjs` | 38 xác nhận: auth, booking, trận đấu, AI mô phỏng, phân quyền, CSV, hồ sơ |
+| `edge-cases.cjs` | 35 xác nhận: lịch trùng, dữ liệu sai, thiếu người chia đội, OTP, localStorage hỏng |
+| `theme.cjs` | 168 lượt kiểm tra trang/giao diện; lưu lựa chọn, bàn phím và đồng bộ theme giữa tab đều đạt |
+| `community.cjs` | Đánh giá/báo cáo, quyền đánh giá, riêng tư, lịch sân, lọc doanh thu, nhóm tài khoản và menu mobile đều đạt |
+| `mobile-activities.cjs` | Thông báo thành công, lọc hoạt động, bảng dạng thẻ và lịch theo ngày ở 320/390/760px đạt |
+| `restore-four-roles.cjs` | Khôi phục dữ liệu CLB, tài khoản mẫu, giữ dữ liệu và trạng thái khoá thủ công đạt |
+
+Đã xem ảnh đặt sân desktop/mobile và hộp thoại tối. Kiểm thử doanh thu dùng khoảng ngày thực tế thay vì mặc định mọi lịch mẫu đều thuộc tháng hiện tại. Các bài kiểm thử cũ được cập nhật cho luồng chọn giờ → nút đặt sân, thêm thành viên rõ ràng và trạng thái nút bị vô hiệu hoá.
+
+Bằng chứng: [kết quả hồi quy](../tests/artifacts/usability-results.json), [smoke](../tests/artifacts/smoke-results.json), [tích hợp](../tests/artifacts/integration-results.json), [trường hợp biên](../tests/artifacts/edge-results.json), [theme](../tests/artifacts/theme-results.json). Ảnh: [đặt sân desktop](../tests/artifacts/booking-desktop-updated.png), [mobile 390px](../tests/artifacts/booking-mobile-390-updated.png).
+
+Giới hạn: xác nhận trên Chromium và dữ liệu thử; chưa kiểm tra thiết bị iOS/Android thật. Đây vẫn là demo localStorage, không có backend hay đồng bộ giữa các máy.
+
+---
+
+Phần dưới là lịch sử kiểm thử ngày 22/09/2026, khi bản demo có 40 trang.
 
 Ngày: 22/09/2026. Môi trường kiểm tra: Windows, trình duyệt Thorium (Chromium) headless qua Playwright, hồ sơ thử riêng. Website phục vụ bằng HTTP localhost, không dựa vào kết nối dịch vụ ngoài.
 

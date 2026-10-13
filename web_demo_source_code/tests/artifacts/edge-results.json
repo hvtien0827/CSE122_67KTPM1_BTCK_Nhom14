@@ -12,7 +12,7 @@
     "Owner cannot complete future booking",
     "Completing ended booking completes linked match",
     "Organizer creates event",
-    "Team AI handles insufficient roster",
+    "Team AI disabled for insufficient roster",
     "Attendance history cannot exceed played matches",
     "Guest player created",
     "Team AI simulated failure shows manual option",

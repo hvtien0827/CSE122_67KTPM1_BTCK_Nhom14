@@ -52,6 +52,7 @@ fs.mkdirSync(out, { recursive: true });
     sessionStorage.clear();
   });
   await page.reload();
+  await go('player-open-matches.html');
   await page.click('[data-action=create-match]');
   check('Guest sees login modal', await page.locator('#modal').isVisible());
   await page.click('[data-action=close]');
@@ -99,9 +100,13 @@ fs.mkdirSync(out, { recursive: true });
     await evalDB(() => CC.me().email === 'qa@courtconnect.demo')
   );
   await go('court-detail.html?id=c1');
-  await page.selectOption('[name=slotDate]', await evalDB(() => CC.date(3)));
+  await page.click('.date-picker summary');
+  const bookingDate = await evalDB(() => CC.date(3));
+  while (!(await page.locator(`[data-booking-date="${bookingDate}"]`).count())) await page.click('[data-month-step="1"]');
+  await page.click(`[data-booking-date="${bookingDate}"]`);
   await page.waitForURL('**/court-detail.html?*date=*');
   await page.click('[data-action=choose-slot][data-id="s-c1-3-16"]');
+  await page.click('[data-action=book-selected]');
   await page.waitForURL('**/booking.html?*');
   await page.fill('[name=note]', 'Kiểm thử đặt sân liên vai trò');
   await page.check('[name=accept]');
@@ -207,7 +212,7 @@ fs.mkdirSync(out, { recursive: true });
     'Skill Match saves accepted recommendation',
     await evalDB(() => CC.db.aiHistory.some((h) => h.type === 'skill' && h.status === 'saved'))
   );
-  await page.locator('summary').click();
+  await page.locator('.demo-details summary').click();
   await page.check('[name=simulateError]');
   await page.click('#skill-submit');
   await page.waitForSelector('#ai-result .notice.error');
@@ -268,7 +273,9 @@ fs.mkdirSync(out, { recursive: true });
     'Roster update invalidates saved teams',
     await evalDB(() => CC.find('events', 'e1').teams === null)
   );
-  await page.click('[data-action=roster-toggle][data-id=u8]');
+  await page.click('[data-action=roster-add]');
+  await page.selectOption('#dialog-form [name=playerId]', 'u8');
+  await submitDialog();
   await switchRole('venue');
   await go('venue-no-show-risk.html');
   await page.selectOption('[name=bookingId]', 'b1');

@@ -48,7 +48,7 @@
                 .join('') +
               '</div>'
             : ''
-        }<button class="btn">Lưu hồ sơ</button></form><aside class="panel"><div class="auth-symbol">${esc(u.name.slice(0, 1))}</div><h2 class="center">${esc(u.name)}</h2><p class="center muted">${CC.roles[u.role]}</p><div class="divider"></div><p class="small muted">Trình độ theo từng môn giúp lựa chọn trận và chia đội phù hợp hơn. Bạn có thể cập nhật khi đã tiến bộ.</p>${link('Xem hồ sơ công khai', `profile-public.html?id=${u.id}`, 'secondary full')}${Community.socialIcons(u)}${link('Cài đặt tài khoản', 'settings.html', 'ghost full')}</aside></div>`
+        }<button class="btn">Lưu hồ sơ</button></form><aside class="panel profile-summary"><div class="auth-symbol">${esc(u.name.slice(0, 1))}</div><h2 class="center">${esc(u.name)}</h2><p class="center muted">${CC.roles[u.role]}</p><div class="divider"></div><p class="small muted">Trình độ theo từng môn giúp lựa chọn trận và chia đội phù hợp hơn. Bạn có thể cập nhật khi đã tiến bộ.</p>${link('Xem hồ sơ công khai', `profile-public.html?id=${u.id}`, 'secondary full')}${Community.socialIcons(u)}${link('Cài đặt tài khoản', 'settings.html', 'ghost full')}</aside></div>`
     );
     $('#profile-form').onsubmit = (e) => {
       e.preventDefault();
@@ -235,7 +235,9 @@
       return;
     }
     try {
+      CC.ensureSchedules();
       routes[page]();
+      UI.responsiveTables(document);
       if (u && CC.db.settings[u.id]?.reminder && page === 'player-my-sports') {
         const node = document.createElement('div');
         node.className = 'notice';

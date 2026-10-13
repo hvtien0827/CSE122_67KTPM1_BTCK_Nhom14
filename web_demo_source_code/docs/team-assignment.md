@@ -32,4 +32,4 @@ Phần làm chung được chia thành đầu việc nhỏ có người thực h
 
 Review chéo Thành viên 1–2 và Thành viên 3–4. Kiểm tra cùng nhau các luồng đặt sân → chủ sân duyệt → người chơi tạo trận; CLB → danh sách → chia đội; báo cáo người chơi → admin xử lý.
 
-Mỗi người phải tự hiểu, sửa và giải thích HTML/CSS/JS phần mình; cập nhật công việc và minh chứng thực tế. Mỗi người xây dựng phần vai trò trên nhánh `feat/...` trong bảng; mở Pull Request để thành viên khác xem và kiểm tra trước khi ghép vào `main`. Với phần làm chung, cả nhóm chia đầu việc và thống nhất người thực hiện, nhánh công việc và người kiểm tra.
+Mỗi người phải tự hiểu, sửa và giải thích HTML/CSS/JS phần mình; cập nhật công việc và minh chứng thực tế. Điền họ tên/MSSV khi chốt nhóm. Mỗi người xây dựng phần vai trò trên nhánh `feat/...` trong bảng; mở Pull Request để thành viên khác xem và kiểm tra trước khi ghép vào `main`. Với phần làm chung, cả nhóm chia đầu việc và thống nhất người thực hiện, nhánh công việc và người kiểm tra.

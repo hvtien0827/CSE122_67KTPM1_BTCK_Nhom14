@@ -362,7 +362,7 @@
     return { start, end };
   }
   function revenueRows(period, date, courtId = '') {
-    const ids = ownCourts().map((c) => c.id),
+    const ids = CC.db.courts.filter(c => c.ownerId === CC.me().id).map((c) => c.id),
       { start, end } = periodRange(period, date);
     return CC.db.bookings.filter((b) => {
       const s = CC.find('slots', b.slotId),
@@ -445,7 +445,7 @@
     );
   }
   function courtReviews(id = '') {
-    const ids = ownCourts().map((c) => c.id),
+    const ids = CC.db.courts.filter(c => c.ownerId === CC.me().id).map((c) => c.id),
       rows = CC.db.courtReviews.filter((r) => ids.includes(r.courtId) && (!id || r.courtId === id));
     shell(
       pageHead('Đánh giá sân', 'Phản hồi từ người thuê đã hoàn thành lượt đặt sân.') +
@@ -498,18 +498,20 @@
     }
     return result;
   }
+  // Inline vector marks stay crisp in both themes; only saved, valid links appear.
+  const socialMarks = {
+    facebook: '<path fill="currentColor" d="M14 22v-9h3l.5-4H14V7c0-1 .3-2 2-2h2V1.5C17 1.2 16 1 15 1c-3 0-5 2-5 5v3H7v4h3v9z"/>',
+    instagram: '<g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>',
+    tiktok: '<path fill="currentColor" d="M14 2h3c.4 2.4 1.8 4 4 4.4v3.2c-1.6 0-3-.5-4-1.3V16a6 6 0 1 1-6-6v3.3a2.8 2.8 0 1 0 3 2.7z"/>',
+    youtube: '<rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m10 8 6 4-6 4z" fill="currentColor"/>',
+    zalo: '<path d="M4 3h16v13a3 3 0 0 1-3 3H9l-5 3V6a3 3 0 0 1 3-3" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="12" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="currentColor">Zalo</text>',
+  };
   function socialIcons(u) {
-    return `<div class="actions">${Object.entries(u.socialLinks || {})
-      .filter(([k]) => networks[k])
-      .map(([k, url]) => {
-        try {
-          socialLinks({ [k]: url });
-        } catch {
-          return '';
-        }
-        return `<a class="icon-btn social-icon" href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="${networks[k][0]} của ${esc(u.name)}" title="${networks[k][0]}">${networks[k][1]}</a>`;
-      })
-      .join('')}</div>`;
+    const links = Object.entries(u.socialLinks || {}).filter(([k]) => networks[k]).map(([k, url]) => {
+      try { if (!socialLinks({ [k]: url })[k]) return ''; } catch { return ''; }
+      return `<a class="social-icon social-${k}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="${networks[k][0]} của ${esc(u.name)} (mở tab mới)" title="${networks[k][0]}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">${socialMarks[k]}</svg></a>`;
+    }).join('');
+    return links ? `<div class="social-links" aria-label="Liên kết mạng xã hội">${links}</div>` : '';
   }
   function publicProfile() {
     const u = CC.find('users', new URLSearchParams(location.search).get('id'));
@@ -534,7 +536,7 @@
       ) +
         table(
           ['Người gửi / trận', 'Người bị báo cáo', 'Nội dung', 'Xử lý'],
-          CC.db.playerReports.map((r) => [
+          (CC.db.playerReports || []).map((r) => [
             `${esc(CC.find('users', r.authorId)?.name)}<br>${esc(CC.find('matches', r.matchId)?.name)}`,
             link(
               esc(CC.find('users', r.targetId)?.name),
@@ -602,6 +604,7 @@
           r.reviewedBy = CC.me().id;
         });
         renderPage();
+        UI.toast('Đã đánh dấu báo cáo được xem xét.');
       }
     } catch (err) {
       UI.toast(err.message, true);

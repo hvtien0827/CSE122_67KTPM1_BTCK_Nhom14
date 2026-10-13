@@ -49,6 +49,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
   await p.click('[data-action=entity-new]');
   await p.fill('#dialog-form [name=name]', '<img src=x onerror=alert(1)>');
   await p.fill('#dialog-form [name=location]', 'Địa chỉ thử nghiệm');
+  await p.uncheck('[name=autoSchedule]');
   await save();
   const court = await p.evaluate(
     () => CC.db.courts.find((c) => c.location === 'Địa chỉ thử nghiệm').id
@@ -140,12 +141,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
   const event = await p.evaluate(() => CC.db.events.find((e) => e.name === 'Sự kiện kiểm tra').id);
   check('Organizer creates event', !!event);
   await go('organizer-team-lineup.html?event=' + event);
-  await p.click('#team-submit');
-  await p.waitForSelector('#team-result .notice.error');
-  check(
-    'Team AI handles insufficient roster',
-    (await p.textContent('#team-result')).includes('ít nhất 2')
-  );
+  check('Team AI disabled for insufficient roster', await p.locator('#team-submit').isDisabled());
   await go('organizer-player-roster.html?event=' + event);
   await p.click('[data-action=entity-new]');
   await p.fill('#dialog-form [name=name]', 'Khách thử nghiệm');
@@ -163,10 +159,13 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
     () => CC.db.players.find((x) => x.name === 'Khách thử nghiệm').id
   );
   check('Guest player created', !!player);
-  await p.click(`[data-action=roster-toggle][data-id="${player}"]`);
-  await p.click('[data-action=roster-toggle][data-id=u1]');
+  for (const id of [player, 'u1']) {
+    await p.click('[data-action=roster-add]');
+    await p.selectOption('#dialog-form [name=playerId]', id);
+    await save();
+  }
   await go('organizer-team-lineup.html?event=' + event);
-  await p.locator('summary').click();
+  await p.locator('.demo-details summary').click();
   await p.check('[name=simulateError]');
   await p.click('#team-submit');
   await p.waitForSelector('#team-result .notice.error');
@@ -193,7 +192,7 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
   );
   await role('venue');
   await go('venue-no-show-risk.html');
-  await p.locator('summary').click();
+  await p.locator('.demo-details summary').click();
   await p.check('[name=simulateError]');
   await p.click('#risk-submit');
   await p.waitForSelector('#risk-result .notice.warning');

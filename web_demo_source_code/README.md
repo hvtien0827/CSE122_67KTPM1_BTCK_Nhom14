@@ -27,7 +27,7 @@ Nút mặt trăng / mặt trời ở thanh điều hướng đổi chế độ s
 | Điều phối CLB | organizer@courtconnect.demo | Court123! |
 | Quản trị viên | admin@courtconnect.demo | Court123! |
 
-Trang đăng nhập có mục **Trải nghiệm nhanh với 4 tài khoản mẫu** để điền và đăng nhập. Để đổi vai trò, dùng nút Đăng xuất / đổi vai trò ở cuối menu.
+Trang đăng nhập có mục **Trải nghiệm nhanh với 4 tài khoản mẫu** để điền và đăng nhập. Để đổi vai trò, bấm ảnh đại diện ở góc trên bên phải → **Đăng xuất / đổi vai trò**. Nút ở cuối menu bên trái vẫn được giữ trên desktop.
 
 Tài khoản tự đăng ký có vai trò Người chơi. Mã xác minh/khôi phục mẫu: **482915**, hết hạn sau 5 phút; gửi lại sau 60 giây. Không gửi email thật và không kết nối Google OAuth. Nút Google giải thích giới hạn, không giả vờ đăng nhập thành công.
 
@@ -39,21 +39,21 @@ Mỗi người phụ trách một vai trò: Thành viên 1 — Người chơi; T
 
 - Tài khoản: đăng ký, xác minh, sai/hết hạn mã, đăng nhập, ghi nhớ phiên, khôi phục/đổi mật khẩu, hồ sơ, thông báo, cài đặt.
 - Người chơi: tìm/lọc sân và trận; xem chi tiết; gửi/hủy đơn; tạo/sửa/hủy trận từ lịch sân đã duyệt; tham gia/rút trận; ghép trận và lưu gợi ý.
-- Chủ sân: tạo/sửa/lưu trữ sân; lịch khung giờ ngay trong cửa sổ lịch sân; chặn slot trùng; tạo và xử lý đơn đặt; No-show Risk, doanh thu và đánh giá sân.
-- CLB: tạo/sửa/lưu trữ/hoàn thành sự kiện; quản lý hồ sơ và danh sách; chia đội tự động hoặc thủ công; chỉnh và lưu/xóa đội hình.
-- Quản trị: tạo/sửa/vô hiệu hóa/kích hoạt tài khoản; quản lý môn; tạo/sửa/lưu trữ báo cáo hoạt động và tải CSV; xem xét báo cáo người chơi.
+- Chủ sân: tạo/sửa/xoá/lưu trữ sân, tải ảnh từ máy; lịch khung giờ ngay trong cửa sổ lịch sân; chặn slot trùng; duyệt/từ chối/hủy/hoàn thành đơn do người chơi gửi; No-show Risk, doanh thu và đánh giá sân.
+- CLB: tạo/sửa/xoá/lưu trữ/hoàn thành sự kiện có giờ bắt đầu–kết thúc; quản lý hồ sơ và danh sách; chia đội tự động hoặc thủ công; chỉnh và lưu/xóa đội hình.
+- Quản trị: tạo/sửa/vô hiệu hóa/kích hoạt tài khoản; quản lý môn; tạo/sửa/xoá/lưu trữ báo cáo hoạt động và tải CSV; xem xét báo cáo người chơi.
 - Người chơi đánh giá sân/bạn chơi sau khi hoàn thành, báo cáo người chơi; hồ sơ công khai có điện thoại tùy chọn và biểu tượng mạng xã hội. Trò chuyện đã gỡ; URL cũ chỉ chuyển hướng.
 
 ## Demo nhanh xuyên vai trò
 
-1. Người chơi: tìm sân → chọn slot trống → gửi yêu cầu → xem Chờ duyệt trong Hoạt động của tôi.
+1. Người chơi: tìm sân → Đặt sân → chọn ngày và giờ trống → bấm nút Đặt sân → kiểm tra và gửi yêu cầu → xem Chờ duyệt trong Hoạt động của tôi.
 2. Đổi sang Chủ sân: Quản lý đặt sân → Duyệt đơn đó.
 3. Đổi sang Người chơi: Tạo trận → chọn lịch sân đã duyệt → lưu. Dùng tài khoản `player4@courtconnect.demo` (cùng mật khẩu mẫu) để tham gia.
 4. Điều phối: Sự kiện → Danh sách → Đội hình → Đề xuất → chỉnh người → lưu.
 5. Chủ sân: Cảnh báo vắng mặt → chọn đơn → phân tích → điều chỉnh nhận định → lưu. Đơn không tự bị từ chối.
 6. Quản trị: Báo cáo → tạo báo cáo theo ngày → tải CSV.
 
-Các ngày trong dữ liệu mẫu được tính tương đối khi khởi tạo. Nếu demo sau nhiều ngày, vào Cài đặt → Khôi phục dữ liệu mẫu. Thao tác có xác nhận và xóa thay đổi demo hiện tại.
+Các sân mẫu tự bổ sung lịch trống cho 30 ngày tới khi mở website, giữ nguyên đơn cũ và lịch đã đóng. Không cần reset để tiếp tục đặt sân. Cài đặt → Khôi phục dữ liệu mẫu chỉ dùng khi muốn bắt đầu lại; thao tác này xoá thay đổi demo hiện tại sau xác nhận.
 
 ## Cấu trúc để học và sửa
 
@@ -82,7 +82,7 @@ Các trang dùng template JavaScript chung để tránh lặp HTML/CSS và đả
 - Không có backend, thanh toán, gửi email, OAuth hay LLM thật. Giá, đánh giá, lịch sử vắng mặt và tài khoản là dữ liệu mô phỏng.
 - Dữ liệu trên các máy/trình duyệt khác nhau không đồng bộ. Thử nhiều vai trò trong cùng trình duyệt. Những tab cùng địa chỉ cập nhật lại khi localStorage thay đổi.
 - Quyền truy cập và mật khẩu lưu cục bộ là mô phỏng frontend, không phải cơ chế bảo mật production. Chỉ dùng tài khoản/mật khẩu giả.
-- Bản này chưa được giảng viên duyệt. Chưa có lịch sử làm việc cá nhân, PR/review thật, bảng Trello thật hoặc video OBS. Các mẫu minh chứng trong `docs/` cần nhóm tự hoàn thiện; không thay thế quá trình học.
+- Bản này chưa được giảng viên duyệt. Lịch sử làm việc cá nhân, PR/review, Trello và video giải thích do nhóm thực hiện và cập nhật riêng. Các mẫu minh chứng trong `docs/` cần nhóm tự hoàn thiện; không thay thế quá trình học.
 - Những trang nghiệp vụ chưa có Figma được mở rộng theo hệ thống màu và thành phần của các PDF đã cung cấp, không được coi là bản Figma đã duyệt.
 
 ## Kiểm thử
@@ -95,6 +95,11 @@ npx playwright install chromium
 node tests/smoke.cjs
 node tests/integration.cjs
 node tests/edge-cases.cjs
+node tests/usability-regression.cjs
+node tests/community.cjs
+node tests/mobile-activities.cjs
+node tests/theme.cjs
+node tests/restore-four-roles.cjs
 ```
 
 Có thể đặt `BROWSER_PATH` tới trình duyệt Chromium tương thích và `PLAYWRIGHT_PATH` tới thư viện có sẵn. Các bài kiểm thử dùng hồ sơ trình duyệt riêng và dữ liệu riêng. Xem `docs/test-report.md` cho kết quả thực tế.
@@ -111,3 +116,20 @@ Xem [luồng mới và cách kiểm tra](docs/community-update.md): lịch sân,
 Ứng dụng vẫn dùng khóa localStorage `courtconnect.v1`. Nếu dữ liệu từng được chuyển sang bản 28 trang, khi tải lại ứng dụng sẽ khôi phục tài khoản CLB bị ngừng hỗ trợ cùng sự kiện, báo cáo và lịch sử AI đã lưu trữ. Tài khoản bị admin khóa thủ công vẫn bị khóa. Dữ liệu đang chỉnh sửa được ưu tiên, không tự reset dữ liệu mẫu.
 
 Kiểm tra hồi quy bằng `node tests/restore-four-roles.cjs`. Xem [báo cáo kiểm thử](docs/test-report.md).
+
+## Cập nhật chức năng và trải nghiệm — 13/10/2026
+
+- Đặt sân theo ba bước; hiện giá toàn khung, trạng thái trống/đã đặt/đã qua giờ. Nút đặt sân cố định phía dưới trên mobile, chỉ bật sau khi chọn giờ.
+- Quản lý sân: chọn ảnh JPEG/PNG/WebP tối đa 5 MB, có xem trước và tự thu nhỏ khi lưu. Có tuỳ chọn tự mở lịch 08:00–22:00 (mỗi lượt 2 giờ); tắt để quản lý lịch thủ công. Lịch đã mở không bị xoá khi tắt.
+- Xoá sân cần xử lý các đơn chờ duyệt/đã duyệt trước; lịch sử đặt sân và doanh thu được giữ. Chủ sân không tạo đơn hộ người chơi.
+- CLB: sự kiện có giờ bắt đầu/kết thúc; danh sách chỉ gồm thành viên của sự kiện đang chọn. Dùng **Thêm vào sự kiện** để đưa người chơi vào; **Tạo hồ sơ người chơi** chỉ tạo hồ sơ. Sự kiện trống hiển thị hướng dẫn, không lấy người từ sự kiện khác.
+- Admin: khôi phục các bảng đánh giá/báo cáo còn thiếu trong dữ liệu cũ; xoá được báo cáo hoạt động đã lưu.
+- Các vai trò đều có menu tài khoản trên thanh điều hướng; bộ lọc trạng thái phù hợp từng màn hình, nút chưa dùng được có trạng thái mờ, bảng và hộp thoại phù hợp mobile.
+
+Xem [báo cáo kiểm thử hiện tại](docs/test-report.md).
+
+### Hoàn thiện giao diện thẻ sân và tài khoản
+
+Lịch chọn ngày đặt sân dùng tiếng Việt và theo chế độ sáng/tối; có chuyển tháng, nút Hôm nay và điều hướng bằng phím mũi tên. Tab tài khoản hiện tại được tô nền. Menu ảnh đại diện dùng icon ba gạch; các mục có cùng kiểu hiển thị. Hồ sơ hiển thị icon Facebook, Instagram, TikTok, YouTube và Zalo khi đã lưu liên kết tương ứng. Thẻ sân và bảng quản lý sân được căn lại chữ, giá và khoảng cách nút.
+
+Kiểm tra phần này: `node tests/interface-polish.cjs`.

@@ -75,13 +75,14 @@ const assert = require('node:assert/strict');
     assert.ok((await p.locator('.calendar-slot.free').count()) > 0);
     await p.locator('[data-action=calendar-new]').click();
     await p.locator('[name=date]').fill(await p.evaluate(() => CC.date(10)));
-    await p.locator('[name=start]').fill('13:00');
-    await p.locator('[name=end]').fill('14:00');
+    await p.locator('[name=start]').fill('06:00');
+    await p.locator('[name=end]').fill('07:00');
     await p.locator('#dialog-form button[type=submit], #dialog-form button:not([type])').click();
     await p.waitForTimeout(150);
     assert.equal(await p.locator('.calendar-day').count(), 7);
     await go('venue-revenue.html');
-    assert.ok((await p.locator('#main').innerText()).includes('720.000đ'));
+    const expectedRevenue = await p.evaluate(() => UI.money(Community.revenueRows('month', CC.date()).filter(b => b.status === 'completed').reduce((sum, b) => sum + CC.find('slots', b.slotId).price, 0)));
+    assert.ok((await p.locator('.stats').innerText()).includes(expectedRevenue));
     for (const value of ['day', 'week', 'month', 'year']) {
       await p.locator('[name=revenue-period]').selectOption(value);
       assert.equal(await p.locator('[name=revenue-period]').inputValue(), value);

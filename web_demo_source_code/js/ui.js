@@ -8,6 +8,8 @@
       (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]
     );
   const icons = {
+    menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
+    logout: '<path d="M9 4H4v16h5M13 8l4 4-4 4M8 12h12"/>',
     search: '<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',
     court:
       '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M3 12h18M6 4v16M18 4v16"/>',
@@ -17,7 +19,7 @@
     pin: '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2"/>',
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/>',
     chart: '<path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4"/>',
-    bell: '<path d="M5 16h14l-2-4V8a5 5 0 0 0-10 0v4ZM10 20h4"/>',
+    bell: '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
     settings:
       '<circle cx="12" cy="12" r="3"/><path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z"/>',
     home: '<path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/>',
@@ -130,6 +132,10 @@
     $('#dialog-form', d).onsubmit = async (e) => {
       e.preventDefault();
       const f = e.currentTarget;
+      const submitButton = f.querySelector('[type=submit]');
+      if (submitButton.disabled) return;
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
       try {
         await onSave(Object.fromEntries(new FormData(f)), f);
         close();
@@ -140,6 +146,9 @@
         n.textContent = err.message;
         n.hidden = false;
         n.scrollIntoView({ block: 'nearest' });
+      } finally {
+        submitButton.disabled = false;
+        submitButton.removeAttribute('aria-busy');
       }
     };
   }
@@ -182,9 +191,16 @@
   const homeFor = (role) => navs[role]?.[0][0] || 'index.html';
   const brand =
     '<a class="brand" href="index.html"><span class="brand-icon">C</span>CourtConnect</a>';
+  const courtImage = c => esc(/^data:image\/(jpeg|png|webp);base64,/.test(c.imageData || '') ? c.imageData : `assets/images/figma-${[1,2,4].includes(Number(c.image)) ? Number(c.image) : 4}.jpg`);
+  function sidebar(page, u, extraClass = '') {
+    const nav = navs[u?.role] || navs.player;
+    return `<aside id="site-navigation" class="sidebar ${extraClass}" aria-label="Chức năng"><div class="sidebar-label">${u ? CC.roles[u.role] : 'Khám phá'}</div>${nav.map(([href, label, i]) => `<a href="${href}" class="${page === href ? 'active' : ''}" ${page === href ? 'aria-current="page"' : ''}>${icon(i)}${label}</a>`).join('')}<div class="sidebar-label mt">Tài khoản</div>${[['profile.html', 'Hồ sơ của tôi', 'users'], ['notifications.html', 'Thông báo', 'bell'], ['settings.html', 'Cài đặt', 'settings'], ['help.html', 'Trợ giúp', 'shield']].map(([href, label, i]) => `<a href="${href}" class="${page === href ? 'active' : ''}" ${page === href ? 'aria-current="page"' : ''}>${icon(i)}${label}</a>`).join('')}<div class="sidebar-bottom"><div class="role-note">${u ? `Đang dùng vai trò<br><strong>${CC.roles[u.role]}</strong>` : 'Đăng nhập để lưu hoạt động và kết nối bạn chơi.'}</div>${u ? btn('Đăng xuất / đổi vai trò', 'logout', 'ghost full mt') : link('Đăng nhập', 'login.html', 'full mt')}</div></aside>`;
+  }
   function header(auth = false) {
     const u = CC.me();
-    return `<a class="skip" href="#main">Bỏ qua điều hướng</a><header class="header ${!u && !auth ? 'guest-header' : ''}"><div class="container header-inner">${brand}${auth ? `<nav class="auth-header-nav" aria-label="Điều hướng tài khoản">${Theme.button()}<a href="index.html" class="small">← Về trang chủ</a></nav>` : `<nav class="header-nav" aria-label="Điều hướng chính">${Theme.button()}${u ? `<a class="optional" href="${homeFor(u.role)}">${CC.roles[u.role]}</a><a class="icon-btn" href="notifications.html" aria-label="Thông báo">${icon('bell')}</a><a href="profile.html" class="row"><span class="avatar">${esc(u.name.split(' ').pop()[0])}</span><span class="user-name small">${esc(u.name)}</span></a>${btn('☰', 'menu', 'secondary mobile-toggle', 'aria-label="Mở menu" aria-expanded="false" aria-controls="site-navigation"')}` : `<a class="optional" href="player-court-search.html">Tìm sân</a><a class="optional" href="player-open-matches.html">Tìm trận đấu</a>${link('Đăng nhập', 'login.html', 'ghost')}${link('Đăng ký', 'register.html')}`}</nav>`}</div></header>`;
+    const sidebarToggle = u ? `<button type="button" class="icon-btn sidebar-toggle-btn" data-action="toggle-sidebar" aria-label="Menu điều hướng" aria-expanded="false">${icon('menu')}</button>` : '';
+    const account = u ? `<details class="account-menu"><summary aria-label="Tài khoản và đăng xuất"><span class="avatar">${esc(u.name.split(' ').pop()[0])}</span><span class="user-name">${esc(u.name)}</span></summary><div class="account-dropdown"><strong>${esc(u.name)}</strong><span class="small muted">${CC.roles[u.role]}</span><div class="account-menu-items">${link(icon('home') + 'Trang của tôi', homeFor(u.role), 'account-menu-item')}${link(icon('users') + 'Hồ sơ cá nhân', 'profile.html', 'account-menu-item')}${link(icon('settings') + 'Cài đặt', 'settings.html', 'account-menu-item')}${btn(icon('logout') + 'Đăng xuất / đổi vai trò', 'logout', 'account-menu-item account-logout')}</div></div></details>` : '';
+    return `<a class="skip" href="#main">Bỏ qua điều hướng</a><header class="header ${!u && !auth ? 'guest-header' : ''}"><div class="container header-inner"><div class="header-left">${sidebarToggle}${brand}</div>${auth ? `<nav class="auth-header-nav" aria-label="Điều hướng tài khoản">${Theme.button()}${account}<a href="index.html" class="small">← Về trang chủ</a></nav>` : `<nav class="header-nav" aria-label="Điều hướng chính">${Theme.button()}${u ? `<a class="optional" href="${homeFor(u.role)}">${CC.roles[u.role]}</a><a class="icon-btn" href="notifications.html" aria-label="Thông báo">${icon('bell')}</a>${account}` : `<a class="optional" href="player-court-search.html">Tìm sân</a><a class="optional" href="player-open-matches.html">Tìm trận đấu</a>${link('Đăng nhập', 'login.html', 'ghost')}${link('Đăng ký', 'register.html')}`}</nav>`}</div></header>`;
   }
   function footer(auth = false) {
     return auth
@@ -199,28 +215,20 @@
         header(true) + `<main id="main" class="auth-main">${content}</main>` + footer(true);
       return;
     }
-    const nav = navs[u?.role] || navs.player;
     document.body.innerHTML =
       header() +
-      `<div class="workspace"><aside id="site-navigation" class="sidebar" aria-label="Chức năng"><div class="sidebar-label">${u ? CC.roles[u.role] : 'Khám phá'}</div>${nav.map(([href, label, i]) => `<a href="${href}" class="${page === href ? 'active' : ''}" ${page === href ? 'aria-current="page"' : ''}>${icon(i)}${label}</a>`).join('')}<div class="sidebar-label mt">Tài khoản</div><a href="profile.html">${icon('users')}Hồ sơ của tôi</a><a href="notifications.html">${icon('bell')}Thông báo</a><a href="settings.html">${icon('settings')}Cài đặt</a><a href="help.html">${icon('shield')}Trợ giúp</a><div class="sidebar-bottom"><div class="role-note">${u ? `Đang dùng vai trò<br><strong>${CC.roles[u.role]}</strong>` : 'Đăng nhập để lưu hoạt động và kết nối bạn chơi.'}</div>${u ? btn('Đăng xuất / đổi vai trò', 'logout', 'ghost full mt') : link('Đăng nhập', 'login.html', 'full mt')}</div></aside><main id="main" class="page"><div class="breadcrumbs">CourtConnect / ${u ? CC.roles[u.role] : 'Khám phá'}</div>${CC.loadError ? `<div class="notice error">${esc(CC.loadError)}</div>` : ''}${content}</main></div>`;
+      `<div class="workspace">${sidebar(page, u)}<main id="main" class="page"><div class="breadcrumbs">CourtConnect / ${u ? CC.roles[u.role] : 'Khám phá'}</div>${CC.loadError ? `<div class="notice error">${esc(CC.loadError)}</div>` : ''}${content}</main></div>`;
   }
   function courtCard(c) {
-    return `<article class="card"><img class="card-image" src="assets/images/figma-${c.image ?? 4}.jpg" alt="${esc(c.name)}" loading="lazy"><div class="card-body"><div class="row mb"><span class="tag">${esc(sport(c.sportId))}</span><span class="muted small spacer"></span><span class="small green" title="Đánh giá mẫu dùng để minh họa">${(() => {
-      const rows = CC.db.courtReviews?.filter((r) => r.courtId === c.id) || [];
-      return rows.length
-        ? '★ ' +
-            (rows.reduce((n, r) => n + r.stars, 0) / rows.length).toFixed(1) +
-            ' · ' +
-            rows.length +
-            ' đánh giá'
-        : 'Chưa có đánh giá';
-    })()}</span></div><h3>${esc(c.name)}</h3><p class="meta">${icon('pin')}${esc(c.location)}</p><div class="row"><strong class="green">${money(c.price)}<small class="muted"> / giờ</small></strong></div>${link('Xem sân & đặt lịch', `court-detail.html?id=${c.id}`, 'full')}</div></article>`;
+    const reviews = CC.db.courtReviews?.filter(r => r.courtId === c.id) || [];
+    const rating = reviews.length ? `★ ${(reviews.reduce((n, r) => n + r.stars, 0) / reviews.length).toFixed(1)} · ${reviews.length} đánh giá` : 'Chưa có đánh giá';
+    return `<article class="card court-card"><img class="card-image" src="${courtImage(c)}" alt="${esc(c.name)}" loading="lazy"><div class="card-body"><div class="court-card-meta"><span class="tag">${esc(sport(c.sportId))}</span><span class="court-rating">${rating}</span></div><h3>${esc(c.name)}</h3><p class="meta court-address">${icon('pin')}<span>${esc(c.location)}</span></p><div class="court-card-bottom"><p class="court-price"><strong>${money(c.price)}</strong><span>/ giờ</span></p>${link('Đặt sân · Xem giờ trống', `court-detail.html?id=${c.id}`, 'full')}</div></div></article>`;
   }
   function matchCard(m) {
     const s = CC.find('slots', m.slotId),
       c = CC.courtFor(s);
     if (!s || !c) return '';
-    return `<article class="card"><div class="card-body"><div class="row mb"><span class="tag">${esc(sport(c.sportId))}</span><span class="spacer"></span><span class="small muted">${m.playerIds.length}/${m.capacity} người</span></div><h3>${esc(m.name)}</h3><p class="meta">${icon('pin')}${esc(c.name)}</p><p class="meta">${icon('calendar')}${day(s.date)}</p><p class="meta">${icon('clock')}${s.start} – ${s.end}</p><div class="divider"></div><div class="row"><span class="tag">Trình độ ${level(m.level)}</span>${m.status !== 'open' ? badge(m.status) : ''}</div>${link(m.playerIds.length >= m.capacity ? 'Xem trận · Đã đủ người' : 'Xem trận & tham gia', `match-detail.html?id=${m.id}`, 'full')}</div></article>`;
+    return `<article class="card"><div class="card-body"><div class="row mb"><span class="tag">${esc(sport(c.sportId))}</span><span class="spacer"></span><span class="small muted">${m.playerIds.length}/${m.capacity} người</span></div><h3>${esc(m.name)}</h3><p class="meta">${icon('pin')}${esc(c.name)}</p><p class="meta">${icon('calendar')}${day(s.date)}</p><p class="meta">${icon('clock')}${s.start} – ${s.end}</p><div class="divider"></div><div class="row match-card-level"><span class="tag">Trình độ ${level(m.level)}</span>${m.status !== 'open' ? badge(m.status) : ''}</div>${link(m.playerIds.length >= m.capacity ? 'Xem trận · Đã đủ người' : 'Xem trận & tham gia', `match-detail.html?id=${m.id}`, 'full')}</div></article>`;
   }
   // The mobile navigation is a non-modal dropdown anchored to its trigger.
   const mobileViewport = window.matchMedia('(max-width: 760px)');
@@ -291,11 +299,49 @@
     if (a.dataset.action === 'menu') {
       setMobileMenu(!$('.sidebar')?.classList.contains('is-open'), e.detail === 0);
     }
+    if (a.dataset.action === 'toggle-sidebar') {
+      const page = location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
+      if (page === 'index') {
+        const sb = $('.home-sidebar');
+        if (sb) {
+          const open = sb.classList.toggle('is-open');
+          $('.home-sidebar-backdrop')?.classList.toggle('is-open', open);
+          a.setAttribute('aria-expanded', String(open));
+        }
+      }
+    }
     if (a.dataset.action === 'password') {
       const input = a.parentElement.querySelector('input');
       input.type = input.type === 'password' ? 'text' : 'password';
       a.textContent = input.type === 'password' ? 'Hiện' : 'Ẩn';
     }
+  });
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.home-sidebar-backdrop, .home-sidebar a, .home-sidebar button')) {
+      const sb = $('.home-sidebar');
+      if (sb && sb.classList.contains('is-open')) {
+        sb.classList.remove('is-open');
+        $('.home-sidebar-backdrop')?.classList.remove('is-open');
+        $('[data-action="toggle-sidebar"]')?.setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && $('.home-sidebar')?.classList.contains('is-open')) {
+      $('.home-sidebar').classList.remove('is-open');
+      $('.home-sidebar-backdrop')?.classList.remove('is-open');
+      $('[data-action="toggle-sidebar"]')?.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('click', event => {
+    document.querySelectorAll('.account-menu[open]').forEach(menu => {
+      if (!menu.contains(event.target)) menu.open = false;
+    });
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') document.querySelectorAll('.account-menu[open]').forEach(menu => {
+      menu.open = false; menu.querySelector('summary').focus();
+    });
   });
   function responsiveTables(root = document) {
     root.querySelectorAll('.table-wrap').forEach((wrap) => {
@@ -308,7 +354,59 @@
       );
     });
   }
+  function bookingDatePicker(value) {
+    return `<div class="field booking-date-field"><span id="booking-date-label">1. Ngày chơi</span><input type="hidden" name="slotDate" value="${esc(value)}"><details class="date-picker"><summary aria-labelledby="booking-date-label booking-date-value">${icon('calendar')}<span id="booking-date-value">${new Date(value + 'T12:00:00').toLocaleDateString('vi-VN', { weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric' })}</span><span class="date-change">Đổi ngày</span></summary><div class="date-popover" role="group" aria-label="Lịch chọn ngày đặt sân"><div class="date-month-nav"><button type="button" class="icon-btn" data-month-step="-1" aria-label="Tháng trước">‹</button><strong class="date-month" aria-live="polite"></strong><button type="button" class="icon-btn" data-month-step="1" aria-label="Tháng sau">›</button></div><div class="date-weekdays" aria-hidden="true">${['T2','T3','T4','T5','T6','T7','CN'].map(d => `<span>${d}</span>`).join('')}</div><div class="date-days"></div><div class="date-picker-footer"><button type="button" class="btn ghost small" data-date-today>Hôm nay</button><span>Không chọn ngày đã qua</span></div></div></details></div>`;
+  }
+  function bindBookingDatePicker() {
+    const picker = $('.date-picker');
+    if (!picker) return;
+    picker.addEventListener('toggle', () => {
+      if (picker.open && window.innerWidth <= 760) picker.scrollIntoView({ block: 'start', behavior: 'instant' });
+    });
+    const input = $('[name=slotDate]');
+    const today = CC.date();
+    let month = new Date(input.value.slice(0, 7) + '-01T12:00:00');
+    const key = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const render = () => {
+      $('.date-month', picker).textContent = `Tháng ${month.getMonth() + 1}, ${month.getFullYear()}`;
+      $('[data-month-step="-1"]', picker).disabled = key(month).slice(0, 7) <= today.slice(0, 7);
+      const pad = (month.getDay() + 6) % 7;
+      const count = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+      $('.date-days', picker).innerHTML = '<span></span>'.repeat(pad) + Array.from({length: count}, (_, i) => {
+        const date = key(new Date(month.getFullYear(), month.getMonth(), i + 1));
+        return `<button type="button" class="date-day ${date === today ? 'is-today' : ''}" data-booking-date="${date}" aria-label="${i + 1} tháng ${month.getMonth() + 1} năm ${month.getFullYear()}" aria-pressed="${date === input.value}" ${date < today ? 'disabled' : ''} ${date === today ? 'aria-current="date"' : ''}>${i + 1}</button>`;
+      }).join('');
+    };
+    picker.addEventListener('click', event => {
+      const step = event.target.closest('[data-month-step]');
+      if (step) { month.setMonth(month.getMonth() + Number(step.dataset.monthStep)); render(); return; }
+      const day = event.target.closest('[data-booking-date], [data-date-today]');
+      if (!day) return;
+      input.value = day.dataset.bookingDate || today;
+      picker.open = false;
+      picker.querySelector('summary').focus();
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    picker.addEventListener('keydown', event => {
+      if (event.key === 'Escape') { picker.open = false; picker.querySelector('summary').focus(); return; }
+      const button = event.target.closest('[data-booking-date]');
+      if (!button || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key)) return;
+      event.preventDefault();
+      const date = new Date(button.dataset.bookingDate + 'T12:00:00');
+      date.setDate(date.getDate() + ({ArrowLeft: -1, ArrowRight: 1, ArrowUp: -7, ArrowDown: 7}[event.key]));
+      if (key(date) < today) return;
+      month = new Date(date.getFullYear(), date.getMonth(), 1, 12);
+      render();
+      $(`[data-booking-date="${key(date)}"]`, picker)?.focus();
+    });
+    render();
+  }
+  document.addEventListener('click', event => {
+    $$('.date-picker[open]').forEach(picker => { if (!picker.contains(event.target)) picker.open = false; });
+  });
   window.UI = {
+    bookingDatePicker,
+    bindBookingDatePicker,
     responsiveTables,
     $,
     $$,
@@ -341,6 +439,8 @@
     header,
     footer,
     shell,
+    sidebar,
+    courtImage,
     courtCard,
     matchCard,
   };

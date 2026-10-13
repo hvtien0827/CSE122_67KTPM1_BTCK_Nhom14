@@ -7,6 +7,11 @@
     "start": "node tests/serve.cjs",
     "test:smoke": "node tests/smoke.cjs",
     "test:integration": "node tests/integration.cjs",
-    "test:edge": "node tests/edge-cases.cjs"
+    "test:edge": "node tests/edge-cases.cjs",
+    "test:usability": "node tests/usability-regression.cjs",
+    "test:interface": "node tests/interface-polish.cjs"
+  },
+  "dependencies": {
+    "playwright": "^1.64.0"
   }
 }

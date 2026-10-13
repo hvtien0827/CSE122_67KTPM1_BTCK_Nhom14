@@ -18,7 +18,7 @@
       "page": "index",
       "width": 1440,
       "overflow": false,
-      "title": "Tìm cộng đồng thể thao của bạn",
+      "title": "Kết nối người chơi, tìm sân và bắt đầu trận đấu",
       "error": false
     },
     {
@@ -95,7 +95,7 @@
       "page": "player-court-search",
       "width": 1440,
       "overflow": false,
-      "title": "Tìm sân cho trận đấu tiếp theo",
+      "title": "Tìm và đặt sân",
       "error": false
     },
     {
@@ -312,7 +312,7 @@
       "page": "index",
       "width": 390,
       "overflow": false,
-      "title": "Tìm cộng đồng thể thao của bạn",
+      "title": "Kết nối người chơi, tìm sân và bắt đầu trận đấu",
       "error": false
     },
     {
@@ -389,7 +389,7 @@
       "page": "player-court-search",
       "width": 390,
       "overflow": false,
-      "title": "Tìm sân cho trận đấu tiếp theo",
+      "title": "Tìm và đặt sân",
       "error": false
     },
     {
