@@ -131,6 +131,4 @@ Phần này ghi nhận chức năng/cải tiến đang có trong mã nguồn và
 - Tạo `CHANGELOG.md` để tổng hợp thay đổi, phạm vi kiểm tra và các giới hạn đã biết.
 - Chỉ thêm tài liệu, không sửa chức năng, giao diện, dữ liệu ứng dụng hoặc Git/GitHub trong lần cập nhật nhật ký này.
 
-## Cách ghi các lần cập nhật tiếp theo
-
-Mỗi đợt bổ sung một mục gồm ngày, nội dung thêm/sửa/bỏ, file liên quan, kết quả kiểm tra và phần còn hạn chế. Chỉ ghi hoàn thành khi có thay đổi thực tế; yêu cầu hoặc đề xuất chưa thực hiện cần ghi rõ trạng thái.
+# 
