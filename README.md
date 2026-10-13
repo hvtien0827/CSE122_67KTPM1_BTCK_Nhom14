@@ -10,12 +10,12 @@ Bản hiện tại có **42 trang chức năng và 2 file HTML chuyển hướng
 
 ## Phân công 4 thành viên
 
-| Thành viên | Vai trò phụ trách | Công việc chính | Nhánh phụ trách |
-|---|---|---|---|
-| Thành viên 1 | Người chơi | Xây dựng giao diện và chức năng cho người chơi: tìm/đặt sân, hoạt động, tạo/tham gia trận, Skill Match, đánh giá sân và bạn chơi. | `feat/player` |
-| Thành viên 2 | Chủ sân | Xây dựng giao diện và chức năng cho chủ sân: quản lý sân và lịch khung giờ, xử lý đơn đặt, No-show Risk, doanh thu và đánh giá sân. | `feat/venue` |
-| Thành viên 3 | Điều phối CLB | Xây dựng giao diện và chức năng cho điều phối CLB: quản lý sự kiện, danh sách người chơi, đội hình và Team Balancer. | `feat/organizer` |
-| Thành viên 4 | Quản trị viên | Xây dựng giao diện và chức năng cho quản trị viên: quản lý môn thể thao, tài khoản, báo cáo hoạt động/CSV và xử lý báo cáo người chơi. | `feat/admin` |
+| Thành viên                 | Vai trò phụ trách | Công việc chính                                                                                                                        | Nhánh phụ trách  |
+| -------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| Hoàng&nbsp;Văn&nbsp;Tiến   | Người chơi        | Xây dựng giao diện và chức năng cho người chơi: tìm/đặt sân, hoạt động, tạo/tham gia trận, Skill Match, đánh giá sân và bạn chơi.      | `feat/player`    |
+| Phùng&nbsp;Quang&nbsp;Dũng | Chủ sân           | Xây dựng giao diện và chức năng cho chủ sân: quản lý sân và lịch khung giờ, xử lý đơn đặt, No-show Risk, doanh thu và đánh giá sân.    | `feat/venue`     |
+| Đỗ&nbsp;Minh&nbsp;Thư      | Điều phối CLB     | Xây dựng giao diện và chức năng cho điều phối CLB: quản lý sự kiện, danh sách người chơi, đội hình và Team Balancer.                   | `feat/organizer` |
+| Bùi&nbsp;Minh&nbsp;Trang   | Quản trị viên     | Xây dựng giao diện và chức năng cho quản trị viên: quản lý môn thể thao, tài khoản, báo cáo hoạt động/CSV và xử lý báo cáo người chơi. | `feat/admin`     |
 
 **Phần làm chung:** trang chủ; đăng nhập/đăng ký, xác minh email và khôi phục mật khẩu; hồ sơ cá nhân/công khai; cài đặt, thông báo, trợ giúp, điều khoản, bảo mật và trang lỗi. Cả nhóm cùng xây dựng thành phần giao diện, dữ liệu mẫu, responsive, sáng/tối, kiểm thử tích hợp, tài liệu và minh chứng thuyết trình. Trò chuyện đã được gỡ khỏi bản hiện tại.
 
@@ -23,11 +23,11 @@ Mỗi người xây dựng HTML/CSS/JS, kiểm tra phần vai trò của mình v
 
 ## Nội dung repository
 
-| Thư mục | Nội dung |
-|---|---|
-| [docs](docs/) | Đề bài gốc và các tài liệu tóm tắt. |
-| [prompt](prompt/) — [Tóm tắt](docs/Prompt.md) | Prompt thiết kế và danh mục giao diện hiện hành. |
-| [figma](figma/) — [Tóm tắt](docs/UI_Figma.md) | PDF giao diện trang chủ và luồng tài khoản. |
+| Thư mục                                                                    | Nội dung                                         |
+| -------------------------------------------------------------------------- | ------------------------------------------------ |
+| [docs](docs/)                                                              | Đề bài gốc và các tài liệu tóm tắt.              |
+| [prompt](prompt/) — [Tóm tắt](docs/Prompt.md)                              | Prompt thiết kế và danh mục giao diện hiện hành. |
+| [figma](figma/) — [Tóm tắt](docs/UI_Figma.md)                              | PDF giao diện trang chủ và luồng tài khoản.      |
 | [web_demo_source_code](web_demo_source_code/) — [Tóm tắt](docs/TOM_TAT.md) | Mã nguồn demo 4 vai trò, tài nguyên và kiểm thử. |
 
 Danh mục 42 trang chức năng của 4 vai trò được mô tả tại [bảng màn hình](web_demo_source_code/docs/screen-list.md) và [tài liệu phân loại giao diện](prompt/phan_loai_giao_dien_he_thong.md).
