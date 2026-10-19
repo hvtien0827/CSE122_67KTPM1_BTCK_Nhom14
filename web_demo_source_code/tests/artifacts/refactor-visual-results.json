@@ -1,0 +1,626 @@
+[
+  {
+    "sample": "admin-sports-report-dark-1440.png",
+    "beforeSize": [
+      1440,
+      1091
+    ],
+    "afterSize": [
+      1440,
+      1091
+    ],
+    "differentPixelsPercent": 0.0017
+  },
+  {
+    "sample": "admin-sports-report-dark-390.png",
+    "beforeSize": [
+      390,
+      1788
+    ],
+    "afterSize": [
+      390,
+      1788
+    ],
+    "differentPixelsPercent": 0.0039
+  },
+  {
+    "sample": "admin-sports-report-light-1440.png",
+    "beforeSize": [
+      1440,
+      1091
+    ],
+    "afterSize": [
+      1440,
+      1091
+    ],
+    "differentPixelsPercent": 0.0017
+  },
+  {
+    "sample": "admin-sports-report-light-390.png",
+    "beforeSize": [
+      390,
+      1788
+    ],
+    "afterSize": [
+      390,
+      1788
+    ],
+    "differentPixelsPercent": 0.0039
+  },
+  {
+    "sample": "court-detail-dark-1440.png",
+    "beforeSize": [
+      1440,
+      1720
+    ],
+    "afterSize": [
+      1440,
+      1720
+    ],
+    "differentPixelsPercent": 0.0011
+  },
+  {
+    "sample": "court-detail-dark-390.png",
+    "beforeSize": [
+      390,
+      2485
+    ],
+    "afterSize": [
+      390,
+      2485
+    ],
+    "differentPixelsPercent": 0.0028
+  },
+  {
+    "sample": "court-detail-light-1440.png",
+    "beforeSize": [
+      1440,
+      1720
+    ],
+    "afterSize": [
+      1440,
+      1720
+    ],
+    "differentPixelsPercent": 0.001
+  },
+  {
+    "sample": "court-detail-light-390.png",
+    "beforeSize": [
+      390,
+      2485
+    ],
+    "afterSize": [
+      390,
+      2485
+    ],
+    "differentPixelsPercent": 0.0027
+  },
+  {
+    "sample": "index-dark-1440.png",
+    "beforeSize": [
+      1440,
+      2527
+    ],
+    "afterSize": [
+      1440,
+      2527
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "index-dark-390.png",
+    "beforeSize": [
+      390,
+      4897
+    ],
+    "afterSize": [
+      390,
+      4897
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "index-light-1440.png",
+    "beforeSize": [
+      1440,
+      2527
+    ],
+    "afterSize": [
+      1440,
+      2527
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "index-light-390.png",
+    "beforeSize": [
+      390,
+      4897
+    ],
+    "afterSize": [
+      390,
+      4897
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "login-dark-1440.png",
+    "beforeSize": [
+      1440,
+      972
+    ],
+    "afterSize": [
+      1440,
+      972
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "login-dark-390.png",
+    "beforeSize": [
+      390,
+      931
+    ],
+    "afterSize": [
+      390,
+      931
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "login-light-1440.png",
+    "beforeSize": [
+      1440,
+      972
+    ],
+    "afterSize": [
+      1440,
+      972
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "login-light-390.png",
+    "beforeSize": [
+      390,
+      931
+    ],
+    "afterSize": [
+      390,
+      931
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "organizer-team-lineup-dark-1440.png",
+    "beforeSize": [
+      1440,
+      1037
+    ],
+    "afterSize": [
+      1440,
+      1037
+    ],
+    "differentPixelsPercent": 0.0018
+  },
+  {
+    "sample": "organizer-team-lineup-dark-390.png",
+    "beforeSize": [
+      390,
+      1067
+    ],
+    "afterSize": [
+      390,
+      1067
+    ],
+    "differentPixelsPercent": 0.0065
+  },
+  {
+    "sample": "organizer-team-lineup-light-1440.png",
+    "beforeSize": [
+      1440,
+      1037
+    ],
+    "afterSize": [
+      1440,
+      1037
+    ],
+    "differentPixelsPercent": 0.0018
+  },
+  {
+    "sample": "organizer-team-lineup-light-390.png",
+    "beforeSize": [
+      390,
+      1067
+    ],
+    "afterSize": [
+      390,
+      1067
+    ],
+    "differentPixelsPercent": 0.0065
+  },
+  {
+    "sample": "player-court-search-dark-1440.png",
+    "beforeSize": [
+      1440,
+      1551
+    ],
+    "afterSize": [
+      1440,
+      1551
+    ],
+    "differentPixelsPercent": 0.0033
+  },
+  {
+    "sample": "player-court-search-dark-390.png",
+    "beforeSize": [
+      390,
+      2741
+    ],
+    "afterSize": [
+      390,
+      2741
+    ],
+    "differentPixelsPercent": 0.0069
+  },
+  {
+    "sample": "player-court-search-light-1440.png",
+    "beforeSize": [
+      1440,
+      1551
+    ],
+    "afterSize": [
+      1440,
+      1551
+    ],
+    "differentPixelsPercent": 0.0034
+  },
+  {
+    "sample": "player-court-search-light-390.png",
+    "beforeSize": [
+      390,
+      2741
+    ],
+    "afterSize": [
+      390,
+      2741
+    ],
+    "differentPixelsPercent": 0.007
+  },
+  {
+    "sample": "player-my-sports-dark-1440.png",
+    "beforeSize": [
+      1440,
+      2623
+    ],
+    "afterSize": [
+      1440,
+      2623
+    ],
+    "differentPixelsPercent": 0.0007
+  },
+  {
+    "sample": "player-my-sports-dark-390.png",
+    "beforeSize": [
+      390,
+      9131
+    ],
+    "afterSize": [
+      390,
+      9131
+    ],
+    "differentPixelsPercent": 0.0008
+  },
+  {
+    "sample": "player-my-sports-light-1440.png",
+    "beforeSize": [
+      1440,
+      2623
+    ],
+    "afterSize": [
+      1440,
+      2623
+    ],
+    "differentPixelsPercent": 0.0007
+  },
+  {
+    "sample": "player-my-sports-light-390.png",
+    "beforeSize": [
+      390,
+      9131
+    ],
+    "afterSize": [
+      390,
+      9131
+    ],
+    "differentPixelsPercent": 0.0007
+  },
+  {
+    "sample": "player-open-matches-dark-1440.png",
+    "beforeSize": [
+      1440,
+      2162
+    ],
+    "afterSize": [
+      1440,
+      2162
+    ],
+    "differentPixelsPercent": 0.0009
+  },
+  {
+    "sample": "player-open-matches-dark-390.png",
+    "beforeSize": [
+      390,
+      4858
+    ],
+    "afterSize": [
+      390,
+      4858
+    ],
+    "differentPixelsPercent": 0.0014
+  },
+  {
+    "sample": "player-open-matches-light-1440.png",
+    "beforeSize": [
+      1440,
+      2162
+    ],
+    "afterSize": [
+      1440,
+      2162
+    ],
+    "differentPixelsPercent": 0.0008
+  },
+  {
+    "sample": "player-open-matches-light-390.png",
+    "beforeSize": [
+      390,
+      4858
+    ],
+    "afterSize": [
+      390,
+      4858
+    ],
+    "differentPixelsPercent": 0.0014
+  },
+  {
+    "sample": "player-skill-match-dark-1440.png",
+    "beforeSize": [
+      1440,
+      1230
+    ],
+    "afterSize": [
+      1440,
+      1230
+    ],
+    "differentPixelsPercent": 0.0015
+  },
+  {
+    "sample": "player-skill-match-dark-390.png",
+    "beforeSize": [
+      390,
+      1887
+    ],
+    "afterSize": [
+      390,
+      1887
+    ],
+    "differentPixelsPercent": 0.0037
+  },
+  {
+    "sample": "player-skill-match-light-1440.png",
+    "beforeSize": [
+      1440,
+      1230
+    ],
+    "afterSize": [
+      1440,
+      1230
+    ],
+    "differentPixelsPercent": 0.0015
+  },
+  {
+    "sample": "player-skill-match-light-390.png",
+    "beforeSize": [
+      390,
+      1887
+    ],
+    "afterSize": [
+      390,
+      1887
+    ],
+    "differentPixelsPercent": 0.0035
+  },
+  {
+    "sample": "profile-dark-1440.png",
+    "beforeSize": [
+      1440,
+      1308
+    ],
+    "afterSize": [
+      1440,
+      1308
+    ],
+    "differentPixelsPercent": 0.0014
+  },
+  {
+    "sample": "profile-dark-390.png",
+    "beforeSize": [
+      390,
+      2163
+    ],
+    "afterSize": [
+      390,
+      2163
+    ],
+    "differentPixelsPercent": 0.0032
+  },
+  {
+    "sample": "profile-light-1440.png",
+    "beforeSize": [
+      1440,
+      1308
+    ],
+    "afterSize": [
+      1440,
+      1308
+    ],
+    "differentPixelsPercent": 0.0014
+  },
+  {
+    "sample": "profile-light-390.png",
+    "beforeSize": [
+      390,
+      2163
+    ],
+    "afterSize": [
+      390,
+      2163
+    ],
+    "differentPixelsPercent": 0.0031
+  },
+  {
+    "sample": "venue-booking-management-dark-1440.png",
+    "beforeSize": [
+      1440,
+      2849
+    ],
+    "afterSize": [
+      1440,
+      2849
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "venue-booking-management-dark-390.png",
+    "beforeSize": [
+      390,
+      9429
+    ],
+    "afterSize": [
+      390,
+      9429
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "venue-booking-management-light-1440.png",
+    "beforeSize": [
+      1440,
+      2849
+    ],
+    "afterSize": [
+      1440,
+      2849
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "venue-booking-management-light-390.png",
+    "beforeSize": [
+      390,
+      9429
+    ],
+    "afterSize": [
+      390,
+      9429
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "venue-court-management-dark-1440.png",
+    "beforeSize": [
+      1440,
+      1233
+    ],
+    "afterSize": [
+      1440,
+      1233
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "venue-court-management-dark-390.png",
+    "beforeSize": [
+      390,
+      2825
+    ],
+    "afterSize": [
+      390,
+      2825
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "venue-court-management-light-1440.png",
+    "beforeSize": [
+      1440,
+      1233
+    ],
+    "afterSize": [
+      1440,
+      1233
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "venue-court-management-light-390.png",
+    "beforeSize": [
+      390,
+      2825
+    ],
+    "afterSize": [
+      390,
+      2825
+    ],
+    "differentPixelsPercent": 0
+  },
+  {
+    "sample": "venue-revenue-dark-1440.png",
+    "beforeSize": [
+      1440,
+      2402
+    ],
+    "afterSize": [
+      1440,
+      2402
+    ],
+    "differentPixelsPercent": 0.001
+  },
+  {
+    "sample": "venue-revenue-dark-390.png",
+    "beforeSize": [
+      390,
+      7514
+    ],
+    "afterSize": [
+      390,
+      7514
+    ],
+    "differentPixelsPercent": 0.0011
+  },
+  {
+    "sample": "venue-revenue-light-1440.png",
+    "beforeSize": [
+      1440,
+      2402
+    ],
+    "afterSize": [
+      1440,
+      2402
+    ],
+    "differentPixelsPercent": 0.001
+  },
+  {
+    "sample": "venue-revenue-light-390.png",
+    "beforeSize": [
+      390,
+      7514
+    ],
+    "afterSize": [
+      390,
+      7514
+    ],
+    "differentPixelsPercent": 0.0011
+  }
+]

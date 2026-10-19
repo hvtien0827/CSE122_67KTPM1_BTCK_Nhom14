@@ -105,7 +105,8 @@ fs.mkdirSync(out, { recursive: true });
   while (!(await page.locator(`[data-booking-date="${bookingDate}"]`).count())) await page.click('[data-month-step="1"]');
   await page.click(`[data-booking-date="${bookingDate}"]`);
   await page.waitForURL('**/court-detail.html?*date=*');
-  await page.click('[data-action=choose-slot][data-id="s-c1-3-16"]');
+  const testSlotId = await page.locator('[data-action=choose-slot]:enabled').first().getAttribute('data-id');
+  await page.click(`[data-action=choose-slot][data-id="${testSlotId}"]`);
   await page.click('[data-action=book-selected]');
   await page.waitForURL('**/booking.html?*');
   await page.fill('[name=note]', 'Kiểm thử đặt sân liên vai trò');
@@ -121,14 +122,14 @@ fs.mkdirSync(out, { recursive: true });
   );
   check(
     'Pending booking blocks duplicate',
-    await page.evaluate(() => {
+    await page.evaluate((slotId) => {
       try {
-        CC.booking('s-c1-3-16');
+        CC.booking(slotId);
         return false;
       } catch (e) {
         return e.message.includes('không còn trống');
       }
-    })
+    }, testSlotId)
   );
   await page.reload();
   check(
@@ -147,7 +148,7 @@ fs.mkdirSync(out, { recursive: true });
   await login('qa@courtconnect.demo', 'Newpass123!');
   await go('player-match-create.html');
   await page.fill('[name=name]', 'Trận kiểm thử liên vai trò');
-  await page.selectOption('[name=slotId]', 's-c1-3-16');
+  await page.selectOption('[name=slotId]', testSlotId);
   await page.fill('[name=capacity]', '2');
   await page.click('#match-form button');
   await page.waitForURL('**/player-my-sports.html');
@@ -195,11 +196,11 @@ fs.mkdirSync(out, { recursive: true });
   check(
     'Booking cancellation releases slot and cancels associated match',
     await page.evaluate(
-      ({ b, m }) =>
+      ({ b, m, slotId }) =>
         CC.find('bookings', b).status === 'cancelled' &&
         CC.find('matches', m).status === 'cancelled' &&
-        CC.available(CC.find('slots', 's-c1-3-16')),
-      { b: bookingId, m: matchId }
+        CC.available(CC.find('slots', slotId)),
+      { b: bookingId, m: matchId, slotId: testSlotId }
     )
   );
   await switchRole('player');

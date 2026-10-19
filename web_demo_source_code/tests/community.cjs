@@ -16,7 +16,10 @@ const assert = require('node:assert/strict');
     await go('index.html');
     await login('u1');
     await go('player-my-sports.html');
-    assert.equal(await p.locator('[data-action=review-court]').count(), 3);
+    const eligibleBookings = await p.evaluate(() => CC.db.bookings.filter(booking => booking.playerId === CC.me().id && booking.status === 'completed' && Community.ended(CC.find('slots', booking.slotId))).length);
+    assert.ok(eligibleBookings > 0);
+    assert.equal(await p.locator('[data-action=review-court]').count(), eligibleBookings);
+    const reportsBefore = await p.evaluate(() => CC.db.playerReports.length);
     await p.locator('[data-action=review-court]').first().click();
     await p.locator('[name=stars][value="4"]').check();
     await p.locator('[name=tag0]').check();
@@ -34,7 +37,7 @@ const assert = require('node:assert/strict');
     await p.locator('[name=comment]').fill('Cần quản trị viên xem xét sự việc.');
     await p.locator('#dialog-form button[type=submit], #dialog-form button:not([type])').click();
     await p.waitForTimeout(100);
-    assert.equal(await p.evaluate(() => CC.db.playerReports.length), 1);
+    assert.equal(await p.evaluate(() => CC.db.playerReports.length), reportsBefore + 1);
     const denied = await p.evaluate(() => {
       try {
         Community.saveReview('opponent', 'community-3', 'u5', { stars: 5 });
@@ -88,24 +91,25 @@ const assert = require('node:assert/strict');
       assert.equal(await p.locator('[name=revenue-period]').inputValue(), value);
     }
     await p.locator('[name=revenue-court]').selectOption('c2');
-    assert.ok((await p.locator('.stats').innerText()).includes('0đ'));
+    const courtRevenue = await p.evaluate(() => UI.money(Community.revenueRows('year', CC.date(), 'c2').filter(booking => booking.status === 'completed').reduce((total, booking) => total + CC.find('slots', booking.slotId).price, 0)));
+    assert.ok((await p.locator('.stats').innerText()).includes(courtRevenue));
     await go('venue-reviews.html');
     assert.ok((await p.locator('#main').innerText()).includes('Sân tốt'));
     await login('u4');
     await go('admin-user-management.html');
     await p.locator('[data-action=filter-role][data-role=venue]').click();
-    assert.equal(await p.locator('tbody tr').count(), 1);
+    assert.equal(await p.locator('tbody tr').count(), await p.evaluate(() => CC.db.users.filter(user => user.role === 'venue').length));
     await p.locator('[data-action=filter-role][data-role=player]').click();
-    assert.equal(await p.locator('tbody tr').count(), 5);
+    assert.equal(await p.locator('tbody tr').count(), await p.evaluate(() => CC.db.users.filter(user => user.role === 'player').length));
     await go('admin-player-reports.html');
-    await p.locator('[data-action=resolve-player-report]').click();
+    await p.locator('[data-action=resolve-player-report]').first().click();
     assert.ok((await p.locator('#main').innerText()).includes('Đã xem xét'));
     await login('u1');
     await go('player-skill-match.html');
     assert.equal(await p.locator('a[href="chat.html"]').count(), 0);
     await p.setViewportSize({ width: 402, height: 874 });
     await go('player-my-sports.html');
-    await p.locator('[data-action=menu]').click();
+    await p.locator('[data-action=toggle-sidebar]').click();
     assert.ok(
       await p.locator('#site-navigation').evaluate((el) => el.classList.contains('is-open'))
     );

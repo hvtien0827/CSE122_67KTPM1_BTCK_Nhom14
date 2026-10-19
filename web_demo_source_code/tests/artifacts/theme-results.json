@@ -9,8 +9,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "15px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "404",
@@ -19,8 +19,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "15px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "index",
@@ -29,8 +29,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "13px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "login",
@@ -39,8 +39,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "register",
@@ -49,8 +49,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "forgot-password",
@@ -59,8 +59,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "verification-sent",
@@ -69,8 +69,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "verify-email",
@@ -79,8 +79,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "registration-success",
@@ -89,8 +89,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "recovery-sent",
@@ -99,8 +99,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "verify-reset",
@@ -109,8 +109,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "reset-password",
@@ -119,8 +119,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "reset-success",
@@ -129,8 +129,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-court-search",
@@ -139,8 +139,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-open-matches",
@@ -149,8 +149,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-my-sports",
@@ -159,8 +159,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "court-detail",
@@ -169,8 +169,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "13px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "booking",
@@ -179,8 +179,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "booking-success",
@@ -189,8 +189,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "match-detail",
@@ -199,8 +199,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "13px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-match-create",
@@ -209,8 +209,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-skill-match",
@@ -219,8 +219,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-court-management",
@@ -229,8 +229,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-booking-management",
@@ -239,8 +239,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-no-show-risk",
@@ -249,8 +249,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-event-management",
@@ -259,8 +259,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-event-detail",
@@ -269,8 +269,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-player-roster",
@@ -279,8 +279,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-team-lineup",
@@ -289,8 +289,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "admin-sport-management",
@@ -299,8 +299,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "admin-user-management",
@@ -309,8 +309,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "admin-sports-report",
@@ -319,8 +319,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "profile",
@@ -329,8 +329,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "settings",
@@ -339,8 +339,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "notifications",
@@ -349,8 +349,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "help",
@@ -359,8 +359,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "terms",
@@ -369,8 +369,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "15px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "privacy",
@@ -379,8 +379,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "15px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-revenue",
@@ -389,8 +389,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-reviews",
@@ -399,8 +399,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "profile-public",
@@ -409,8 +409,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "admin-player-reports",
@@ -419,8 +419,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "403",
@@ -429,8 +429,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "15px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "404",
@@ -439,8 +439,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "15px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "index",
@@ -449,8 +449,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "13px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "login",
@@ -459,8 +459,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "register",
@@ -469,8 +469,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "forgot-password",
@@ -479,8 +479,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "verification-sent",
@@ -489,8 +489,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "verify-email",
@@ -499,8 +499,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "registration-success",
@@ -509,8 +509,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "recovery-sent",
@@ -519,8 +519,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "verify-reset",
@@ -529,8 +529,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "reset-password",
@@ -539,8 +539,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "reset-success",
@@ -549,8 +549,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-court-search",
@@ -559,8 +559,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-open-matches",
@@ -569,8 +569,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-my-sports",
@@ -579,8 +579,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "court-detail",
@@ -589,8 +589,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "13px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "booking",
@@ -599,8 +599,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "booking-success",
@@ -609,8 +609,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "match-detail",
@@ -619,8 +619,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "13px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-match-create",
@@ -629,8 +629,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-skill-match",
@@ -639,8 +639,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-court-management",
@@ -649,8 +649,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-booking-management",
@@ -659,8 +659,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-no-show-risk",
@@ -669,8 +669,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-event-management",
@@ -679,8 +679,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-event-detail",
@@ -689,8 +689,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-player-roster",
@@ -699,8 +699,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-team-lineup",
@@ -709,8 +709,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "admin-sport-management",
@@ -719,8 +719,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "admin-user-management",
@@ -729,8 +729,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "admin-sports-report",
@@ -739,8 +739,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "profile",
@@ -749,8 +749,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "settings",
@@ -759,8 +759,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "notifications",
@@ -769,8 +769,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "help",
@@ -779,8 +779,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "terms",
@@ -789,8 +789,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "15px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "privacy",
@@ -799,8 +799,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "15px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-revenue",
@@ -809,8 +809,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-reviews",
@@ -819,8 +819,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "profile-public",
@@ -829,8 +829,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "admin-player-reports",
@@ -839,8 +839,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "403",
@@ -849,8 +849,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "15px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "404",
@@ -859,8 +859,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "15px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "index",
@@ -869,8 +869,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "13px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "login",
@@ -879,7 +879,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -889,7 +889,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -899,7 +899,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -909,7 +909,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -919,7 +919,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -929,7 +929,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -939,7 +939,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -949,7 +949,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -959,7 +959,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -969,7 +969,7 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
+      "bg": "rgb(248, 250, 248)",
       "small": "13px"
     },
     {
@@ -979,8 +979,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-open-matches",
@@ -989,8 +989,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-my-sports",
@@ -999,8 +999,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "court-detail",
@@ -1009,8 +1009,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "13px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "booking",
@@ -1019,8 +1019,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "booking-success",
@@ -1029,8 +1029,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "match-detail",
@@ -1039,8 +1039,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "13px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-match-create",
@@ -1049,8 +1049,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "player-skill-match",
@@ -1059,8 +1059,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-court-management",
@@ -1069,8 +1069,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-booking-management",
@@ -1079,8 +1079,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-no-show-risk",
@@ -1089,8 +1089,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-event-management",
@@ -1099,8 +1099,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-event-detail",
@@ -1109,8 +1109,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-player-roster",
@@ -1119,8 +1119,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-team-lineup",
@@ -1129,8 +1129,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "admin-sport-management",
@@ -1139,8 +1139,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "admin-user-management",
@@ -1149,8 +1149,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "admin-sports-report",
@@ -1159,8 +1159,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "profile",
@@ -1169,8 +1169,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "settings",
@@ -1179,8 +1179,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "notifications",
@@ -1189,8 +1189,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "help",
@@ -1199,8 +1199,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "terms",
@@ -1209,8 +1209,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "15px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "privacy",
@@ -1219,8 +1219,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "15px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-revenue",
@@ -1229,8 +1229,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "venue-reviews",
@@ -1239,8 +1239,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "profile-public",
@@ -1249,8 +1249,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "admin-player-reports",
@@ -1259,8 +1259,8 @@
       "theme": "light",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(246, 248, 246)",
-      "small": "14px"
+      "bg": "rgb(248, 250, 248)",
+      "small": "13.5px"
     },
     {
       "page": "403",
@@ -1269,8 +1269,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "15px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "404",
@@ -1279,8 +1279,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "15px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "index",
@@ -1289,8 +1289,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "13px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "login",
@@ -1299,7 +1299,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1309,7 +1309,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1319,7 +1319,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1329,7 +1329,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1339,7 +1339,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1349,7 +1349,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1359,7 +1359,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1369,7 +1369,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1379,7 +1379,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1389,7 +1389,7 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
+      "bg": "rgb(10, 15, 12)",
       "small": "13px"
     },
     {
@@ -1399,8 +1399,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-open-matches",
@@ -1409,8 +1409,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-my-sports",
@@ -1419,8 +1419,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "court-detail",
@@ -1429,8 +1429,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "13px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "booking",
@@ -1439,8 +1439,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "booking-success",
@@ -1449,8 +1449,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "match-detail",
@@ -1459,8 +1459,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "13px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-match-create",
@@ -1469,8 +1469,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "player-skill-match",
@@ -1479,8 +1479,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-court-management",
@@ -1489,8 +1489,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-booking-management",
@@ -1499,8 +1499,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-no-show-risk",
@@ -1509,8 +1509,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-event-management",
@@ -1519,8 +1519,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-event-detail",
@@ -1529,8 +1529,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-player-roster",
@@ -1539,8 +1539,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "organizer-team-lineup",
@@ -1549,8 +1549,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "admin-sport-management",
@@ -1559,8 +1559,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "admin-user-management",
@@ -1569,8 +1569,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "admin-sports-report",
@@ -1579,8 +1579,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "profile",
@@ -1589,8 +1589,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "settings",
@@ -1599,8 +1599,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "notifications",
@@ -1609,8 +1609,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "help",
@@ -1619,8 +1619,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "terms",
@@ -1629,8 +1629,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "15px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "privacy",
@@ -1639,8 +1639,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "15px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-revenue",
@@ -1649,8 +1649,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "venue-reviews",
@@ -1659,8 +1659,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "profile-public",
@@ -1669,8 +1669,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     },
     {
       "page": "admin-player-reports",
@@ -1679,8 +1679,8 @@
       "theme": "dark",
       "toggles": 1,
       "error": false,
-      "bg": "rgb(16, 20, 17)",
-      "small": "14px"
+      "bg": "rgb(10, 15, 12)",
+      "small": "13.5px"
     }
   ],
   "persistence": true,

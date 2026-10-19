@@ -1,8 +1,24 @@
 # Nhật ký thay đổi CourtConnect
 
-Ngày tổng hợp: **13/10/2026**. Áp dụng cho thư mục `web_demo_source_code` hiện tại.
+Ngày tổng hợp: **19/10/2026**. Áp dụng cho thư mục `web_demo_source_code` hiện tại.
 
 Nhật ký tổng hợp từ các thay đổi đã xác nhận trong cuộc trao đổi và mã nguồn/tài liệu hiện có. Đây không phải bản trích xuất lịch sử Git. Những cải tiến cũ không xác định được ngày thực hiện được ghi theo nhóm chức năng, không gán ngày hay người thực hiện. Bản thiết kế lại đã bị loại bỏ không thuộc nhật ký này.
+
+## 19/10/2026 — Đồng bộ giao diện chọn ngày
+
+- Thay lịch mặc định trình duyệt ở các ô ngày bằng lịch chung theo màu xanh, bo góc và theme sáng/tối của CourtConnect; nhãn tiếng Việt và hiển thị ngày `dd/mm/yyyy`.
+- Có chọn tháng/năm, Hôm nay, Xóa ngày cho ô không bắt buộc; giữ nguyên tên/giá trị ISO của input, min/max, sự kiện input/change và kiểm tra form.
+- Bố cục lịch nằm trong template HTML, kiểu trong `common.css`, xử lý ở `date-picker.js`. Lịch đặt sân chọn khung giờ hiện có vẫn được giữ.
+- Kiểm tra `npm run test:calendar` cho chọn ngày, bàn phím, bộ lọc, doanh thu, popup và mobile.
+
+## 19/10/2026 — Tách bố cục HTML, CSS và xử lý JavaScript
+
+- Chuyển bố cục chính của 44 HTML và các form popup từ chuỗi JavaScript vào từng file HTML. Giữ 42 trang chức năng và 2 URL chuyển hướng tương thích.
+- Tách CSS thành `common.css`, `player.css`, `venue.css`, `admin.css`, `auth.css`, `home.css`; bỏ `style.css` không còn được nạp. Giữ các giá trị thiết kế và responsive hiện có.
+- Thêm `views.js` để cập nhật vùng dữ liệu, thuộc tính và trạng thái có điều kiện; bỏ cơ chế thay toàn bộ `document.body.innerHTML`.
+- Giữ các quy tắc dữ liệu/nghiệp vụ trong `store.js`. Bổ sung hướng dẫn [sửa frontend](docs/frontend-structure.md) và kiểm tra `test:static`.
+- Sửa bài kiểm thử dùng tên nút menu cũ và ID khung giờ cố định, để kiểm tra đúng menu hiện tại và chọn một giờ thực sự còn trống.
+- Các mục dưới đây mô tả những phiên bản trước; đường dẫn `css/style.css` là tên file tại thời điểm thực hiện thay đổi đó.
 
 ## 13/10/2026 — Khôi phục menu mobile cho bốn vai trò
 

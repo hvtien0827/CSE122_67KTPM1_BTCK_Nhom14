@@ -4,14 +4,14 @@
       "page": "403",
       "width": 1440,
       "overflow": false,
-      "title": "Bạn chưa có quyền truy cập",
+      "title": "\n              Bạn chưa có quyền truy cập\n            ",
       "error": false
     },
     {
       "page": "404",
       "width": 1440,
       "overflow": false,
-      "title": "Không tìm thấy trang",
+      "title": "\n              Không tìm thấy trang\n            ",
       "error": false
     },
     {
@@ -298,14 +298,14 @@
       "page": "403",
       "width": 390,
       "overflow": false,
-      "title": "Bạn chưa có quyền truy cập",
+      "title": "\n              Bạn chưa có quyền truy cập\n            ",
       "error": false
     },
     {
       "page": "404",
       "width": 390,
       "overflow": false,
-      "title": "Không tìm thấy trang",
+      "title": "\n              Không tìm thấy trang\n            ",
       "error": false
     },
     {

@@ -59,8 +59,9 @@ assert.equal(open(manual).cc.db.users.find((u) => u.role === 'organizer').status
 const current = oldData();
 current.events = [{ ...current.legacy.events[0], name: 'Sự kiện đang chỉnh sửa' }];
 const merged = open(current).cc;
-assert.equal(merged.db.events.length, current.events.length);
-assert.equal(merged.db.events[0].name, 'Sự kiện đang chỉnh sửa');
+const expectedEventIds = [...new Set([...current.events, ...current.legacy.events].map(event => event.id))].sort();
+assert.deepEqual(Array.from(merged.db.events, event => event.id).sort(), expectedEventIds);
+assert.equal(merged.db.events.find(event => event.id === current.events[0].id).name, 'Sự kiện đang chỉnh sửa');
 cc.transaction(() => { cc.db.users.find((u) => u.id === organizer.id).status = 'disabled'; });
 assert.equal(load(localStorage).cc.db.users.find((u) => u.role === 'organizer').status, 'disabled');
 assert.equal(load(localStorage, sessionStorage).cc.me(), null);

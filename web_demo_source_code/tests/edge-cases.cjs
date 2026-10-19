@@ -39,13 +39,13 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
   await p.reload();
   await role('venue');
   await go('venue-court-management.html');
-  await p.click('[data-action=menu]');
+  await p.click('[data-action=toggle-sidebar]');
   check('Mobile navigation opens', await p.locator('.sidebar').isVisible());
   check(
     'Mobile menu exposes current role links',
     await p.locator('.sidebar a[href="venue-revenue.html"]').isVisible()
   );
-  await p.click('[data-action=menu]');
+  await p.click('[data-action=toggle-sidebar]');
   await p.click('[data-action=entity-new]');
   await p.fill('#dialog-form [name=name]', '<img src=x onerror=alert(1)>');
   await p.fill('#dialog-form [name=location]', 'Địa chỉ thử nghiệm');

@@ -1,0 +1,27 @@
+/* CourtConnect — admin.css. Kiểu riêng của nhóm giao diện admin. */
+
+.chart-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  gap: 12px;
+  align-items: center;
+  margin: 18px 0;
+  font-size: 14px;
+}
+
+.chart-bar {
+  height: 23px;
+  background: var(--court-turf);
+  border-radius: 4px;
+  min-width: 2px;
+}
+
+.chart-bg {
+  background: var(--chat-bg);
+  border-radius: 4px;
+}
+@media (max-width: 760px) {
+  .chart-row {
+    grid-template-columns: 82px 1fr 30px;
+  }
+}

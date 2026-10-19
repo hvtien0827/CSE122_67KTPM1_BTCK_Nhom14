@@ -1,5 +1,37 @@
 # Báo cáo kiểm thử và phạm vi xác nhận
 
+## Lịch chọn ngày đồng bộ giao diện — 19/10/2026
+
+- `date-picker.cjs`: **83 xác nhận đạt** cho sáng/tối, 320/390/1440 px, chọn/xóa ngày, đổi tháng/năm, ngày nhuận, điều hướng bàn phím, min/max, ô bắt buộc, bộ lọc trận, doanh thu và lịch trong dialog.
+- `smoke.cjs`: **84 lượt trang đạt**, không lỗi JavaScript hoặc tràn ngang. `interface-polish.cjs`: **88 xác nhận đạt**; `integration.cjs`: **38 xác nhận đạt**; `static-html.cjs`: đạt.
+- Đã xem ảnh lịch mới trên desktop/mobile. Input gốc vẫn giữ tên và ngày ISO cho các luồng xử lý, còn phần hiển thị dùng tiếng Việt và màu theo theme. Lịch chọn khung giờ đặt sân hiện có không bị thay.
+
+Bằng chứng: [kết quả lịch dùng chung](../tests/artifacts/date-picker-results.json), [lịch tối desktop](../tests/artifacts/shared-date-dark-1440.png), [lịch tối mobile](../tests/artifacts/shared-date-dark-390.png), [lịch sáng desktop](../tests/artifacts/shared-date-light-1440.png). Kiểm tra bằng Chrome headless; chưa kiểm tra trên điện thoại thật.
+
+## Tách HTML / CSS / JavaScript — 19/10/2026
+
+Đã kiểm tra bản frontend sau khi chuyển bố cục và form popup vào HTML, tách sáu CSS và cập nhật dữ liệu qua `views.js`. Môi trường: Windows, Google Chrome headless qua Playwright, HTTP localhost, hồ sơ trình duyệt thử riêng.
+
+| Bộ kiểm tra | Kết quả |
+|---|---|
+| `static-html.cjs` | 44 HTML có bố cục riêng, đúng sáu CSS; 12 trang đại diện hiển thị tiêu đề/bố cục khi tắt JavaScript; sửa HTML không bị ghi đè sau khi lọc; giá trị form có ký tự đặc biệt được giữ đúng. |
+| `smoke.cjs` | 84 lượt trang desktop/mobile; không có lỗi JavaScript hoặc tràn ngang. |
+| `integration.cjs` | 38 xác nhận đạt: tài khoản, OTP, đặt/duyệt/hủy sân, trận đấu, AI, quyền, CSV, hồ sơ. |
+| `edge-cases.cjs` | 35 xác nhận đạt: dữ liệu sai, lịch trùng, OTP hết hạn, chia đội thiếu người, dữ liệu hỏng và khôi phục. |
+| `usability-regression.cjs` | 145 xác nhận đạt, gồm mobile 320/390/760 px và dữ liệu cũ. |
+| `interface-polish.cjs` | 88 xác nhận đạt cho bố cục, lịch chọn ngày, bảng, menu tài khoản và theme. |
+| `theme.cjs` | 168 lượt trang; lưu lựa chọn, bàn phím, đồng bộ giữa tab, nút xanh và dialog đều đạt. |
+| `community.cjs`, `mobile-activities.cjs` | Đánh giá/báo cáo, thông báo thành công, riêng tư, lịch sân, lọc doanh thu, nhóm tài khoản và menu mobile đạt. |
+| `restore-four-roles.cjs` | Khôi phục dữ liệu CLB, hợp nhất theo ID, giữ bản chỉnh sửa hiện tại và trạng thái khóa thủ công đạt. |
+
+Đã đối chiếu **52 cặp ảnh** của 13 trang đại diện × desktop/mobile × sáng/tối, cùng dữ liệu mẫu ở thời điểm kiểm tra. Kích thước ảnh khớp; tỷ lệ pixel khác nhau tối đa **0,007%** với ngưỡng sai khác kênh màu trên 15/255. Đây là kiểm tra mẫu đại diện, không khẳng định mọi trạng thái đều giống tuyệt đối.
+
+`js/store.js` giữ nguyên SHA-256 so với bản trước khi sửa. Các bài kiểm thử cũ được cập nhật cho dữ liệu mẫu hiện tại, tên nút menu và bảng màu đang dùng; không thay đổi quy tắc nghiệp vụ để làm test đạt.
+
+Bằng chứng: [tổng hợp đợt sửa](../tests/artifacts/refactor-results.json), [so sánh ảnh](../tests/artifacts/refactor-visual-results.json), [tích hợp](../tests/artifacts/integration-results.json), [trường hợp biên](../tests/artifacts/edge-results.json), [hồi quy](../tests/artifacts/usability-results.json), [theme](../tests/artifacts/theme-results.json). Hướng dẫn chỉnh sửa: [cấu trúc frontend](frontend-structure.md).
+
+Giới hạn: kiểm tra trên Chrome/Chromium mô phỏng kích thước màn hình; chưa kiểm tra thiết bị iOS/Android thật. Website vẫn dùng localStorage và các dịch vụ mô phỏng của bản cũ.
+
 ## Chỉnh giao diện tiếp theo — 13/10/2026
 
 - Căn lại thẻ sân; lịch chọn ngày tiếng Việt dùng cùng màu sáng/tối, hỗ trợ chuyển tháng, bàn phím, Escape và chặn ngày quá khứ.

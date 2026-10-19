@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-19",
+  "htmlPages": 44,
+  "cssFiles": [
+    "admin.css",
+    "auth.css",
+    "common.css",
+    "home.css",
+    "player.css",
+    "venue.css"
+  ],
+  "staticHTML": {
+    "passed": true,
+    "noJavaScriptSamples": 12,
+    "htmlEditsPersist": true,
+    "formEscaping": true
+  },
+  "smoke": {
+    "pageChecks": 84,
+    "errors": []
+  },
+  "integration": {
+    "checks": 38,
+    "errors": []
+  },
+  "edge": {
+    "checks": 35,
+    "errors": []
+  },
+  "usability": {
+    "checks": 145,
+    "errors": []
+  },
+  "interface": {
+    "checks": 88,
+    "errors": []
+  },
+  "theme": {
+    "pageChecks": 168,
+    "errors": []
+  },
+  "communityPassed": true,
+  "mobileActivitiesPassed": true,
+  "restoreFourRolesPassed": true,
+  "visual": {
+    "pairs": 52,
+    "maxDifferentPixelsPercent": 0.007,
+    "sizesMatch": true,
+    "channelDifferenceThreshold": 15
+  },
+  "domainUnchanged": true
+}

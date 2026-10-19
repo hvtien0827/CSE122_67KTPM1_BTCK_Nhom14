@@ -58,11 +58,17 @@ Các sân mẫu tự bổ sung lịch trống cho 30 ngày tới khi mở websit
 ## Cấu trúc để học và sửa
 
 ```text
-*.html               Các điểm vào, tên trang đúng đề
-css/style.css         Token thiết kế, thành phần, responsive
+*.html                Bố cục, nội dung chính, form và template popup từng trang
+css/common.css        Màu, font, dark mode, nút, input, nav, sidebar, bảng
+css/player.css        Người chơi, đặt sân, hoạt động và lịch chọn ngày
+css/venue.css         Chủ sân, quản lý sân và lịch khung giờ
+css/admin.css         Biểu đồ quản trị và thành phần quản lý/đội hình CLB
+css/auth.css          Đăng nhập, đăng ký, xác minh, khôi phục
+css/home.css          Hero, section, CTA và footer trang chủ
 js/theme.js           Nạp chế độ sáng/tối sớm, ghi nhớ lựa chọn
 js/store.js           Dữ liệu mẫu, phiên, CRUD, quy tắc nghiệp vụ
-js/ui.js              Header, menu, form, dialog, card, bảng, toast
+js/ui.js              Cập nhật menu/tài khoản, sự kiện dialog, card, hàng bảng, toast
+js/views.js           Cập nhật dữ liệu vào vị trí đã khai báo trong HTML
 js/auth.js            Đăng ký, đăng nhập, OTP và khôi phục
 js/player.js          Tìm sân/trận, đặt sân, hoạt động người chơi
 js/community.js       Lịch sân, doanh thu, đánh giá, báo cáo, hồ sơ công khai
@@ -75,7 +81,9 @@ design/               Kiểm kê và đối chiếu thiết kế tham khảo
 tests/                Server thử, kiểm thử tự động và ảnh kiểm tra
 ```
 
-Các trang dùng template JavaScript chung để tránh lặp HTML/CSS và đảm bảo dữ liệu thống nhất. Muốn sửa một chức năng, tìm tên hàm của trang trong `docs/screen-list.md`. Tất cả nội dung nhập được escape trước khi chèn vào HTML.
+Bố cục, tiêu đề và form được sửa trực tiếp trong từng file HTML; form popup nằm trong các thẻ `template` ở cuối trang. JavaScript xử lý dữ liệu, sự kiện, kiểm tra form và cập nhật các vùng dữ liệu như danh sách sân/trận, hàng bảng, lịch và kết quả AI. Mỗi trang nạp `common.css` trước rồi CSS của nhóm trang. Đọc [hướng dẫn sửa HTML/CSS/JS](docs/frontend-structure.md) và [danh sách màn hình](docs/screen-list.md) để tìm đúng file/hàm. Dữ liệu người dùng được escape trước khi chèn vào HTML.
+
+Kiểm tra cấu trúc frontend mới: khởi động server rồi chạy `npm run test:static`. Bài kiểm tra xác nhận bố cục có sẵn khi tắt JavaScript và thay đổi trong HTML không bị controller ghi đè. Máy chạy kiểm thử cần Playwright và trình duyệt; website không cần các thư viện này để sử dụng.
 
 ## Giới hạn của bản học tập
 

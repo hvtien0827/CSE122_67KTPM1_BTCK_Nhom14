@@ -1,0 +1,361 @@
+/* CourtConnect — venue.css. Kiểu riêng của nhóm giao diện venue. */
+
+#modal.calendar-dialog {
+  width: min(1120px, 96vw);
+  max-width: 1120px;
+}
+
+.calendar-scroll {
+  overflow: auto;
+  max-height: 60vh;
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--court-radius-sm);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: 64px repeat(7, minmax(135px, 1fr));
+  min-width: 1020px;
+}
+
+.calendar-heading {
+  height: 45px;
+  padding: 10px;
+  background: var(--table-head);
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.calendar-day {
+  position: relative;
+  border-right: 1px solid var(--line);
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 59px,
+    var(--line) 59px,
+    var(--line) 60px
+  );
+}
+
+.calendar-axis > div:last-child {
+  position: relative;
+}
+
+.calendar-axis span {
+  position: absolute;
+  font-size: 13px;
+  padding-left: 6px;
+  color: var(--muted);
+}
+
+.calendar-slot {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  width: calc(100% - 6px);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  text-align: left;
+  padding: 7px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  overflow: auto;
+  transition: all 0.15s ease;
+}
+
+.calendar-key {
+  padding: 5px 10px;
+  border-radius: var(--court-radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.calendar-slot.free,
+.calendar-key.free {
+  background: var(--soft-green);
+  color: var(--accent);
+  border-color: var(--hover-border);
+}
+
+.calendar-slot.pending,
+.calendar-key.pending {
+  background: var(--pending-bg);
+  color: var(--pending-text);
+  border-color: #fef08a;
+}
+
+.calendar-slot.approved,
+.calendar-key.approved {
+  background: var(--blue-bg);
+  color: var(--blue-text);
+  border-color: #bae6fd;
+}
+
+.calendar-slot.completed,
+.calendar-key.completed {
+  background: var(--purple-bg);
+  color: var(--purple-text);
+  border-color: #e9d5ff;
+}
+
+.calendar-slot.closed,
+.calendar-key.closed {
+  background: var(--inactive-bg);
+  color: var(--inactive-text);
+  border-color: #cbd5e1;
+}
+
+.calendar-slot:hover {
+  outline: 2px solid var(--accent);
+}
+
+.calendar-slot:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.calendar-agenda {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  #modal.calendar-dialog {
+    width: calc(100vw - 16px);
+    max-width: none;
+    max-height: calc(100dvh - 16px);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+  }
+  #modal.calendar-dialog .dialog-head {
+    position: sticky;
+    top: 0;
+    background: var(--surface);
+    z-index: 2;
+    padding: 16px;
+    align-items: flex-start;
+  }
+  #modal.calendar-dialog .dialog-head h2 {
+    font-size: 18px;
+    overflow-wrap: anywhere;
+  }
+  #modal.calendar-dialog .dialog-head .icon-btn {
+    flex-shrink: 0;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  #modal.calendar-dialog .dialog-body {
+    padding: 16px;
+    overflow: visible;
+  }
+  .calendar-dialog .filter-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 12px;
+    gap: 8px;
+  }
+  .calendar-dialog .filter-bar .field,
+  .calendar-dialog [data-action="calendar-new"] {
+    grid-column: 1/-1;
+    min-width: 0;
+  }
+  .calendar-dialog .filter-bar input {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .calendar-dialog .filter-bar .btn {
+    white-space: normal;
+    padding: 10px 8px;
+  }
+  .calendar-dialog .calendar-scroll,
+  .calendar-dialog .dialog-body > .actions,
+  .calendar-dialog .filter-bar + p {
+    display: none;
+  }
+  .calendar-agenda {
+    display: block;
+  }
+  .agenda-slot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    text-align: left;
+    border: 1px solid var(--line);
+    border-radius: var(--court-radius-sm);
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: 14px;
+  }
+  .agenda-slot span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .agenda-slot small {
+    display: block;
+    margin-top: 4px;
+  }
+  .agenda-slot.free {
+    background: var(--soft-green);
+    color: var(--accent);
+  }
+  .agenda-slot.approved {
+    background: var(--blue-bg);
+    color: var(--blue-text);
+  }
+  .agenda-slot.pending {
+    background: var(--pending-bg);
+    color: var(--pending-text);
+  }
+  .agenda-slot.completed {
+    background: var(--purple-bg);
+    color: var(--purple-text);
+  }
+  .agenda-slot.closed {
+    background: var(--inactive-bg);
+    color: var(--inactive-text);
+  }
+  .agenda-slot:focus-visible {
+    outline: 3px solid var(--accent);
+  }
+}
+
+.court-table-info {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.court-table-info img {
+  width: 88px;
+  height: 72px;
+  border-radius: var(--court-radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--line);
+}
+
+.court-table-info > div {
+  min-width: 0;
+}
+
+.court-name-button.btn {
+  display: block;
+  background: transparent;
+  border: 0;
+  color: var(--ink);
+  border-radius: 4px;
+  padding: 0;
+  min-height: 0;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  line-height: 1.5;
+  white-space: normal;
+  box-shadow: none;
+}
+
+.court-name-button.btn:hover {
+  color: var(--accent);
+  background: transparent;
+  text-decoration: underline;
+}
+
+.court-table-address {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+
+.court-management td {
+  padding: 24px 18px;
+  font-size: 15px;
+}
+
+.court-management th:first-child,
+.court-management td:first-child {
+  padding-left: 24px;
+}
+
+.court-management td:first-child {
+  width: 40%;
+}
+
+.court-table-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+  min-width: 216px;
+}
+
+.court-table-actions .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.court-table-actions .actions .btn {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: var(--court-radius-sm);
+}
+
+.court-table-actions .actions .ghost {
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.court-table-actions .actions .ghost:hover {
+  border-color: var(--hover-border);
+  color: var(--accent);
+}
+
+.court-calendar-button {
+  align-self: stretch;
+  border-radius: var(--court-radius-sm);
+}
+
+@media (max-width: 1000px) and (min-width: 761px) {
+  .court-table-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .court-table-actions {
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 760px) {
+  .court-management td,
+  .court-management td:first-child {
+    width: auto;
+    padding: 10px 0;
+  }
+  .court-table-info {
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .court-table-info img {
+    width: 72px;
+    height: 72px;
+  }
+  .court-table-actions {
+    min-width: 0;
+  }
+  .court-table-actions .actions .btn {
+    min-width: 60px;
+    padding: 10px 8px;
+  }
+}

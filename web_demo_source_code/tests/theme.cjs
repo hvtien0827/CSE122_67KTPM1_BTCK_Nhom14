@@ -109,7 +109,8 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:5500';
         assert.ok(!info.error, name + ' runtime');
         assert.equal(info.theme, theme);
         assert.equal(info.toggles, 1);
-        assert.equal(info.bg, theme === 'dark' ? 'rgb(16, 20, 17)' : 'rgb(246, 248, 246)');
+        // Palette hiện hành: #0a0f0c (dark) và #f8faf8 (light).
+        assert.equal(info.bg, theme === 'dark' ? 'rgb(10, 15, 12)' : 'rgb(248, 250, 248)');
         if (
           theme === 'dark' &&
           ['help', 'player-skill-match', 'login', 'admin-sports-report', 'index'].includes(name)
@@ -155,12 +156,12 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:5500';
   assert.equal(await button.evaluate((e) => getComputedStyle(e).color), 'rgb(255, 255, 255)');
   assert.equal(
     await button.evaluate((e) => getComputedStyle(e).backgroundColor),
-    'rgb(21, 128, 61)'
+    'rgb(14, 107, 55)'
   );
   await p.click('[data-action=create-match]');
   assert.equal(
     await p.locator('dialog').evaluate((e) => getComputedStyle(e).backgroundColor),
-    'rgb(23, 28, 25)'
+    'rgb(18, 25, 20)'
   );
   await p.screenshot({
     path: path.join(__dirname, 'artifacts', 'dialog-dark.png'),
