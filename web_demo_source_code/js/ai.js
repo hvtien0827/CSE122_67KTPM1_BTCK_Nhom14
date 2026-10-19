@@ -147,7 +147,6 @@
       $('#ai-result').innerHTML = loading();
       await wait();
       try {
-        if (input.simulateError) throw Error('Không thể xử lý yêu cầu lúc này. Tắt mô phỏng lỗi và thử lại, hoặc tìm trận thủ công.');
         results = skillSuggestions(input);
         selected = null;
         paint();
@@ -245,17 +244,15 @@
     };
     $('#team-form').onsubmit = async e => {
       e.preventDefault();
-      const form = e.currentTarget;
       $('#team-submit').disabled = true;
       $('#team-result').innerHTML = loading();
       await wait();
       try {
-        if (new FormData(form).get('simulateError')) throw Error('Không thể xử lý yêu cầu. Hãy thử lại hoặc chia đội thủ công.');
         draft = balanceTeams(event, variant++);
         accepted = false;
         paint();
       } catch (err) {
-        $('#team-result').innerHTML = `<div class="notice error" role="alert">${esc(err.message)}</div><p class="muted">Bạn có thể chỉnh danh sách, bỏ chế độ lỗi và thử lại, hoặc dùng nút Chia thủ công phía trên.</p>`;
+        $('#team-result').innerHTML = `<div class="notice error" role="alert">${esc(err.message)}</div><p class="muted">Bạn có thể chỉnh danh sách và thử lại, hoặc dùng nút Chia thủ công phía trên.</p>`;
       } finally {
         $('#team-submit').disabled = false;
       }
@@ -280,7 +277,6 @@
       $('#risk-result').innerHTML = loading();
       await wait();
       try {
-        if (new FormData(form).get('simulateError')) throw Error('Không thể phân tích lúc này. Thử lại hoặc xử lý đơn thủ công.');
         result = riskFor(current.playerId);
         $('#risk-result').innerHTML = `<form class="panel" id="risk-save"><div class="row mb"><h2>Mức cảnh báo: ${result.level}</h2><span class="tag ${result.level === 'Cao' ? 'pending' : ''}">Dữ liệu mô phỏng</span></div><p class="muted">${esc(result.reason)}</p>${select('Điều chỉnh mức nhận định', 'riskLevel', ['Thấp', 'Trung bình', 'Cao', 'Chưa chắc chắn'].map(x => option(x, x, result.level)).join(''))}${select('Hành động do bạn chọn', 'decision', ['Yêu cầu xác nhận lại', 'Tiếp tục xử lý thông thường', 'Theo dõi thêm'].map(x => option(x, x)).join(''))}${textarea('Giải thích / Ghi chú điều chỉnh', 'note', result.level === 'Cao' ? 'Liên hệ người chơi để xác nhận lại lịch.' : 'Giữ quyền quyết định cho chủ sân.')}<div class="actions">${btn('Chấp nhận đề xuất', 'accept-risk', 'secondary')}<button class="btn">Lưu nhận định</button>${btn('Tạo lại', 'again-risk', 'secondary')}${btn('Từ chối', 'reject-risk', 'ghost')}</div><p class="small muted mt">Bạn có thể sửa mức cảnh báo và hành động trước khi lưu. Lưu nhận định không tự duyệt hoặc từ chối đơn.</p></form>`;
         $('[data-action=accept-risk]').onclick = () => {
