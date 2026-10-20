@@ -2,6 +2,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const assert = require('node:assert/strict'),
   fs = require('node:fs'),
   path = require('node:path');
+const injectAIFailure = require('./helpers/inject-ai-failure.cjs');
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
   out = path.join(__dirname, 'artifacts');
 (async () => {
@@ -165,12 +166,12 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
     await save();
   }
   await go('organizer-team-lineup.html?event=' + event);
-  await p.locator('.demo-details summary').click();
-  await p.check('[name=simulateError]');
+  check('Team Balancer hides internal failure controls', await p.locator('[name=simulateError]').count() === 0);
+  await injectAIFailure(p, 'players');
   await p.click('#team-submit');
   await p.waitForSelector('#team-result .notice.error');
   check(
-    'Team AI simulated failure shows manual option',
+    'Team AI processing failure shows manual option',
     await p.locator('[data-action=manual-teams]').isEnabled()
   );
   await p.click('[data-action=manual-teams]');
@@ -192,12 +193,12 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
   );
   await role('venue');
   await go('venue-no-show-risk.html');
-  await p.locator('.demo-details summary').click();
-  await p.check('[name=simulateError]');
+  check('No-show Risk hides internal failure controls', await p.locator('[name=simulateError]').count() === 0);
+  await injectAIFailure(p, 'players');
   await p.click('#risk-submit');
   await p.waitForSelector('#risk-result .notice.warning');
   check(
-    'Risk simulated failure offers retry',
+    'Risk processing failure offers retry',
     await p.locator('[data-action=retry-risk]').isVisible()
   );
   await role('admin');

@@ -1,5 +1,6 @@
 const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const assert = require('node:assert/strict');
+const injectAIFailure = require('./helpers/inject-ai-failure.cjs');
 const fs = require('node:fs');
 const path = require('node:path');
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173';
@@ -213,15 +214,17 @@ fs.mkdirSync(out, { recursive: true });
     'Skill Match saves accepted recommendation',
     await evalDB(() => CC.db.aiHistory.some((h) => h.type === 'skill' && h.status === 'saved'))
   );
-  await page.locator('.demo-details summary').click();
-  await page.check('[name=simulateError]');
+  check('Skill Match hides internal failure controls', await page.locator('[name=simulateError]').count() === 0);
+  await injectAIFailure(page, 'slots');
   await page.click('#skill-submit');
   await page.waitForSelector('#ai-result .notice.error');
   check(
     'Skill Match failure has manual fallback',
     (await page.locator('#ai-result a[href="player-open-matches.html"]').count()) > 0
   );
-  await page.uncheck('[name=simulateError]');
+  await page.click('[data-action=skill-again]');
+  await page.waitForSelector('[data-action=skill-accept]');
+  check('Skill Match retry recovers after a processing failure', await page.locator('#skill-submit').isEnabled());
   await page.fill('[name=date]', '2099-01-01');
   await page.click('#skill-submit');
   await page.waitForSelector('#ai-result .empty');

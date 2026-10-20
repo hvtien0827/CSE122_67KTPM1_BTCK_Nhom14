@@ -1,5 +1,16 @@
 # Báo cáo kiểm thử và phạm vi xác nhận
 
+## Gỡ điều khiển thử lỗi AI khỏi giao diện — 19/10/2026
+
+Đã bỏ mục “Kiểm tra tình huống AI” và checkbox gây lỗi trên Skill Match, Team Balancer, No-show Risk. Các thuật toán mô phỏng, xử lý lỗi dữ liệu, nút thử lại và thao tác thủ công vẫn giữ. Bài test dùng helper tiêm lỗi một lần vào phụ thuộc dữ liệu, không dùng checkbox hoặc nhánh gây lỗi trong sản phẩm.
+
+- `smoke.cjs`: 84 lượt trang desktop/mobile đạt; không lỗi JavaScript hoặc tràn ngang.
+- `static-html.cjs`: đạt; bố cục HTML và sáu CSS giữ đúng cấu trúc.
+- `integration.cjs`: 40 xác nhận, gồm không có công tắc lỗi trên Skill Match, xử lý lỗi, thao tác thủ công và thử lại thành công.
+- `edge-cases.cjs`: 37 xác nhận, gồm không có công tắc lỗi ở Team Balancer/No-show Risk, xử lý lỗi, chia thủ công và hiển thị thử lại.
+
+Các lượt trên chạy bằng Chrome headless, hồ sơ trình duyệt và bản sao kiểm thử riêng; không dùng dữ liệu trình duyệt cá nhân. Báo cáo các phiên trước bên dưới là lịch sử tại thời điểm chạy.
+
 ## Lịch chọn ngày đồng bộ giao diện — 19/10/2026
 
 - `date-picker.cjs`: **83 xác nhận đạt** cho sáng/tối, 320/390/1440 px, chọn/xóa ngày, đổi tháng/năm, ngày nhuận, điều hướng bàn phím, min/max, ô bắt buộc, bộ lọc trận, doanh thu và lịch trong dialog.
