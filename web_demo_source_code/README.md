@@ -59,7 +59,10 @@ Các sân mẫu tự bổ sung lịch trống cho 30 ngày tới khi mở websit
 
 ```text
 *.html                Bố cục, nội dung chính, form và template popup từng trang
-css/common.css        Màu, font, dark mode, nút, input, nav, sidebar, bảng
+css/common.css        Màu, font, dark mode, nút, input, bảng
+css/navigation.css    Header, sidebar, menu tài khoản
+css/date-picker.css   Lịch chọn ngày dùng chung
+css/organizer.css     Giao diện CLB
 css/player.css        Người chơi, đặt sân, hoạt động và lịch chọn ngày
 css/venue.css         Chủ sân, quản lý sân và lịch khung giờ
 css/admin.css         Biểu đồ quản trị và thành phần quản lý/đội hình CLB
@@ -72,7 +75,9 @@ js/views.js           Cập nhật dữ liệu vào vị trí đã khai báo tro
 js/auth.js            Đăng ký, đăng nhập, OTP và khôi phục
 js/player.js          Tìm sân/trận, đặt sân, hoạt động người chơi
 js/community.js       Lịch sân, doanh thu, đánh giá, báo cáo, hồ sơ công khai
-js/manage.js          Chủ sân, CLB, quản trị
+js/venue.js           Chủ sân
+js/organizer.js       Điều phối CLB
+js/admin.js           Quản trị viên
 js/ai.js              Ba thuật toán mô phỏng và giao diện điều khiển
 js/app.js             Điều hướng, quyền frontend, các trang dùng chung
 assets/images/        Ảnh được trích từ PDF Figma nhóm cung cấp
@@ -81,7 +86,7 @@ design/               Kiểm kê và đối chiếu thiết kế tham khảo
 tests/                Server thử, kiểm thử tự động và ảnh kiểm tra
 ```
 
-Bố cục, tiêu đề và form được sửa trực tiếp trong từng file HTML; form popup nằm trong các thẻ `template` ở cuối trang. JavaScript xử lý dữ liệu, sự kiện, kiểm tra form và cập nhật các vùng dữ liệu như danh sách sân/trận, hàng bảng, lịch và kết quả AI. Mỗi trang nạp `common.css` trước rồi CSS của nhóm trang. Đọc [hướng dẫn sửa HTML/CSS/JS](docs/frontend-structure.md) và [danh sách màn hình](docs/screen-list.md) để tìm đúng file/hàm. Dữ liệu người dùng được escape trước khi chèn vào HTML.
+Bố cục, tiêu đề và form được sửa trực tiếp trong từng file HTML; form popup nằm trong các thẻ `template` ở cuối trang. JavaScript xử lý dữ liệu, sự kiện, kiểm tra form và cập nhật các vùng dữ liệu như danh sách sân/trận, hàng bảng, lịch và kết quả AI. Mỗi trang nạp `common.css`, `navigation.css`, `date-picker.css` trước rồi CSS của nhóm trang. Đọc [hướng dẫn sửa HTML/CSS/JS](docs/frontend-structure.md) và [danh sách màn hình](docs/screen-list.md) để tìm đúng file/hàm. Dữ liệu người dùng được escape trước khi chèn vào HTML.
 
 Kiểm tra cấu trúc frontend mới: khởi động server rồi chạy `npm run test:static`. Bài kiểm tra xác nhận bố cục có sẵn khi tắt JavaScript và thay đổi trong HTML không bị controller ghi đè. Máy chạy kiểm thử cần Playwright và trình duyệt; website không cần các thư viện này để sử dụng.
 
@@ -141,3 +146,7 @@ Xem [báo cáo kiểm thử hiện tại](docs/test-report.md).
 Lịch chọn ngày đặt sân dùng tiếng Việt và theo chế độ sáng/tối; có chuyển tháng, nút Hôm nay và điều hướng bằng phím mũi tên. Tab tài khoản hiện tại được tô nền. Menu ảnh đại diện dùng icon ba gạch; các mục có cùng kiểu hiển thị. Hồ sơ hiển thị icon Facebook, Instagram, TikTok, YouTube và Zalo khi đã lưu liên kết tương ứng. Thẻ sân và bảng quản lý sân được căn lại chữ, giá và khoảng cách nút.
 
 Kiểm tra phần này: `node tests/interface-polish.cjs`.
+
+## Đọc code theo vai trò
+
+Bắt đầu từ [bản đồ code và hướng dẫn vấn đáp](docs/code-map.md). HTML chỉ giữ form popup liên quan, controller quản lý tách theo role; JavaScript cập nhật dữ liệu với tên binding rõ nghĩa. Đây vẫn là bản localStorage, chưa tích hợp JSON Server.

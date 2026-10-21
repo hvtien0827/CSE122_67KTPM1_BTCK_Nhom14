@@ -1,0 +1,18 @@
+/* organizer: sự kiện và đội hình CLB */
+.team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.team {
+  padding: 22px;
+  border: 1px solid var(--team-border);
+  background: var(--team-bg);
+  border-radius: 12px;
+}
+
+.team.b {
+  background: var(--team-b-bg);
+  border-color: var(--team-b-border);
+}

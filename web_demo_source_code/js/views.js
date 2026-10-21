@@ -19,7 +19,7 @@
     return node.value;
   }
   function interpolate(text, bindings) {
-    return text.replace(/__CC_([a-z0-9-]+)__/g, (_, key) => value(bindings, key) ?? '');
+    return text.replace(/__CC_([A-Za-z0-9-]+)__/g, (_, key) => value(bindings, key) ?? '');
   }
   function bind(root, bindings) {
     // Conditional content is authored as HTML <template>, and mounted only as needed.

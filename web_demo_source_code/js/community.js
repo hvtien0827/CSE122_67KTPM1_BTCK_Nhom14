@@ -132,13 +132,13 @@
     eligibility(kind, id, target);
     const old = CC.db[kind === 'court' ? 'courtReviews' : 'opponentReviews'].find(r => r.authorId === CC.me().id && (kind === 'court' ? r.bookingId === id : r.matchId === id && r.targetId === target));
     UI.formDialog(kind === 'court' ? 'Đánh giá sân' : 'Đánh giá bạn chơi', Views.fragment("community-reviewForm-dialog-1", {
-      "old-stars-1-checked-1": () => old?.stars === 1 ? 'checked' : '',
-      "old-stars-2-checked-2": () => old?.stars === 2 ? 'checked' : '',
-      "old-stars-3-checked-3": () => old?.stars === 3 ? 'checked' : '',
-      "old-stars-4-checked-4": () => old?.stars === 4 ? 'checked' : '',
-      "old-stars-5-checked-5": () => old?.stars === 5 ? 'checked' : '',
-      "tags-kind-map-t-i-label-input-type-checkbox-n-6": () => tags[kind].map((t, i) => `<label><input type="checkbox" name="tag${i}" ${old?.tags.includes(t) ? 'checked' : ''}> ${t}</label>`).join(''),
-      "old-comment-7": () => esc(old?.comment || '')
+      "star1Checked": () => old?.stars === 1 ? 'checked' : '',
+      "star2Checked": () => old?.stars === 2 ? 'checked' : '',
+      "star3Checked": () => old?.stars === 3 ? 'checked' : '',
+      "star4Checked": () => old?.stars === 4 ? 'checked' : '',
+      "star5Checked": () => old?.stars === 5 ? 'checked' : '',
+      "quickTags": () => tags[kind].map((t, i) => `<label><input type="checkbox" name="tag${i}" ${old?.tags.includes(t) ? 'checked' : ''}> ${t}</label>`).join(''),
+      "comment": () => esc(old?.comment || '')
     }), 'Lưu đánh giá', d => saveReview(kind, id, target, {
       ...d,
       tags: tags[kind].filter((_, i) => d['tag' + i])
@@ -216,13 +216,13 @@
       closed: 'Đã đóng / đã qua'
     };
     const dialog = UI.modal(`Lịch sân · ${esc(c.name)}`, Views.fragment("community-calendar-dialog-2", {
-      "date-1": () => esc(date),
-      "object-entries-labels-map-k-v-span-class-cale-2": () => Object.entries(labels).map(([k, v]) => `<span class="calendar-key ${k}">${v}</span>`).join(''),
-      "max-min-3": () => max - min,
-      "array-from-length-math-floor-max-min-60-1-i-s-4": () => Array.from({
+      "selectedDate": () => esc(date),
+      "statusLegend": () => Object.entries(labels).map(([k, v]) => `<span class="calendar-key ${k}">${v}</span>`).join(''),
+      "calendarHeight": () => max - min,
+      "timeAxis": () => Array.from({
         length: Math.floor((max - min) / 60) + 1
       }, (_, i) => `<span style="top:${i * 60}px">${String(Math.floor(min / 60) + i).padStart(2, '0')}:00</span>`).join(''),
-      "dates-map-d-div-div-class-calendar-heading-da-5": () => dates.map(d => `<div><div class="calendar-heading">${day(d)}</div><div class="calendar-day" style="height:${max - min}px">${slots.filter(s => s.date === d).map(s => `<button class="calendar-slot ${status(s)}" style="top:${minutes(s.start) - min}px;height:${Math.max(24, minutes(s.end) - minutes(s.start) - 3)}px" data-action="calendar-slot" data-id="${esc(s.id)}"><strong>${s.start}–${s.end}</strong><br>${labels[status(s)]}</button>`).join('')}</div></div>`).join('')
+      "dayColumns": () => dates.map(d => `<div><div class="calendar-heading">${day(d)}</div><div class="calendar-day" style="height:${max - min}px">${slots.filter(s => s.date === d).map(s => `<button class="calendar-slot ${status(s)}" style="top:${minutes(s.start) - min}px;height:${Math.max(24, minutes(s.end) - minutes(s.start) - 3)}px" data-action="calendar-slot" data-id="${esc(s.id)}"><strong>${s.start}–${s.end}</strong><br>${labels[status(s)]}</button>`).join('')}</div></div>`).join('')
     }));
     dialog.classList.add('calendar-dialog');
     const mobile = window.matchMedia('(max-width: 760px)').matches;
@@ -247,10 +247,10 @@
     const s = CC.find('slots', key),
       c = CC.find('courts', courtId);
     UI.formDialog(key ? 'Sửa khung giờ' : 'Mở khung giờ', Views.fragment("community-slotForm-dialog-3", {
-      "s-date-date-1": () => esc(s?.date || date),
-      "s-start-08-00-2": () => esc(s?.start || '08:00'),
-      "s-end-10-00-3": () => esc(s?.end || '10:00'),
-      "s-price-c-price-2-4": () => esc(s?.price || c.price * 2)
+      "date": () => esc(s?.date || date),
+      "startTime": () => esc(s?.start || '08:00'),
+      "endTime": () => esc(s?.end || '10:00'),
+      "price": () => esc(s?.price || c.price * 2)
     }), 'Lưu khung giờ', d => {
       CC.saveEntity('slots', {
         ...d,
@@ -302,21 +302,21 @@
       return [`${day(s.date)} · ${esc(CC.courtFor(s).name)}`, esc(CC.find('users', b.playerId)?.name), badge(b.status), money(s.price)];
     });
     Views.update("community-revenue", {
-      "string-day-string-period-selected-1": () => String("day") === String(period) ? 'selected' : '',
-      "string-week-string-period-selected-2": () => String("week") === String(period) ? 'selected' : '',
-      "string-month-string-period-selected-3": () => String("month") === String(period) ? 'selected' : '',
-      "string-year-string-period-selected-4": () => String("year") === String(period) ? 'selected' : '',
-      "date-5": () => esc(date),
-      "courtoptions-courtid-6": () => courtOptions(courtId),
-      "start-tolocaledatestring-vi-vn-7": () => start.toLocaleDateString('vi-VN'),
-      "last-tolocaledatestring-vi-vn-8": () => last.toLocaleDateString('vi-VN'),
-      "money-sum-completed-9": () => money(sum('completed')),
-      "money-sum-approved-10": () => money(sum('approved')),
-      "rows-filter-b-b-status-completed-length-11": () => rows.filter(b => b.status === 'completed').length,
-      "tablerows1-length-0-12": () => tableRows1.length > 0,
-      "tablerows-tablerows1-13": () => UI.tableRows(tableRows1),
-      "tablerows2-length-0-14": () => tableRows2.length > 0,
-      "tablerows-tablerows2-15": () => UI.tableRows(tableRows2)
+      "daySelected": () => String("day") === String(period) ? 'selected' : '',
+      "weekSelected": () => String("week") === String(period) ? 'selected' : '',
+      "monthSelected": () => String("month") === String(period) ? 'selected' : '',
+      "yearSelected": () => String("year") === String(period) ? 'selected' : '',
+      "selectedDate": () => esc(date),
+      "courtOptions": () => courtOptions(courtId),
+      "fromDate": () => start.toLocaleDateString('vi-VN'),
+      "toDate": () => last.toLocaleDateString('vi-VN'),
+      "completedRevenue": () => money(sum('completed')),
+      "expectedRevenue": () => money(sum('approved')),
+      "completedCount": () => rows.filter(b => b.status === 'completed').length,
+      "hasCourtRows": () => tableRows1.length > 0,
+      "courtRows": () => UI.tableRows(tableRows1),
+      "hasBookingRows": () => tableRows2.length > 0,
+      "bookingRows": () => UI.tableRows(tableRows2)
     });
     ['revenue-period', 'revenue-date', 'revenue-court'].forEach(name => $(`[name=${name}]`).onchange = () => {
       if ($('[name=revenue-date]').value) revenue($('[name=revenue-period]').value, $('[name=revenue-date]').value, $('[name=revenue-court]').value);
@@ -326,11 +326,11 @@
     const ids = CC.db.courts.filter(c => c.ownerId === CC.me().id).map(c => c.id),
       rows = CC.db.courtReviews.filter(r => ids.includes(r.courtId) && (!id || r.courtId === id));
     Views.update("community-courtReviews", {
-      "courtoptions-id-1": () => courtOptions(id),
-      "rows-length-2": () => rows.length,
-      "rows-length-rows-reduce-n-r-n-r-stars-0-rows--3": () => rows.length ? (rows.reduce((n, r) => n + r.stars, 0) / rows.length).toFixed(1) + '/5' : 'Chưa có',
-      "rows-map-r-section-class-panel-h3-cc-find-cou-4": () => rows.map(r => `<section class="panel"><h3>${esc(CC.find('courts', r.courtId)?.name)}</h3>${reviewList([r])}</section>`).join(''),
-      "rows-length-5": () => rows.length
+      "courtOptions": () => courtOptions(id),
+      "reviewCount": () => rows.length,
+      "averageStars": () => rows.length ? (rows.reduce((n, r) => n + r.stars, 0) / rows.length).toFixed(1) + '/5' : 'Chưa có',
+      "reviewCards": () => rows.map(r => `<section class="panel"><h3>${esc(CC.find('courts', r.courtId)?.name)}</h3>${reviewList([r])}</section>`).join(''),
+      "hasReviews": () => rows.length
     });
     $('[name=review-court]').onchange = e => courtReviews(e.target.value);
   }
@@ -382,23 +382,23 @@
     const u = CC.find('users', new URLSearchParams(location.search).get('id'));
     if (!u || u.status !== 'active') return App.error(404);
     Views.update("community-publicProfile", {
-      "u-name-1": () => esc(u.name),
-      "cc-roles-u-role-2": () => CC.roles[u.role],
-      "u-bio-ch-a-c-gi-i-thi-u-3": () => esc(u.bio || 'Chưa có giới thiệu.'),
-      "u-phonepublic-u-phone-4": () => u.phonePublic && u.phone,
-      "u-phone-5": () => esc(u.phone),
-      "socialicons-u-6": () => socialIcons(u),
-      "u-role-player-7": () => u.role === 'player',
-      "person-u-id-explanation-8": () => person(u.id) + explanation,
-      "reviewlist-cc-db-opponentreviews-filter-r-r-t-9": () => reviewList(CC.db.opponentReviews.filter(r => r.targetId === u.id))
+      "userName": () => esc(u.name),
+      "roleLabel": () => CC.roles[u.role],
+      "bio": () => esc(u.bio || 'Chưa có giới thiệu.'),
+      "showPhone": () => u.phonePublic && u.phone,
+      "phone": () => esc(u.phone),
+      "socialLinks": () => socialIcons(u),
+      "isPlayer": () => u.role === 'player',
+      "playerStats": () => person(u.id) + explanation,
+      "reviewCards": () => reviewList(CC.db.opponentReviews.filter(r => r.targetId === u.id))
     });
   }
   function reports() {
     CC.requireRole('admin');
     const tableRows1 = (CC.db.playerReports || []).map(r => [`${esc(CC.find('users', r.authorId)?.name)}<br>${esc(CC.find('matches', r.matchId)?.name)}`, link(esc(CC.find('users', r.targetId)?.name), `profile-public.html?id=${r.targetId}`, 'ghost small'), `${esc(r.reason)}<p class="review-comment">${esc(r.comment)}</p>`, r.status === 'pending' ? btn('Đã xem xét', 'resolve-player-report', 'secondary', `data-id="${esc(r.id)}"`) : 'Đã xem xét']);
     Views.update("community-reports", {
-      "tablerows1-length-0-1": () => tableRows1.length > 0,
-      "tablerows-tablerows1-2": () => UI.tableRows(tableRows1)
+      "hasReports": () => tableRows1.length > 0,
+      "reportRows": () => UI.tableRows(tableRows1)
     });
   }
   document.addEventListener('click', e => {
@@ -416,20 +416,20 @@
         if (!s || !ownCourts().some(c => c.id === s.courtId)) throw Error('Không có quyền.');
         const b = CC.db.bookings.find(b => b.slotId === id && ['pending', 'approved', 'completed'].includes(b.status));
         UI.modal('Chi tiết khung giờ', Views.fragment("community-actions-dialog-4", {
-          "day-s-date-1": () => day(s.date),
-          "s-start-2": () => s.start,
-          "s-end-3": () => s.end,
-          "money-s-price-4": () => money(s.price),
-          "b-5": () => b,
-          "b-status-6": () => esc(b.status),
-          "cc-statuses-b-status-b-status-7": () => esc(CC.statuses[b.status] || b.status),
-          "cc-find-users-b-playerid-name-8": () => esc(CC.find('users', b.playerId)?.name),
-          "data-id-id-9": () => `data-id="${esc(id)}"`,
-          "s-status-open-10": () => s.status === 'open',
-          "data-id-id-11": () => `data-id="${esc(id)}"`,
-          "s-status-12": () => esc(s.status),
-          "cc-statuses-s-status-s-status-13": () => esc(CC.statuses[s.status] || s.status),
-          "data-id-s-courtid-14": () => `data-id="${s.courtId}"`
+          "date": () => day(s.date),
+          "startTime": () => s.start,
+          "endTime": () => s.end,
+          "price": () => money(s.price),
+          "hasBooking": () => b,
+          "bookingStatus": () => esc(b.status),
+          "bookingStatusLabel": () => esc(CC.statuses[b.status] || b.status),
+          "playerName": () => esc(CC.find('users', b.playerId)?.name),
+          "editAttributes": () => `data-id="${esc(id)}"`,
+          "slotOpen": () => s.status === 'open',
+          "archiveAttributes": () => `data-id="${esc(id)}"`,
+          "slotStatus": () => esc(s.status),
+          "slotStatusLabel": () => esc(CC.statuses[s.status] || s.status),
+          "calendarAttributes": () => `data-id="${s.courtId}"`
         }));
       }
       if (action === 'calendar-edit') {
@@ -462,6 +462,7 @@
       UI.toast(err.message, true);
     }
   });
+  if (window.Player) {
   const oldDetail = Player.matchDetail;
   Player.matchDetail = () => {
     oldDetail();
@@ -479,6 +480,7 @@
       if (document.querySelector('#court-review-list')) document.querySelector('#court-review-list').innerHTML = reviewList(CC.db.courtReviews.filter(r => r.courtId === id));
     }
   };
+  }
   window.Community = {
     saveReview,
     report,

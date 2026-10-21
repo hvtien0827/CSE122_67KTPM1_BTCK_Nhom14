@@ -26,16 +26,16 @@ Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã 
 | UI-18 | Người chơi | Chi tiết trận | Chi tiết trận | `match-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 / `feat/player` | Player.matchDetail |
 | UI-19 | Người chơi | Tạo và sửa trận | Tạo và sửa trận | `player-match-create.html` | C/U; validation / chưa có booking phù hợp | — | Thành viên 1 / `feat/player` | Player.matchCreate |
 | UI-20 | Người chơi | Ghép trận thông minh | Ghép trận thông minh | `player-skill-match.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | Skill Match | Thành viên 1 / `feat/player` | AI.skill |
-| UI-21 | Chủ sân | Quản lý sân | Quản lý sân | `venue-court-management.html` | C/R/U; lịch khung giờ trong cửa sổ lịch sân | — | Thành viên 2 / `feat/venue` | Manage.courts |
-| UI-22 | Chủ sân | Quản lý đặt sân | Quản lý đặt sân | `venue-booking-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 2 / `feat/venue` | Manage.bookings |
+| UI-21 | Chủ sân | Quản lý sân | Quản lý sân | `venue-court-management.html` | C/R/U; lịch khung giờ trong cửa sổ lịch sân | — | Thành viên 2 / `feat/venue` | Venue.courts |
+| UI-22 | Chủ sân | Quản lý đặt sân | Quản lý đặt sân | `venue-booking-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 2 / `feat/venue` | Venue.bookings |
 | UI-23 | Chủ sân | Cảnh báo vắng mặt | Cảnh báo vắng mặt | `venue-no-show-risk.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | No-show Risk | Thành viên 2 / `feat/venue` | AI.risk |
-| UI-24 | Điều phối CLB | Sự kiện CLB | Sự kiện CLB | `organizer-event-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Manage.events |
-| UI-25 | Điều phối CLB | Chi tiết sự kiện | Chi tiết sự kiện | `organizer-event-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 3 / `feat/organizer` | Manage.eventDetail |
-| UI-26 | Điều phối CLB | Danh sách người chơi | Danh sách người chơi | `organizer-player-roster.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Manage.roster |
+| UI-24 | Điều phối CLB | Sự kiện CLB | Sự kiện CLB | `organizer-event-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Organizer.events |
+| UI-25 | Điều phối CLB | Chi tiết sự kiện | Chi tiết sự kiện | `organizer-event-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 3 / `feat/organizer` | Organizer.eventDetail |
+| UI-26 | Điều phối CLB | Danh sách người chơi | Danh sách người chơi | `organizer-player-roster.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Organizer.roster |
 | UI-27 | Điều phối CLB | Đội hình và chia đội | Đội hình và chia đội | `organizer-team-lineup.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | Team Balancer | Thành viên 3 / `feat/organizer` | AI.teams |
-| UI-28 | Quản trị viên | Quản lý môn thể thao | Quản lý môn thể thao | `admin-sport-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Manage.sports |
-| UI-29 | Quản trị viên | Quản lý tài khoản | Quản lý tài khoản | `admin-user-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Manage.users |
-| UI-30 | Quản trị viên | Báo cáo hoạt động | Báo cáo hoạt động | `admin-sports-report.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Manage.reports |
+| UI-28 | Quản trị viên | Quản lý môn thể thao | Quản lý môn thể thao | `admin-sport-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Admin.sports |
+| UI-29 | Quản trị viên | Quản lý tài khoản | Quản lý tài khoản | `admin-user-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Admin.users |
+| UI-30 | Quản trị viên | Báo cáo hoạt động | Báo cáo hoạt động | `admin-sports-report.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 4 / `feat/admin` | Admin.reports |
 | UI-31 | Dùng chung | Hồ sơ cá nhân | Hồ sơ cá nhân | `profile.html` | R; bình thường / rỗng / lỗi | — | Cả nhóm | js/app.js |
 | UI-32 | Dùng chung | Cài đặt | Cài đặt | `settings.html` | R; bình thường / rỗng / lỗi | — | Cả nhóm | js/app.js |
 | UI-33 | Dùng chung | Thông báo | Thông báo | `notifications.html` | R; bình thường / rỗng / lỗi | — | Cả nhóm | js/app.js |

@@ -40,12 +40,12 @@
     switch (page) {
       case "login":
         Views.update("auth-login", {
-          "object-entries-cc-roles-map-r-l-btn-l-demo-lo-1": () => Object.entries(CC.roles).map(([r, l]) => btn(l, 'demo-login', 'secondary small', `data-role="${r}"`)).join('')
+          "demoAccountButtons": () => Object.entries(CC.roles).map(([r, l]) => btn(l, 'demo-login', 'secondary small', `data-role="${r}"`)).join('')
         });
         break;
       case "register":
         Views.update("auth-register", {
-          "p-type-register-p-email-1": () => esc(p?.type === 'register' ? p.email : '')
+          "email": () => esc(p?.type === 'register' ? p.email : '')
         });
         break;
       case "forgot-password":
@@ -53,12 +53,12 @@
         break;
       case "verification-sent":
         Views.update("auth-verification-sent", {
-          "p-email-ch-a-c-y-u-c-u-x-c-minh-1": () => esc(p?.email || 'Chưa có yêu cầu xác minh')
+          "emailLabel": () => esc(p?.email || 'Chưa có yêu cầu xác minh')
         });
         break;
       case "verify-email":
         Views.update("auth-verify-email", {
-          "p-email-1": () => esc(p?.email || '—')
+          "email": () => esc(p?.email || '—')
         });
         break;
       case "registration-success":
@@ -66,12 +66,12 @@
         break;
       case "recovery-sent":
         Views.update("auth-recovery-sent", {
-          "p-email-ch-a-c-y-u-c-u-x-c-minh-1": () => esc(p?.email || 'Chưa có yêu cầu xác minh')
+          "emailLabel": () => esc(p?.email || 'Chưa có yêu cầu xác minh')
         });
         break;
       case "verify-reset":
         Views.update("auth-verify-reset", {
-          "p-email-1": () => esc(p?.email || '—')
+          "email": () => esc(p?.email || '—')
         });
         break;
       case "reset-password":

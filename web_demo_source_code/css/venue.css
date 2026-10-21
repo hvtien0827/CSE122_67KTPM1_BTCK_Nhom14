@@ -359,3 +359,13 @@
     padding: 10px 8px;
   }
 }
+
+/* venue: giao diện chủ sân */
+.court-photo-preview {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: var(--court-radius-sm);
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+}

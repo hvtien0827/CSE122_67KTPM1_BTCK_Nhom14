@@ -25,3 +25,8 @@
     grid-template-columns: 82px 1fr 30px;
   }
 }
+
+/* admin: giao diện quản trị viên */
+.role-filters {
+  flex-wrap: wrap;
+}

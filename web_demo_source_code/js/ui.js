@@ -78,7 +78,7 @@
   }
   function confirm(title, text, onYes) {
     const d = modal(title, Views.fragment("ui-confirm-dialog-1", {
-      "text-1": () => text
+      "message": () => text
     }));
     $('[data-action=confirm]', d).onclick = () => {
       try {

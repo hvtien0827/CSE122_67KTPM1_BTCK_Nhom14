@@ -2,7 +2,7 @@
 
 ## Nguyên tắc
 
-HTML nhiều trang chứa bố cục, nội dung chính, form và template popup. CSS chia thành sáu file: `common.css`, `player.css`, `venue.css`, `admin.css`, `auth.css`, `home.css`. JavaScript xử lý dữ liệu, sự kiện, bộ lọc và kiểm tra form; `views.js` cập nhật các vùng dữ liệu đã đánh dấu trong HTML, giữ nguyên bố cục khi lọc/lưu. Xem [hướng dẫn cấu trúc frontend](frontend-structure.md).
+HTML nhiều trang chứa bố cục, nội dung chính, form và template popup. CSS có ba file chung (`common.css`, `navigation.css`, `date-picker.css`) và sáu file theo nhóm trang (`player.css`, `venue.css`, `organizer.css`, `admin.css`, `auth.css`, `home.css`). JavaScript xử lý dữ liệu, sự kiện, bộ lọc và kiểm tra form; `views.js` cập nhật các vùng dữ liệu đã đánh dấu trong HTML, giữ nguyên bố cục khi lọc/lưu. Xem [hướng dẫn cấu trúc frontend](frontend-structure.md).
 
 Không cần framework, bước build hoặc API bên ngoài để chạy website. `store.js` khởi tạo dữ liệu mẫu đúng một lần, sau đó đọc localStorage `courtconnect.v1`. Mọi thay đổi đi qua hàm nghiệp vụ và `transaction()`; nếu ghi thất bại thì khôi phục trạng thái trước đó trong bộ nhớ. Dữ liệu hỏng được báo và yêu cầu khôi phục trước khi tiếp tục ghi.
 
@@ -48,4 +48,4 @@ Không có đồng bộ nhiều máy hoặc đặt sân đồng thời như hệ
 
 `store.js` dùng `restoreFourRoles()` khi dữ liệu có `scope28` và chưa có `fourRoleRestoreVersion = 1`. Chỉ organizer có đúng lý do ngừng hỗ trợ vai trò mới được khôi phục trạng thái từ bản lưu. Tài khoản khóa thủ công giữ nguyên. Hợp nhất sự kiện, báo cáo, lịch sử AI, đánh giá và hồ sơ mạng xã hội từ `legacy`, ưu tiên bản hiện hành nếu trùng ID. Sau khi ghi thành công, đánh dấu đã khôi phục để không lặp lại.
 
-Các module `manage.js`, `ai.js`, `community.js` chứa phần của nhiều vai trò; nhóm thống nhất hàm cần sửa. Mỗi người sửa HTML và CSS thuộc nhóm giao diện mình phụ trách. `common.css`, UI, auth và dữ liệu dùng chung là trách nhiệm phối hợp của cả nhóm. Xem [phân công](team-assignment.md).
+Controller quản lý tách thành `venue.js`, `organizer.js`, `admin.js`. Các module `ai.js`, `community.js` vẫn là phần xuyên vai trò; nhóm thống nhất hàm cần sửa. Mỗi người sửa HTML và CSS thuộc nhóm giao diện mình phụ trách. `common.css`, UI, auth và dữ liệu dùng chung là trách nhiệm phối hợp của cả nhóm. Xem [phân công](team-assignment.md).

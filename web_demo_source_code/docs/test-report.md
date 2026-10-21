@@ -1,3 +1,7 @@
+# Cập nhật kiểm thử cấu trúc — 21/10/2026
+
+Bản cuối sau khi tách role đã qua toàn bộ 11 bài kiểm tra trình duyệt và kiểm tra cấu trúc. Xem [báo cáo chi tiết](structure-refactor-report.md) và [bản đồ code](code-map.md). Những phần dưới là báo cáo lịch sử.
+
 # Báo cáo kiểm thử và phạm vi xác nhận
 
 ## Gỡ điều khiển thử lỗi AI khỏi giao diện — 19/10/2026

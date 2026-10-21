@@ -6,7 +6,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const base = process.env.BASE_URL || 'http://127.0.0.1:4173';
 const pages = fs.readdirSync(root).filter(name => name.endsWith('.html'));
-const cssFiles = ['common.css', 'player.css', 'venue.css', 'admin.css', 'auth.css', 'home.css'];
+const cssFiles = ['common.css', 'navigation.css', 'date-picker.css', 'player.css', 'venue.css', 'organizer.css', 'admin.css', 'auth.css', 'home.css'];
 
 (async () => {
   assert.equal(pages.length, 44);
@@ -17,7 +17,7 @@ const cssFiles = ['common.css', 'player.css', 'venue.css', 'admin.css', 'auth.cs
     assert.match(html, /<h1\b/, name);
     assert.match(html, /data-page-view=/, name);
     assert.match(html, /href="css\/common.css"/, name);
-    assert.equal((html.match(/rel="stylesheet"/g) || []).length, 2, name);
+    assert.equal((html.match(/rel="stylesheet"/g) || []).length, 4, name);
     assert.ok(!html.includes('css/style.css'), name);
     assert.ok(!html.includes('Đang mở CourtConnect'), name);
   }
@@ -68,7 +68,7 @@ const cssFiles = ['common.css', 'player.css', 'venue.css', 'admin.css', 'auth.cs
     assert.equal(await p.inputValue('[name=name]'), 'Tên "thử" <script> & kiểm tra');
     assert.deepEqual(errors, []);
     await context.close();
-    console.log('PASS: 44 static HTML pages, six CSS files, no-JS layouts, persistent HTML edits, dynamic filters and escaped form values.');
+    console.log('PASS: 44 static HTML pages, nine CSS files, no-JS layouts, persistent HTML edits, dynamic filters and escaped form values.');
   } finally {
     await browser.close();
   }

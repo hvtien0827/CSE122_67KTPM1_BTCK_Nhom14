@@ -91,10 +91,10 @@
       input = null,
       selected = null;
     Views.update("ai-skill", {
-      "sports-badminton-1": () => sports('badminton'),
-      "levels-player-levels-badminton-2-2": () => levels(player?.levels.badminton || 2),
-      "cc-date-1-3": () => esc(CC.date(1)),
-      "required-min-cc-date-4": () => `required min="${CC.date()}"`
+      "sportOptions": () => sports('badminton'),
+      "levelOptions": () => levels(player?.levels.badminton || 2),
+      "selectedDate": () => esc(CC.date(1)),
+      "dateAttributes": () => `required min="${CC.date()}"`
     });
     const saved = () => {
       $('#saved-skills').innerHTML = CC.db.aiHistory.filter(h => h.userId === CC.me().id && h.type === 'skill' && h.status === 'saved').slice(0, 8).map(h => `<p class="small"><a href="match-detail.html?id=${esc(h.result.id)}">${esc(CC.find('matches', h.result.id)?.name || 'Trận đã đóng')}</a></p>`).join('') || '<p class="small muted">Chưa lưu gợi ý nào.</p>';
@@ -159,20 +159,20 @@
     };
   }
   function teams() {
-    const es = Manage.ownEvents().filter(e => e.status === 'open'),
+    const es = Organizer.ownEvents().filter(e => e.status === 'open'),
       eventId = new URLSearchParams(location.search).get('event');
     const event = es.find(e => e.id === eventId) || es[0];
     let draft = event?.teams ? structuredClone(event.teams) : null,
       variant = 0,
       accepted = false;
     Views.update("ai-teams", {
-      "manage-ownevents-filter-e-e-status-open-map-e-1": () => Manage.ownEvents().filter(e => e.status === 'open').map(e => option(e.id, e.name, event?.id)).join('') || option('', 'Chưa có sự kiện'),
-      "event-event-playerids-length-ng-i-sport-event-2": () => event ? `${event.playerIds.length} người · ${sport(event.sportId)} · ${day(event.date)}` : 'Chưa có sự kiện đang mở.',
-      "event-3": () => event,
-      "organizer-player-roster-html-event-event-id-4": () => esc(`organizer-player-roster.html?event=${event.id}`),
-      "event-event-playerids-length-2-5": () => event && event.playerIds.length < 2,
-      "event-playerids-length-2-disabled-6": () => event?.playerIds.length >= 2 ? '' : 'disabled',
-      "event-playerids-length-2-disabled-7": () => event?.playerIds.length >= 2 ? '' : 'disabled'
+      "eventOptions": () => Organizer.ownEvents().filter(e => e.status === 'open').map(e => option(e.id, e.name, event?.id)).join('') || option('', 'Chưa có sự kiện'),
+      "eventSummary": () => event ? `${event.playerIds.length} người · ${sport(event.sportId)} · ${day(event.date)}` : 'Chưa có sự kiện đang mở.',
+      "hasEvent": () => event,
+      "rosterUrl": () => esc(`organizer-player-roster.html?event=${event.id}`),
+      "notEnoughPlayers": () => event && event.playerIds.length < 2,
+      "suggestDisabled": () => event?.playerIds.length >= 2 ? '' : 'disabled',
+      "manualDisabled": () => event?.playerIds.length >= 2 ? '' : 'disabled'
     });
     const sum = ids => ids.reduce((n, id) => n + (CC.find('players', id)?.levels[event?.sportId] || 0), 0);
     const paint = () => {
@@ -263,11 +263,11 @@
     let result = null,
       current = null;
     Views.update("ai-risk", {
-      "bookings-map-b-const-s-cc-find-slots-b-slotid-1": () => bookings.map(b => {
+      "bookingOptions": () => bookings.map(b => {
         const s = CC.find('slots', b.slotId);
         return option(b.id, `${CC.find('users', b.playerId)?.name} · ${day(s.date)} ${s.start} · ${CC.courtFor(s).name}`);
       }).join('') || option('', 'Không có đơn chờ xử lý'),
-      "bookings-length-disabled-2": () => bookings.length ? '' : 'disabled'
+      "submitDisabled": () => bookings.length ? '' : 'disabled'
     });
     $('#risk-form').onsubmit = async e => {
       e.preventDefault();

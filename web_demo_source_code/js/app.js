@@ -20,30 +20,30 @@
   const page = location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
   function error(code) {
     Views.update("app-error", {
-      "code-1": () => code,
-      "code-403-b-n-ch-a-c-quy-n-truy-c-p-kh-ng-t-m--2": () => code === 403 ? 'Bạn chưa có quyền truy cập' : 'Không tìm thấy trang',
-      "code-403-trang-n-y-d-nh-cho-m-t-vai-tr-kh-c-b-3": () => code === 403 ? 'Trang này dành cho một vai trò khác. Bạn có thể đăng xuất và dùng tài khoản demo phù hợp.' : 'Liên kết hoặc bản ghi không còn tồn tại. Hãy quay lại để tiếp tục khám phá.',
-      "cc-me-4": () => CC.me()
+      "errorCode": () => code,
+      "errorTitle": () => code === 403 ? 'Bạn chưa có quyền truy cập' : 'Không tìm thấy trang',
+      "errorMessage": () => code === 403 ? 'Trang này dành cho một vai trò khác. Bạn có thể đăng xuất và dùng tài khoản demo phù hợp.' : 'Liên kết hoặc bản ghi không còn tồn tại. Hãy quay lại để tiếp tục khám phá.',
+      "isLoggedIn": () => CC.me()
     });
   }
   function profile() {
     const u = CC.me(),
       p = CC.find('players', u.id);
     Views.update("app-profile", {
-      "u-name-1": () => esc(u.name),
-      "u-phone-2": () => esc(u.phone || ''),
-      "u-email-3": () => esc(u.email),
-      "cc-roles-u-role-4": () => esc(CC.roles[u.role]),
-      "u-phonepublic-checked-5": () => u.phonePublic ? 'checked' : '',
-      "object-entries-community-networks-map-k-label-6": () => Object.entries(Community.networks).map(([k, [label]]) => field(label, k, 'url', u.socialLinks?.[k] || '', 'placeholder="https://…"')).join(''),
-      "u-bio-7": () => esc(u.bio || ''),
-      "p-8": () => p,
-      "cc-db-sports-filter-s-s-status-active-map-s-s-9": () => CC.db.sports.filter(s => s.status === 'active').map(s => select(s.name, 'level-' + s.id, UI.levels(p.levels[s.id] || 1))).join(''),
-      "u-name-slice-0-1-10": () => esc(u.name.slice(0, 1)),
-      "u-name-11": () => esc(u.name),
-      "cc-roles-u-role-12": () => CC.roles[u.role],
-      "profile-public-html-id-u-id-13": () => esc(`profile-public.html?id=${u.id}`),
-      "community-socialicons-u-14": () => Community.socialIcons(u)
+      "userName": () => esc(u.name),
+      "phone": () => esc(u.phone || ''),
+      "email": () => esc(u.email),
+      "roleLabel": () => esc(CC.roles[u.role]),
+      "phonePublicChecked": () => u.phonePublic ? 'checked' : '',
+      "socialFields": () => Object.entries(Community.networks).map(([k, [label]]) => field(label, k, 'url', u.socialLinks?.[k] || '', 'placeholder="https://…"')).join(''),
+      "bio": () => esc(u.bio || ''),
+      "hasPlayer": () => p,
+      "levelFields": () => CC.db.sports.filter(s => s.status === 'active').map(s => select(s.name, 'level-' + s.id, UI.levels(p.levels[s.id] || 1))).join(''),
+      "avatarInitial": () => esc(u.name.slice(0, 1)),
+      "profileName": () => esc(u.name),
+      "profileRole": () => CC.roles[u.role],
+      "publicProfileUrl": () => esc(`profile-public.html?id=${u.id}`),
+      "socialLinks": () => Community.socialIcons(u)
     });
     $('#profile-form').onsubmit = e => {
       e.preventDefault();
@@ -74,7 +74,7 @@
     const u = CC.me(),
       rows = CC.db.notifications.filter(n => n.userId === u.id);
     Views.update("app-notifications", {
-      "rows-map-n-article-class-notification-n-read--1": () => rows.map(n => `<article class="notification ${n.read ? '' : 'unread'}"><span class="avatar">${UI.icon('bell')}</span><div><p>${esc(n.text)}</p><small class="muted">${new Date(n.createdAt).toLocaleString('vi-VN')}</small></div><div class="actions">${link('Xem', n.href, 'secondary small')}${n.read ? '' : btn('Đã đọc', 'read-notification', 'ghost small', `data-id="${n.id}"`)}</div></article>`).join('') || empty('Bạn đã cập nhật hết', 'Thông báo về đặt sân và trận đấu sẽ xuất hiện ở đây.')
+      "notificationCards": () => rows.map(n => `<article class="notification ${n.read ? '' : 'unread'}"><span class="avatar">${UI.icon('bell')}</span><div><p>${esc(n.text)}</p><small class="muted">${new Date(n.createdAt).toLocaleString('vi-VN')}</small></div><div class="actions">${link('Xem', n.href, 'secondary small')}${n.read ? '' : btn('Đã đọc', 'read-notification', 'ghost small', `data-id="${n.id}"`)}</div></article>`).join('') || empty('Bạn đã cập nhật hết', 'Thông báo về đặt sân và trận đấu sẽ xuất hiện ở đây.')
     });
   }
   function settings() {
@@ -83,7 +83,7 @@
         reminder: true
       };
     Views.update("app-settings", {
-      "settings-reminder-checked-1": () => settings.reminder ? 'checked' : ''
+      "reminderChecked": () => settings.reminder ? 'checked' : ''
     });
     $('#settings-form').onsubmit = e => {
       e.preventDefault();
@@ -95,7 +95,7 @@
   }
   function help() {
     Views.update("app-help", {
-      "object-entries-cc-roles-map-r-l-p-strong-l-st-1": () => Object.entries(CC.roles).map(([r, l]) => `<p><strong>${l}</strong><br><span class="small muted">${r}@courtconnect.demo</span></p>`).join('')
+      "demoAccounts": () => Object.entries(CC.roles).map(([r, l]) => `<p><strong>${l}</strong><br><span class="small muted">${r}@courtconnect.demo</span></p>`).join('')
     });
   }
   function legal(type) {
@@ -103,31 +103,31 @@
     privacy ? Views.update("app-legal-privacy", {}) : Views.update("app-legal-terms", {});
   }
   const routes = {
-    index: Player.home,
-    'player-court-search': Player.searchCourts,
-    'player-open-matches': Player.openMatches,
-    'court-detail': Player.courtDetail,
-    booking: Player.bookingPage,
+    index: () => Player.home(),
+    'player-court-search': () => Player.searchCourts(),
+    'player-open-matches': () => Player.openMatches(),
+    'court-detail': () => Player.courtDetail(),
+    booking: () => Player.bookingPage(),
     'booking-success': () => Views.update("app-booking-success", {}),
-    'match-detail': Player.matchDetail,
-    'player-my-sports': Player.mySports,
-    'player-match-create': Player.matchCreate,
-    'player-skill-match': AI.skill,
-    'venue-court-management': Manage.courts,
+    'match-detail': () => Player.matchDetail(),
+    'player-my-sports': () => Player.mySports(),
+    'player-match-create': () => Player.matchCreate(),
+    'player-skill-match': () => AI.skill(),
+    'venue-court-management': () => Venue.courts(),
     'venue-slot-management': () => location.replace('venue-court-management.html'),
     'venue-revenue': () => Community.revenue(),
     'venue-reviews': () => Community.courtReviews(),
-    'profile-public': Community.publicProfile,
-    'admin-player-reports': Community.reports,
-    'venue-booking-management': Manage.bookings,
-    'venue-no-show-risk': AI.risk,
-    'organizer-event-management': Manage.events,
-    'organizer-event-detail': Manage.eventDetail,
-    'organizer-player-roster': Manage.roster,
-    'organizer-team-lineup': AI.teams,
-    'admin-sport-management': Manage.sports,
-    'admin-user-management': Manage.users,
-    'admin-sports-report': Manage.reports,
+    'profile-public': () => Community.publicProfile(),
+    'admin-player-reports': () => Community.reports(),
+    'venue-booking-management': () => Venue.bookings(),
+    'venue-no-show-risk': () => AI.risk(),
+    'organizer-event-management': () => Organizer.events(),
+    'organizer-event-detail': () => Organizer.eventDetail(),
+    'organizer-player-roster': () => Organizer.roster(),
+    'organizer-team-lineup': () => AI.teams(),
+    'admin-sport-management': () => Admin.sports(),
+    'admin-user-management': () => Admin.users(),
+    'admin-sports-report': () => Admin.reports(),
     profile,
     settings,
     notifications,
@@ -176,7 +176,7 @@
       }
     } catch (err) {
       Views.update("app-renderPage", {
-        "err-message-1": () => esc(err.message)
+        "errorMessage": () => esc(err.message)
       });
       console.error(err);
     }

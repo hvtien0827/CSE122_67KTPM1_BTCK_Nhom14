@@ -1,54 +1,52 @@
-# Sửa giao diện CourtConnect sau khi tách HTML / CSS / JavaScript
+# Cấu trúc frontend sau khi chia theo role
 
-Website có 42 trang chức năng và 2 URL chuyển hướng tương thích. Chạy trực tiếp bằng Live Server hoặc `node tests/serve.cjs`; không có bước build bắt buộc.
+Đọc [bản đồ code và hướng dẫn vấn đáp](code-map.md) để lần một thao tác từ HTML tới JS và dữ liệu. Website vẫn có 42 trang chức năng và 2 URL tương thích, không cần build và chưa tích hợp JSON Server.
 
 ## Sửa ở đâu?
 
-| Muốn thay đổi | File cần sửa |
+| Việc | File |
 |---|---|
-| Tiêu đề, mô tả, bố cục, nhãn, input hoặc nút của trang | File `.html` tương ứng, trong `<main>` và vùng `data-page-view`. |
-| Form trong popup | Các `<template data-fragment="...">` ở cuối HTML của trang. |
-| Màu, font, dark mode, nút, input, header, sidebar, bảng dùng chung | `css/common.css`. |
-| Trang người chơi, đặt sân, lịch chọn ngày, hoạt động | `css/player.css`. |
-| Quản lý sân và lịch khung giờ của chủ sân | `css/venue.css`. |
-| Giao diện quản lý, biểu đồ và đội hình CLB | `css/admin.css`. |
-| Đăng nhập, đăng ký, xác minh, khôi phục mật khẩu | `css/auth.css`. |
-| Hero, các section, CTA và footer của trang chủ | `css/home.css`. |
-| Sự kiện, bộ lọc, kiểm tra form và dữ liệu trên trang | Hàm controller tương ứng trong `js/player.js`, `manage.js`, `community.js`, `ai.js`, `auth.js` hoặc `app.js`. |
-| Quy tắc nghiệp vụ, lưu dữ liệu, phân quyền mô phỏng | `js/store.js`. |
+| Bố cục, tiêu đề, mô tả, nhãn và form chính | HTML tương ứng, trong `<main>` |
+| Form popup của trang | `<template data-fragment>` ở cuối chính HTML đó |
+| Nút, input, bảng, panel, biến màu sáng/tối | `css/common.css` |
+| Header, sidebar, menu mobile/tài khoản | `css/navigation.css` và `js/ui.js` |
+| Lịch chọn ngày dùng chung | `css/date-picker.css`, `js/date-picker.js`, hai template lịch cuối HTML |
+| Người chơi | `css/player.css`, `js/player.js` |
+| Chủ sân | `css/venue.css`, `js/venue.js` |
+| Điều phối CLB | `css/organizer.css`, `js/organizer.js` |
+| Admin | `css/admin.css`, `js/admin.js` |
+| Tài khoản | `css/auth.css`, `js/auth.js` |
+| Trang chủ | `css/home.css`, `Player.home()` trong `js/player.js` |
+| Quy tắc nghiệp vụ, dữ liệu, localStorage | `js/store.js` |
+| Đánh giá/báo cáo, hồ sơ công khai, lịch sân/doanh thu | `js/community.js` |
+| Ba tính năng hỗ trợ bằng thuật toán quy tắc | `js/ai.js` |
+| Định tuyến theo tên file, hồ sơ, cài đặt, thông báo, lỗi | `js/app.js` |
 
-Mỗi trang nạp `common.css` trước rồi CSS của nhóm trang. Các trang dùng chung nạp thêm `player.css`; các trang CLB dùng `admin.css` cho thành phần quản lý/đội hình, theo bộ sáu file CSS đã thống nhất.
+Mỗi trang nạp ba CSS dùng chung trước CSS nhóm trang. Trang role không nạp controller của các role khác. Các trang hồ sơ/cài đặt dùng chung vẫn hỗ trợ bốn role.
 
-## Ví dụ sửa một trang
+## HTML và dữ liệu
 
-Để sửa trang tìm sân, mở `player-court-search.html`, tìm tiêu đề `Tìm và đặt sân`. Sửa trực tiếp `<h1>`, mô tả và form `#filters` tại đó. Kiểu riêng đặt trong `player.css`; xử lý tìm kiếm nằm trong hàm `searchCourts()` của `js/player.js`.
+HTML là nguồn bố cục. JavaScript không ghi đè toàn bộ body. `Views.update()` chỉ cập nhật vùng được đánh dấu. Các binding dùng tên có nghĩa như `courtName`, `statusOptions`, `bookingRows`.
 
-Không đổi `id`, `name`, `data-action` hoặc tên vùng dữ liệu một cách độc lập: các thuộc tính đó là điểm liên kết với JavaScript. Nếu cần đổi, tìm và sửa đồng thời phần xử lý liên quan.
+- `<!--bind:courtName--><!--/bind:courtName-->`: vị trí thay chữ hoặc HTML dữ liệu.
+- `data-bind-attrs`: cập nhật `value`, `src`, `href`...
+- `data-bind-flags`: cập nhật `disabled`, `checked`, `selected`...
+- `template[data-if]`/`template[data-else]`: trạng thái có dữ liệu hoặc rỗng.
+- `Views.fragment()`: lấy form popup có sẵn trong HTML.
 
-## Vùng dữ liệu hoạt động thế nào?
+Không đổi `id`, `name`, `data-action` hoặc tên binding chỉ ở một bên. Sửa đồng thời HTML và controller. Dữ liệu đầu vào được `esc()` trước khi chèn; không bỏ bước mã hoá này.
 
-`js/views.js` là tiện ích nhỏ cập nhật DOM. Controller truyền các hàm cung cấp giá trị vào `Views.update()`. HTML quyết định bố cục; tiện ích này không đọc hoặc thực thi mã JavaScript từ thuộc tính HTML.
+## Phần đã dọn
 
-- Cặp comment `<!--bind:...-->` và `<!--/bind:...-->` đánh dấu vị trí cập nhật chữ, danh sách, hàng bảng hoặc option. Giữ nguyên cặp comment khi chỉnh bố cục xung quanh.
-- `data-bind-attrs` nối dữ liệu với thuộc tính như `value`, `href`, `src`, `style`.
-- `data-bind-flags` cập nhật trạng thái như `checked`, `disabled`, `selected`.
-- `<template data-if="...">` và `<template data-else="...">` chứa hai trạng thái HTML, ví dụ có dữ liệu/chưa có dữ liệu. JavaScript chỉ chọn trạng thái phù hợp.
-- `Views.fragment()` lấy form popup từ `<template data-fragment="...">` trong chính trang hiện tại.
+- Bỏ các bản sao dialog của chức năng khác khỏi HTML.
+- Giữ menu đúng role trên trang chuyên role; trang dùng chung vẫn hỗ trợ cả bốn.
+- Tách `manage.js` cũ thành ba controller riêng, chỉ có màn hình, form và sự kiện của role đó.
+- Đổi tên dữ liệu liên kết HTML/JS, bỏ các tên dài được sinh từ biểu thức.
+- Tách điều hướng và lịch ngày khỏi `common.css`; chuyển định dạng đội hình sang `organizer.css`, ảnh xem trước sang `venue.css`.
+- Các thuật toán và nghiệp vụ xuyên role vẫn dùng chung; không nhân bản toàn bộ dữ liệu hay CSS để làm file có vẻ ngắn.
 
-Các ô `input[type="date"]` được `js/date-picker.js` bổ sung lịch dùng chung. Bố cục ở `#date-control-template` và `#shared-calendar-template` trong HTML; kiểu nằm ở cuối `common.css`. Giá trị và tên input gốc được giữ ở dạng ISO `yyyy-mm-dd` cho FormData, min/max và bộ lọc; nút chọn ngày hiển thị `dd/mm/yyyy`. Chọn ngày, “Hôm nay” hoặc “Xóa ngày” phát sự kiện `input`/`change` như trước. Khi tắt JavaScript, ô ngày gốc vẫn sử dụng được.
+## Kiểm tra và làm nhóm
 
-Các danh sách sân, trận, người chơi, đánh giá, lịch, hàng bảng và kết quả AI vẫn được tạo động từ dữ liệu. Bố cục trang, form cố định và hộp thoại nằm trong HTML. Không còn thay toàn bộ `document.body.innerHTML` khi lọc hoặc lưu dữ liệu.
+Chạy `npm ci` nếu chưa cài thư viện, `npm start` để phục vụ web. Các lệnh kiểm tra có trong `package.json`; Playwright dùng hồ sơ trình duyệt thử nghiệm riêng.
 
-Header, sidebar và khung dialog có mặt trong từng HTML để trang dễ đọc và hoạt động với server tĩnh. Khi sửa bố cục dùng chung, cập nhật các trang liên quan; `UI.updateChrome()` chỉ cập nhật tài khoản, vai trò, trạng thái menu và theme. JavaScript không sinh lại toàn bộ header/sidebar.
-
-## Phối hợp nhóm
-
-Mỗi người sửa HTML và CSS thuộc phần mình. Phần dùng chung trong `common.css`, `ui.js`, `views.js`, `store.js` cần thống nhất người sửa. Không sao chép toàn bộ CSS chung sang CSS riêng. Các module JavaScript vẫn chứa một số hàm thuộc nhiều vai trò; đối chiếu [danh sách màn hình](screen-list.md) và [phân công](team-assignment.md) trước khi sửa.
-
-Thiết kế hiện tại được giữ bằng CSS riêng. Chưa đưa Bootstrap vào vì các class như `.row`, `.btn`, `.card`, `.container` đang có kiểu khác; nạp nguyên bộ sẽ cần nhiều CSS ghi đè và làm tăng rủi ro lệch giao diện.
-
-## Kiểm tra
-
-Khởi động server rồi chạy `npm run test:static` để kiểm tra bố cục có trong HTML, bộ sáu CSS, giao diện khi tắt JS và việc sửa HTML không bị controller ghi đè. Các bài kiểm tra chức năng vẫn nằm trong `tests/`.
-
-Máy chạy kiểm thử cần Playwright và Chromium; có thể chỉ định Chrome đã cài bằng biến môi trường `BROWSER_PATH`. Dữ liệu kiểm thử dùng hồ sơ trình duyệt riêng.
+Các bản PR cũ ở ngoài thư mục này dựa trên `manage.js` cũ. Xem phần lưu ý trong [code-map.md](code-map.md) trước khi áp dụng; không chép lại file cũ đè lên cấu trúc mới.
