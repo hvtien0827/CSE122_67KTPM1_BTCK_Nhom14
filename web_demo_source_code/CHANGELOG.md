@@ -1,8 +1,19 @@
 # Nhật ký thay đổi CourtConnect
 
-Ngày tổng hợp: **19/10/2026**. Áp dụng cho thư mục `web_demo_source_code` hiện tại.
+Ngày cập nhật tài liệu: **21/10/2026**. Áp dụng cho thư mục `web_demo_source_code` hiện tại.
 
 Nhật ký tổng hợp từ các thay đổi đã xác nhận trong cuộc trao đổi và mã nguồn/tài liệu hiện có. Đây không phải bản trích xuất lịch sử Git. Những cải tiến cũ không xác định được ngày thực hiện được ghi theo nhóm chức năng, không gán ngày hay người thực hiện. Bản thiết kế lại đã bị loại bỏ không thuộc nhật ký này.
+
+## 21/10/2026 — Đơn giản hoá cấu trúc và chia controller theo vai trò
+
+- Dọn dialog không liên quan khỏi HTML; giữ bố cục, nội dung chính và form riêng của trang.
+- Tách `js/manage.js` thành `js/venue.js`, `js/organizer.js`, `js/admin.js`; cập nhật định tuyến và mỗi trang chuyên role chỉ nạp controller của mình.
+- Đổi binding dài thành tên có nghĩa như `courtName`, `bookingRows`, `statusOptions`.
+- Tách `css/navigation.css`, `css/date-picker.css`, thêm `css/organizer.css`; giữ thành phần thực sự dùng chung trong `common.css`.
+- Kiểm tra lại tại thư mục repo: 12 bài kiểm tra đạt. Xem [báo cáo chi tiết](docs/structure-refactor-report.md).
+- Giữ nguyên dữ liệu/nghiệp vụ localStorage. Chưa tích hợp JSON Server.
+
+Các mục ngày 19/10 và các nhóm cũ bên dưới là lịch sử. Tên `js/manage.js`, `css/style.css` và cấu trúc sáu CSS ở đó mô tả phiên bản tại thời điểm thay đổi, không phải hướng dẫn sửa bản mới nhất.
 
 ## 19/10/2026 — Đồng bộ giao diện chọn ngày
 

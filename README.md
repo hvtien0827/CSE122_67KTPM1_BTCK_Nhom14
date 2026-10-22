@@ -21,6 +21,14 @@ Bản hiện tại có **42 trang chức năng và 2 file HTML chuyển hướng
 
 Mỗi người xây dựng HTML/CSS/JS, kiểm tra phần vai trò của mình và phụ trách nhánh tương ứng trong bảng. Các nhánh công việc được đề nghị ghép vào `main` qua Pull Request sau khi kiểm tra. Với phần làm chung, nhóm chia các đầu việc nhỏ và thống nhất người thực hiện trước khi sửa file chung. Xem [phân công chi tiết](web_demo_source_code/docs/team-assignment.md).
 
+## Cấu trúc code theo vai trò
+
+Bố cục và form chính nằm trong từng HTML. Controller riêng gồm `js/player.js`, `js/venue.js`, `js/organizer.js`, `js/admin.js`; các tiện ích và nghiệp vụ xuyên vai trò vẫn dùng chung. CSS tách phần nền tảng, điều hướng, chọn ngày và phần riêng từng nhóm trang.
+
+Đọc [bản đồ code để chia việc và vấn đáp](web_demo_source_code/docs/code-map.md), [hướng dẫn sửa frontend](web_demo_source_code/docs/frontend-structure.md) và [báo cáo refactor/kiểm thử](web_demo_source_code/docs/structure-refactor-report.md).
+
+**API:** bản hiện tại vẫn dùng localStorage; tích hợp JSON Server là công việc tiếp theo, chưa được triển khai.
+
 ## Nội dung repository
 
 | Thư mục                                                                    | Nội dung                                         |

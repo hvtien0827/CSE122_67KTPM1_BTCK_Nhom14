@@ -65,7 +65,7 @@ css/date-picker.css   Lịch chọn ngày dùng chung
 css/organizer.css     Giao diện CLB
 css/player.css        Người chơi, đặt sân, hoạt động và lịch chọn ngày
 css/venue.css         Chủ sân, quản lý sân và lịch khung giờ
-css/admin.css         Biểu đồ quản trị và thành phần quản lý/đội hình CLB
+css/admin.css         Giao diện quản trị và biểu đồ báo cáo
 css/auth.css          Đăng nhập, đăng ký, xác minh, khôi phục
 css/home.css          Hero, section, CTA và footer trang chủ
 js/theme.js           Nạp chế độ sáng/tối sớm, ghi nhớ lựa chọn
@@ -103,8 +103,10 @@ Kiểm tra cấu trúc frontend mới: khởi động server rồi chạy `npm r
 Chạy server trước. Bộ kiểm thử trình duyệt dùng Playwright; đây chỉ là công cụ phát triển, không phải phụ thuộc của website:
 
 ```sh
-npm install --no-save playwright
+npm ci
 npx playwright install chromium
+node tests/structure.cjs
+node tests/static-html.cjs
 node tests/smoke.cjs
 node tests/integration.cjs
 node tests/edge-cases.cjs
