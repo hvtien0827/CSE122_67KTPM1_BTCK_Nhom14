@@ -11,7 +11,7 @@ Nguồn: [đề bài gốc](../../docs/BTL-28_courtconnect-at-san-va-ghep-nguoi-
 | 9 chuẩn từng giao diện | Semantic DOM, layout chung, responsive, tương tác, form validation, trạng thái | Nhóm tự review và quay minh chứng |
 | 10 CRUD | courts/slots/bookings/matches/players/events cùng các entity quản trị | D được biểu diễn bằng hủy/lưu trữ khi phù hợp |
 | 11–12 AI | Ba AI theo quy tắc, có lý do, quyền sửa/lưu/từ chối, lỗi/thủ công | Nhóm giải thích thuật toán khi bảo vệ |
-| 13 dữ liệu | Module seed tập trung + localStorage, không backend | Chỉ dữ liệu mô phỏng |
+| 13 dữ liệu | Module seed tập trung + localStorage, chưa gọi API mạng | Theo yêu cầu bổ sung được nhóm thông báo: cần tích hợp mock REST API; nhóm đã chọn hướng JSON Server nhưng chưa triển khai, không đánh dấu hoàn thành |
 | 14 nhân sự | 4 người phụ trách 4 vai trò; phần còn lại làm chung | Điền tên và xác nhận công việc thực tế |
 | 15 GitHub | Tài liệu hỗ trợ quy trình nhánh công việc và Pull Request vào main | Nhóm tự đối chiếu và bổ sung commit/PR/review thực tế; tài liệu này chưa kiểm chứng tiến độ trên GitHub |
 | 16 bảng công việc | task-board.csv đủ cột mã, người, hạn, nhánh, minh chứng | Import/tạo Trello/Jira/Notion thật; cập nhật hạn |

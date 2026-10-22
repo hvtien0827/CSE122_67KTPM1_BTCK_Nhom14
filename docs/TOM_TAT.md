@@ -24,3 +24,7 @@ Chạy `index.html` bằng Live Server, hoặc chạy `npm start` trong web_demo
 Xem [README và tài khoản mẫu](../web_demo_source_code/README.md), [màn hình](../web_demo_source_code/docs/screen-list.md), [luồng sử dụng](../web_demo_source_code/docs/user-flows.md) và [phân công 4 vai trò](../web_demo_source_code/docs/team-assignment.md).
 
 [Quay lại giới thiệu dự án](../README.md)
+
+## Đọc code sau khi tách role
+
+Controller chính nằm trong `js/player.js`, `js/venue.js`, `js/organizer.js`, `js/admin.js`; CSS CLB dùng `organizer.css` riêng. Xem [bản đồ code và hướng dẫn vấn đáp](../web_demo_source_code/docs/code-map.md). JSON Server chưa được tích hợp.

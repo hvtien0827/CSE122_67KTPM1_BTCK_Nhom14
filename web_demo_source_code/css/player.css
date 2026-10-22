@@ -31,7 +31,7 @@
 }
 
 .slot.selected,
-.slot[aria-pressed="true"] {
+.slot[aria-pressed='true'] {
   background: var(--slot-active);
   border: 2px solid var(--accent);
   color: var(--accent);
@@ -295,7 +295,7 @@
   font-weight: 700;
 }
 
-.date-day[aria-pressed="true"] {
+.date-day[aria-pressed='true'] {
   color: #ffffff !important;
   background: var(--court-turf) !important;
   border-color: var(--court-turf) !important;
@@ -346,4 +346,46 @@
     margin-top: 10px;
     box-shadow: none;
   }
+}
+
+/* player: giao diện người chơi */
+.opponent-list {
+  margin: 20px 0;
+}
+
+.star-picker,
+.quick-tags {
+  border: 1px solid var(--line);
+  border-radius: var(--court-radius-sm);
+  padding: 14px;
+  margin: 0 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.star-picker label {
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.star-picker span {
+  color: #eab308;
+}
+
+.star-picker small {
+  display: block;
+  color: var(--muted);
+}
+
+.quick-tags label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+[data-activity][hidden] {
+  display: none !important;
 }

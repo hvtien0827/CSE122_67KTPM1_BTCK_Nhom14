@@ -1,3 +1,11 @@
+# Cập nhật kiểm thử dọn mã — 22/10/2026
+
+Bản sau khi dọn đã qua **12/12 bộ kiểm tra**, 98 cặp ảnh trước–sau khớp và dữ liệu khởi tạo không đổi. Xem [báo cáo dọn mã](source-cleanup-report.md) và [phụ thuộc theo trang](page-dependencies.json). Các mục bên dưới là kết quả của những phiên trước.
+
+# Cập nhật kiểm thử cấu trúc — 21/10/2026
+
+Bản cuối sau khi tách role đã qua toàn bộ 11 bài kiểm tra trình duyệt và kiểm tra cấu trúc. Xem [báo cáo chi tiết](structure-refactor-report.md) và [bản đồ code](code-map.md). Những phần dưới là báo cáo lịch sử.
+
 # Báo cáo kiểm thử và phạm vi xác nhận
 
 ## Gỡ điều khiển thử lỗi AI khỏi giao diện — 19/10/2026

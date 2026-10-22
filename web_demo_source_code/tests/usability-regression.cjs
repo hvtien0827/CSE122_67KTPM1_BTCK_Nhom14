@@ -100,7 +100,7 @@ const out = path.join(__dirname, 'artifacts');
     check('Empty event disables team generation', await page.locator('#team-submit').isDisabled());
     await go('organizer-event-management.html');
     await page.click(`[data-action=entity-delete][data-id="${eventId}"]`); await confirm();
-    check('Event deletion removes event from roster selector', await page.evaluate(id => !Manage.ownEvents().some(e => e.id === id), eventId));
+    check('Event deletion removes event from roster selector', await page.evaluate(id => !Organizer.ownEvents().some(e => e.id === id), eventId));
     // Inspect every authenticated route with each matching role at narrow mobile sizes.
     const routes = { player: ['player-court-search','player-open-matches','player-my-sports','player-match-create','player-skill-match'], venue: ['venue-court-management','venue-booking-management','venue-no-show-risk','venue-revenue','venue-reviews'], organizer: ['organizer-event-management','organizer-player-roster','organizer-team-lineup'], admin: ['admin-user-management','admin-player-reports','admin-sports-report','admin-sport-management'] };
     for (const width of [320, 390, 760]) {

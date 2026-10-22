@@ -8,7 +8,7 @@ const assert = require('node:assert/strict');
   const base = (process.env.BASE_URL || 'http://127.0.0.1:4173') + '/';
   const go = async (url) => {
     await p.goto(base + url);
-    await p.waitForFunction(() => !!window.Community);
+    await p.waitForFunction(() => !!window.CC && !!window.renderPage);
     assert.equal(await p.locator('#main .notice.error:visible').count(), 0);
   };
   const login = async (id) => p.evaluate((id) => CC.login(CC.find('users', id)), id);
@@ -16,7 +16,15 @@ const assert = require('node:assert/strict');
     await go('index.html');
     await login('u1');
     await go('player-my-sports.html');
-    const eligibleBookings = await p.evaluate(() => CC.db.bookings.filter(booking => booking.playerId === CC.me().id && booking.status === 'completed' && Community.ended(CC.find('slots', booking.slotId))).length);
+    const eligibleBookings = await p.evaluate(
+      () =>
+        CC.db.bookings.filter(
+          (booking) =>
+            booking.playerId === CC.me().id &&
+            booking.status === 'completed' &&
+            Community.ended(CC.find('slots', booking.slotId))
+        ).length
+    );
     assert.ok(eligibleBookings > 0);
     assert.equal(await p.locator('[data-action=review-court]').count(), eligibleBookings);
     const reportsBefore = await p.evaluate(() => CC.db.playerReports.length);
@@ -84,23 +92,41 @@ const assert = require('node:assert/strict');
     await p.waitForTimeout(150);
     assert.equal(await p.locator('.calendar-day').count(), 7);
     await go('venue-revenue.html');
-    const expectedRevenue = await p.evaluate(() => UI.money(Community.revenueRows('month', CC.date()).filter(b => b.status === 'completed').reduce((sum, b) => sum + CC.find('slots', b.slotId).price, 0)));
+    const expectedRevenue = await p.evaluate(() =>
+      UI.money(
+        Community.revenueRows('month', CC.date())
+          .filter((b) => b.status === 'completed')
+          .reduce((sum, b) => sum + CC.find('slots', b.slotId).price, 0)
+      )
+    );
     assert.ok((await p.locator('.stats').innerText()).includes(expectedRevenue));
     for (const value of ['day', 'week', 'month', 'year']) {
       await p.locator('[name=revenue-period]').selectOption(value);
       assert.equal(await p.locator('[name=revenue-period]').inputValue(), value);
     }
     await p.locator('[name=revenue-court]').selectOption('c2');
-    const courtRevenue = await p.evaluate(() => UI.money(Community.revenueRows('year', CC.date(), 'c2').filter(booking => booking.status === 'completed').reduce((total, booking) => total + CC.find('slots', booking.slotId).price, 0)));
+    const courtRevenue = await p.evaluate(() =>
+      UI.money(
+        Community.revenueRows('year', CC.date(), 'c2')
+          .filter((booking) => booking.status === 'completed')
+          .reduce((total, booking) => total + CC.find('slots', booking.slotId).price, 0)
+      )
+    );
     assert.ok((await p.locator('.stats').innerText()).includes(courtRevenue));
     await go('venue-reviews.html');
     assert.ok((await p.locator('#main').innerText()).includes('Sân tốt'));
     await login('u4');
     await go('admin-user-management.html');
     await p.locator('[data-action=filter-role][data-role=venue]').click();
-    assert.equal(await p.locator('tbody tr').count(), await p.evaluate(() => CC.db.users.filter(user => user.role === 'venue').length));
+    assert.equal(
+      await p.locator('tbody tr').count(),
+      await p.evaluate(() => CC.db.users.filter((user) => user.role === 'venue').length)
+    );
     await p.locator('[data-action=filter-role][data-role=player]').click();
-    assert.equal(await p.locator('tbody tr').count(), await p.evaluate(() => CC.db.users.filter(user => user.role === 'player').length));
+    assert.equal(
+      await p.locator('tbody tr').count(),
+      await p.evaluate(() => CC.db.users.filter((user) => user.role === 'player').length)
+    );
     await go('admin-player-reports.html');
     await p.locator('[data-action=resolve-player-report]').first().click();
     assert.ok((await p.locator('#main').innerText()).includes('Đã xem xét'));

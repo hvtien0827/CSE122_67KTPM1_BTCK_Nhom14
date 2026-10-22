@@ -11,7 +11,8 @@
     "test:usability": "node tests/usability-regression.cjs",
     "test:interface": "node tests/interface-polish.cjs",
     "test:static": "node tests/static-html.cjs",
-    "test:calendar": "node tests/date-picker.cjs"
+    "test:calendar": "node tests/date-picker.cjs",
+    "test:structure": "node tests/structure.cjs"
   },
   "dependencies": {
     "playwright": "^1.64.0"

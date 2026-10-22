@@ -12,23 +12,22 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <script src="js/theme.js"></script>
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/navigation.css" />
     <link rel="stylesheet" href="css/player.css" />
     <script>
-      window.PAGE_TITLE = "Chi tiết sân";
+      window.PAGE_TITLE = 'Chi tiết sân';
     </script>
     <script defer src="js/store.js"></script>
     <script defer src="js/ui.js"></script>
-    <script defer src="js/date-picker.js"></script>
     <script defer src="js/views.js"></script>
-    <script defer src="js/auth.js"></script>
     <script defer src="js/player.js"></script>
-    <script defer src="js/manage.js"></script>
-    <script defer src="js/ai.js"></script>
     <script defer src="js/community.js"></script>
     <script defer src="js/app.js"></script>
   </head>
   <body data-layout="workspace" data-route="court-detail.html">
-    <!-- Điều hướng dùng chung; JavaScript chỉ cập nhật tài khoản và vai trò. --><a class="skip" href="#main"
+    <!-- Điều hướng dùng chung; JavaScript chỉ cập nhật tài khoản và vai trò. --><a
+      class="skip"
+      href="#main"
       >Bỏ qua điều hướng</a
     >
     <header class="header guest-header">
@@ -44,19 +43,7 @@
             aria-controls="site-navigation"
             aria-expanded="false"
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg></button
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M4 6h16M4 12h16M4 18h16" /></svg></button
           ><a class="brand" href="index.html"><span class="brand-icon">C</span>CourtConnect</a>
         </div>
         <nav class="header-nav" aria-label="Điều hướng chính">
@@ -68,19 +55,7 @@
             title="Chuyển sang giao diện tối"
             aria-pressed="false"
           >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M20.9 13.1A9 9 0 0 1 10.9 3.1a9 9 0 1 0 10 10Z" />
-            </svg></button
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20.9 13.1A9 9 0 0 1 10.9 3.1a9 9 0 1 0 10 10Z" /></svg></button
           ><a
             class="optional"
             data-session="member"
@@ -89,86 +64,33 @@
             data-user-role
             href="index.html"
           ></a
-          ><a class="icon-btn" data-session="member" hidden href="notifications.html" aria-label="Thông báo"
-            ><svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-              <path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg
-          ></a>
+          ><a
+            class="icon-btn"
+            data-session="member"
+            hidden
+            href="notifications.html"
+            aria-label="Thông báo"
+            ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg ></a>
           <details class="account-menu" data-session="member" hidden>
             <summary aria-label="Tài khoản và đăng xuất">
-              <span class="avatar" data-user-initial></span><span class="user-name" data-user-name></span>
+              <span class="avatar" data-user-initial></span
+              ><span class="user-name" data-user-name></span>
             </summary>
             <div class="account-dropdown">
               <strong data-user-name></strong><span class="small muted" data-user-role></span>
               <div class="account-menu-items">
                 <a class="btn account-menu-item" data-user-home href="index.html"
-                  ><svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8" /></svg
-                  >Trang của tôi</a
+                  ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8" /></svg >Trang của tôi</a
                 ><a class="btn account-menu-item" href="profile.html"
-                  ><svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <circle cx="9" cy="8" r="3" />
-                    <path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg
-                  >Hồ sơ cá nhân</a
+                  ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Hồ sơ cá nhân</a
                 ><a class="btn account-menu-item" href="settings.html"
-                  ><svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="3" />
-                    <path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z" /></svg
-                  >Cài đặt</a
-                ><button type="button" class="btn account-menu-item account-logout" data-action="logout">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M9 4H4v16h5M13 8l4 4-4 4M8 12h12" /></svg
-                  >Đăng xuất / đổi vai trò
+                  ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="3" /><path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z" /></svg >Cài đặt</a
+                ><button
+                  type="button"
+                  class="btn account-menu-item account-logout"
+                  data-action="logout"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M9 4H4v16h5M13 8l4 4-4 4M8 12h12" /></svg >Đăng xuất / đổi vai trò
                 </button>
               </div>
             </div>
@@ -184,326 +106,40 @@
       <aside id="site-navigation" class="sidebar" aria-label="Chức năng">
         <div class="sidebar-label" data-navigation-role>Khám phá</div>
         <a href="player-court-search.html" data-nav-role="player"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="10" cy="10" r="6" />
-            <path d="m15 15 5 5" /></svg
-          >Tìm sân</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="10" cy="10" r="6" /><path d="m15 15 5 5" /></svg >Tìm sân</a
         ><a href="player-open-matches.html" data-nav-role="player"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="9" cy="8" r="3" />
-            <path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg
-          >Tìm trận đấu</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Tìm trận đấu</a
         ><a href="player-my-sports.html" data-nav-role="player"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="3" y="5" width="18" height="16" rx="2" />
-            <path d="M7 3v4m10-4v4M3 11h18" /></svg
-          >Hoạt động của tôi</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Hoạt động của tôi</a
         ><a href="player-skill-match.html" data-nav-role="player"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg
-          >Ghép trận thông minh</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg >Ghép trận thông minh</a
         ><a href="player-match-create.html" data-nav-role="player"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="3" y="5" width="18" height="16" rx="2" />
-            <path d="M7 3v4m10-4v4M3 11h18" /></svg
-          >Tạo trận đấu</a
-        ><a href="venue-court-management.html" data-nav-role="venue" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="3" y="4" width="18" height="16" rx="2" />
-            <path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg
-          >Quản lý sân</a
-        ><a href="venue-revenue.html" data-nav-role="venue" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg
-          >Thống kê doanh thu</a
-        ><a href="venue-reviews.html" data-nav-role="venue" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="9" cy="8" r="3" />
-            <path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg
-          >Đánh giá sân</a
-        ><a href="venue-booking-management.html" data-nav-role="venue" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="3" y="5" width="18" height="16" rx="2" />
-            <path d="M7 3v4m10-4v4M3 11h18" /></svg
-          >Quản lý đặt sân</a
-        ><a href="venue-no-show-risk.html" data-nav-role="venue" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" />
-            <path d="m8 12 3 3 5-6" /></svg
-          >Cảnh báo vắng mặt</a
-        ><a href="organizer-event-management.html" data-nav-role="organizer" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="3" y="5" width="18" height="16" rx="2" />
-            <path d="M7 3v4m10-4v4M3 11h18" /></svg
-          >Sự kiện CLB</a
-        ><a href="organizer-player-roster.html" data-nav-role="organizer" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="9" cy="8" r="3" />
-            <path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg
-          >Danh sách người chơi</a
-        ><a href="organizer-team-lineup.html" data-nav-role="organizer" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="3" y="4" width="18" height="16" rx="2" />
-            <path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg
-          >Đội hình & chia đội</a
-        ><a href="admin-sport-management.html" data-nav-role="admin" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="3" y="4" width="18" height="16" rx="2" />
-            <path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg
-          >Môn thể thao</a
-        ><a href="admin-user-management.html" data-nav-role="admin" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="9" cy="8" r="3" />
-            <path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg
-          >Quản lý tài khoản</a
-        ><a href="admin-sports-report.html" data-nav-role="admin" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg
-          >Báo cáo hoạt động</a
-        ><a href="admin-player-reports.html" data-nav-role="admin" hidden
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" />
-            <path d="m8 12 3 3 5-6" /></svg
-          >Báo cáo người chơi</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Tạo trận đấu</a
         >
         <div class="sidebar-label mt">Tài khoản</div>
         <a href="profile.html"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="9" cy="8" r="3" />
-            <path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg
-          >Hồ sơ của tôi</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Hồ sơ của tôi</a
         ><a href="notifications.html"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-            <path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg
-          >Thông báo</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg >Thông báo</a
         ><a href="settings.html"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <circle cx="12" cy="12" r="3" />
-            <path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z" /></svg
-          >Cài đặt</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="3" /><path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z" /></svg >Cài đặt</a
         ><a href="help.html"
-          ><svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" />
-            <path d="m8 12 3 3 5-6" /></svg
-          >Trợ giúp</a
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg >Trợ giúp</a
         >
         <div class="sidebar-bottom">
           <div class="role-note">
             <span data-session="guest">Đăng nhập để lưu hoạt động và kết nối bạn chơi.</span
-            ><span data-session="member" hidden>Đang dùng vai trò<br /><strong data-user-role></strong></span>
+            ><span data-session="member" hidden
+              >Đang dùng vai trò<br /><strong data-user-role></strong
+            ></span>
           </div>
-          <button type="button" data-action="logout" class="btn ghost full mt" data-session="member" hidden>
+          <button
+            type="button"
+            data-action="logout"
+            class="btn ghost full mt"
+            data-session="member"
+            hidden
+          >
             Đăng xuất / đổi vai trò</button
           ><a class="btn full mt" href="login.html" data-session="guest">Đăng nhập</a>
         </div>
@@ -515,8 +151,8 @@
         <div data-page-view="player-courtDetail" class="page-content">
           <div class="page-head">
             <div>
-              <h1><!--bind:c-name-1-->Chi tiết sân<!--/bind:c-name-1--></h1>
-              <p><!--bind:c-location-2--><!--/bind:c-location-2--></p>
+              <h1><!--bind:courtName-->Chi tiết sân<!--/bind:courtName--></h1>
+              <p><!--bind:courtLocation--><!--/bind:courtLocation--></p>
             </div>
             <a class="btn secondary" href="player-court-search.html">← Tìm sân</a>
           </div>
@@ -526,7 +162,7 @@
               <h2 id="booking-title">Chọn lịch chơi của bạn</h2>
               <p class="muted">Chọn ngày → chọn giờ trống → gửi yêu cầu đặt sân.</p>
               <p>
-                <strong class="green"><!--bind:money-c-price-3--><!--/bind:money-c-price-3--></strong> / giờ
+                <strong class="green"><!--bind:hourlyPrice--><!--/bind:hourlyPrice--></strong> / giờ
               </p>
               <div class="field booking-date-field">
                 <span id="booking-date-label">1. Ngày chơi</span
@@ -534,33 +170,29 @@
                   type="hidden"
                   name="slotDate"
                   value=""
-                  data-bind-attrs='{"value":"__CC_chosen-4__"}'
+                  data-bind-attrs='{"value":"__CC_selectedDate__"}'
                 />
                 <details class="date-picker">
                   <summary aria-labelledby="booking-date-label booking-date-value">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      aria-hidden="true"
-                    >
-                      <rect x="3" y="5" width="18" height="16" rx="2" />
-                      <path d="M7 3v4m10-4v4M3 11h18" /></svg
-                    ><span id="booking-date-value"
-                      ><!--bind:new-date-chosen-t12-00-00-tolocaledatestring--5--><!--/bind:new-date-chosen-t12-00-00-tolocaledatestring--5--></span
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg ><span id="booking-date-value"><!--bind:dateLabel--><!--/bind:dateLabel--></span
                     ><span class="date-change">Đổi ngày</span>
                   </summary>
                   <div class="date-popover" role="group" aria-label="Lịch chọn ngày đặt sân">
                     <div class="date-month-nav">
-                      <button type="button" class="icon-btn" data-month-step="-1" aria-label="Tháng trước">
+                      <button
+                        type="button"
+                        class="icon-btn"
+                        data-month-step="-1"
+                        aria-label="Tháng trước"
+                      >
                         ‹</button
                       ><strong class="date-month" aria-live="polite"></strong
-                      ><button type="button" class="icon-btn" data-month-step="1" aria-label="Tháng sau">
+                      ><button
+                        type="button"
+                        class="icon-btn"
+                        data-month-step="1"
+                        aria-label="Tháng sau"
+                      >
                         ›
                       </button>
                     </div>
@@ -579,21 +211,21 @@
               <div class="panel-title">
                 <h3>2. Chọn khung giờ</h3>
                 <span class="tag"
-                  ><!--bind:availablecount-6--><!--/bind:availablecount-6-->
+                  ><!--bind:availableCount--><!--/bind:availableCount-->
                   giờ trống</span
                 >
               </div>
               <div class="slot-grid" role="group" aria-label="Khung giờ đặt sân">
-                <!--bind:slots-map-slot-button-type-button-class-slot--7--><!--/bind:slots-map-slot-button-type-button-class-slot--7-->
+                <!--bind:slotButtons--><!--/bind:slotButtons-->
               </div>
-              <template data-if="availablecount-dates-some-d-d-chosen-8"
+              <template data-if="noSlots"
                 ><a
                   class="btn secondary full mt"
                   href=""
-                  data-bind-attrs='{"href":"__CC_court-detail-html-id-c-id-date-dates-find-d-d-9__"}'
+                  data-bind-attrs='{"href":"__CC_nextDateUrl__"}'
                   >Xem ngày có lịch gần nhất</a
                 ></template
-              ><template data-else="availablecount-dates-some-d-d-chosen-8"></template>
+              ><template data-else="noSlots"></template>
               <div class="booking-summary mt">
                 <p id="selected-slot-summary" role="status">
                   Chưa chọn giờ. Chọn một khung còn trống ở trên.
@@ -602,8 +234,8 @@
                   3. Đặt sân · Tiếp tục
                 </button>
                 <p class="small muted">
-                  Bạn sẽ kiểm tra lại thông tin trước khi gửi. Chủ sân xác nhận yêu cầu trong Hoạt động của
-                  tôi.
+                  Bạn sẽ kiểm tra lại thông tin trước khi gửi. Chủ sân xác nhận yêu cầu trong Hoạt
+                  động của tôi.
                 </p>
               </div>
             </section>
@@ -612,17 +244,15 @@
                 class="details-hero"
                 src=""
                 alt=""
-                data-bind-attrs='{"src":"__CC_courtimage-c-10__","alt":"__CC_c-name-11__"}'
+                data-bind-attrs='{"src":"__CC_courtImage__","alt":"__CC_courtHeading__"}'
               />
               <section class="panel">
-                <span class="tag"><!--bind:sport-c-sportid-12--><!--/bind:sport-c-sportid-12--></span>
+                <span class="tag"><!--bind:sportName--><!--/bind:sportName--></span>
                 <h2 class="mt">Thông tin sân</h2>
-                <p class="muted"><!--bind:c-description-13--><!--/bind:c-description-13--></p>
+                <p class="muted"><!--bind:description--><!--/bind:description--></p>
                 <div class="divider"></div>
                 <h3>Tiện ích</h3>
-                <div class="actions">
-                  <!--bind:c-amenities-g-i-xe-n-c-u-ng-split-map-x-span--14--><!--/bind:c-amenities-g-i-xe-n-c-u-ng-split-map-x-span--14-->
-                </div>
+                <div class="actions"><!--bind:amenities--><!--/bind:amenities--></div>
               </section>
             </div>
           </div>
@@ -636,20 +266,18 @@
     <template data-page="app-error"
       ><div data-page-view="app-error" class="page-content">
         <div class="error-page">
-          <div class="error-number"><!--bind:code-1--><!--/bind:code-1--></div>
-          <h1>
-            <!--bind:code-403-b-n-ch-a-c-quy-n-truy-c-p-kh-ng-t-m--2-->Chi tiết sân<!--/bind:code-403-b-n-ch-a-c-quy-n-truy-c-p-kh-ng-t-m--2-->
-          </h1>
-          <p class="muted">
-            <!--bind:code-403-trang-n-y-d-nh-cho-m-t-vai-tr-kh-c-b-3--><!--/bind:code-403-trang-n-y-d-nh-cho-m-t-vai-tr-kh-c-b-3-->
-          </p>
+          <div class="error-number"><!--bind:errorCode--><!--/bind:errorCode--></div>
+          <h1><!--bind:errorTitle-->Chi tiết sân<!--/bind:errorTitle--></h1>
+          <p class="muted"><!--bind:errorMessage--><!--/bind:errorMessage--></p>
           <div class="actions" style="justify-content: center">
             <a class="btn" href="index.html">Về trang chủ</a
-            ><template data-if="cc-me-4"
+            ><template data-if="isLoggedIn"
               ><button type="button" class="btn secondary" data-action="logout">
                 Đổi tài khoản
               </button></template
-            ><template data-else="cc-me-4"><a class="btn secondary" href="login.html">Đăng nhập</a></template>
+            ><template data-else="isLoggedIn"
+              ><a class="btn secondary" href="login.html">Đăng nhập</a></template
+            >
           </div>
         </div>
       </div></template
@@ -657,16 +285,16 @@
       ><div data-page-view="app-renderPage" class="page-content">
         <div class="notice error" role="alert">
           Không thể tải trang:
-          <!--bind:err-message-1--><!--/bind:err-message-1-->
+          <!--bind:errorMessage--><!--/bind:errorMessage-->
         </div>
         <button type="button" class="btn secondary" data-action="retry-page">Thử lại</button>
       </div></template
     ><noscript
       ><p class="notice">
-        Bố cục trang có thể xem trực tiếp. Bật JavaScript để đăng nhập, tải dữ liệu và sử dụng chức năng.
+        Bố cục trang có thể xem trực tiếp. Bật JavaScript để đăng nhập, tải dữ liệu và sử dụng chức
+        năng.
       </p></noscript
-    >
-    <!-- Các hộp thoại của trang: sửa form trực tiếp trong template bên dưới. -->
+    ><!-- Các hộp thoại của trang: sửa form trực tiếp trong template bên dưới. -->
     <dialog id="modal" aria-labelledby="dialog-title">
       <div class="dialog-head">
         <h2 id="dialog-title"></h2>
@@ -674,215 +302,9 @@
       </div>
       <div class="dialog-body"></div>
     </dialog>
-    <template id="dialog-form-template"
-      ><form id="dialog-form">
-        <div class="form-error notice error" role="alert" hidden></div>
-        <div data-dialog-fields class="dialog-fields"></div>
-        <div class="actions">
-          <button type="button" class="btn secondary" data-action="close">Hủy</button
-          ><button class="btn" type="submit">Lưu</button>
-        </div>
-      </form></template
-    ><template data-fragment="player-actions-dialog-1"
-      ><label class="field"
-        >Ghi chú<textarea
-          name="note"
-          maxlength="1000"
-          data-bind-attrs='{"value":"__CC_b-note-1__"}'
-        ></textarea></label></template
-    ><template data-fragment="community-reviewForm-dialog-1"
-      ><fieldset class="star-picker">
-        <legend>Điểm đánh giá</legend>
-        <label
-          ><input type="radio" name="stars" value="1" required data-bind-flags="old-stars-1-checked-1" /><span
-            >★<small>1 sao</small></span
-          ></label
-        ><label
-          ><input type="radio" name="stars" value="2" required data-bind-flags="old-stars-2-checked-2" /><span
-            >★★<small>2 sao</small></span
-          ></label
-        ><label
-          ><input type="radio" name="stars" value="3" required data-bind-flags="old-stars-3-checked-3" /><span
-            >★★★<small>3 sao</small></span
-          ></label
-        ><label
-          ><input type="radio" name="stars" value="4" required data-bind-flags="old-stars-4-checked-4" /><span
-            >★★★★<small>4 sao</small></span
-          ></label
-        ><label
-          ><input type="radio" name="stars" value="5" required data-bind-flags="old-stars-5-checked-5" /><span
-            >★★★★★<small>5 sao</small></span
-          ></label
-        >
-      </fieldset>
-      <fieldset class="quick-tags">
-        <legend>Đánh giá nhanh (có thể chọn nhiều)</legend>
-        <!--bind:tags-kind-map-t-i-label-input-type-checkbox-n-6--><!--/bind:tags-kind-map-t-i-label-input-type-checkbox-n-6-->
-      </fieldset>
-      <label class="field"
-        >Bình luận<textarea
-          name="comment"
-          maxlength="1000"
-          data-bind-attrs='{"value":"__CC_old-comment-7__"}'
-        ></textarea></label></template
-    ><template data-fragment="community-calendar-dialog-2"
-      ><div class="filter-bar">
-        <label class="field"
-          >Bắt đầu từ ngày<input
-            name="calendar-date"
-            type="date"
-            value=""
-            data-bind-attrs='{"value":"__CC_date-1__"}' /></label
-        ><button type="button" class="btn secondary" data-action="calendar-prev">← 7 ngày</button
-        ><button type="button" class="btn secondary" data-action="calendar-next">7 ngày →</button
-        ><button type="button" class="btn" data-action="calendar-new">+ Mở khung giờ</button>
-      </div>
-      <p class="small muted">Bấm khung giờ để xem chi tiết. Vùng không có lịch là chưa mở bán.</p>
-      <div class="actions">
-        <!--bind:object-entries-labels-map-k-v-span-class-cale-2--><!--/bind:object-entries-labels-map-k-v-span-class-cale-2-->
-      </div>
-      <div class="calendar-scroll">
-        <div class="calendar-grid">
-          <div class="calendar-axis">
-            <div class="calendar-heading">Giờ</div>
-            <div style="height: px" data-bind-attrs='{"style":"height:__CC_max-min-3__px"}'>
-              <!--bind:array-from-length-math-floor-max-min-60-1-i-s-4--><!--/bind:array-from-length-math-floor-max-min-60-1-i-s-4-->
-            </div>
-          </div>
-          <!--bind:dates-map-d-div-div-class-calendar-heading-da-5--><!--/bind:dates-map-d-div-div-class-calendar-heading-da-5-->
-        </div>
-      </div></template
-    ><template data-fragment="community-slotForm-dialog-3"
-      ><label class="field"
-        >Ngày<input
-          name="date"
-          type="date"
-          value=""
-          required
-          data-bind-attrs='{"value":"__CC_s-date-date-1__"}' /></label
-      ><label class="field"
-        >Từ giờ<input
-          name="start"
-          type="time"
-          value=""
-          required
-          data-bind-attrs='{"value":"__CC_s-start-08-00-2__"}' /></label
-      ><label class="field"
-        >Đến giờ<input
-          name="end"
-          type="time"
-          value=""
-          required
-          data-bind-attrs='{"value":"__CC_s-end-10-00-3__"}' /></label
-      ><label class="field"
-        >Giá toàn khung (đ)<input
-          name="price"
-          type="number"
-          value=""
-          required
-          min="1000"
-          data-bind-attrs='{"value":"__CC_s-price-c-price-2-4__"}' /></label></template
-    ><template data-fragment="community-actions-dialog-4"
-      ><p>
-        <!--bind:day-s-date-1--><!--/bind:day-s-date-1-->
-        ·
-        <!--bind:s-start-2--><!--/bind:s-start-2-->–<!--bind:s-end-3--><!--/bind:s-end-3-->
-      </p>
-      <p><!--bind:money-s-price-4--><!--/bind:money-s-price-4--></p>
-      <template data-if="b-5"
-        ><p>
-          <span class="tag" data-bind-attrs='{"class":"tag __CC_b-status-6__"}'
-            ><!--bind:cc-statuses-b-status-b-status-7--><!--/bind:cc-statuses-b-status-b-status-7--></span
-          >
-          ·
-          <!--bind:cc-find-users-b-playerid-name-8--><!--/bind:cc-find-users-b-playerid-name-8-->
-        </p>
-        <a class="btn" href="venue-booking-management.html">Quản lý đặt sân</a></template
-      ><template data-else="b-5"
-        ><button type="button" class="btn" data-action="calendar-edit" data-bind-flags="data-id-id-9">
-          Sửa khung giờ
-        </button>
-        <template data-if="s-status-open-10"
-          ><button
-            type="button"
-            class="btn secondary"
-            data-action="calendar-archive"
-            data-bind-flags="data-id-id-11"
-          >
-            Đóng khung giờ
-          </button></template
-        ><template data-else="s-status-open-10"
-          ><span class="tag" data-bind-attrs='{"class":"tag __CC_s-status-12__"}'
-            ><!--bind:cc-statuses-s-status-s-status-13--><!--/bind:cc-statuses-s-status-s-status-13--></span
-          ></template
-        ></template
-      >
-      <div class="mt">
-        <button
-          type="button"
-          class="btn ghost"
-          data-action="court-calendar"
-          data-bind-flags="data-id-s-courtid-14"
-        >
-          ← Về lịch sân
-        </button>
-      </div></template
-    ><template data-fragment="community-actions-dialog-5"
-      ><label class="field"
-        >Lý do<select name="reason">
-          <option value="Không đến sân">Không đến sân</option>
-          <option value="Ứng xử không phù hợp">Ứng xử không phù hợp</option>
-          <option value="Gian lận trình độ">Gian lận trình độ</option>
-          <option value="Khác">Khác</option>
-        </select></label
-      ><label class="field"
-        >Mô tả sự việc (bắt buộc)<textarea name="comment" maxlength="1000"></textarea></label></template
-    ><template data-fragment="app-actions-dialog-1"
-      ><label class="field"
-        >Mật khẩu hiện tại<input
-          name="old"
-          type="password"
-          value=""
-          required
-          autocomplete="current-password" /></label
-      ><label class="field"
-        >Mật khẩu mới<input
-          name="password"
-          type="password"
-          value=""
-          required
-          minlength="8"
-          maxlength="80"
-          autocomplete="new-password" /></label
-      ><label class="field"
-        >Xác nhận mật khẩu mới<input
-          name="confirm"
-          type="password"
-          value=""
-          required
-          autocomplete="new-password" /></label></template
-    ><template data-fragment="ui-confirm-dialog-1"
-      ><p class="muted"><!--bind:text-1--><!--/bind:text-1--></p>
-      <div class="actions">
-        <button type="button" class="btn secondary" data-action="close">Quay lại</button
-        ><button type="button" class="btn" data-action="confirm">Xác nhận</button>
-      </div></template
-    ><template data-fragment="ui-requireLogin-dialog-2"
+    <template data-fragment="ui-requireLogin-dialog-2"
       ><div class="auth-symbol">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.6"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" />
-          <path d="m8 12 3 3 5-6" />
-        </svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg>
       </div>
       <p class="muted">Bạn cần đăng nhập trước khi tạo trận, tham gia trận đấu, đặt sân.</p>
       <div class="actions">
@@ -890,47 +312,7 @@
         ><a class="btn" href="login.html">Đăng nhập</a>
       </div></template
     >
-  
+
     <!-- Lịch dùng chung; JavaScript chỉ tạo danh sách ngày/năm. -->
-    <template id="date-control-template">
-      <span class="cc-date-control">
-        <button type="button" class="cc-date-trigger" aria-haspopup="dialog" aria-expanded="false">
-          <span data-date-display>Chọn ngày</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18"/></svg>
-        </button>
-      </span>
-    </template>
-    <template id="shared-calendar-template">
-      <div class="cc-calendar" role="dialog" aria-label="Chọn ngày" hidden>
-        <div class="cc-calendar-header">
-          <button type="button" class="icon-btn" data-calendar-step="-1" aria-label="Tháng trước">‹</button>
-          <div class="cc-calendar-selects">
-            <select data-date-months aria-label="Tháng">
-              <option value="0">Tháng 1</option>
-              <option value="1">Tháng 2</option>
-              <option value="2">Tháng 3</option>
-              <option value="3">Tháng 4</option>
-              <option value="4">Tháng 5</option>
-              <option value="5">Tháng 6</option>
-              <option value="6">Tháng 7</option>
-              <option value="7">Tháng 8</option>
-              <option value="8">Tháng 9</option>
-              <option value="9">Tháng 10</option>
-              <option value="10">Tháng 11</option>
-              <option value="11">Tháng 12</option>
-            </select>
-            <select data-date-years aria-label="Năm"></select>
-          </div>
-          <button type="button" class="icon-btn" data-calendar-step="1" aria-label="Tháng sau">›</button>
-        </div>
-        <span class="cc-calendar-announcement" data-date-heading aria-live="polite"></span>
-        <div class="cc-calendar-weekdays" aria-hidden="true"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
-        <div class="cc-calendar-grid" data-date-grid role="group" aria-label="Ngày trong tháng"></div>
-        <div class="cc-calendar-footer">
-          <button type="button" data-calendar-clear>Xóa ngày</button>
-          <button type="button" data-calendar-today>Hôm nay</button>
-        </div>
-      </div>
-    </template>
   </body>
 </html>

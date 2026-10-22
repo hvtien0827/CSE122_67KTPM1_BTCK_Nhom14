@@ -39,4 +39,9 @@ Auth, OTP email, booking và 3 AI là mô phỏng. Không xử lý thanh toán t
 
 Nhóm giữ 4 vai trò; mỗi người xây dựng một vai trò trên `feat/player`, `feat/venue`, `feat/organizer`, `feat/admin`; các phần dùng chung do cả nhóm phối hợp. Danh mục hiện hành là 42 trang chức năng và 2 URL chuyển hướng.
 
-AI đã hỗ trợ sửa lỗi tài khoản CLB còn bị khóa do dữ liệu bản 28 trang: khôi phục có điều kiện, giữ khóa thủ công, dữ liệu hiện hành và thêm `tests/restore-four-roles.cjs`. Kiểm thử dữ liệu đạt; lượt kiểm thử trình duyệt cho sửa lỗi này chưa chạy được vì môi trường thiếu trình duyệt Playwright. Bảng công việc sinh viên phía trên phải được cập nhật từ công việc thực tế.
+AI đã hỗ trợ sửa lỗi tài khoản CLB còn bị khóa do dữ liệu bản 28 trang: khôi phục có điều kiện, giữ khóa thủ công, dữ liệu hiện hành và thêm `tests/restore-four-roles.cjs`. Ở phiên sửa ban đầu mới kiểm tra dữ liệu do thiếu trình duyệt. Trong đợt kiểm tra ngày 21/10/2026, bài hồi quy này và các luồng trình duyệt đã chạy đạt; xem [báo cáo kiểm thử mới nhất](structure-refactor-report.md). Bảng công việc sinh viên phía trên vẫn cần nhóm cập nhật từ công việc thực tế, không suy ra từ việc AI đã sửa code.
+
+
+## Hỗ trợ chỉnh cấu trúc — 21/10/2026
+
+AI hỗ trợ tách controller quản lý theo role, dọn template HTML không liên quan, đặt lại tên binding, chia CSS và cập nhật test/tài liệu. Bản mới vẫn dùng tiện ích DOM tự viết (`views.js`), không thêm Bootstrap hay framework. Kết quả và giới hạn xem [báo cáo refactor](structure-refactor-report.md); cách đọc code xem [code-map.md](code-map.md). JSON Server mới là kế hoạch, chưa có trong mã sản phẩm.

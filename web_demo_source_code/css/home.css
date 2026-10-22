@@ -2,11 +2,7 @@
 
 .hero {
   padding: 64px 0 76px;
-  background: linear-gradient(
-    180deg,
-    rgba(237, 247, 241, 0.5) 0%,
-    var(--bg) 100%
-  );
+  background: linear-gradient(180deg, rgba(237, 247, 241, 0.5) 0%, var(--bg) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -68,33 +64,6 @@
   border: 1px solid var(--line);
   box-shadow: var(--court-shadow-lg);
   display: block;
-}
-
-.hero-visual-badge {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  background: rgba(16, 25, 19, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #ffffff;
-  padding: 12px 18px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-}
-
-.hero-visual-badge span {
-  display: block;
-  font-size: 12px;
-  color: #86efac;
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-
-.hero-visual-badge strong {
-  font-size: 14.5px;
-  font-weight: 700;
 }
 
 .section {
@@ -192,11 +161,6 @@
   color: #728578;
 }
 
-.footer-legal {
-  display: flex;
-  gap: 20px;
-}
-
 @media (max-width: 1150px) {
   .hero-grid {
     gap: 35px;
@@ -227,11 +191,6 @@
   .hero-image {
     height: 270px;
   }
-  .hero-visual-badge {
-    bottom: 14px;
-    left: 14px;
-    padding: 8px 14px;
-  }
   .section {
     padding: 36px 0;
   }
@@ -261,7 +220,7 @@
   }
 }
 
-:root[data-theme="dark"] .hero {
+:root[data-theme='dark'] .hero {
   background: linear-gradient(180deg, #131c15 0%, var(--bg) 100%);
 }
 
