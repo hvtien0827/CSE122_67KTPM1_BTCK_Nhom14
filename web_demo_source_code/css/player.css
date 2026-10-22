@@ -31,7 +31,7 @@
 }
 
 .slot.selected,
-.slot[aria-pressed="true"] {
+.slot[aria-pressed='true'] {
   background: var(--slot-active);
   border: 2px solid var(--accent);
   color: var(--accent);
@@ -295,7 +295,7 @@
   font-weight: 700;
 }
 
-.date-day[aria-pressed="true"] {
+.date-day[aria-pressed='true'] {
   color: #ffffff !important;
   background: var(--court-turf) !important;
   border-color: var(--court-turf) !important;

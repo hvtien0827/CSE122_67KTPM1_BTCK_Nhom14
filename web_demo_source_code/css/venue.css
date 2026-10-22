@@ -159,7 +159,7 @@
     gap: 8px;
   }
   .calendar-dialog .filter-bar .field,
-  .calendar-dialog [data-action="calendar-new"] {
+  .calendar-dialog [data-action='calendar-new'] {
     grid-column: 1/-1;
     min-width: 0;
   }

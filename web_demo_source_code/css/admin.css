@@ -17,7 +17,7 @@
 }
 
 .chart-bg {
-  background: var(--chat-bg);
+  background: var(--chart-track);
   border-radius: 4px;
 }
 @media (max-width: 760px) {

@@ -217,101 +217,382 @@
   }
   // Additive demo data only: never reset or rewrite records already in the browser.
   function supplementDemoData(data) {
-    const today = date(), now = new Date(), stamp = now.toISOString();
-    const get = (table, id) => data[table].find(row => row.id === id);
-    const users = data.users.filter(u => u.role === 'player' && u.status === 'active' && u.verified && get('players', u.id)?.status === 'active');
-    const owner = data.users.find(u => u.role === 'venue' && u.status === 'active');
-    const organizer = data.users.find(u => u.role === 'organizer' && u.status === 'active');
-    const admin = data.users.find(u => u.role === 'admin' && u.status === 'active');
-    const courts = data.courts.filter(c => c.status === 'active' && get('sports', c.sportId)?.status === 'active' && get('users', c.ownerId)?.status === 'active');
+    const today = date(),
+      now = new Date(),
+      stamp = now.toISOString();
+    const get = (table, id) => data[table].find((row) => row.id === id);
+    const users = data.users.filter(
+      (u) =>
+        u.role === 'player' &&
+        u.status === 'active' &&
+        u.verified &&
+        get('players', u.id)?.status === 'active'
+    );
+    const owner = data.users.find((u) => u.role === 'venue' && u.status === 'active');
+    const organizer = data.users.find((u) => u.role === 'organizer' && u.status === 'active');
+    const admin = data.users.find((u) => u.role === 'admin' && u.status === 'active');
+    const courts = data.courts.filter(
+      (c) =>
+        c.status === 'active' &&
+        get('sports', c.sportId)?.status === 'active' &&
+        get('users', c.ownerId)?.status === 'active'
+    );
     if (!users.length || !courts.length) return;
-    const player = users.find(u => u.id === 'u1') || users[0];
-    const peers = users.filter(u => u.id !== player.id);
+    const player = users.find((u) => u.id === 'u1') || users[0];
+    const peers = users.filter((u) => u.id !== player.id);
     const put = (table, row) => {
       if (!get(table, row.id)) data[table].push({ ...row, demoSample: true });
       return get(table, row.id);
     };
     const overlaps = (a, b) => a.date === b.date && a.start < b.end && a.end > b.start;
-    const occupied = slot => data.bookings.some(b => b.slotId === slot.id && ['pending','approved','completed'].includes(b.status));
-    const busy = (id, slot) => data.bookings.some(b => b.playerId === id && ['pending','approved'].includes(b.status) && get('slots', b.slotId) && overlaps(get('slots', b.slotId), slot)) || data.matches.some(m => m.status === 'open' && m.playerIds.includes(id) && get('slots', m.slotId) && overlaps(get('slots', m.slotId), slot));
+    const occupied = (slot) =>
+      data.bookings.some(
+        (b) => b.slotId === slot.id && ['pending', 'approved', 'completed'].includes(b.status)
+      );
+    const busy = (id, slot) =>
+      data.bookings.some(
+        (b) =>
+          b.playerId === id &&
+          ['pending', 'approved'].includes(b.status) &&
+          get('slots', b.slotId) &&
+          overlaps(get('slots', b.slotId), slot)
+      ) ||
+      data.matches.some(
+        (m) =>
+          m.status === 'open' &&
+          m.playerIds.includes(id) &&
+          get('slots', m.slotId) &&
+          overlaps(get('slots', m.slotId), slot)
+      );
     function reserve(court, offset, members, label, status = 'approved') {
-      for (let day = offset; day < offset + 14; day++) for (const hour of [16,18,20,8,12,14]) {
-        const candidate = { courtId: court.id, date: date(day), start: `${String(hour).padStart(2,'0')}:00`, end: `${String(hour+2).padStart(2,'0')}:00`, price: court.price * 2, status: 'open' };
-        if (members.some(id => busy(id, candidate))) continue;
-        const intersect = data.slots.filter(s => s.courtId === court.id && overlaps(s, candidate));
-        let slot = intersect.find(s => s.start === candidate.start && s.end === candidate.end && s.status === 'open' && !occupied(s));
-        if (!slot && intersect.length) continue;
-        slot ||= put('slots', { ...candidate, id: `demo-slot-${today}-${label}` });
-        const booking = put('bookings', { id: `demo-booking-${today}-${label}`, slotId: slot.id, playerId: members[0], status, note: 'Dữ liệu mẫu: lịch chơi để trải nghiệm website.', createdAt: stamp, risk: label === 'risk-sample' ? {level:'Trung bình',decision:'Yêu cầu xác nhận lại',note:'Nhận định mẫu: liên hệ xác nhận trước giờ chơi.',reason:'Dữ liệu mẫu để trải nghiệm nhận định đã lưu; không tự động từ chối đơn.',createdAt:stamp} : null });
-        return { slot, booking };
-      }
+      for (let day = offset; day < offset + 14; day++)
+        for (const hour of [16, 18, 20, 8, 12, 14]) {
+          const candidate = {
+            courtId: court.id,
+            date: date(day),
+            start: `${String(hour).padStart(2, '0')}:00`,
+            end: `${String(hour + 2).padStart(2, '0')}:00`,
+            price: court.price * 2,
+            status: 'open',
+          };
+          if (members.some((id) => busy(id, candidate))) continue;
+          const intersect = data.slots.filter(
+            (s) => s.courtId === court.id && overlaps(s, candidate)
+          );
+          let slot = intersect.find(
+            (s) =>
+              s.start === candidate.start &&
+              s.end === candidate.end &&
+              s.status === 'open' &&
+              !occupied(s)
+          );
+          if (!slot && intersect.length) continue;
+          slot ||= put('slots', { ...candidate, id: `demo-slot-${today}-${label}` });
+          const booking = put('bookings', {
+            id: `demo-booking-${today}-${label}`,
+            slotId: slot.id,
+            playerId: members[0],
+            status,
+            note: 'Dữ liệu mẫu: lịch chơi để trải nghiệm website.',
+            createdAt: stamp,
+            risk:
+              label === 'risk-sample'
+                ? {
+                    level: 'Trung bình',
+                    decision: 'Yêu cầu xác nhận lại',
+                    note: 'Nhận định mẫu: liên hệ xác nhận trước giờ chơi.',
+                    reason:
+                      'Dữ liệu mẫu để trải nghiệm nhận định đã lưu; không tự động từ chối đơn.',
+                    createdAt: stamp,
+                  }
+                : null,
+          });
+          return { slot, booking };
+        }
       return null;
     }
-    const upcomingOpen = () => data.matches.filter(m => m.status === 'open' && m.playerIds.length < m.capacity && get('slots', m.slotId) && new Date(`${get('slots',m.slotId).date}T${get('slots',m.slotId).start}`) > now && courts.some(c => c.id === get('slots',m.slotId).courtId));
+    const upcomingOpen = () =>
+      data.matches.filter(
+        (m) =>
+          m.status === 'open' &&
+          m.playerIds.length < m.capacity &&
+          get('slots', m.slotId) &&
+          new Date(`${get('slots', m.slotId).date}T${get('slots', m.slotId).start}`) > now &&
+          courts.some((c) => c.id === get('slots', m.slotId).courtId)
+      );
     const first = data.demoContentVersion !== 1;
     // Expired schedules get a new batch, never a changed date on an old match.
     if ((first || !upcomingOpen().length) && data.demoMatchBatchDate !== today && peers.length) {
-      courts.slice(0,4).forEach((court,i) => {
+      courts.slice(0, 4).forEach((court, i) => {
         const host = peers[i % peers.length];
-        const member = peers.find(u => u.id !== host.id);
-        const ids = member && i % 2 ? [host.id,member.id] : [host.id];
+        const member = peers.find((u) => u.id !== host.id);
+        const ids = member && i % 2 ? [host.id, member.id] : [host.id];
         const reserved = reserve(court, 1, ids, `open-${i}`);
         if (!reserved) return;
-        put('matches', { id: `demo-match-${today}-${i}`, name: `${get('sports',court.sportId).name} ${i % 2 ? 'giao lưu cùng bạn mới' : 'tìm thêm bạn cùng chơi'}`, slotId: reserved.slot.id, level: 2 + i % 3, playerIds: ids, hostId: host.id, capacity: 4, status: 'open', note: 'Trận mẫu đang tuyển người. Mang theo vợt và đến trước giờ chơi 10 phút.' });
+        put('matches', {
+          id: `demo-match-${today}-${i}`,
+          name: `${get('sports', court.sportId).name} ${i % 2 ? 'giao lưu cùng bạn mới' : 'tìm thêm bạn cùng chơi'}`,
+          slotId: reserved.slot.id,
+          level: 2 + (i % 3),
+          playerIds: ids,
+          hostId: host.id,
+          capacity: 4,
+          status: 'open',
+          note: 'Trận mẫu đang tuyển người. Mang theo vợt và đến trước giờ chơi 10 phút.',
+        });
       });
       data.demoMatchBatchDate = today;
     }
     if (!first) return;
     // A future approved booking lets the sample player try the create-match flow.
-    if (!data.bookings.some(b => b.playerId === player.id && b.status === 'approved' && get('slots',b.slotId)?.date > today)) {
+    if (
+      !data.bookings.some(
+        (b) =>
+          b.playerId === player.id &&
+          b.status === 'approved' &&
+          get('slots', b.slotId)?.date > today
+      )
+    ) {
       const reservation = reserve(courts[0], 3, [player.id], 'my-upcoming');
-      if (reservation) put('matches', {id:`demo-my-match-${today}`,name:'Buổi chơi của nhóm mình',slotId:reservation.slot.id,level:2,playerIds:[player.id],hostId:player.id,capacity:4,status:'open',note:'Trận mẫu trong Hoạt động của tôi.'});
+      if (reservation)
+        put('matches', {
+          id: `demo-my-match-${today}`,
+          name: 'Buổi chơi của nhóm mình',
+          slotId: reservation.slot.id,
+          level: 2,
+          playerIds: [player.id],
+          hostId: player.id,
+          capacity: 4,
+          status: 'open',
+          note: 'Trận mẫu trong Hoạt động của tôi.',
+        });
     }
-    if (!data.bookings.some(b => b.status === 'pending' && get('slots',b.slotId)?.date > today)) reserve(courts[0], 4, [player.id], 'pending', 'pending');
-    if (!data.bookings.some(b=>b.playerId===player.id&&b.status==='cancelled')) {
+    if (!data.bookings.some((b) => b.status === 'pending' && get('slots', b.slotId)?.date > today))
+      reserve(courts[0], 4, [player.id], 'pending', 'pending');
+    if (!data.bookings.some((b) => b.playerId === player.id && b.status === 'cancelled')) {
       const cancelled = reserve(courts[0], 7, [player.id], 'cancelled', 'cancelled');
-      if (cancelled) put('matches',{id:'demo-cancelled-match',name:'Lịch giao lưu đã hủy',slotId:cancelled.slot.id,level:2,playerIds:[player.id],hostId:player.id,capacity:4,status:'cancelled',note:'Dữ liệu mẫu: nhóm đổi kế hoạch nên hủy lịch.'});
+      if (cancelled)
+        put('matches', {
+          id: 'demo-cancelled-match',
+          name: 'Lịch giao lưu đã hủy',
+          slotId: cancelled.slot.id,
+          level: 2,
+          playerIds: [player.id],
+          hostId: player.id,
+          capacity: 4,
+          status: 'cancelled',
+          note: 'Dữ liệu mẫu: nhóm đổi kế hoạch nên hủy lịch.',
+        });
     }
-    if (!data.bookings.some(b=>b.status==='rejected')) reserve(courts[0], 8, [player.id], 'rejected', 'rejected');
-    if (owner && !data.bookings.some(b=>b.risk)) {
-      const court = courts.find(c=>c.ownerId===owner.id);
-      const reserved = court && reserve(court, 6, [(peers[0] || player).id], 'risk-sample', 'pending');
-      if (reserved) put('aiHistory',{id:'demo-ai-risk',userId:owner.id,type:'risk',input:{bookingId:reserved.booking.id},result:reserved.booking.risk,status:'saved',createdAt:stamp});
+    if (!data.bookings.some((b) => b.status === 'rejected'))
+      reserve(courts[0], 8, [player.id], 'rejected', 'rejected');
+    if (owner && !data.bookings.some((b) => b.risk)) {
+      const court = courts.find((c) => c.ownerId === owner.id);
+      const reserved =
+        court && reserve(court, 6, [(peers[0] || player).id], 'risk-sample', 'pending');
+      if (reserved)
+        put('aiHistory', {
+          id: 'demo-ai-risk',
+          userId: owner.id,
+          type: 'risk',
+          input: { bookingId: reserved.booking.id },
+          result: reserved.booking.risk,
+          status: 'saved',
+          createdAt: stamp,
+        });
     }
     let history = null;
-    courts.forEach((court,i) => {
-      if (data.courtReviews.some(r => r.courtId === court.id) && data.bookings.some(b => b.status === 'completed' && get('slots',b.slotId)?.courtId === court.id)) return;
+    courts.forEach((court, i) => {
+      if (
+        data.courtReviews.some((r) => r.courtId === court.id) &&
+        data.bookings.some(
+          (b) => b.status === 'completed' && get('slots', b.slotId)?.courtId === court.id
+        )
+      )
+        return;
       // Separate past dates keep sample participants from playing overlapping matches.
       let slot = null;
       for (let n = 0; n < 30; n++) {
-        const candidate = {id:`demo-history-slot-${court.id}`,courtId:court.id,date:date(-n-i-1),start:'06:00',end:'08:00',price:court.price*2,status:'open'};
-        if (new Date(`${candidate.date}T${candidate.end}`) >= now || data.slots.some(s=>s.courtId===court.id&&overlaps(s,candidate)) || data.bookings.some(b=>b.playerId===player.id&&['pending','approved','completed'].includes(b.status)&&get('slots',b.slotId)&&overlaps(get('slots',b.slotId),candidate))) continue;
-        slot = put('slots', candidate); break;
+        const candidate = {
+          id: `demo-history-slot-${court.id}`,
+          courtId: court.id,
+          date: date(-n - i - 1),
+          start: '06:00',
+          end: '08:00',
+          price: court.price * 2,
+          status: 'open',
+        };
+        if (
+          new Date(`${candidate.date}T${candidate.end}`) >= now ||
+          data.slots.some((s) => s.courtId === court.id && overlaps(s, candidate)) ||
+          data.bookings.some(
+            (b) =>
+              b.playerId === player.id &&
+              ['pending', 'approved', 'completed'].includes(b.status) &&
+              get('slots', b.slotId) &&
+              overlaps(get('slots', b.slotId), candidate)
+          )
+        )
+          continue;
+        slot = put('slots', candidate);
+        break;
       }
       if (!slot) return;
-      const booking = put('bookings',{id:`demo-history-booking-${court.id}`,slotId:slot.id,playerId:player.id,status:'completed',note:'Dữ liệu mẫu: buổi chơi đã hoàn thành.',createdAt:stamp});
-      const ids = [player.id,...peers.slice(0,3).map(u=>u.id)];
-      const match = put('matches',{id:`demo-history-match-${court.id}`,name:`Buổi giao lưu đã hoàn thành tại ${court.name}`,slotId:slot.id,hostId:player.id,playerIds:ids,capacity:4,level:2,status:'completed',matchedAtCapacity:ids.length===4,note:'Lịch sử mẫu để trải nghiệm đánh giá sau trận.'});
-      if (!data.courtReviews.some(r=>r.courtId===court.id)) put('courtReviews',{id:`demo-court-review-${court.id}`,bookingId:booking.id,courtId:court.id,authorId:player.id,stars:i%2?4:5,tags:['Sân đẹp','Ánh sáng tốt'],comment:'Đánh giá mẫu: sân sạch, ánh sáng tốt và có chỗ nghỉ giữa các lượt chơi.',createdAt:stamp});
+      const booking = put('bookings', {
+        id: `demo-history-booking-${court.id}`,
+        slotId: slot.id,
+        playerId: player.id,
+        status: 'completed',
+        note: 'Dữ liệu mẫu: buổi chơi đã hoàn thành.',
+        createdAt: stamp,
+      });
+      const ids = [player.id, ...peers.slice(0, 3).map((u) => u.id)];
+      const match = put('matches', {
+        id: `demo-history-match-${court.id}`,
+        name: `Buổi giao lưu đã hoàn thành tại ${court.name}`,
+        slotId: slot.id,
+        hostId: player.id,
+        playerIds: ids,
+        capacity: 4,
+        level: 2,
+        status: 'completed',
+        matchedAtCapacity: ids.length === 4,
+        note: 'Lịch sử mẫu để trải nghiệm đánh giá sau trận.',
+      });
+      if (!data.courtReviews.some((r) => r.courtId === court.id))
+        put('courtReviews', {
+          id: `demo-court-review-${court.id}`,
+          bookingId: booking.id,
+          courtId: court.id,
+          authorId: player.id,
+          stars: i % 2 ? 4 : 5,
+          tags: ['Sân đẹp', 'Ánh sáng tốt'],
+          comment: 'Đánh giá mẫu: sân sạch, ánh sáng tốt và có chỗ nghỉ giữa các lượt chơi.',
+          createdAt: stamp,
+        });
       history ||= match;
     });
-    history ||= data.matches.find(m=>m.status==='completed'&&m.playerIds.includes(player.id)&&m.playerIds.some(id=>id!==player.id));
-    const target = history?.playerIds.find(id=>id!==player.id && get('users',id));
-    if (target && !data.opponentReviews.length) put('opponentReviews',{id:'demo-opponent-review',matchId:history.id,targetId:target,authorId:player.id,stars:5,tags:['Chơi nhiệt tình','Đúng giờ'],comment:'Đánh giá mẫu: phối hợp tốt, chơi nhiệt tình và tôn trọng bạn chơi.',createdAt:stamp});
-    if (target && !data.playerReports.length) put('playerReports',{id:'demo-player-report',matchId:history.id,targetId:target,authorId:player.id,reason:'Khác',comment:'Báo cáo mẫu để thử thao tác xem xét; không phải phản ánh thực tế về người chơi.',status:'pending',createdAt:stamp});
-    if (organizer && !data.events.some(e=>e.organizerId===organizer.id&&e.status==='open'&&e.date>today&&e.teams)) {
-      const ids = users.slice(0,4).map(u=>u.id);
-      const event = put('events',{id:'demo-club-lineup',name:'Giao lưu CLB cuối tuần',date:date(5),start:'14:00',end:'16:00',sportId:courts[0].sportId,organizerId:organizer.id,location:courts[0].name,capacity:12,playerIds:ids,status:'open',teams:ids.length>1?{a:ids.filter((_,i)=>i%2===0),b:ids.filter((_,i)=>i%2===1)}:null,note:'Sự kiện mẫu có danh sách thành viên và đội hình đã lưu.'});
-      if(event.teams && !data.aiHistory.some(h=>h.type==='teams')) put('aiHistory',{id:'demo-ai-teams',userId:organizer.id,type:'teams',input:{eventId:event.id},result:event.teams,status:'saved',createdAt:stamp});
+    history ||= data.matches.find(
+      (m) =>
+        m.status === 'completed' &&
+        m.playerIds.includes(player.id) &&
+        m.playerIds.some((id) => id !== player.id)
+    );
+    const target = history?.playerIds.find((id) => id !== player.id && get('users', id));
+    if (target && !data.opponentReviews.length)
+      put('opponentReviews', {
+        id: 'demo-opponent-review',
+        matchId: history.id,
+        targetId: target,
+        authorId: player.id,
+        stars: 5,
+        tags: ['Chơi nhiệt tình', 'Đúng giờ'],
+        comment: 'Đánh giá mẫu: phối hợp tốt, chơi nhiệt tình và tôn trọng bạn chơi.',
+        createdAt: stamp,
+      });
+    if (target && !data.playerReports.length)
+      put('playerReports', {
+        id: 'demo-player-report',
+        matchId: history.id,
+        targetId: target,
+        authorId: player.id,
+        reason: 'Khác',
+        comment: 'Báo cáo mẫu để thử thao tác xem xét; không phải phản ánh thực tế về người chơi.',
+        status: 'pending',
+        createdAt: stamp,
+      });
+    if (
+      organizer &&
+      !data.events.some(
+        (e) => e.organizerId === organizer.id && e.status === 'open' && e.date > today && e.teams
+      )
+    ) {
+      const ids = users.slice(0, 4).map((u) => u.id);
+      const event = put('events', {
+        id: 'demo-club-lineup',
+        name: 'Giao lưu CLB cuối tuần',
+        date: date(5),
+        start: '14:00',
+        end: '16:00',
+        sportId: courts[0].sportId,
+        organizerId: organizer.id,
+        location: courts[0].name,
+        capacity: 12,
+        playerIds: ids,
+        status: 'open',
+        teams:
+          ids.length > 1
+            ? { a: ids.filter((_, i) => i % 2 === 0), b: ids.filter((_, i) => i % 2 === 1) }
+            : null,
+        note: 'Sự kiện mẫu có danh sách thành viên và đội hình đã lưu.',
+      });
+      if (event.teams && !data.aiHistory.some((h) => h.type === 'teams'))
+        put('aiHistory', {
+          id: 'demo-ai-teams',
+          userId: organizer.id,
+          type: 'teams',
+          input: { eventId: event.id },
+          result: event.teams,
+          status: 'saved',
+          createdAt: stamp,
+        });
     }
-    const suggested = upcomingOpen().find(m=>!m.playerIds.includes(player.id));
-    if (suggested && !data.aiHistory.some(h=>h.userId===player.id&&h.type==='skill'&&h.status==='saved')) put('aiHistory',{id:'demo-ai-skill',userId:player.id,type:'skill',input:{date:get('slots',suggested.slotId).date},result:{id:suggested.id,score:85,reason:'Gợi ý mẫu để trải nghiệm danh sách đã lưu.'},status:'saved',createdAt:stamp});
+    const suggested = upcomingOpen().find((m) => !m.playerIds.includes(player.id));
+    if (
+      suggested &&
+      !data.aiHistory.some(
+        (h) => h.userId === player.id && h.type === 'skill' && h.status === 'saved'
+      )
+    )
+      put('aiHistory', {
+        id: 'demo-ai-skill',
+        userId: player.id,
+        type: 'skill',
+        input: { date: get('slots', suggested.slotId).date },
+        result: {
+          id: suggested.id,
+          score: 85,
+          reason: 'Gợi ý mẫu để trải nghiệm danh sách đã lưu.',
+        },
+        status: 'saved',
+        createdAt: stamp,
+      });
     if (admin && !data.reports.length) {
-      const rows = data.bookings.filter(b=>get('slots',b.slotId)?.date>=date(-30)&&get('slots',b.slotId)?.date<=today);
-      put('reports',{id:'demo-activity-report',name:'Báo cáo hoạt động mẫu',from:date(-30),to:today,status:'active',note:'Báo cáo mẫu từ lịch sử đặt sân tại thời điểm bổ sung dữ liệu.',snapshot:{bookings:rows.length,revenue:rows.filter(b=>b.status==='completed').reduce((sum,b)=>sum+get('slots',b.slotId).price,0),createdAt:stamp}});
+      const rows = data.bookings.filter(
+        (b) => get('slots', b.slotId)?.date >= date(-30) && get('slots', b.slotId)?.date <= today
+      );
+      put('reports', {
+        id: 'demo-activity-report',
+        name: 'Báo cáo hoạt động mẫu',
+        from: date(-30),
+        to: today,
+        status: 'active',
+        note: 'Báo cáo mẫu từ lịch sử đặt sân tại thời điểm bổ sung dữ liệu.',
+        snapshot: {
+          bookings: rows.length,
+          revenue: rows
+            .filter((b) => b.status === 'completed')
+            .reduce((sum, b) => sum + get('slots', b.slotId).price, 0),
+          createdAt: stamp,
+        },
+      });
     }
-    const destinations = {player:'player-my-sports.html',venue:'venue-booking-management.html',organizer:'organizer-event-management.html',admin:'admin-player-reports.html'};
-    for (const user of data.users.filter(u=>u.status==='active'&&destinations[u.role])) if (!data.notifications.some(n=>n.userId===user.id)) put('notifications',{id:`demo-notification-${user.id}`,userId:user.id,text:'Thông báo mẫu: dữ liệu hoạt động đã sẵn sàng để bạn trải nghiệm.',read:false,href:destinations[user.role],createdAt:stamp});
+    const destinations = {
+      player: 'player-my-sports.html',
+      venue: 'venue-booking-management.html',
+      organizer: 'organizer-event-management.html',
+      admin: 'admin-player-reports.html',
+    };
+    for (const user of data.users.filter((u) => u.status === 'active' && destinations[u.role]))
+      if (!data.notifications.some((n) => n.userId === user.id))
+        put('notifications', {
+          id: `demo-notification-${user.id}`,
+          userId: user.id,
+          text: 'Thông báo mẫu: dữ liệu hoạt động đã sẵn sàng để bạn trải nghiệm.',
+          read: false,
+          href: destinations[user.role],
+          createdAt: stamp,
+        });
     data.demoContentVersion = 1;
   }
   let db,
@@ -342,14 +623,15 @@
     // Migrations must be safe to repeat: older demos may have a version marker
     // while individual tables were removed by a different project scope.
     for (const table of ['courtReviews', 'opponentReviews', 'playerReports']) {
-      if (!Array.isArray(db[table])) db[table] = Array.isArray(db.legacy?.[table]) ? db.legacy[table] : [];
+      if (!Array.isArray(db[table]))
+        db[table] = Array.isArray(db.legacy?.[table]) ? db.legacy[table] : [];
     }
-    db.events.forEach(e => {
+    db.events.forEach((e) => {
       e.playerIds = Array.isArray(e.playerIds) ? e.playerIds : [];
       e.start ||= '08:00';
       e.end ||= '10:00';
     });
-    db.courts.forEach(c => {
+    db.courts.forEach((c) => {
       if (c.autoSchedule === undefined) c.autoSchedule = ['c1', 'c2', 'c3', 'c4'].includes(c.id);
     });
     supplementDemoData(db);
@@ -631,9 +913,14 @@
       if (data.date < date()) throw Error('Ngày sự kiện không được ở quá khứ.');
       data.start ||= old?.start || '08:00';
       data.end ||= old?.end || '10:00';
-      if (!/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(data.start) || !/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(data.end) || data.end <= data.start)
+      if (
+        !/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(data.start) ||
+        !/^(?:[01]\d|2[0-3]):[0-5]\d$/.test(data.end) ||
+        data.end <= data.start
+      )
         throw Error('Giờ kết thúc phải sau giờ bắt đầu trong cùng ngày.');
-      if (!future({ date: data.date, start: data.start })) throw Error('Thời gian tổ chức phải ở tương lai.');
+      if (!future({ date: data.date, start: data.start }))
+        throw Error('Thời gian tổ chức phải ở tương lai.');
       if (!sportActive(data.sportId)) throw Error('Môn thể thao không hoạt động.');
       if (old && data.capacity < old.playerIds.length)
         throw Error('Sức chứa nhỏ hơn danh sách hiện tại.');
@@ -644,7 +931,10 @@
       data.email = data.email.trim().toLowerCase();
       if (db.users.some((x) => x.id !== key && x.email === data.email))
         throw Error('Email đã được sử dụng.');
-      if (old?.id === u.id && (data.role !== 'admin' || (data.status !== undefined && data.status !== 'active')))
+      if (
+        old?.id === u.id &&
+        (data.role !== 'admin' || (data.status !== undefined && data.status !== 'active'))
+      )
         throw Error('Không thể tự gỡ quyền hoặc khóa tài khoản hiện tại.');
       if (old && old.role !== data.role)
         throw Error('Tài khoản đã tạo không đổi vai trò để bảo toàn liên kết nghiệp vụ.');
@@ -759,14 +1049,21 @@
   function ensureSchedules() {
     if (loadError) return;
     const additions = [];
-    for (const c of db.courts.filter(c => c.status === 'active' && c.autoSchedule)) {
+    for (const c of db.courts.filter((c) => c.status === 'active' && c.autoSchedule)) {
       for (let offset = 0; offset < 30; offset++) {
         const day = date(offset);
         for (let hour = 8; hour < 22; hour += 2) {
-          const slot = { id: `daily-${c.id}-${day}-${hour}`, courtId: c.id, date: day,
-            start: `${String(hour).padStart(2, '0')}:00`, end: `${String(hour + 2).padStart(2, '0')}:00`,
-            price: c.price * 2, status: 'open' };
-          if (!future(slot) || db.slots.some(s => s.courtId === c.id && overlaps(s, slot))) continue;
+          const slot = {
+            id: `daily-${c.id}-${day}-${hour}`,
+            courtId: c.id,
+            date: day,
+            start: `${String(hour).padStart(2, '0')}:00`,
+            end: `${String(hour + 2).padStart(2, '0')}:00`,
+            price: c.price * 2,
+            status: 'open',
+          };
+          if (!future(slot) || db.slots.some((s) => s.courtId === c.id && overlaps(s, slot)))
+            continue;
           additions.push(slot);
         }
       }
@@ -777,18 +1074,32 @@
     const u = requireRole({ courts: 'venue', events: 'organizer', reports: 'admin' }[table]);
     const row = find(table, key);
     if (!row || row.status === 'deleted') throw Error('Bản ghi không còn tồn tại.');
-    if ((table === 'courts' && row.ownerId !== u.id) || (table === 'events' && row.organizerId !== u.id))
+    if (
+      (table === 'courts' && row.ownerId !== u.id) ||
+      (table === 'events' && row.organizerId !== u.id)
+    )
       throw Error('Bạn không sở hữu dữ liệu này.');
-    if (table === 'courts' && db.bookings.some(b => courtFor(find('slots', b.slotId))?.id === key && ['pending', 'approved'].includes(b.status)))
-      throw Error('Sân còn đơn chờ duyệt/đã duyệt. Hãy xử lý hoặc hủy các đơn đó trước khi xoá sân.');
+    if (
+      table === 'courts' &&
+      db.bookings.some(
+        (b) =>
+          courtFor(find('slots', b.slotId))?.id === key &&
+          ['pending', 'approved'].includes(b.status)
+      )
+    )
+      throw Error(
+        'Sân còn đơn chờ duyệt/đã duyệt. Hãy xử lý hoặc hủy các đơn đó trước khi xoá sân.'
+      );
     transaction(() => {
-      if (table === 'reports') db.reports = db.reports.filter(r => r.id !== key);
+      if (table === 'reports') db.reports = db.reports.filter((r) => r.id !== key);
       else {
         // Soft deletion preserves the linked booking/review history.
         row.status = 'deleted';
         if (table === 'courts') {
           row.autoSchedule = false;
-          db.slots.filter(s => s.courtId === key && future(s)).forEach(s => s.status = 'archived');
+          db.slots
+            .filter((s) => s.courtId === key && future(s))
+            .forEach((s) => (s.status = 'archived'));
         }
         if (table === 'events') row.teams = null;
       }
@@ -873,4 +1184,77 @@
     saveTeams,
     playerBusy,
   };
+  const CC = window.CC;
+  // Nâng cấp dữ liệu cộng đồng một lần, trước khi bất kỳ trang nào được render.
+  if (!CC.loadError && !CC.db.communityVersion)
+    CC.transaction(() => {
+      const db = CC.db;
+      db.courtReviews ||= [];
+      db.opponentReviews ||= [];
+      db.playerReports ||= [];
+      db.users.forEach((u) => {
+        u.phonePublic ??= false;
+        u.socialLinks ||= {};
+      });
+      if (['u1', 'u5', 'u6', 'u7'].every((id) => CC.find('users', id)) && CC.find('courts', 'c1')) {
+        [-14, -7, -2, 2, 4].forEach((offset, i) => {
+          const id = `community-${i}`,
+            date = CC.date(offset),
+            completed = offset < 0;
+          const slot = {
+            id,
+            courtId: 'c1',
+            date,
+            start: '10:00',
+            end: '12:00',
+            price: 240000,
+            status: 'open',
+          };
+          if (
+            db.slots.some(
+              (s) =>
+                s.courtId === 'c1' && s.date === date && s.start < slot.end && s.end > slot.start
+            )
+          )
+            return;
+          db.slots.push(slot);
+          db.bookings.push({
+            id,
+            slotId: id,
+            playerId: 'u1',
+            status: completed ? 'completed' : 'approved',
+            note: 'Lịch mẫu để trải nghiệm',
+            createdAt: new Date().toISOString(),
+          });
+          db.matches.push({
+            id,
+            slotId: id,
+            name: completed ? `Giao lưu đã đấu ${i + 1}` : `Hẹn ra sân ${i - 2}`,
+            level: 3,
+            capacity: 4,
+            hostId: 'u1',
+            playerIds: ['u1', 'u5', 'u6', 'u7'],
+            status: completed ? 'completed' : 'open',
+            matchedAtCapacity: true,
+            note: 'Trận mẫu của CourtConnect',
+          });
+        });
+        const b = db.bookings.find((b) => b.id === 'community-0');
+        if (b)
+          db.courtReviews.push({
+            id: 'review-demo',
+            bookingId: b.id,
+            courtId: 'c1',
+            authorId: 'u1',
+            stars: 5,
+            tags: ['Sân đẹp', 'Sạch sẽ'],
+            comment: 'Sân thoáng, ánh sáng tốt. Nhóm mình chơi rất thoải mái.',
+            createdAt: new Date().toISOString(),
+          });
+      }
+      db.matches.forEach((m) => {
+        if (m.playerIds.length >= m.capacity) m.matchedAtCapacity = true;
+      });
+      db.communityVersion = 1;
+    });
 })();

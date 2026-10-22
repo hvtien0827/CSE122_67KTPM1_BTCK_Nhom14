@@ -1,0 +1,457 @@
+{
+  "403.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "404.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "admin-player-reports.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/admin.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "admin-sport-management.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/admin.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/admin.css"],
+    "fragments": ["manage-edit-dialog-5", "ui-confirm-dialog-1"],
+    "datePicker": false
+  },
+  "admin-sports-report.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/date-picker.js",
+      "js/views.js",
+      "js/admin.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/date-picker.css", "css/admin.css"],
+    "fragments": ["manage-edit-dialog-7", "ui-confirm-dialog-1"],
+    "datePicker": true
+  },
+  "admin-user-management.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/admin.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/admin.css"],
+    "fragments": ["manage-edit-dialog-6", "ui-confirm-dialog-1"],
+    "datePicker": false
+  },
+  "booking-success.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "booking.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/player.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "chat.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "court-detail.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/player.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": ["ui-requireLogin-dialog-2"],
+    "datePicker": false
+  },
+  "forgot-password.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "help.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "index.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/player.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/home.css"],
+    "fragments": ["ui-requireLogin-dialog-2"],
+    "datePicker": false
+  },
+  "login.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": ["auth-renderAuth-dialog-1"],
+    "datePicker": false
+  },
+  "match-detail.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/player.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [
+      "community-reviewForm-dialog-1",
+      "community-actions-dialog-5",
+      "ui-requireLogin-dialog-2"
+    ],
+    "datePicker": false
+  },
+  "notifications.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "organizer-event-detail.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/date-picker.js",
+      "js/views.js",
+      "js/organizer.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/date-picker.css", "css/organizer.css"],
+    "fragments": ["manage-edit-dialog-3", "ui-confirm-dialog-1"],
+    "datePicker": true
+  },
+  "organizer-event-management.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/date-picker.js",
+      "js/views.js",
+      "js/organizer.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/date-picker.css", "css/organizer.css"],
+    "fragments": ["manage-edit-dialog-3", "ui-confirm-dialog-1"],
+    "datePicker": true
+  },
+  "organizer-player-roster.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/organizer.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/organizer.css"],
+    "fragments": ["manage-edit-dialog-4", "manage-actions-dialog-8", "ui-confirm-dialog-1"],
+    "datePicker": false
+  },
+  "organizer-team-lineup.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/organizer.js",
+      "js/ai.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/organizer.css"],
+    "fragments": ["ui-confirm-dialog-1"],
+    "datePicker": false
+  },
+  "player-court-search.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/date-picker.js",
+      "js/views.js",
+      "js/player.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/date-picker.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": true
+  },
+  "player-match-create.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/player.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "player-my-sports.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/player.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [
+      "player-actions-dialog-1",
+      "community-reviewForm-dialog-1",
+      "ui-confirm-dialog-1"
+    ],
+    "datePicker": false
+  },
+  "player-open-matches.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/date-picker.js",
+      "js/views.js",
+      "js/player.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/date-picker.css", "css/player.css"],
+    "fragments": ["ui-requireLogin-dialog-2"],
+    "datePicker": true
+  },
+  "player-skill-match.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/date-picker.js",
+      "js/views.js",
+      "js/ai.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/date-picker.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": true
+  },
+  "privacy.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "profile-public.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "profile.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "recovery-sent.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "register.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": ["auth-renderAuth-dialog-1"],
+    "datePicker": false
+  },
+  "registration-success.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "reset-password.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "reset-success.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "settings.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": ["app-actions-dialog-1", "ui-confirm-dialog-1"],
+    "datePicker": false
+  },
+  "terms.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/player.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "venue-booking-management.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/venue.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/venue.css"],
+    "fragments": ["ui-confirm-dialog-1"],
+    "datePicker": false
+  },
+  "venue-court-management.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/date-picker.js",
+      "js/views.js",
+      "js/venue.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/date-picker.css", "css/venue.css"],
+    "fragments": [
+      "manage-edit-dialog-1",
+      "community-calendar-dialog-2",
+      "community-slotForm-dialog-3",
+      "community-actions-dialog-4",
+      "ui-confirm-dialog-1"
+    ],
+    "datePicker": true
+  },
+  "venue-no-show-risk.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/ai.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/venue.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "venue-revenue.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/date-picker.js",
+      "js/views.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/date-picker.css", "css/venue.css"],
+    "fragments": [],
+    "datePicker": true
+  },
+  "venue-reviews.html": {
+    "scripts": [
+      "js/theme.js",
+      "js/store.js",
+      "js/ui.js",
+      "js/views.js",
+      "js/community.js",
+      "js/app.js"
+    ],
+    "styles": ["css/common.css", "css/navigation.css", "css/venue.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "venue-slot-management.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/venue.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "verification-sent.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "verify-email.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": [],
+    "datePicker": false
+  },
+  "verify-reset.html": {
+    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/auth.js", "js/app.js"],
+    "styles": ["css/common.css", "css/navigation.css", "css/auth.css"],
+    "fragments": [],
+    "datePicker": false
+  }
+}

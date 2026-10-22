@@ -13,22 +13,19 @@
     <script src="js/theme.js"></script>
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/navigation.css" />
-    <link rel="stylesheet" href="css/date-picker.css" />
     <link rel="stylesheet" href="css/player.css" />
     <script>
-      window.PAGE_TITLE = "Thông báo";
+      window.PAGE_TITLE = 'Thông báo';
     </script>
     <script defer src="js/store.js"></script>
     <script defer src="js/ui.js"></script>
-    <script defer src="js/date-picker.js"></script>
     <script defer src="js/views.js"></script>
-    <script defer src="js/auth.js"></script>
-    <script defer src="js/ai.js"></script>
-    <script defer src="js/community.js"></script>
     <script defer src="js/app.js"></script>
   </head>
   <body data-layout="workspace" data-route="notifications.html">
-    <!-- Điều hướng dùng chung; JavaScript chỉ cập nhật tài khoản và vai trò. --><a class="skip" href="#main"
+    <!-- Điều hướng dùng chung; JavaScript chỉ cập nhật tài khoản và vai trò. --><a
+      class="skip"
+      href="#main"
       >Bỏ qua điều hướng</a
     >
     <header class="header guest-header">
@@ -65,56 +62,163 @@
             data-user-role
             href="index.html"
           ></a
-          ><a class="icon-btn" data-session="member" hidden href="notifications.html" aria-label="Thông báo"
-            ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg ></a><details class="account-menu" data-session="member" hidden><summary aria-label="Tài khoản và đăng xuất"><span class="avatar" data-user-initial></span><span class="user-name" data-user-name></span></summary><div class="account-dropdown"><strong data-user-name></strong><span class="small muted" data-user-role></span><div class="account-menu-items"><a class="btn account-menu-item" data-user-home href="index.html" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8" /></svg >Trang của tôi</a ><a class="btn account-menu-item" href="profile.html" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Hồ sơ cá nhân</a ><a class="btn account-menu-item" href="settings.html" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="3" /><path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z" /></svg >Cài đặt</a ><button type="button" class="btn account-menu-item account-logout" data-action="logout"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M9 4H4v16h5M13 8l4 4-4 4M8 12h12" /></svg >Đăng xuất / đổi vai trò </button></div></div></details><a class="optional" data-session="guest" href="player-court-search.html">Tìm sân</a ><a class="optional" data-session="guest" href="player-open-matches.html">Tìm trận đấu</a ><a class="btn ghost" data-session="guest" href="login.html">Đăng nhập</a ><a class="btn" data-session="guest" href="register.html">Đăng ký</a></nav></div></header><div class="workspace"><aside id="site-navigation" class="sidebar" aria-label="Chức năng"><div class="sidebar-label" data-navigation-role>Khám phá</div><a href="player-court-search.html" data-nav-role="player" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="10" cy="10" r="6" /><path d="m15 15 5 5" /></svg >Tìm sân</a ><a href="player-open-matches.html" data-nav-role="player" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Tìm trận đấu</a ><a href="player-my-sports.html" data-nav-role="player" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Hoạt động của tôi</a ><a href="player-skill-match.html" data-nav-role="player" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg >Ghép trận thông minh</a ><a href="player-match-create.html" data-nav-role="player" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Tạo trận đấu</a ><a href="venue-court-management.html" data-nav-role="venue" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg >Quản lý sân</a ><a href="venue-revenue.html" data-nav-role="venue" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg >Thống kê doanh thu</a ><a href="venue-reviews.html" data-nav-role="venue" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Đánh giá sân</a ><a href="venue-booking-management.html" data-nav-role="venue" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Quản lý đặt sân</a ><a href="venue-no-show-risk.html" data-nav-role="venue" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg >Cảnh báo vắng mặt</a ><a href="organizer-event-management.html" data-nav-role="organizer" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Sự kiện CLB</a ><a href="organizer-player-roster.html" data-nav-role="organizer" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Danh sách người chơi</a ><a href="organizer-team-lineup.html" data-nav-role="organizer" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg >Đội hình & chia đội</a ><a href="admin-sport-management.html" data-nav-role="admin" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg >Môn thể thao</a ><a href="admin-user-management.html" data-nav-role="admin" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Quản lý tài khoản</a ><a href="admin-sports-report.html" data-nav-role="admin" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg >Báo cáo hoạt động</a ><a href="admin-player-reports.html" data-nav-role="admin" hidden ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg >Báo cáo người chơi</a ><div class="sidebar-label mt">Tài khoản</div><a href="profile.html" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Hồ sơ của tôi</a ><a href="notifications.html" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg >Thông báo</a ><a href="settings.html" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="3" /><path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z" /></svg >Cài đặt</a ><a href="help.html" ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg >Trợ giúp</a ><div class="sidebar-bottom"><div class="role-note"><span data-session="guest">Đăng nhập để lưu hoạt động và kết nối bạn chơi.</span ><span data-session="member" hidden>Đang dùng vai trò<br /><strong data-user-role></strong></span></div><button type="button" data-action="logout" class="btn ghost full mt" data-session="member" hidden> Đăng xuất / đổi vai trò</button ><a class="btn full mt" href="login.html" data-session="guest">Đăng nhập</a></div></aside><main id="main" class="page"><div class="breadcrumbs">CourtConnect / <span data-navigation-role>Khám phá</span></div><div class="notice error" data-load-error hidden></div><!-- Sửa bố cục, tiêu đề và form của trang tại đây. --><div data-page-view="app-notifications" class="page-content"><div class="page-head"><div><h1>Thông báo</h1><p>Cập nhật mới nhất về lịch sân và hoạt động.</p></div><button type="button" class="btn secondary" data-action="read-all">Đánh dấu tất cả đã đọc</button></div><section class="panel" style="padding: 0"><!--bind:notificationCards--><!--/bind:notificationCards--></section></div></main></div><template data-page="app-error" ><div data-page-view="app-error" class="page-content"><div class="error-page"><div class="error-number"><!--bind:errorCode--><!--/bind:errorCode--></div><h1><!--bind:errorTitle-->Thông báo<!--/bind:errorTitle--></h1><p class="muted"><!--bind:errorMessage--><!--/bind:errorMessage--></p><div class="actions" style="justify-content: center"><a class="btn" href="index.html">Về trang chủ</a ><template data-if="isLoggedIn" ><button type="button" class="btn secondary" data-action="logout"> Đổi tài khoản </button></template ><template data-else="isLoggedIn"><a class="btn secondary" href="login.html">Đăng nhập</a></template></div></div></div></template ><template data-page="app-renderPage" ><div data-page-view="app-renderPage" class="page-content"><div class="notice error" role="alert"> Không thể tải trang: <!--bind:errorMessage--><!--/bind:errorMessage--></div><button type="button" class="btn secondary" data-action="retry-page">Thử lại</button></div></template ><noscript ><p class="notice"> Bố cục trang có thể xem trực tiếp. Bật JavaScript để đăng nhập, tải dữ liệu và sử dụng chức năng. </p></noscript ><!-- Các hộp thoại của trang: sửa form trực tiếp trong template bên dưới. --><dialog id="modal" aria-labelledby="dialog-title"><div class="dialog-head"><h2 id="dialog-title"></h2><button type="button" class="icon-btn" data-action="close" aria-label="Đóng">×</button></div><div class="dialog-body"></div></dialog><template id="dialog-form-template" ><form id="dialog-form"><div class="form-error notice error" role="alert" hidden></div><div data-dialog-fields class="dialog-fields"></div><div class="actions"><button type="button" class="btn secondary" data-action="close">Hủy</button ><button class="btn" type="submit">Lưu</button></div></form></template ><template data-fragment="ui-confirm-dialog-1" ><p class="muted"><!--bind:message--><!--/bind:message--></p><div class="actions"><button type="button" class="btn secondary" data-action="close">Quay lại</button ><button type="button" class="btn" data-action="confirm">Xác nhận</button></div></template ><template data-fragment="ui-requireLogin-dialog-2" ><div class="auth-symbol"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg>
+          ><a
+            class="icon-btn"
+            data-session="member"
+            hidden
+            href="notifications.html"
+            aria-label="Thông báo"
+            ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg ></a>
+          <details class="account-menu" data-session="member" hidden>
+            <summary aria-label="Tài khoản và đăng xuất">
+              <span class="avatar" data-user-initial></span
+              ><span class="user-name" data-user-name></span>
+            </summary>
+            <div class="account-dropdown">
+              <strong data-user-name></strong><span class="small muted" data-user-role></span>
+              <div class="account-menu-items">
+                <a class="btn account-menu-item" data-user-home href="index.html"
+                  ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8" /></svg >Trang của tôi</a
+                ><a class="btn account-menu-item" href="profile.html"
+                  ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Hồ sơ cá nhân</a
+                ><a class="btn account-menu-item" href="settings.html"
+                  ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="3" /><path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z" /></svg >Cài đặt</a
+                ><button
+                  type="button"
+                  class="btn account-menu-item account-logout"
+                  data-action="logout"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M9 4H4v16h5M13 8l4 4-4 4M8 12h12" /></svg >Đăng xuất / đổi vai trò
+                </button>
+              </div>
+            </div>
+          </details>
+          <a class="optional" data-session="guest" href="player-court-search.html">Tìm sân</a
+          ><a class="optional" data-session="guest" href="player-open-matches.html">Tìm trận đấu</a
+          ><a class="btn ghost" data-session="guest" href="login.html">Đăng nhập</a
+          ><a class="btn" data-session="guest" href="register.html">Đăng ký</a>
+        </nav>
       </div>
-      <p class="muted">Bạn cần đăng nhập trước khi tạo trận, tham gia trận đấu, đặt sân.</p>
-      <div class="actions">
-        <button type="button" class="btn secondary" data-action="close">Để sau</button
-        ><a class="btn" href="login.html">Đăng nhập</a>
-      </div></template
-    >
-  
-    <!-- Lịch dùng chung; JavaScript chỉ tạo danh sách ngày/năm. -->
-    <template id="date-control-template">
-      <span class="cc-date-control">
-        <button type="button" class="cc-date-trigger" aria-haspopup="dialog" aria-expanded="false">
-          <span data-date-display>Chọn ngày</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 11h18"/></svg>
-        </button>
-      </span>
-    </template>
-    <template id="shared-calendar-template">
-      <div class="cc-calendar" role="dialog" aria-label="Chọn ngày" hidden>
-        <div class="cc-calendar-header">
-          <button type="button" class="icon-btn" data-calendar-step="-1" aria-label="Tháng trước">‹</button>
-          <div class="cc-calendar-selects">
-            <select data-date-months aria-label="Tháng">
-              <option value="0">Tháng 1</option>
-              <option value="1">Tháng 2</option>
-              <option value="2">Tháng 3</option>
-              <option value="3">Tháng 4</option>
-              <option value="4">Tháng 5</option>
-              <option value="5">Tháng 6</option>
-              <option value="6">Tháng 7</option>
-              <option value="7">Tháng 8</option>
-              <option value="8">Tháng 9</option>
-              <option value="9">Tháng 10</option>
-              <option value="10">Tháng 11</option>
-              <option value="11">Tháng 12</option>
-            </select>
-            <select data-date-years aria-label="Năm"></select>
+    </header>
+    <div class="workspace">
+      <aside id="site-navigation" class="sidebar" aria-label="Chức năng">
+        <div class="sidebar-label" data-navigation-role>Khám phá</div>
+        <a href="player-court-search.html" data-nav-role="player"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="10" cy="10" r="6" /><path d="m15 15 5 5" /></svg >Tìm sân</a
+        ><a href="player-open-matches.html" data-nav-role="player"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Tìm trận đấu</a
+        ><a href="player-my-sports.html" data-nav-role="player"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Hoạt động của tôi</a
+        ><a href="player-skill-match.html" data-nav-role="player"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg >Ghép trận thông minh</a
+        ><a href="player-match-create.html" data-nav-role="player"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Tạo trận đấu</a
+        ><a href="venue-court-management.html" data-nav-role="venue" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg >Quản lý sân</a
+        ><a href="venue-revenue.html" data-nav-role="venue" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg >Thống kê doanh thu</a
+        ><a href="venue-reviews.html" data-nav-role="venue" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Đánh giá sân</a
+        ><a href="venue-booking-management.html" data-nav-role="venue" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Quản lý đặt sân</a
+        ><a href="venue-no-show-risk.html" data-nav-role="venue" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg >Cảnh báo vắng mặt</a
+        ><a href="organizer-event-management.html" data-nav-role="organizer" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 11h18" /></svg >Sự kiện CLB</a
+        ><a href="organizer-player-roster.html" data-nav-role="organizer" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Danh sách người chơi</a
+        ><a href="organizer-team-lineup.html" data-nav-role="organizer" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg >Đội hình & chia đội</a
+        ><a href="admin-sport-management.html" data-nav-role="admin" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M12 4v16M3 12h18M6 4v16M18 4v16" /></svg >Môn thể thao</a
+        ><a href="admin-user-management.html" data-nav-role="admin" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Quản lý tài khoản</a
+        ><a href="admin-sports-report.html" data-nav-role="admin" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4" /></svg >Báo cáo hoạt động</a
+        ><a href="admin-player-reports.html" data-nav-role="admin" hidden
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg >Báo cáo người chơi</a
+        >
+        <div class="sidebar-label mt">Tài khoản</div>
+        <a href="profile.html"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="9" cy="8" r="3" /><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5" /></svg >Hồ sơ của tôi</a
+        ><a href="notifications.html"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" /></svg >Thông báo</a
+        ><a href="settings.html"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="3" /><path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z" /></svg >Cài đặt</a
+        ><a href="help.html"
+          ><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z" /><path d="m8 12 3 3 5-6" /></svg >Trợ giúp</a
+        >
+        <div class="sidebar-bottom">
+          <div class="role-note">
+            <span data-session="guest">Đăng nhập để lưu hoạt động và kết nối bạn chơi.</span
+            ><span data-session="member" hidden
+              >Đang dùng vai trò<br /><strong data-user-role></strong
+            ></span>
           </div>
-          <button type="button" class="icon-btn" data-calendar-step="1" aria-label="Tháng sau">›</button>
+          <button
+            type="button"
+            data-action="logout"
+            class="btn ghost full mt"
+            data-session="member"
+            hidden
+          >
+            Đăng xuất / đổi vai trò</button
+          ><a class="btn full mt" href="login.html" data-session="guest">Đăng nhập</a>
         </div>
-        <span class="cc-calendar-announcement" data-date-heading aria-live="polite"></span>
-        <div class="cc-calendar-weekdays" aria-hidden="true"><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span><span>CN</span></div>
-        <div class="cc-calendar-grid" data-date-grid role="group" aria-label="Ngày trong tháng"></div>
-        <div class="cc-calendar-footer">
-          <button type="button" data-calendar-clear>Xóa ngày</button>
-          <button type="button" data-calendar-today>Hôm nay</button>
+      </aside>
+      <main id="main" class="page">
+        <div class="breadcrumbs">CourtConnect / <span data-navigation-role>Khám phá</span></div>
+        <div class="notice error" data-load-error hidden></div>
+        <!-- Sửa bố cục, tiêu đề và form của trang tại đây. -->
+        <div data-page-view="app-notifications" class="page-content">
+          <div class="page-head">
+            <div>
+              <h1>Thông báo</h1>
+              <p>Cập nhật mới nhất về lịch sân và hoạt động.</p>
+            </div>
+            <button type="button" class="btn secondary" data-action="read-all">
+              Đánh dấu tất cả đã đọc
+            </button>
+          </div>
+          <section class="panel" style="padding: 0">
+            <!--bind:notificationCards--><!--/bind:notificationCards-->
+          </section>
         </div>
-      </div>
-    </template>
+      </main>
+    </div>
+    <template data-page="app-error"
+      ><div data-page-view="app-error" class="page-content">
+        <div class="error-page">
+          <div class="error-number"><!--bind:errorCode--><!--/bind:errorCode--></div>
+          <h1><!--bind:errorTitle-->Thông báo<!--/bind:errorTitle--></h1>
+          <p class="muted"><!--bind:errorMessage--><!--/bind:errorMessage--></p>
+          <div class="actions" style="justify-content: center">
+            <a class="btn" href="index.html">Về trang chủ</a
+            ><template data-if="isLoggedIn"
+              ><button type="button" class="btn secondary" data-action="logout">
+                Đổi tài khoản
+              </button></template
+            ><template data-else="isLoggedIn"
+              ><a class="btn secondary" href="login.html">Đăng nhập</a></template
+            >
+          </div>
+        </div>
+      </div></template
+    ><template data-page="app-renderPage"
+      ><div data-page-view="app-renderPage" class="page-content">
+        <div class="notice error" role="alert">
+          Không thể tải trang:
+          <!--bind:errorMessage--><!--/bind:errorMessage-->
+        </div>
+        <button type="button" class="btn secondary" data-action="retry-page">Thử lại</button>
+      </div></template
+    ><noscript
+      ><p class="notice">
+        Bố cục trang có thể xem trực tiếp. Bật JavaScript để đăng nhập, tải dữ liệu và sử dụng chức
+        năng.
+      </p></noscript
+    ><!-- Các hộp thoại của trang: sửa form trực tiếp trong template bên dưới. -->
+
+    <!-- Lịch dùng chung; JavaScript chỉ tạo danh sách ngày/năm. -->
   </body>
 </html>

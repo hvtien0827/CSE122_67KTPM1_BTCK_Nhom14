@@ -163,14 +163,12 @@
 }
 
 @media (max-width: 1150px) {
-
   .header-nav .optional {
     display: none;
   }
 }
 
 @media (max-width: 760px) {
-
   .header-inner {
     min-height: 64px;
     gap: 10px;
@@ -252,7 +250,6 @@
 }
 
 @media (max-width: 480px) {
-
   .header .brand {
     font-size: 14px;
   }
@@ -262,7 +259,6 @@
 }
 
 @media (max-width: 360px) {
-
   .header .brand {
     font-size: 0;
     gap: 0;
@@ -292,12 +288,6 @@
 .account-menu summary:hover,
 .account-menu[open] summary {
   background: var(--slot-active);
-}
-
-.account-menu-icon {
-  display: flex;
-  margin-left: 4px;
-  color: var(--muted);
 }
 
 .account-dropdown {
@@ -373,6 +363,10 @@
 }
 
 @media (min-width: 761px) {
+  /* Desktop chỉ cần nút mở sidebar tại trang chủ của player. */
+  body:not([data-layout="home"]) .sidebar-toggle-btn {
+    display: none;
+  }
 
   .sidebar {
     position: sticky;
@@ -387,7 +381,6 @@
 }
 
 @media (max-width: 760px) {
-
   .account-menu summary {
     gap: 3px;
   }
@@ -396,12 +389,5 @@
   }
   .account-dropdown {
     right: 0;
-  }
-}
-
-@media (max-width: 760px) {
-
-  .account-menu-icon {
-    margin-left: 2px;
   }
 }

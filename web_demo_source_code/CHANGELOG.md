@@ -1,8 +1,17 @@
 # Nhật ký thay đổi CourtConnect
 
-Ngày cập nhật tài liệu: **21/10/2026**. Áp dụng cho thư mục `web_demo_source_code` hiện tại.
+Ngày cập nhật tài liệu: **22/10/2026**. Áp dụng cho thư mục `web_demo_source_code` hiện tại.
 
 Nhật ký tổng hợp từ các thay đổi đã xác nhận trong cuộc trao đổi và mã nguồn/tài liệu hiện có. Đây không phải bản trích xuất lịch sử Git. Những cải tiến cũ không xác định được ngày thực hiện được ghi theo nhóm chức năng, không gán ngày hay người thực hiện. Bản thiết kế lại đã bị loại bỏ không thuộc nhật ký này.
+
+## 22/10/2026 — Dọn template, phụ thuộc và mã cũ
+
+- Rà 44 HTML, 13 JavaScript và 9 CSS; bỏ 207 template không được dùng, 27 dialog rỗng, 149 lượt nạp script không cần và 36 lượt nạp CSS lịch thừa.
+- Bỏ màn hình khung giờ cũ khỏi controller; giữ chuyển hướng tương thích và lịch sân hiện tại.
+- Bỏ 28 selector CSS và 9 khai báo biến CSS không dùng; bỏ biến JS và nhánh lẫn role còn sót.
+- Chuyển khởi tạo dữ liệu cộng đồng sang store; gọi phần đánh giá trực tiếp từ Player thay vì ghi đè hàm ngầm.
+- Định dạng HTML/JS/CSS theo cấu hình hiện tại; SVG trang trí vẫn viết gọn trên một dòng.
+- Thêm danh sách phụ thuộc từng trang và cập nhật kiểm thử hồi quy. Xem [báo cáo dọn mã](docs/source-cleanup-report.md).
 
 ## 21/10/2026 — Đơn giản hoá cấu trúc và chia controller theo vai trò
 

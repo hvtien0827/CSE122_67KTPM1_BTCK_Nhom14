@@ -10,7 +10,7 @@
 | Form popup của trang | `<template data-fragment>` ở cuối chính HTML đó |
 | Nút, input, bảng, panel, biến màu sáng/tối | `css/common.css` |
 | Header, sidebar, menu mobile/tài khoản | `css/navigation.css` và `js/ui.js` |
-| Lịch chọn ngày dùng chung | `css/date-picker.css`, `js/date-picker.js`, hai template lịch cuối HTML |
+| Lịch chọn ngày dùng chung | `css/date-picker.css`, `js/date-picker.js`, hai template lịch ở 8 trang có input ngày (kể cả trong popup) |
 | Người chơi | `css/player.css`, `js/player.js` |
 | Chủ sân | `css/venue.css`, `js/venue.js` |
 | Điều phối CLB | `css/organizer.css`, `js/organizer.js` |
@@ -22,7 +22,7 @@
 | Ba tính năng hỗ trợ bằng thuật toán quy tắc | `js/ai.js` |
 | Định tuyến theo tên file, hồ sơ, cài đặt, thông báo, lỗi | `js/app.js` |
 
-Mỗi trang nạp ba CSS dùng chung trước CSS nhóm trang. Trang role không nạp controller của các role khác. Các trang hồ sơ/cài đặt dùng chung vẫn hỗ trợ bốn role.
+Mỗi trang nạp `common.css` và `navigation.css` trước CSS nhóm trang. Chỉ 8 trang có input ngày mới nạp `date-picker.css`, `date-picker.js` và hai template lịch. `auth.js` chỉ nạp trên 10 trang xác thực; `ai.js` chỉ nạp trên 3 trang AI. Controller role và `community.js` chỉ được nạp khi trang gọi tới chúng. Danh sách cụ thể nằm trong [page-dependencies.json](page-dependencies.json), được `tests/structure.cjs` kiểm tra. Các trang hồ sơ/cài đặt dùng chung vẫn hỗ trợ bốn role.
 
 ## HTML và dữ liệu
 
@@ -50,3 +50,7 @@ Không đổi `id`, `name`, `data-action` hoặc tên binding chỉ ở một b�
 Chạy `npm ci` nếu chưa cài thư viện, `npm start` để phục vụ web. Các lệnh kiểm tra có trong `package.json`; Playwright dùng hồ sơ trình duyệt thử nghiệm riêng.
 
 Các bản PR cũ ở ngoài thư mục này dựa trên `manage.js` cũ. Xem phần lưu ý trong [code-map.md](code-map.md) trước khi áp dụng; không chép lại file cũ đè lên cấu trúc mới.
+
+## Rà soát ngày 22/10/2026
+
+Xem [báo cáo dọn mã và kiểm thử](source-cleanup-report.md). Khởi tạo/nâng cấp dữ liệu cộng đồng đã chuyển sang `store.js`; `community.js` chỉ chứa chức năng giao diện/nghiệp vụ cộng đồng. Trang chi tiết sân/trận gọi hàm đánh giá trực tiếp trong `player.js`, không ghi đè hàm Player từ file khác. URL khung giờ cũ vẫn chuyển hướng về quản lý sân, không giữ bản CRUD khung giờ thứ hai.

@@ -87,7 +87,7 @@
 
 .or:before,
 .or:after {
-  content: "";
+  content: '';
   height: 1px;
   background: var(--line);
   flex: 1;
@@ -176,9 +176,6 @@
   .otp-inputs input {
     width: calc((100% - 35px) / 6);
     max-width: 49px;
-  }
-  .auth-footer .footer-legal {
-    gap: 12px;
   }
 }
 

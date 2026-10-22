@@ -86,7 +86,7 @@ design/               Kiểm kê và đối chiếu thiết kế tham khảo
 tests/                Server thử, kiểm thử tự động và ảnh kiểm tra
 ```
 
-Bố cục, tiêu đề và form được sửa trực tiếp trong từng file HTML; form popup nằm trong các thẻ `template` ở cuối trang. JavaScript xử lý dữ liệu, sự kiện, kiểm tra form và cập nhật các vùng dữ liệu như danh sách sân/trận, hàng bảng, lịch và kết quả AI. Mỗi trang nạp `common.css`, `navigation.css`, `date-picker.css` trước rồi CSS của nhóm trang. Đọc [hướng dẫn sửa HTML/CSS/JS](docs/frontend-structure.md) và [danh sách màn hình](docs/screen-list.md) để tìm đúng file/hàm. Dữ liệu người dùng được escape trước khi chèn vào HTML.
+Bố cục, tiêu đề và form được sửa trực tiếp trong từng file HTML; form popup nằm trong các thẻ `template` ở cuối trang. JavaScript xử lý dữ liệu, sự kiện, kiểm tra form và cập nhật các vùng dữ liệu như danh sách sân/trận, hàng bảng, lịch và kết quả AI. Mỗi trang nạp `common.css`, `navigation.css` trước rồi CSS của nhóm trang; `date-picker.css` chỉ nạp ở trang có input ngày (kể cả popup). Script xác thực, AI và controller chỉ nạp khi trang cần. Xem [phụ thuộc từng trang](docs/page-dependencies.json). Đọc [hướng dẫn sửa HTML/CSS/JS](docs/frontend-structure.md) và [danh sách màn hình](docs/screen-list.md) để tìm đúng file/hàm. Dữ liệu người dùng được escape trước khi chèn vào HTML.
 
 Kiểm tra cấu trúc frontend mới: khởi động server rồi chạy `npm run test:static`. Bài kiểm tra xác nhận bố cục có sẵn khi tắt JavaScript và thay đổi trong HTML không bị controller ghi đè. Máy chạy kiểm thử cần Playwright và trình duyệt; website không cần các thư viện này để sử dụng.
 
@@ -152,3 +152,5 @@ Kiểm tra phần này: `node tests/interface-polish.cjs`.
 ## Đọc code theo vai trò
 
 Bắt đầu từ [bản đồ code và hướng dẫn vấn đáp](docs/code-map.md). HTML chỉ giữ form popup liên quan, controller quản lý tách theo role; JavaScript cập nhật dữ liệu với tên binding rõ nghĩa. Đây vẫn là bản localStorage, chưa tích hợp JSON Server.
+
+Đã rà soát và dọn mã ngày 22/10/2026: [phạm vi thay đổi và kiểm thử](docs/source-cleanup-report.md).

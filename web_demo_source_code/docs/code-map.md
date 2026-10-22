@@ -21,7 +21,7 @@ Không cần đọc từ dòng đầu đến dòng cuối của toàn bộ proje
 
 | File | Trách nhiệm |
 |---|---|
-| `js/store.js` | Dữ liệu mẫu, localStorage, kiểm tra quyền và quy tắc nghiệp vụ. Hiện chưa có JSON Server. |
+| `js/store.js` | Dữ liệu mẫu, nâng cấp dữ liệu cộng đồng một lần, localStorage, kiểm tra quyền và quy tắc nghiệp vụ. Hiện chưa có JSON Server. |
 | `js/ui.js` | Thông báo, popup, nút, điều hướng và tiện ích giao diện. |
 | `js/views.js` | Điền dữ liệu vào các vị trí đã đánh dấu trong HTML; không tạo lại toàn bộ trang. |
 | `js/app.js` | Chọn hàm xử lý theo URL, kiểm tra đăng nhập/role; hồ sơ, cài đặt, thông báo, trang lỗi. |
@@ -82,7 +82,7 @@ Views.update('player-courtDetail', {
 
 ## CSS chia như thế nào?
 
-Mỗi trang nạp theo thứ tự: `common.css` → `navigation.css` → `date-picker.css` → CSS của nhóm trang.
+Mỗi trang nạp theo thứ tự: `common.css` → `navigation.css` → `date-picker.css` (chỉ khi có input ngày) → CSS của nhóm trang. Xem [danh sách phụ thuộc theo trang](page-dependencies.json) và [báo cáo dọn mã](source-cleanup-report.md).
 
 - `common.css`: biến màu sáng/tối, chữ, nút/input, panel/bảng và responsive dùng chung. File còn dài vì các thành phần này có mặt ở nhiều role, không tách bằng cách chép trùng.
 - `navigation.css`: header, sidebar, menu tài khoản, điều hướng mobile.
