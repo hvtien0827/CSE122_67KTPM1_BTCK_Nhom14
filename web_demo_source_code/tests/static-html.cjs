@@ -22,7 +22,7 @@ const cssFiles = [
 ];
 
 (async () => {
-  assert.equal(pages.length, 44);
+  assert.equal(pages.length, 43);
   assert.deepEqual(
     fs
       .readdirSync(path.join(root, 'css'))
@@ -119,7 +119,7 @@ const cssFiles = [
     assert.deepEqual(errors, []);
     await context.close();
     console.log(
-      'PASS: 44 static HTML pages, nine CSS files, no-JS layouts, persistent HTML edits, dynamic filters and escaped form values.'
+      'PASS: 43 static HTML pages, nine CSS files, no-JS layouts, persistent HTML edits, dynamic filters and escaped form values.'
     );
   } finally {
     await browser.close();

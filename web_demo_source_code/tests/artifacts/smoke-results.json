@@ -4,14 +4,14 @@
       "page": "403",
       "width": 1440,
       "overflow": false,
-      "title": "\n              Bạn chưa có quyền truy cập\n            ",
+      "title": "Bạn chưa có quyền truy cập",
       "error": false
     },
     {
       "page": "404",
       "width": 1440,
       "overflow": false,
-      "title": "\n              Không tìm thấy trang\n            ",
+      "title": "Không tìm thấy trang",
       "error": false
     },
     {
@@ -166,13 +166,6 @@
       "width": 1440,
       "overflow": false,
       "title": "Quản lý đặt sân",
-      "error": false
-    },
-    {
-      "page": "venue-no-show-risk",
-      "width": 1440,
-      "overflow": false,
-      "title": "Cảnh báo nguy cơ vắng mặt",
       "error": false
     },
     {
@@ -298,14 +291,14 @@
       "page": "403",
       "width": 390,
       "overflow": false,
-      "title": "\n              Bạn chưa có quyền truy cập\n            ",
+      "title": "Bạn chưa có quyền truy cập",
       "error": false
     },
     {
       "page": "404",
       "width": 390,
       "overflow": false,
-      "title": "\n              Không tìm thấy trang\n            ",
+      "title": "Không tìm thấy trang",
       "error": false
     },
     {
@@ -460,13 +453,6 @@
       "width": 390,
       "overflow": false,
       "title": "Quản lý đặt sân",
-      "error": false
-    },
-    {
-      "page": "venue-no-show-risk",
-      "width": 390,
-      "overflow": false,
-      "title": "Cảnh báo nguy cơ vắng mặt",
       "error": false
     },
     {

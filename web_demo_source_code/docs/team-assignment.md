@@ -5,14 +5,14 @@ Nhóm giữ Người chơi, Chủ sân, Điều phối CLB và Quản trị viê
 | Thành viên | Vai trò phụ trách | Công việc chính | Nhánh phụ trách |
 |---|---|---|---|
 | Thành viên 1 | Người chơi | Xây dựng giao diện và chức năng cho người chơi: tìm/đặt sân, hoạt động, tạo/tham gia trận, Skill Match, đánh giá sân và bạn chơi. | `feat/player` |
-| Thành viên 2 | Chủ sân | Xây dựng giao diện và chức năng cho chủ sân: quản lý sân và lịch khung giờ, xử lý đơn đặt, No-show Risk, doanh thu và đánh giá sân. | `feat/venue` |
+| Thành viên 2 | Chủ sân | Xây dựng giao diện và chức năng cho chủ sân: quản lý sân và lịch khung giờ, xử lý đơn đặt, doanh thu và đánh giá sân. | `feat/venue` |
 | Thành viên 3 | Điều phối CLB | Xây dựng giao diện và chức năng cho điều phối CLB: quản lý sự kiện, danh sách người chơi, đội hình và Team Balancer. | `feat/organizer` |
 | Thành viên 4 | Quản trị viên | Xây dựng giao diện và chức năng cho quản trị viên: quản lý môn thể thao, tài khoản, báo cáo hoạt động/CSV và xử lý báo cáo người chơi. | `feat/admin` |
 
 ## Phạm vi từng người
 
 - **Thành viên 1:** các trang người chơi, chi tiết sân/trận và đặt sân; phần Skill Match trong `js/ai.js`, xử lý người chơi trong `js/player.js` và đánh giá/báo cáo trong `js/community.js`.
-- **Thành viên 2:** các trang chủ sân; quản lý sân/đơn trong `js/venue.js`, No-show Risk trong `js/ai.js`, lịch sân/doanh thu/đánh giá trong `js/community.js`.
+- **Thành viên 2:** các trang chủ sân; quản lý sân/đơn trong `js/venue.js`, lịch sân/doanh thu/đánh giá trong `js/community.js`.
 - **Thành viên 3:** 4 trang `organizer-*.html`; xử lý sự kiện, roster trong `js/organizer.js` và Team Balancer trong `js/ai.js`.
 - **Thành viên 4:** các trang `admin-*.html`; xử lý môn/tài khoản/báo cáo hoạt động trong `js/admin.js` và báo cáo người chơi trong `js/community.js`.
 

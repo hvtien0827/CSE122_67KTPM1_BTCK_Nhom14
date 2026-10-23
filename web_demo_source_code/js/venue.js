@@ -70,7 +70,7 @@
         const s = CC.find('slots', b.slotId),
           c = CC.courtFor(s);
         return [
-          `<strong>${esc(CC.find('users', b.playerId)?.name)}</strong><div class="muted">${esc(c.name)}</div><div class="small">${esc(b.note)}</div>${b.risk ? `<span class="tag purple">${esc(b.risk.level)} · ${esc(b.risk.decision)}</span>` : ''}`,
+          `<strong>${esc(CC.find('users', b.playerId)?.name)}</strong><div class="muted">${esc(c.name)}</div><div class="small">${esc(b.note)}</div>`,
           `${day(s.date)}<br>${s.start} – ${s.end}`,
           money(s.price),
           badge(b.status),

@@ -1,5 +1,7 @@
 > Áp dụng vào repo thật ngày 21/10/2026: `D:\Tien\Workspace\Cac Mon Hoc\WEB\BTL\Repository\web_demo_source_code`. Đã chạy lại cả 12 bài kiểm tra ngay trên thư mục đích, tất cả đạt. Bản đích trước khi chuyển được sao lưu tại `D:\Tien\Workspace\Agents Projects\Codex\Bài tập lớn\repository_before_structure_20261021`. Không commit/push hoặc thay đổi nhánh. Ảnh và kết quả test cũ trong repo được khôi phục sau kiểm thử để tránh thay đổi ngoài phạm vi. Phần bên dưới mô tả đợt chỉnh cấu trúc gốc.
 
+> Cập nhật phạm vi 23/10/2026: trang phân tích vắng mặt của chủ sân đã gỡ. Hiện có 41 trang chức năng, 2 URL tương thích; AI còn Skill Match và Team Balancer. Các số liệu bên dưới ghi nhận đợt kiểm tra trước khi gỡ. Xem [phạm vi hiện hành](screen-list.md).
+
 # Tách cấu trúc theo vai trò — 21/10/2026
 
 ## Phạm vi

@@ -35,6 +35,6 @@
 
 ## Đồng bộ với bản hiện tại
 
-Bản đang dùng là web_demo_source_code, 4 vai trò, 42 trang chức năng và 2 URL chuyển hướng. Phân công: Người chơi — `feat/player`; Chủ sân — `feat/venue`; Điều phối CLB — `feat/organizer`; Quản trị viên — `feat/admin`; còn lại làm chung. Xem [phân công](team-assignment.md).
+Bản đang dùng là web_demo_source_code, 4 vai trò, 41 trang chức năng và 2 URL chuyển hướng. Phân công: Người chơi — `feat/player`; Chủ sân — `feat/venue`; Điều phối CLB — `feat/organizer`; Quản trị viên — `feat/admin`; còn lại làm chung. Xem [phân công](team-assignment.md).
 
 Sửa lỗi tương thích dữ liệu ngày 12/10/2026: tải lại sẽ khôi phục tài khoản/dữ liệu CLB bị ngừng hỗ trợ trong bản 28 trang, giữ khóa thủ công và dữ liệu hiện hành. Kết quả kiểm chứng mới tại [test-report.md](test-report.md).

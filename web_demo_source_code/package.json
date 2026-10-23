@@ -15,7 +15,8 @@
     "test:structure": "node tests/structure.cjs",
     "test:retired-court": "node tests/retired-court.cjs",
     "test:match-sport": "node tests/match-sport.cjs",
-    "test:icons": "node tests/bootstrap-icons.cjs"
+    "test:icons": "node tests/bootstrap-icons.cjs",
+    "test:venue-removal": "node tests/venue-removal.cjs"
   },
   "dependencies": {
     "playwright": "^1.64.0"

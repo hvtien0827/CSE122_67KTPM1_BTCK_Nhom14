@@ -1,6 +1,6 @@
 # CourtConnect
 
-Nguyên mẫu frontend CSE122 cho nhóm **4 sinh viên**. HTML, CSS, JavaScript thuần; 42 trang chức năng và 2 file HTML chuyển hướng tương thích, bốn vai trò, dữ liệu dùng chung qua localStorage và ba trải nghiệm AI mô phỏng.
+Nguyên mẫu frontend CSE122 cho nhóm **4 sinh viên**. HTML, CSS, JavaScript thuần; 41 trang chức năng và 2 file HTML chuyển hướng tương thích, bốn vai trò, dữ liệu dùng chung qua localStorage và hai trải nghiệm AI mô phỏng.
 
 ## Chạy website
 
@@ -45,7 +45,7 @@ Mỗi người phụ trách một vai trò: Thành viên 1 — Người chơi; T
 
 - Tài khoản: đăng ký, xác minh, sai/hết hạn mã, đăng nhập, ghi nhớ phiên, khôi phục/đổi mật khẩu, hồ sơ, thông báo, cài đặt.
 - Người chơi: tìm/lọc sân và trận; xem chi tiết; gửi/hủy đơn; tạo/sửa/hủy trận từ lịch sân đã duyệt; tham gia/rút trận; ghép trận và lưu gợi ý.
-- Chủ sân: tạo/sửa/xoá/lưu trữ sân, tải ảnh từ máy; lịch khung giờ ngay trong cửa sổ lịch sân; chặn slot trùng; duyệt/từ chối/hủy/hoàn thành đơn do người chơi gửi; No-show Risk, doanh thu và đánh giá sân.
+- Chủ sân: tạo/sửa/xoá/lưu trữ sân, tải ảnh từ máy; lịch khung giờ ngay trong cửa sổ lịch sân; chặn slot trùng; duyệt/từ chối/hủy/hoàn thành đơn do người chơi gửi; doanh thu và đánh giá sân.
 - CLB: tạo/sửa/xoá/lưu trữ/hoàn thành sự kiện có giờ bắt đầu–kết thúc; quản lý hồ sơ và danh sách; chia đội tự động hoặc thủ công; chỉnh và lưu/xóa đội hình.
 - Quản trị: tạo/sửa/vô hiệu hóa/kích hoạt tài khoản; quản lý môn; tạo/sửa/xoá/lưu trữ báo cáo hoạt động và tải CSV; xem xét báo cáo người chơi.
 - Người chơi đánh giá sân/bạn chơi sau khi hoàn thành, báo cáo người chơi; hồ sơ công khai có điện thoại tùy chọn và biểu tượng mạng xã hội. Trò chuyện đã gỡ; URL cũ chỉ chuyển hướng.
@@ -56,8 +56,7 @@ Mỗi người phụ trách một vai trò: Thành viên 1 — Người chơi; T
 2. Đổi sang Chủ sân: Quản lý đặt sân → Duyệt đơn đó.
 3. Đổi sang Người chơi: Tạo trận → chọn lịch sân đã duyệt → lưu. Dùng tài khoản `player4@courtconnect.demo` (cùng mật khẩu mẫu) để tham gia.
 4. Điều phối: Sự kiện → Danh sách → Đội hình → Đề xuất → chỉnh người → lưu.
-5. Chủ sân: Cảnh báo vắng mặt → chọn đơn → phân tích → điều chỉnh nhận định → lưu. Đơn không tự bị từ chối.
-6. Quản trị: Báo cáo → tạo báo cáo theo ngày → tải CSV.
+5. Quản trị: Báo cáo → tạo báo cáo theo ngày → tải CSV.
 
 Các sân mẫu tự bổ sung lịch trống cho 30 ngày tới khi mở website, giữ nguyên đơn cũ và lịch đã đóng. Không cần reset để tiếp tục đặt sân. Cài đặt → Khôi phục dữ liệu mẫu chỉ dùng khi muốn bắt đầu lại; thao tác này xoá thay đổi demo hiện tại sau xác nhận.
 
@@ -84,7 +83,7 @@ js/community.js       Lịch sân, doanh thu, đánh giá, báo cáo, hồ sơ c
 js/venue.js           Chủ sân
 js/organizer.js       Điều phối CLB
 js/admin.js           Quản trị viên
-js/ai.js              Ba thuật toán mô phỏng và giao diện điều khiển
+js/ai.js              Hai thuật toán mô phỏng và giao diện điều khiển
 js/app.js             Điều hướng, quyền frontend, các trang dùng chung
 assets/images/        Ảnh được trích từ PDF Figma nhóm cung cấp
 docs/                 Phạm vi, màn hình, phân công, kiểm thử, minh chứng

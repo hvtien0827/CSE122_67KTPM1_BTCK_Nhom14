@@ -1,5 +1,18 @@
 # Cập nhật kiểm thử dọn mã — 22/10/2026
 
+## Gỡ trang phân tích vắng mặt — kiểm tra 23/10/2026
+
+- Hiện có 41 trang chức năng, 2 URL chuyển hướng; trang đã gỡ trả HTTP 404, không còn liên kết menu hoặc route xử lý.
+- `venue-removal.cjs`: kiểm tra dữ liệu mới/cũ/legacy, dọn nhận định và thông báo, giữ đơn đặt/trạng thái và thống kê CLB; tải lại không phát sinh thay đổi; không ghi đè dữ liệu hỏng. Kiểm tra 32 lượt trang chủ sân/dùng chung ở desktop/mobile, sáng/tối và menu mobile đạt.
+- Smoke: 82 lượt trang/kích thước; theme và Bootstrap Icons: 164 lượt trang/kích thước/theme; không lỗi JavaScript hoặc tràn ngang toàn trang.
+- Tích hợp: 38 xác nhận; edge cases: 35; usability: 142; lịch: 83; interface: 88. Các bộ cấu trúc, HTML tĩnh, cộng đồng, hoạt động mobile, khôi phục bốn role, dọn sân cũ và chọn môn tạo trận đạt.
+- Skill Match và Team Balancer tiếp tục hoạt động; thống kê số lần vắng của người chơi CLB được giữ vì không thuộc trang bị gỡ.
+
+## Các đợt kiểm tra trước khi gỡ trang
+
+
+> Cập nhật phạm vi 23/10/2026: trang phân tích vắng mặt của chủ sân đã gỡ. Hiện có 41 trang chức năng, 2 URL tương thích; AI còn Skill Match và Team Balancer. Các số liệu bên dưới ghi nhận đợt kiểm tra trước khi gỡ. Xem [phạm vi hiện hành](screen-list.md).
+
 Bản sau khi dọn đã qua **12/12 bộ kiểm tra**, 98 cặp ảnh trước–sau khớp và dữ liệu khởi tạo không đổi. Xem [báo cáo dọn mã](source-cleanup-report.md) và [phụ thuộc theo trang](page-dependencies.json). Các mục bên dưới là kết quả của những phiên trước.
 
 # Cập nhật kiểm thử cấu trúc — 21/10/2026

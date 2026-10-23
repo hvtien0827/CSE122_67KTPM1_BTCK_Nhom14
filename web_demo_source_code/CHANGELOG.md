@@ -4,6 +4,13 @@ Ngày cập nhật tài liệu: **23/10/2026**. Áp dụng cho thư mục `web_d
 
 Nhật ký tổng hợp từ các thay đổi đã xác nhận trong cuộc trao đổi và mã nguồn/tài liệu hiện có. Đây không phải bản trích xuất lịch sử Git. Những cải tiến cũ không xác định được ngày thực hiện được ghi theo nhóm chức năng, không gán ngày hay người thực hiện. Bản thiết kế lại đã bị loại bỏ không thuộc nhật ký này.
 
+## 23/10/2026 — Gỡ trang phân tích vắng mặt của chủ sân
+
+- Xóa trang cảnh báo, route, menu desktop/mobile, liên kết trong quản lý đơn và thuật toán riêng.
+- Bỏ dữ liệu mẫu và nhãn nhận định trên đơn; dọn metadata/lịch sử/thông báo cũ khi tải localStorage, giữ đơn đặt và dữ liệu nghiệp vụ khác.
+- Chủ sân còn quản lý sân, doanh thu, đánh giá và đơn đặt. Hai tính năng AI còn lại là Skill Match và Team Balancer.
+- Cập nhật danh mục trang, phân công và kiểm thử. Ghi chú tính năng ở các mục cũ là lịch sử trước khi gỡ.
+
 ## 23/10/2026 — Chuyển biểu tượng sang Bootstrap Icons
 
 - Thay SVG và ký tự biểu tượng trong 44 HTML, helper UI, theme, lịch và đánh giá bằng Bootstrap Icons 1.13.2 qua CDN.

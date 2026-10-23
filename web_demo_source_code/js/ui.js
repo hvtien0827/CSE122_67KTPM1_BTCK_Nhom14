@@ -180,7 +180,6 @@
       ['venue-revenue.html', 'Thống kê doanh thu', 'chart'],
       ['venue-reviews.html', 'Đánh giá sân', 'users'],
       ['venue-booking-management.html', 'Quản lý đặt sân', 'calendar'],
-      ['venue-no-show-risk.html', 'Cảnh báo vắng mặt', 'shield'],
     ],
     organizer: [
       ['organizer-event-management.html', 'Sự kiện CLB', 'calendar'],

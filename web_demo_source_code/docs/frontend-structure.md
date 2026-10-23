@@ -1,6 +1,6 @@
 # Cấu trúc frontend sau khi chia theo role
 
-Đọc [bản đồ code và hướng dẫn vấn đáp](code-map.md) để lần một thao tác từ HTML tới JS và dữ liệu. Website vẫn có 42 trang chức năng và 2 URL tương thích, không cần build và chưa tích hợp JSON Server.
+Đọc [bản đồ code và hướng dẫn vấn đáp](code-map.md) để lần một thao tác từ HTML tới JS và dữ liệu. Website vẫn có 41 trang chức năng và 2 URL tương thích, không cần build và chưa tích hợp JSON Server.
 
 ## Sửa ở đâu?
 
@@ -19,10 +19,10 @@
 | Trang chủ | `css/home.css`, `Player.home()` trong `js/player.js` |
 | Quy tắc nghiệp vụ, dữ liệu, localStorage | `js/store.js` |
 | Đánh giá/báo cáo, hồ sơ công khai, lịch sân/doanh thu | `js/community.js` |
-| Ba tính năng hỗ trợ bằng thuật toán quy tắc | `js/ai.js` |
+| Hai tính năng hỗ trợ bằng thuật toán quy tắc | `js/ai.js` |
 | Định tuyến theo tên file, hồ sơ, cài đặt, thông báo, lỗi | `js/app.js` |
 
-Mỗi trang nạp `common.css` và `navigation.css` trước CSS nhóm trang. Chỉ 8 trang có input ngày mới nạp `date-picker.css`, `date-picker.js` và hai template lịch. `auth.js` chỉ nạp trên 10 trang xác thực; `ai.js` chỉ nạp trên 3 trang AI. Controller role và `community.js` chỉ được nạp khi trang gọi tới chúng. Danh sách cụ thể nằm trong [page-dependencies.json](page-dependencies.json), được `tests/structure.cjs` kiểm tra. Các trang hồ sơ/cài đặt dùng chung vẫn hỗ trợ bốn role.
+Mỗi trang nạp `common.css` và `navigation.css` trước CSS nhóm trang. Chỉ 8 trang có input ngày mới nạp `date-picker.css`, `date-picker.js` và hai template lịch. `auth.js` chỉ nạp trên 10 trang xác thực; `ai.js` chỉ nạp trên 2 trang AI. Controller role và `community.js` chỉ được nạp khi trang gọi tới chúng. Danh sách cụ thể nằm trong [page-dependencies.json](page-dependencies.json), được `tests/structure.cjs` kiểm tra. Các trang hồ sơ/cài đặt dùng chung vẫn hỗ trợ bốn role.
 
 ## HTML và dữ liệu
 

@@ -14,8 +14,6 @@
     option,
     sports,
     levels,
-    select,
-    textarea,
     empty,
     toast,
     confirm,
@@ -85,19 +83,6 @@
       sums[team] += p.levels[event.sportId];
     });
     return teams;
-  }
-  function riskFor(playerId) {
-    const p = CC.find('players', playerId);
-    if (!p || p.played < 3)
-      throw Error(
-        'Không đủ dữ liệu: cần lịch sử ít nhất 3 trận. Bạn vẫn có thể duyệt đơn thủ công.'
-      );
-    const ratio = p.noShows / p.played;
-    return {
-      level: ratio >= 0.3 ? 'Cao' : ratio >= 0.1 ? 'Trung bình' : 'Thấp',
-      ratio,
-      reason: `Dữ liệu mẫu: vắng ${p.noShows}/${p.played} trận (${Math.round(ratio * 100)}%). Quy tắc: từ 30% là cao, từ 10% là trung bình, dưới 10% là thấp. Đây là chỉ báo mô phỏng, không phải dự đoán chắc chắn.`,
-    };
   }
   function history(type, input, result, status) {
     CC.transaction(() =>
@@ -364,109 +349,10 @@
       }
     };
   }
-  function risk() {
-    const bookings = CC.db.bookings.filter(
-      (b) =>
-        ['pending', 'approved'].includes(b.status) &&
-        CC.courtFor(CC.find('slots', b.slotId))?.ownerId === CC.me().id
-    );
-    let result = null,
-      current = null;
-    Views.update('ai-risk', {
-      bookingOptions: () =>
-        bookings
-          .map((b) => {
-            const s = CC.find('slots', b.slotId);
-            return option(
-              b.id,
-              `${CC.find('users', b.playerId)?.name} · ${day(s.date)} ${s.start} · ${CC.courtFor(s).name}`
-            );
-          })
-          .join('') || option('', 'Không có đơn chờ xử lý'),
-      submitDisabled: () => (bookings.length ? '' : 'disabled'),
-    });
-    $('#risk-form').onsubmit = async (e) => {
-      e.preventDefault();
-      const form = e.currentTarget;
-      current = CC.find('bookings', new FormData(form).get('bookingId'));
-      $('#risk-submit').disabled = true;
-      $('#risk-result').innerHTML = loading();
-      await wait();
-      try {
-        result = riskFor(current.playerId);
-        $('#risk-result').innerHTML =
-          `<form class="panel" id="risk-save"><div class="row mb"><h2>Mức cảnh báo: ${result.level}</h2><span class="tag ${result.level === 'Cao' ? 'pending' : ''}">Dữ liệu mô phỏng</span></div><p class="muted">${esc(result.reason)}</p>${select('Điều chỉnh mức nhận định', 'riskLevel', ['Thấp', 'Trung bình', 'Cao', 'Chưa chắc chắn'].map((x) => option(x, x, result.level)).join(''))}${select('Hành động do bạn chọn', 'decision', ['Yêu cầu xác nhận lại', 'Tiếp tục xử lý thông thường', 'Theo dõi thêm'].map((x) => option(x, x)).join(''))}${textarea('Giải thích / Ghi chú điều chỉnh', 'note', result.level === 'Cao' ? 'Liên hệ người chơi để xác nhận lại lịch.' : 'Giữ quyền quyết định cho chủ sân.')}<div class="actions">${btn('Chấp nhận đề xuất', 'accept-risk', 'secondary')}<button class="btn">Lưu nhận định</button>${btn('Tạo lại', 'again-risk', 'secondary')}${btn('Từ chối', 'reject-risk', 'ghost')}</div><p class="small muted mt">Bạn có thể sửa mức cảnh báo và hành động trước khi lưu. Lưu nhận định không tự duyệt hoặc từ chối đơn.</p></form>`;
-        $('[data-action=accept-risk]').onclick = () => {
-          $('[name=decision]').value =
-            result.level === 'Cao' ? 'Yêu cầu xác nhận lại' : 'Tiếp tục xử lý thông thường';
-          toast('Đã chọn hành động đề xuất. Bấm Lưu để áp dụng.');
-        };
-        $('[data-action=again-risk]').onclick = () => $('#risk-form').requestSubmit();
-        $('[data-action=reject-risk]').onclick = () => {
-          history(
-            'risk',
-            {
-              bookingId: current.id,
-            },
-            result,
-            'rejected'
-          );
-          $('#risk-result').innerHTML = empty(
-            'Đã bỏ qua cảnh báo',
-            'Bạn có thể xử lý đơn bằng đánh giá của mình.',
-            link('Quản lý đặt sân', 'venue-booking-management.html', 'secondary')
-          );
-        };
-        $('#risk-save').onsubmit = (ev) => {
-          ev.preventDefault();
-          try {
-            CC.requireRole('venue');
-            const data = Object.fromEntries(new FormData(ev.currentTarget));
-            if (!['pending', 'approved'].includes(current.status))
-              throw Error('Đơn đã thay đổi trạng thái. Vui lòng chọn lại.');
-            CC.transaction(() => {
-              current.risk = {
-                level: data.riskLevel,
-                decision: data.decision,
-                note: data.note,
-                reason: result.reason,
-                createdAt: new Date().toISOString(),
-              };
-              if (data.decision === 'Yêu cầu xác nhận lại')
-                CC.notify(
-                  current.playerId,
-                  'Chủ sân đề nghị bạn xác nhận lại lịch. Vui lòng kiểm tra đơn đặt.',
-                  'player-my-sports.html'
-                );
-            });
-            history(
-              'risk',
-              {
-                bookingId: current.id,
-              },
-              current.risk,
-              'saved'
-            );
-            toast('Đã lưu nhận định vào đơn đặt sân.');
-          } catch (err) {
-            toast(err.message, true);
-          }
-        };
-      } catch (err) {
-        $('#risk-result').innerHTML =
-          `<div class="notice warning" role="alert">${esc(err.message)}</div>${btn('Thử lại', 'retry-risk', 'secondary')} ${link('Dùng thủ công', 'venue-booking-management.html', 'ghost')}`;
-        $('[data-action=retry-risk]').onclick = () => $('#risk-form').requestSubmit();
-      } finally {
-        $('#risk-submit').disabled = false;
-      }
-    };
-  }
   window.AI = {
     skill,
     teams,
-    risk,
     skillSuggestions,
     balanceTeams,
-    riskFor,
   };
 })();

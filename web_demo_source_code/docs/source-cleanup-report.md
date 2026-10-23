@@ -1,5 +1,7 @@
 # Rà soát và dọn mã nguồn — 22/10/2026
 
+> Cập nhật phạm vi 23/10/2026: trang phân tích vắng mặt của chủ sân đã gỡ. Hiện có 41 trang chức năng, 2 URL tương thích; AI còn Skill Match và Team Balancer. Các số liệu bên dưới ghi nhận đợt kiểm tra trước khi gỡ. Xem [phạm vi hiện hành](screen-list.md).
+
 ## Phạm vi và bản gốc đối chiếu
 
 Thực hiện trực tiếp trong `Repository/web_demo_source_code`, nhánh hiện tại `refactor/role-structure`. Rà 44 HTML, 13 file JavaScript và 9 stylesheet CSS; kiểm tra liên kết tài nguyên, template, binding, phụ thuộc và tài liệu hướng dẫn sửa code. Không chỉnh thư viện trong `node_modules`, bản thiết kế hoặc tài liệu yêu cầu gốc của thầy.

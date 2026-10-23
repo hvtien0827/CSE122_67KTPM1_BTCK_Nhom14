@@ -1,6 +1,6 @@
 # Checklist OBS theo từng màn hình
 
-Số video căn cứ bảng kiểm kê cuối cùng đã được giảng viên duyệt. Bản hiện tại có 42 trang chức năng và 2 file chuyển hướng; số này không xác nhận giảng viên đã duyệt các giao diện. Nhóm cần chốt cách tính trang auth, trạng thái và modal.
+Số video căn cứ bảng kiểm kê cuối cùng đã được giảng viên duyệt. Bản hiện tại có 41 trang chức năng và 2 file chuyển hướng; số này không xác nhận giảng viên đã duyệt các giao diện. Nhóm cần chốt cách tính trang auth, trạng thái và modal.
 
 Mỗi video cần:
 - [ ] Có mặt sinh viên phụ trách.

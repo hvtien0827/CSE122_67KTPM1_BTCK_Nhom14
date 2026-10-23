@@ -1,6 +1,6 @@
 # Bảng kiểm kê màn hình hiện hành
 
-**42 trang chức năng, 4 vai trò; 44 file HTML khi tính thêm 2 URL chuyển hướng.** Danh mục đối chiếu theo [pages.json](pages.json) và mã nguồn hiện tại. Các trang dùng chung do cả nhóm phối hợp; mỗi người phụ trách một vai trò theo [phân công](team-assignment.md).
+**41 trang chức năng, 4 vai trò; 43 file HTML khi tính thêm 2 URL chuyển hướng.** Danh mục đối chiếu theo [pages.json](pages.json) và mã nguồn hiện tại. Các trang dùng chung do cả nhóm phối hợp; mỗi người phụ trách một vai trò theo [phân công](team-assignment.md).
 
 Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã hoàn tất. Nhóm bổ sung Figma và OBS/kiểm tra thực tế theo đề bài. CRUD dùng dialog trên trang quản lý; lỗi/tải là trạng thái của trang.
 
@@ -28,7 +28,6 @@ Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã 
 | UI-20 | Người chơi | Ghép trận thông minh | Ghép trận thông minh | `player-skill-match.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | Skill Match | Thành viên 1 / `feat/player` | AI.skill |
 | UI-21 | Chủ sân | Quản lý sân | Quản lý sân | `venue-court-management.html` | C/R/U; lịch khung giờ trong cửa sổ lịch sân | — | Thành viên 2 / `feat/venue` | Venue.courts |
 | UI-22 | Chủ sân | Quản lý đặt sân | Quản lý đặt sân | `venue-booking-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 2 / `feat/venue` | Venue.bookings |
-| UI-23 | Chủ sân | Cảnh báo vắng mặt | Cảnh báo vắng mặt | `venue-no-show-risk.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | No-show Risk | Thành viên 2 / `feat/venue` | AI.risk |
 | UI-24 | Điều phối CLB | Sự kiện CLB | Sự kiện CLB | `organizer-event-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Organizer.events |
 | UI-25 | Điều phối CLB | Chi tiết sự kiện | Chi tiết sự kiện | `organizer-event-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 3 / `feat/organizer` | Organizer.eventDetail |
 | UI-26 | Điều phối CLB | Danh sách người chơi | Danh sách người chơi | `organizer-player-roster.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Organizer.roster |
@@ -55,3 +54,5 @@ Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã 
 - `venue-slot-management.html` → `venue-court-management.html`: quản lý khung giờ trong lịch sân.
 
 Hai file này không tính là trang chức năng. Các phần bổ sung doanh thu, đánh giá sân, hồ sơ công khai và báo cáo người chơi đã được liệt kê trong bảng hiện hành.
+
+Mã UI giữ ổn định theo danh mục cũ; khoảng trống UI-23 là trang đã gỡ, không phải trang bị thiếu.

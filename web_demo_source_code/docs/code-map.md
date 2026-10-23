@@ -11,7 +11,7 @@ Không cần đọc từ dòng đầu đến dòng cuối của toàn bộ proje
 | Người | HTML và CSS | JS chính | Phần dùng chung cần đọc khi có liên quan |
 |---|---|---|---|
 | Tiến — Người chơi | `player-*.html`, `court-detail.html`, `booking.html`, `match-detail.html`; `css/player.css` | `js/player.js` | Skill Match trong `js/ai.js`; đánh giá trong `js/community.js`; đặt sân/trận trong `js/store.js` |
-| Dũng — Chủ sân | `venue-*.html`; `css/venue.css` | `js/venue.js` | Lịch sân, doanh thu, đánh giá trong `js/community.js`; No-show Risk trong `js/ai.js`; dữ liệu sân/đặt sân trong `js/store.js` |
+| Dũng — Chủ sân | `venue-*.html`; `css/venue.css` | `js/venue.js` | Lịch sân, doanh thu, đánh giá trong `js/community.js`; dữ liệu sân/đặt sân trong `js/store.js` |
 | Thư — CLB | `organizer-*.html`; `css/organizer.css` | `js/organizer.js` | Team Balancer trong `js/ai.js`; sự kiện/danh sách/đội hình trong `js/store.js` |
 | Trang — Admin | `admin-*.html`; `css/admin.css` | `js/admin.js` | Báo cáo người chơi trong `js/community.js`; tài khoản/môn/báo cáo trong `js/store.js` |
 
@@ -28,7 +28,7 @@ Không cần đọc từ dòng đầu đến dòng cuối của toàn bộ proje
 | `js/theme.js` | Đọc/lưu chế độ sáng tối. |
 | `js/date-picker.js` | Chọn ngày, bàn phím, min/max. |
 | `js/auth.js` | Luồng đăng nhập, đăng ký, xác minh, khôi phục mô phỏng. |
-| `js/ai.js` | Ba thuật toán quy tắc và màn hình hỗ trợ; không gọi mô hình AI. |
+| `js/ai.js` | Hai thuật toán quy tắc và màn hình hỗ trợ; không gọi mô hình AI. |
 | `js/community.js` | Chức năng xuyên role: đánh giá/báo cáo, hồ sơ công khai, lịch/doanh thu. |
 
 ## Cách đọc một bộ điều khiển role
