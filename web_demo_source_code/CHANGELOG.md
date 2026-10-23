@@ -4,6 +4,13 @@ Ngày cập nhật tài liệu: **23/10/2026**. Áp dụng cho thư mục `web_d
 
 Nhật ký tổng hợp từ các thay đổi đã xác nhận trong cuộc trao đổi và mã nguồn/tài liệu hiện có. Đây không phải bản trích xuất lịch sử Git. Những cải tiến cũ không xác định được ngày thực hiện được ghi theo nhóm chức năng, không gán ngày hay người thực hiện. Bản thiết kế lại đã bị loại bỏ không thuộc nhật ký này.
 
+## 23/10/2026 — Chuyển biểu tượng sang Bootstrap Icons
+
+- Thay SVG và ký tự biểu tượng trong 44 HTML, helper UI, theme, lịch và đánh giá bằng Bootstrap Icons 1.13.2 qua CDN.
+- Giữ nhãn truy cập, thao tác menu/lịch và chế độ sáng/tối; cập nhật selector CSS theo phần tử icon mới.
+- Favicon chuyển sang PNG, không còn tài nguyên SVG trong mã nguồn sản phẩm. Zalo dùng icon hội thoại có nhãn rõ ràng.
+- Xem [cách dùng và kiểm tra](docs/bootstrap-icons.md). Các ghi chú SVG ở các đợt cũ bên dưới mô tả trạng thái lịch sử.
+
 ## 23/10/2026 — Loại bỏ một sân mẫu khỏi dữ liệu ứng dụng
 
 - Dữ liệu mẫu còn 3 sân; giữ danh mục môn thể thao.

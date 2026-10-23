@@ -26,7 +26,7 @@ const artifactDir = 'C:\\Users\\Tien\\.gemini\\antigravity\\brain\\28331c61-32b5
     const hasAccountIcon = !!summary.querySelector('.account-menu-icon');
     const headerNav = document.querySelector('.header-nav');
     // check if any button with 3 bars exists inside header-nav
-    const hamburgerInHeaderNav = Array.from(headerNav.querySelectorAll('button')).some(b => b.textContent.includes('☰'));
+    const hamburgerInHeaderNav = Array.from(headerNav.querySelectorAll('button')).some(b => !!b.querySelector('.bi-list'));
     return { hasAccountIcon, hamburgerInHeaderNav };
   });
   assert.equal(req1.hasAccountIcon, false, 'No account-menu-icon next to user name');
