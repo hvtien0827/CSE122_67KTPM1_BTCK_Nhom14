@@ -165,7 +165,7 @@
       .map(([k, v]) => `${esc(UI.sport(k))}: ${UI.level(v)}`)
       .join(
         ' · '
-      )}</p><div class="small">★ ${s.rating ? `${s.rating}/5 · ${s.count} đánh giá` : 'Chưa có đánh giá'}<br>Hủy / rút trận: ${pct(s.cancelled)}<br>Ghép đủ người: ${pct(s.success)}</div>${can ? `<div class="actions mt">${btn('Đánh giá', 'review-opponent', 'secondary small', `data-id="${esc(match.id)}" data-target="${esc(id)}"`)}${btn('Báo cáo', 'report-player', 'ghost small', `data-id="${esc(match.id)}" data-target="${esc(id)}"`)}</div>` : ''}</article>`;
+      )}</p><div class="small">${UI.icon('star')} ${s.rating ? `${s.rating}/5 · ${s.count} đánh giá` : 'Chưa có đánh giá'}<br>Hủy / rút trận: ${pct(s.cancelled)}<br>Ghép đủ người: ${pct(s.success)}</div>${can ? `<div class="actions mt">${btn('Đánh giá', 'review-opponent', 'secondary small', `data-id="${esc(match.id)}" data-target="${esc(id)}"`)}${btn('Báo cáo', 'report-player', 'ghost small', `data-id="${esc(match.id)}" data-target="${esc(id)}"`)}</div>` : ''}</article>`;
   }
   const explanation =
     '<p class="small muted">Tỉ lệ tính trên số trận đã tham gia (kể cả đã rút). Hủy/rút chỉ tính thao tác của người đó; ghép thành công là trận từng đủ người, không phải dự đoán thắng. Dữ liệu lịch sử trong bản demo.</p>';
@@ -183,7 +183,7 @@
           .reverse()
           .map(
             (r) =>
-              `<article class="person-card"><a href="profile-public.html?id=${esc(r.authorId)}">${esc(CC.find('users', r.authorId)?.name || 'Thành viên')}</a> <strong class="rating-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)} · ${r.stars}/5</strong><p class="small muted">${new Date(r.createdAt).toLocaleDateString('vi-VN')}</p><div class="actions">${r.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div><p class="review-comment">${esc(r.comment)}</p></article>`
+              `<article class="person-card"><a href="profile-public.html?id=${esc(r.authorId)}">${esc(CC.find('users', r.authorId)?.name || 'Thành viên')}</a> <strong class="rating-stars" aria-label="${r.stars} trên 5 sao">${UI.icon('star').repeat(r.stars)}${UI.icon('starEmpty').repeat(5 - r.stars)} · ${r.stars}/5</strong><p class="small muted">${new Date(r.createdAt).toLocaleDateString('vi-VN')}</p><div class="actions">${r.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div><p class="review-comment">${esc(r.comment)}</p></article>`
           )
           .join('')
       : empty('Chưa có đánh giá', 'Đánh giá sẽ xuất hiện sau khi người chơi hoàn thành hoạt động.');
@@ -272,10 +272,12 @@
     const daily = slots
       .filter((s) => s.date === date)
       .sort((a, b) => a.start.localeCompare(b.start));
-    agenda.innerHTML = `<h3>${day(date)}</h3><p class="small muted">Chọn ngày ở trên để xem lịch. Khoảng giờ không được liệt kê là chưa mở bán.</p>${daily.length ? daily.map((s) => `<button type="button" class="agenda-slot ${status(s)}" data-action="calendar-slot" data-id="${esc(s.id)}"><span><strong>${s.start} – ${s.end}</strong><small>${money(s.price)}</small></span><span>${labels[status(s)]} →</span></button>`).join('') : '<div class="notice">Chưa mở khung giờ trong ngày này.</div>'}`;
+    agenda.innerHTML = `<h3>${day(date)}</h3><p class="small muted">Chọn ngày ở trên để xem lịch. Khoảng giờ không được liệt kê là chưa mở bán.</p>${daily.length ? daily.map((s) => `<button type="button" class="agenda-slot ${status(s)}" data-action="calendar-slot" data-id="${esc(s.id)}"><span><strong>${s.start} – ${s.end}</strong><small>${money(s.price)}</small></span><span>${labels[status(s)]} ${UI.icon('arrowRight')}</span></button>`).join('') : '<div class="notice">Chưa mở khung giờ trong ngày này.</div>'}`;
     $('.dialog-body', dialog).append(agenda);
-    $('[data-action=calendar-prev]', dialog).textContent = mobile ? '← Ngày trước' : '← 7 ngày';
-    $('[data-action=calendar-next]', dialog).textContent = mobile ? 'Ngày sau →' : '7 ngày →';
+    $('[data-action=calendar-prev]', dialog).innerHTML =
+      UI.icon('arrowLeft') + (mobile ? ' Ngày trước' : ' 7 ngày');
+    $('[data-action=calendar-next]', dialog).innerHTML =
+      (mobile ? 'Ngày sau ' : '7 ngày ') + UI.icon('arrowRight');
     $('[name=calendar-date]', dialog).onchange = (e) => calendar(id, e.target.value);
     const shift = (n) => {
       base.setDate(base.getDate() + n);
@@ -451,17 +453,13 @@
     }
     return result;
   }
-  // Inline vector marks stay crisp in both themes; only saved, valid links appear.
-  const socialMarks = {
-    facebook:
-      '<path fill="currentColor" d="M14 22v-9h3l.5-4H14V7c0-1 .3-2 2-2h2V1.5C17 1.2 16 1 15 1c-3 0-5 2-5 5v3H7v4h3v9z"/>',
-    instagram:
-      '<g fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></g><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>',
-    tiktok:
-      '<path fill="currentColor" d="M14 2h3c.4 2.4 1.8 4 4 4.4v3.2c-1.6 0-3-.5-4-1.3V16a6 6 0 1 1-6-6v3.3a2.8 2.8 0 1 0 3 2.7z"/>',
-    youtube:
-      '<rect x="2" y="5" width="20" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m10 8 6 4-6 4z" fill="currentColor"/>',
-    zalo: '<path d="M4 3h16v13a3 3 0 0 1-3 3H9l-5 3V6a3 3 0 0 1 3-3" fill="none" stroke="currentColor" stroke-width="1.6"/><text x="12" y="14" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="currentColor">Zalo</text>',
+  // Bootstrap Icons không có logo Zalo; dùng biểu tượng hội thoại với nhãn Zalo.
+  const socialIconsByNetwork = {
+    facebook: 'facebook',
+    instagram: 'instagram',
+    tiktok: 'tiktok',
+    youtube: 'youtube',
+    zalo: 'chat-dots',
   };
   function socialIcons(u) {
     const links = Object.entries(u.socialLinks || {})
@@ -477,7 +475,7 @@
         } catch {
           return '';
         }
-        return `<a class="social-icon social-${k}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="${networks[k][0]} của ${esc(u.name)} (mở tab mới)" title="${networks[k][0]}"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">${socialMarks[k]}</svg></a>`;
+        return `<a class="social-icon social-${k}" href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="${networks[k][0]} của ${esc(u.name)} (mở tab mới)" title="${networks[k][0]}"><i class="bi bi-${socialIconsByNetwork[k]}" aria-hidden="true"></i></a>`;
       })
       .join('');
     return links

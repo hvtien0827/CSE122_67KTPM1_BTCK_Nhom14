@@ -203,7 +203,7 @@
   box-shadow: var(--focus-ring);
 }
 
-.date-picker > summary svg {
+.date-picker > summary .bi {
   color: var(--accent);
   flex-shrink: 0;
 }

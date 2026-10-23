@@ -151,7 +151,8 @@
   font-weight: 700;
 }
 
-.sidebar a:not(.btn) svg {
+.sidebar a:not(.btn) .bi {
+  font-size: 19px;
   width: 19px;
   height: 19px;
   flex-shrink: 0;
@@ -346,7 +347,7 @@
   border-color: var(--hover-border);
 }
 
-.account-menu-item svg {
+.account-menu-item .bi {
   flex-shrink: 0;
   color: var(--muted);
 }
@@ -364,7 +365,7 @@
 
 @media (min-width: 761px) {
   /* Desktop chỉ cần nút mở sidebar tại trang chủ của player. */
-  body:not([data-layout="home"]) .sidebar-toggle-btn {
+  body:not([data-layout='home']) .sidebar-toggle-btn {
     display: none;
   }
 

@@ -31,7 +31,7 @@ for (const file of fs.readdirSync(root).filter((name) => name.endsWith('.html'))
     `${file}: script`
   );
   assert.deepEqual(
-    [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((m) => m[1]),
+    [...html.matchAll(/<link\s+rel="stylesheet"\s+href="([^"]+)"/g)].map((m) => m[1]),
     expected.styles,
     `${file}: CSS`
   );

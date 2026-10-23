@@ -14,6 +14,12 @@ node tests/serve.cjs
 
 Mở **http://127.0.0.1:4173**. Giữ nguyên cùng địa chỉ/cổng khi chuyển vai trò. Không cần npm install để chạy website. Có thể mở trực tiếp `index.html`, nhưng nên dùng HTTP để localStorage và việc chuyển trang nhất quán giữa các trình duyệt.
 
+## Biểu tượng
+
+Website dùng **Bootstrap Icons 1.13.2 qua CDN jsDelivr**, cần Internet để tải CSS và font biểu tượng. Mỗi HTML nạp stylesheet trước `css/common.css`; không cần cài npm và không nạp framework Bootstrap.
+
+Icon tĩnh dùng `<i class="bi bi-search" aria-hidden="true"></i>`. Icon sinh bởi JS dùng `UI.icon('search')`; bảng tên nằm trong `js/ui.js`. Giữ nhãn chữ/`aria-label` ở nút và liên kết. Logo Zalo không có trong thư viện nên dùng `bi-chat-dots` với nhãn Zalo. Favicon chữ C dùng PNG. Xem [hướng dẫn icon](docs/bootstrap-icons.md).
+
 ## Giao diện sáng / tối
 
 Nút mặt trăng / mặt trời ở thanh điều hướng đổi chế độ sáng/tối trên mọi trang, kể cả trang tài khoản. Lựa chọn lưu riêng trong localStorage (`cc.theme`), được giữ khi chuyển trang, tải lại và đồng bộ giữa các tab. Nền tối giữ màu xanh chính của nút; chữ xanh trên nền tối dùng sắc xanh sáng hơn để dễ đọc.
@@ -145,7 +151,7 @@ Xem [báo cáo kiểm thử hiện tại](docs/test-report.md).
 
 ### Hoàn thiện giao diện thẻ sân và tài khoản
 
-Lịch chọn ngày đặt sân dùng tiếng Việt và theo chế độ sáng/tối; có chuyển tháng, nút Hôm nay và điều hướng bằng phím mũi tên. Tab tài khoản hiện tại được tô nền. Menu ảnh đại diện dùng icon ba gạch; các mục có cùng kiểu hiển thị. Hồ sơ hiển thị icon Facebook, Instagram, TikTok, YouTube và Zalo khi đã lưu liên kết tương ứng. Thẻ sân và bảng quản lý sân được căn lại chữ, giá và khoảng cách nút.
+Lịch chọn ngày đặt sân dùng tiếng Việt và theo chế độ sáng/tối; có chuyển tháng, nút Hôm nay và điều hướng bằng phím mũi tên. Tab tài khoản hiện tại được tô nền. Menu ảnh đại diện mở bằng tên/ảnh người dùng; các mục có cùng kiểu hiển thị. Hồ sơ hiển thị icon Facebook, Instagram, TikTok, YouTube và Zalo khi đã lưu liên kết tương ứng. Thẻ sân và bảng quản lý sân được căn lại chữ, giá và khoảng cách nút.
 
 Kiểm tra phần này: `node tests/interface-polish.cjs`.
 

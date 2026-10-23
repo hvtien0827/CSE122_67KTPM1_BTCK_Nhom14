@@ -155,7 +155,7 @@
       amenities: () =>
         (c.amenities || 'Gửi xe, Nước uống')
           .split(',')
-          .map((x) => `<span class="tag">✓ ${esc(x.trim())}</span>`)
+          .map((x) => `<span class="tag">${UI.icon('check')} ${esc(x.trim())}</span>`)
           .join(''),
     });
     $('#court-review-list').innerHTML = Community.reviewList(
@@ -323,15 +323,18 @@
     const initialSport =
       CC.courtFor(CC.find('slots', m?.slotId))?.sportId ||
       CC.courtFor(slots[0])?.sportId ||
-      activeSports[0]?.id || '';
+      activeSports[0]?.id ||
+      '';
     const slotsForSport = (sportId) => slots.filter((s) => CC.courtFor(s).sportId === sportId);
     const slotOptions = (available, selected) =>
-      available.map((s) => option(s.id, `${CC.courtFor(s).name} · ${day(s.date)} ${s.start}`, selected)).join('') ||
-      option('', 'Chưa có lịch sân được duyệt cho môn này');
+      available
+        .map((s) => option(s.id, `${CC.courtFor(s).name} · ${day(s.date)} ${s.start}`, selected))
+        .join('') || option('', 'Chưa có lịch sân được duyệt cho môn này');
     Views.update('player-matchCreate', {
       formTitle: () => (m ? 'Chỉnh sửa trận đấu' : 'Tạo trận đấu'),
       matchName: () => esc(m?.name || ''),
-      sportOptions: () => activeSports.map((s) => option(s.id, s.name, initialSport)).join('') ||
+      sportOptions: () =>
+        activeSports.map((s) => option(s.id, s.name, initialSport)).join('') ||
         option('', 'Chưa có môn thể thao đang hoạt động'),
       slotOptions: () => slotOptions(slotsForSport(initialSport), m?.slotId),
       levelOptions: () => levels(m?.level || 3),
@@ -347,7 +350,8 @@
       const selected = slotSelect.value;
       slotSelect.innerHTML = slotOptions(available, selected);
       slotSelect.disabled = available.length === 0;
-      form.querySelector('button[type="submit"], button:not([type])').disabled = available.length === 0;
+      form.querySelector('button[type="submit"], button:not([type])').disabled =
+        available.length === 0;
       $('#match-slot-hint').textContent = available.length
         ? 'Chỉ hiển thị lịch sân của môn đã chọn, được duyệt và chưa có trận đang mở.'
         : 'Chưa có lịch sân phù hợp cho môn này. Hãy đặt sân và chờ chủ sân duyệt trước.';

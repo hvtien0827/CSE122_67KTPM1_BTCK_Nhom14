@@ -16,26 +16,31 @@
         })[c]
     );
   const icons = {
-    menu: '<path d="M4 6h16M4 12h16M4 18h16"/>',
-    logout: '<path d="M9 4H4v16h5M13 8l4 4-4 4M8 12h12"/>',
-    search: '<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',
-    court:
-      '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M3 12h18M6 4v16M18 4v16"/>',
-    users:
-      '<circle cx="9" cy="8" r="3"/><path d="M3 20v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5"/>',
-    calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18"/>',
-    pin: '<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2"/>',
-    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l4 2"/>',
-    chart: '<path d="M4 3v18h17M8 17v-5m5 5V8m5 9V4"/>',
-    bell: '<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
-    settings:
-      '<circle cx="12" cy="12" r="3"/><path d="m9 3-1 3-3 1v3l-2 2 2 2v3l3 1 1 3h6l1-3 3-1v-3l2-2-2-2V7l-3-1-1-3Z"/>',
-    home: '<path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/>',
-    check: '<path d="m5 12 4 4L19 6"/>',
-    shield: '<path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/>',
+    menu: 'list',
+    logout: 'box-arrow-right',
+    search: 'search',
+    court: 'grid-3x3',
+    users: 'people',
+    calendar: 'calendar-event',
+    pin: 'geo-alt',
+    clock: 'clock',
+    chart: 'bar-chart-line',
+    bell: 'bell',
+    settings: 'gear',
+    home: 'house',
+    check: 'check-lg',
+    shield: 'shield-check',
+    close: 'x-lg',
+    prev: 'chevron-left',
+    next: 'chevron-right',
+    arrowLeft: 'arrow-left',
+    arrowRight: 'arrow-right',
+    star: 'star-fill',
+    starEmpty: 'star',
+    ai: 'stars',
+    plus: 'plus-lg',
   };
-  const icon = (n) =>
-    `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[n] || icons.court}</svg>`;
+  const icon = (name) => `<i class="bi bi-${icons[name] || icons.court}" aria-hidden="true"></i>`;
   const btn = (text, action = '', style = '', attrs = '') =>
     `<button type="button" class="btn ${style}" ${action ? `data-action="${action}"` : ''} ${attrs}>${text}</button>`;
   const link = (text, href, style = '') =>
@@ -208,7 +213,7 @@
   function courtCard(c) {
     const reviews = CC.db.courtReviews?.filter((r) => r.courtId === c.id) || [];
     const rating = reviews.length
-      ? `★ ${(reviews.reduce((n, r) => n + r.stars, 0) / reviews.length).toFixed(1)} · ${reviews.length} đánh giá`
+      ? `${icon('star')} ${(reviews.reduce((n, r) => n + r.stars, 0) / reviews.length).toFixed(1)} · ${reviews.length} đánh giá`
       : 'Chưa có đánh giá';
     return `<article class="card court-card"><img class="card-image" src="${courtImage(c)}" alt="${esc(c.name)}" loading="lazy"><div class="card-body"><div class="court-card-meta"><span class="tag">${esc(sport(c.sportId))}</span><span class="court-rating">${rating}</span></div><h3>${esc(c.name)}</h3><p class="meta court-address">${icon('pin')}<span>${esc(c.location)}</span></p><div class="court-card-bottom"><p class="court-price"><strong>${money(c.price)}</strong><span>/ giờ</span></p>${link('Đặt sân · Xem giờ trống', `court-detail.html?id=${c.id}`, 'full')}</div></div></article>`;
   }
@@ -245,7 +250,7 @@
     menu.classList.toggle('is-open', open);
     trigger.setAttribute('aria-expanded', String(open));
     trigger.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
-    trigger.innerHTML = open ? '<span aria-hidden="true">×</span>' : icon('menu');
+    trigger.innerHTML = open ? icon('close') : icon('menu');
     if (moveFocus) {
       if (open)
         menu.querySelector('a, button')?.focus({

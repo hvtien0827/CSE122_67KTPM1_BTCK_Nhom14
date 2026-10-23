@@ -2,7 +2,7 @@
 
 ## Bắt đầu ở đâu?
 
-Mỗi trang HTML chứa bố cục chính của trang đó. Tìm `<main id="main">` để xem nội dung, tìm `data-fragment` để xem các form popup riêng. Các hình SVG là biểu tượng trang trí, được viết gọn trên một dòng.
+Mỗi trang HTML chứa bố cục chính của trang đó. Tìm `<main id="main">` để xem nội dung, tìm `data-fragment` để xem các form popup riêng. Biểu tượng dùng Bootstrap Icons qua CDN: HTML dùng `<i class="bi bi-ten-icon" aria-hidden="true"></i>`, JS dùng `UI.icon(ten)` trong `js/ui.js`. Nút chỉ có icon vẫn phải có `aria-label` mô tả thao tác.
 
 Không cần đọc từ dòng đầu đến dòng cuối của toàn bộ project. Chọn một thao tác, lần theo HTML → sự kiện → hàm nghiệp vụ → cập nhật giao diện.
 
@@ -90,7 +90,7 @@ Mỗi trang nạp theo thứ tự: `common.css` → `navigation.css` → `date-p
 - `player.css`, `venue.css`, `organizer.css`, `admin.css`: kiểu riêng từng role.
 - `auth.css`, `home.css`: luồng tài khoản và trang chủ.
 
-Không thêm Bootstrap trong đợt này. Website vẫn dùng HTML/CSS/JS thuần, không có bước build và không đổi giao diện chỉ để giảm số dòng.
+Dùng Bootstrap Icons 1.13.2 qua CDN; không nạp CSS/JS của framework Bootstrap. Website vẫn dùng HTML/CSS/JS thuần, không có bước build và không đổi giao diện chỉ để giảm số dòng.
 
 ## Làm việc nhóm sau khi tách
 
