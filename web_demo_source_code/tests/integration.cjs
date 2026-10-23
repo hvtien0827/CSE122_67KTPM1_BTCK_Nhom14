@@ -103,10 +103,14 @@ fs.mkdirSync(out, { recursive: true });
   await go('court-detail.html?id=c1');
   await page.click('.date-picker summary');
   const bookingDate = await evalDB(() => CC.date(3));
-  while (!(await page.locator(`[data-booking-date="${bookingDate}"]`).count())) await page.click('[data-month-step="1"]');
+  while (!(await page.locator(`[data-booking-date="${bookingDate}"]`).count()))
+    await page.click('[data-month-step="1"]');
   await page.click(`[data-booking-date="${bookingDate}"]`);
   await page.waitForURL('**/court-detail.html?*date=*');
-  const testSlotId = await page.locator('[data-action=choose-slot]:enabled').first().getAttribute('data-id');
+  const testSlotId = await page
+    .locator('[data-action=choose-slot]:enabled')
+    .first()
+    .getAttribute('data-id');
   await page.click(`[data-action=choose-slot][data-id="${testSlotId}"]`);
   await page.click('[data-action=book-selected]');
   await page.waitForURL('**/booking.html?*');
@@ -207,14 +211,24 @@ fs.mkdirSync(out, { recursive: true });
   await switchRole('player');
   await go('player-skill-match.html');
   await page.click('#skill-submit');
-  await page.waitForSelector('[data-action=skill-accept]');
-  await page.locator('[data-action=skill-accept]').first().click();
-  await page.click('[data-action=skill-save]');
+  await page.waitForSelector('[data-action=skill-join]');
+  const suggestedMatch = await page
+    .locator('[data-action=skill-join]')
+    .first()
+    .getAttribute('data-id');
+  await page.locator('[data-action=skill-join]').first().click();
   check(
-    'Skill Match saves accepted recommendation',
-    await evalDB(() => CC.db.aiHistory.some((h) => h.type === 'skill' && h.status === 'saved'))
+    'Skill Match directly joins and displays the saved match',
+    (await page.evaluate(
+      (id) => CC.find('matches', id).playerIds.includes(CC.me().id),
+      suggestedMatch
+    )) && (await page.locator(`#saved-skills [data-id="${suggestedMatch}"]`).count()) === 1
   );
-  check('Skill Match hides internal failure controls', await page.locator('[name=simulateError]').count() === 0);
+  await page.locator(`#saved-skills [data-id="${suggestedMatch}"]`).click();
+  check(
+    'Skill Match hides internal failure controls',
+    (await page.locator('[name=simulateError]').count()) === 0
+  );
   await injectAIFailure(page, 'slots');
   await page.click('#skill-submit');
   await page.waitForSelector('#ai-result .notice.error');
@@ -222,15 +236,18 @@ fs.mkdirSync(out, { recursive: true });
     'Skill Match failure has manual fallback',
     (await page.locator('#ai-result a[href="player-open-matches.html"]').count()) > 0
   );
-  await page.click('[data-action=skill-again]');
-  await page.waitForSelector('[data-action=skill-accept]');
-  check('Skill Match retry recovers after a processing failure', await page.locator('#skill-submit').isEnabled());
+  await page.click('[data-action=skill-retry]');
+  await page.waitForSelector('[data-action=skill-join]');
+  check(
+    'Skill Match retry recovers after a processing failure',
+    await page.locator('#skill-submit').isEnabled()
+  );
   await page.fill('[name=date]', '2099-01-01');
   await page.click('#skill-submit');
   await page.waitForSelector('#ai-result .empty');
   check(
     'Skill Match handles no matches',
-    (await page.textContent('#ai-result')).includes('Chưa tìm thấy')
+    (await page.textContent('#ai-result')).includes('Không còn trận phù hợp để tham gia')
   );
   await switchRole('organizer');
   await go('organizer-team-lineup.html?event=e1');
@@ -357,7 +374,7 @@ fs.mkdirSync(out, { recursive: true });
   check('Report exports downloadable CSV', download.suggestedFilename().endsWith('.csv'));
   await switchRole('player');
   await go('player-my-sports.html');
-  check('Chat removed from navigation', await page.locator('a[href="chat.html"]').count() === 0);
+  check('Chat removed from navigation', (await page.locator('a[href="chat.html"]').count()) === 0);
   await page.evaluate(() => CC.logout());
   await go('forgot-password.html');
   await page.fill('[name=email]', 'qa@courtconnect.demo');

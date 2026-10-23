@@ -25,7 +25,7 @@ Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã 
 | UI-17 | Người chơi | Đặt sân thành công | Đặt sân thành công | `booking-success.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 / `feat/player` | js/app.js |
 | UI-18 | Người chơi | Chi tiết trận | Chi tiết trận | `match-detail.html` | R; bình thường / rỗng / lỗi | — | Thành viên 1 / `feat/player` | Player.matchDetail |
 | UI-19 | Người chơi | Tạo và sửa trận | Tạo và sửa trận | `player-match-create.html` | C/U; validation / chưa có booking phù hợp | — | Thành viên 1 / `feat/player` | Player.matchCreate |
-| UI-20 | Người chơi | Ghép trận thông minh | Ghép trận thông minh | `player-skill-match.html` | Nhập / tải / kết quả / sửa / lưu / từ chối / lỗi | Skill Match | Thành viên 1 / `feat/player` | AI.skill |
+| UI-20 | Người chơi | Ghép trận thông minh | Ghép trận thông minh | `player-skill-match.html` | Nhập / tải / kết quả / tham gia / hủy tham gia / lỗi | Skill Match | Thành viên 1 / `feat/player` | AI.skill |
 | UI-21 | Chủ sân | Quản lý sân | Quản lý sân | `venue-court-management.html` | C/R/U; lịch khung giờ trong cửa sổ lịch sân | — | Thành viên 2 / `feat/venue` | Venue.courts |
 | UI-22 | Chủ sân | Quản lý đặt sân | Quản lý đặt sân | `venue-booking-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 2 / `feat/venue` | Venue.bookings |
 | UI-24 | Điều phối CLB | Sự kiện CLB | Sự kiện CLB | `organizer-event-management.html` | C/R/U; hủy/lưu trữ/vô hiệu hóa khi phù hợp | — | Thành viên 3 / `feat/organizer` | Organizer.events |

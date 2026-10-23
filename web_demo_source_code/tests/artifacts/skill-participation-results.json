@@ -1,0 +1,26 @@
+{
+  "checks": [
+    "Old storage gets one demo account without changing bookings",
+    "Reload preserves changed password and disabled demo account",
+    "Host creates real match through UI",
+    "Short demo credentials work through login form",
+    "No explanation badge or old accept/save toolbar",
+    "Search results and all criteria survive returning from details",
+    "Join immediately updates real membership and saves a single card",
+    "Saved card has details and cancellation actions",
+    "Host tab sees participant and notification",
+    "Duplicate join rejected",
+    "Joining an overlapping match is rejected without changing membership",
+    "Last seat cannot be overbooked",
+    "Saved membership survives reload",
+    "Cancellation releases seat and removes saved card",
+    "Another player can take released seat through details",
+    "Rejoining does not duplicate saved cards",
+    "Mobile cards fit viewport",
+    "Narrow mobile cards fit viewport",
+    "Host cancellation disables leaving and removes match from suggestions",
+    "Search draft and saved membership are isolated per player",
+    "No runtime errors"
+  ],
+  "errors": []
+}

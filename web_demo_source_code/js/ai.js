@@ -32,6 +32,7 @@
           !m.playerIds.includes(CC.me()?.id) &&
           CC.future(s) &&
           CC.sportActive(c?.sportId) &&
+          c?.status === 'active' &&
           c?.sportId === input.sport &&
           s.date === input.date &&
           s.start >= input.start &&
@@ -100,107 +101,133 @@
   const loading = () =>
     '<div class="loading" role="status"><span class="spinner"></span>Đang phân tích dữ liệu…</div>';
   function skill() {
-    const player = CC.find('players', CC.me().id);
-    let results = [],
-      input = null,
-      selected = null;
+    const user = CC.requireRole('player');
+    const player = CC.find('players', user.id);
+    const key = `cc.skill-search.${user.id}`;
+    let state = { draft: null, criteria: null };
+    try {
+      const cached = JSON.parse(sessionStorage.getItem(key) || 'null');
+      if (cached && typeof cached === 'object') state = cached;
+    } catch {
+      /* Tìm kiếm vẫn hoạt động nếu không đọc được bản nháp. */
+    }
+    const activeSport = CC.db.sports.find((s) => s.status === 'active')?.id || '';
     Views.update('ai-skill', {
-      sportOptions: () => sports('badminton'),
-      levelOptions: () => levels(player?.levels.badminton || 2),
+      sportOptions: () => sports(activeSport),
+      levelOptions: () => levels(player?.levels[activeSport] || 2),
       selectedDate: () => esc(CC.date(1)),
       dateAttributes: () => `required min="${CC.date()}"`,
     });
-    const saved = () => {
-      $('#saved-skills').innerHTML =
-        CC.db.aiHistory
-          .filter((h) => h.userId === CC.me().id && h.type === 'skill' && h.status === 'saved')
-          .slice(0, 8)
-          .map(
-            (h) =>
-              `<p class="small"><a href="match-detail.html?id=${esc(h.result.id)}">${esc(CC.find('matches', h.result.id)?.name || 'Trận đã đóng')}</a></p>`
-          )
-          .join('') || '<p class="small muted">Chưa lưu gợi ý nào.</p>';
-    };
-    saved();
-    const paint = () => {
-      $('#ai-result').innerHTML = results.length
-        ? `<section class="panel"><div class="panel-title"><h2>${results.length} trận phù hợp</h2><span class="tag">Có giải thích</span></div>${results
-            .map((r) => {
-              const m = CC.find('matches', r.id);
-              return `<article class="panel"><div class="row"><h3>${esc(m.name)}</h3><span class="spacer"></span><span class="tag">${r.score}/100</span></div><p class="small muted">${esc(r.reason)}</p>${Community.opponentCards(m)}<div class="actions">${btn(selected === r.id ? 'Đã chọn' : 'Chấp nhận gợi ý', 'skill-accept', selected === r.id ? 'secondary small' : 'small', `data-id="${r.id}"`)}${link('Xem chi tiết', `match-detail.html?id=${r.id}`, 'ghost small')}</div></article>`;
-            })
-            .join(
-              ''
-            )}<div class="actions">${btn('Lưu gợi ý đã chọn', 'skill-save', '', selected ? '' : 'disabled')}${btn('Sửa tiêu chí', 'skill-edit', 'secondary')}${btn('Tạo lại', 'skill-again', 'secondary')}${btn('Từ chối', 'skill-reject', 'ghost')}</div></section>`
-        : empty(
-            'Chưa tìm thấy trận phù hợp',
-            'Thử mở rộng khung giờ, đổi ngày hoặc điều chỉnh trình độ.',
-            btn('Sửa tiêu chí', 'skill-edit', 'secondary') +
-              ' ' +
-              link('Tìm trận thủ công', 'player-open-matches.html', 'ghost')
-          );
-      bindResult();
-    };
-    function bindResult() {
-      const result = $('#ai-result');
-      $$('[data-action=skill-accept]', result).forEach(
-        (b) =>
-          (b.onclick = () => {
-            selected = b.dataset.id;
-            paint();
-          })
-      );
-      $('[data-action=skill-save]', result)?.addEventListener('click', () => {
-        try {
-          const r = results.find((r) => r.id === selected);
-          if (!r) throw Error('Chọn một gợi ý trước khi lưu.');
-          history('skill', input, r, 'saved');
-          saved();
-          toast('Đã lưu gợi ý. Mở chi tiết trận để xác nhận tham gia.');
-        } catch (e) {
-          toast(e.message, true);
-        }
-      });
-      $('[data-action=skill-edit]', result)?.addEventListener('click', () => {
-        $('[name=sport]').focus();
-        $('#skill-form').scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      });
-      $('[data-action=skill-again]', result)?.addEventListener('click', () =>
-        $('#skill-form').requestSubmit()
-      );
-      $('[data-action=skill-reject]', result)?.addEventListener('click', () => {
-        history('skill', input, results, 'rejected');
-        $('#ai-result').innerHTML = empty(
-          'Đã bỏ qua gợi ý',
-          'Bạn có thể đổi tiêu chí hoặc tìm trận thủ công.',
-          link('Tìm trận', 'player-open-matches.html', 'secondary')
-        );
-      });
+    const form = $('#skill-form');
+    if (state.draft) {
+      for (const name of ['sport', 'level', 'date', 'tolerance', 'start', 'end']) {
+        if (typeof state.draft[name] === 'string') form.elements[name].value = state.draft[name];
+      }
+      window.DatePicker?.enhance(form);
     }
-    $('[name=sport]').onchange = (e) => {
-      $('[name=level]').value = player?.levels[e.target.value] || 1;
+    const persist = () => {
+      state.draft = Object.fromEntries(new FormData(form));
+      try {
+        sessionStorage.setItem(key, JSON.stringify(state));
+      } catch {
+        /* Chỉ lưu bản nháp. */
+      }
     };
-    $('#skill-form').onsubmit = async (e) => {
-      e.preventDefault();
-      input = Object.fromEntries(new FormData(e.currentTarget));
+    const details = (m) => {
+      const slot = CC.find('slots', m.slotId),
+        court = CC.courtFor(slot);
+      return `<p class="meta">${UI.icon('pin')}<span>${esc(court?.name || 'Sân không còn hoạt động')}</span></p><p class="meta">${UI.icon('calendar')}<span>${esc(day(slot?.date))} · ${esc(slot?.start)}–${esc(slot?.end)}</span></p><p class="small muted">${esc(sport(court?.sportId))} · ${m.playerIds.length}/${m.capacity} người · ${esc(level(m.level))}</p>`;
+    };
+    const saved = () => {
+      // Thành viên trận là nguồn dữ liệu gốc, không suy ra việc tham gia từ lịch sử gợi ý cũ.
+      const matches = CC.db.matches.filter(
+        (m) =>
+          m.hostId !== user.id &&
+          m.playerIds.includes(user.id) &&
+          CC.future(CC.find('slots', m.slotId))
+      );
+      $('#saved-skills').innerHTML =
+        matches
+          .map((m) => {
+            const canLeave = m.status === 'open' && CC.future(CC.find('slots', m.slotId));
+            return `<article class="saved-match-card"><h4>${esc(m.name)}</h4>${details(m)}${UI.badge(m.status)}<div class="actions mt">${link('Xem chi tiết', `match-detail.html?id=${encodeURIComponent(m.id)}`, 'secondary small')}${btn('Hủy tham gia', 'skill-leave', 'danger small', `data-id="${esc(m.id)}" ${canLeave ? '' : 'disabled'}`)}</div>${canLeave ? '' : '<p class="small muted">Trận đã bắt đầu hoặc đã đóng, không thể hủy tham gia.</p>'}</article>`;
+          })
+          .join('') ||
+        '<p class="small muted">Chưa có trận đã tham gia. Bấm “Tôi muốn tham gia” ở trận phù hợp để bắt đầu.</p>';
+      $$('[data-action=skill-leave]', $('#saved-skills')).forEach((button) => {
+        button.onclick = () => {
+          button.disabled = true;
+          try {
+            CC.leaveMatch(button.dataset.id);
+            refresh();
+            toast('Đã hủy tham gia. Vị trí của bạn được mở lại cho người chơi khác.');
+          } catch (error) {
+            button.disabled = false;
+            toast(error.message, true);
+          }
+        };
+      });
+    };
+    const paint = () => {
+      const results = skillSuggestions(state.criteria);
+      $('#ai-result').innerHTML = results.length
+        ? `<section class="panel"><div class="panel-title"><h2>${results.length} trận phù hợp</h2></div>${results
+            .map((result) => {
+              const match = CC.find('matches', result.id);
+              return `<article class="panel skill-match-card"><div class="row"><h3>${esc(match.name)}</h3><span class="spacer"></span><span class="tag">Phù hợp ${result.score}/100</span></div>${details(match)}<p class="small muted">${esc(result.reason)}</p>${Community.opponentCards(match)}<div class="actions">${btn('Tôi muốn tham gia', 'skill-join', 'small', `data-id="${esc(match.id)}"`)}${link('Xem chi tiết', `match-detail.html?id=${encodeURIComponent(match.id)}`, 'ghost small')}</div></article>`;
+            })
+            .join('')}</section>`
+        : empty(
+            'Không còn trận phù hợp để tham gia',
+            'Các trận bạn đã tham gia nằm trong Trận đấu đã lưu. Thử đổi ngày, giờ hoặc trình độ để tìm thêm trận.',
+            link('Tìm trận thủ công', 'player-open-matches.html', 'ghost')
+          );
+      $$('[data-action=skill-join]', $('#ai-result')).forEach((button) => {
+        button.onclick = () => {
+          button.disabled = true;
+          try {
+            persist();
+            CC.joinMatch(button.dataset.id);
+            refresh();
+            toast('Đã tham gia trận. Xem trong Trận đấu đã lưu hoặc Hoạt động của tôi.');
+          } catch (error) {
+            refresh();
+            toast(error.message, true);
+          }
+        };
+      });
+    };
+    function refresh() {
+      saved();
+      if (!state.criteria) return;
+      try {
+        paint();
+      } catch (error) {
+        $('#ai-result').innerHTML =
+          `<div class="notice error" role="alert">${esc(error.message)}</div>${btn('Thử lại', 'skill-retry', 'secondary')} ${link('Tìm trận thủ công', 'player-open-matches.html', 'ghost')}`;
+        $('[data-action=skill-retry]')?.addEventListener('click', () => form.requestSubmit());
+      }
+    }
+    form.addEventListener('input', persist);
+    form.addEventListener('change', persist);
+    $('[name=sport]').onchange = (event) => {
+      $('[name=level]').value = player?.levels[event.target.value] || 1;
+      persist();
+    };
+    form.onsubmit = async (event) => {
+      event.preventDefault();
+      state.criteria = Object.fromEntries(new FormData(form));
+      persist();
       $('#skill-submit').disabled = true;
       $('#ai-result').innerHTML = loading();
-      await wait();
       try {
-        results = skillSuggestions(input);
-        selected = null;
-        paint();
-      } catch (err) {
-        $('#ai-result').innerHTML =
-          `<div class="notice error" role="alert">${esc(err.message)}</div>${btn('Thử lại', 'skill-again', 'secondary')} ${link('Dùng thủ công', 'player-open-matches.html', 'ghost')}`;
-        bindResult();
+        await wait();
+        refresh();
       } finally {
         $('#skill-submit').disabled = false;
       }
     };
+    refresh();
   }
   function teams() {
     const es = Organizer.ownEvents().filter((e) => e.status === 'open'),
