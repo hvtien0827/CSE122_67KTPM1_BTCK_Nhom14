@@ -1,8 +1,15 @@
 # Nhật ký thay đổi CourtConnect
 
-Ngày cập nhật tài liệu: **22/10/2026**. Áp dụng cho thư mục `web_demo_source_code` hiện tại.
+Ngày cập nhật tài liệu: **23/10/2026**. Áp dụng cho thư mục `web_demo_source_code` hiện tại.
 
 Nhật ký tổng hợp từ các thay đổi đã xác nhận trong cuộc trao đổi và mã nguồn/tài liệu hiện có. Đây không phải bản trích xuất lịch sử Git. Những cải tiến cũ không xác định được ngày thực hiện được ghi theo nhóm chức năng, không gán ngày hay người thực hiện. Bản thiết kế lại đã bị loại bỏ không thuộc nhật ký này.
+
+## 23/10/2026 — Loại bỏ một sân mẫu khỏi dữ liệu ứng dụng
+
+- Dữ liệu mẫu còn 3 sân; giữ danh mục môn thể thao.
+- Dọn sân đã gỡ cùng lịch, đơn, trận, đánh giá, báo cáo người chơi, thông báo và lịch sử AI liên quan trong localStorage cũ, kể cả bản lưu legacy.
+- Tính lại snapshot tổng hợp khi loại bỏ đơn đặt sân; giữ tài khoản và dữ liệu các sân khác.
+- Test chọn môn tự tạo sân kiểm thử; thêm kiểm tra hồi quy dọn dữ liệu. Xem [báo cáo kiểm tra](docs/retired-court-removal.md).
 
 ## 22/10/2026 — Dọn template, phụ thuộc và mã cũ
 

@@ -45,7 +45,6 @@
       ],
       ['c2', 'Sân Cầu Lông Học Viện Ngân Hàng', '12 Chùa Bộc, Quang Trung', 'badminton', 100000, 1],
       ['c3', 'Kỳ Hòa Badminton Club', 'Sân vận động Ba Đình', 'badminton', 150000, 2],
-      ['c4', 'Hồ Tây Pickleball', '68 Võ Chí Công, Tây Hồ', 'pickleball', 180000, 2],
     ].map(([id, name, location, sportId, price, image]) => ({
       id,
       name,
@@ -179,6 +178,75 @@
       messages: [],
       settings: {},
     };
+  }
+  // Gỡ vĩnh viễn sân mẫu đã loại khỏi ứng dụng, kể cả dữ liệu từ phiên bản cũ.
+  // Chỉ giữ ID cũ để nhận diện dữ liệu cần dọn; không tạo lại bản ghi này.
+  function removeRetiredCourtData(data) {
+    const retiredCourtIds = new Set(['c4']);
+    const containers = [data, data.legacy].filter(Boolean);
+    const rows = (table) =>
+      containers.flatMap((group) => (Array.isArray(group[table]) ? group[table] : []));
+    const retiredNames = rows('courts')
+      .filter((court) => retiredCourtIds.has(court.id))
+      .flatMap((court) => [court.name, court.location])
+      .filter(Boolean);
+    const removedIds = new Set(retiredCourtIds);
+    function remove(table, predicate) {
+      for (const group of containers) {
+        if (!Array.isArray(group[table])) continue;
+        group[table] = group[table].filter((record) => {
+          if (!predicate(record)) return true;
+          if (record.id) removedIds.add(record.id);
+          return false;
+        });
+      }
+    }
+    remove('courts', (court) => retiredCourtIds.has(court.id));
+    remove('slots', (slot) => retiredCourtIds.has(slot.courtId));
+    const removedBookings = rows('bookings').some((booking) => removedIds.has(booking.slotId));
+    remove('bookings', (booking) => removedIds.has(booking.slotId));
+    remove('matches', (match) => removedIds.has(match.slotId));
+    function referencesRemoved(value) {
+      if (Array.isArray(value)) return value.some(referencesRemoved);
+      if (value && typeof value === 'object') return Object.values(value).some(referencesRemoved);
+      if (typeof value !== 'string') return false;
+      if (removedIds.has(value) || retiredNames.some((name) => value.includes(name))) return true;
+      // Nhận diện liên kết cũ trỏ đến sân, lịch, đơn đặt hoặc trận vừa bị gỡ.
+      const query = value.split('?')[1]?.split('#')[0];
+      if (!query) return false;
+      return query.split('&').some((part) => {
+        try {
+          return removedIds.has(decodeURIComponent(part.split('=').slice(1).join('=')));
+        } catch {
+          return false;
+        }
+      });
+    }
+    remove('events', referencesRemoved);
+    remove('courtReviews', referencesRemoved);
+    remove('opponentReviews', referencesRemoved);
+    remove('playerReports', referencesRemoved);
+    for (const table of ['notifications', 'messages', 'aiHistory', 'otherAI', 'reports'])
+      remove(table, referencesRemoved);
+    if (removedBookings) {
+      // Snapshot tổng hợp không được tiếp tục cộng doanh thu/đơn của sân đã gỡ.
+      for (const group of containers) {
+        for (const report of group.reports || []) {
+          if (!report.snapshot) continue;
+          const bookings = data.bookings.filter((booking) => {
+            const slot = data.slots.find((slot) => slot.id === booking.slotId);
+            return slot && slot.date >= report.from && slot.date <= report.to;
+          });
+          report.snapshot.bookings = bookings.length;
+          report.snapshot.revenue = bookings
+            .filter((booking) => booking.status === 'completed')
+            .reduce(
+              (sum, booking) => sum + data.slots.find((slot) => slot.id === booking.slotId).price,
+              0
+            );
+        }
+      }
+    }
   }
   // Bản 28 trang dùng cùng KEY và đã lưu trữ dữ liệu CLB, khóa role organizer.
   // Chỉ hoàn tác việc ngừng hỗ trợ role; giữ nguyên tài khoản admin khóa thủ công.
@@ -619,6 +687,7 @@
       !db.settings
     )
       throw Error('Dữ liệu không đúng định dạng');
+    removeRetiredCourtData(db);
     restoreFourRoles(db);
     // Migrations must be safe to repeat: older demos may have a version marker
     // while individual tables were removed by a different project scope.
@@ -632,7 +701,7 @@
       e.end ||= '10:00';
     });
     db.courts.forEach((c) => {
-      if (c.autoSchedule === undefined) c.autoSchedule = ['c1', 'c2', 'c3', 'c4'].includes(c.id);
+      if (c.autoSchedule === undefined) c.autoSchedule = ['c1', 'c2', 'c3'].includes(c.id);
     });
     supplementDemoData(db);
     localStorage.setItem(KEY, JSON.stringify(db));
