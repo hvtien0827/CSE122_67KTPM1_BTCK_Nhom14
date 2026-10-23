@@ -316,24 +316,56 @@
       .filter(
         (s) =>
           CC.future(s) &&
+          CC.sportActive(CC.courtFor(s)?.sportId) &&
           !CC.db.matches.some((x) => x.id !== m?.id && x.slotId === s.id && x.status === 'open')
       );
+    const activeSports = CC.db.sports.filter((s) => s.status === 'active');
+    const initialSport =
+      CC.courtFor(CC.find('slots', m?.slotId))?.sportId ||
+      CC.courtFor(slots[0])?.sportId ||
+      activeSports[0]?.id || '';
+    const slotsForSport = (sportId) => slots.filter((s) => CC.courtFor(s).sportId === sportId);
+    const slotOptions = (available, selected) =>
+      available.map((s) => option(s.id, `${CC.courtFor(s).name} · ${day(s.date)} ${s.start}`, selected)).join('') ||
+      option('', 'Chưa có lịch sân được duyệt cho môn này');
     Views.update('player-matchCreate', {
       formTitle: () => (m ? 'Chỉnh sửa trận đấu' : 'Tạo trận đấu'),
       matchName: () => esc(m?.name || ''),
-      slotOptions: () =>
-        slots
-          .map((s) => option(s.id, `${CC.courtFor(s).name} · ${day(s.date)} ${s.start}`, m?.slotId))
-          .join('') || option('', 'Chưa có lịch sân được duyệt'),
+      sportOptions: () => activeSports.map((s) => option(s.id, s.name, initialSport)).join('') ||
+        option('', 'Chưa có môn thể thao đang hoạt động'),
+      slotOptions: () => slotOptions(slotsForSport(initialSport), m?.slotId),
       levelOptions: () => levels(m?.level || 3),
       capacity: () => esc(m?.capacity || 4),
       note: () => esc(m?.note || ''),
-      submitDisabled: () => (slots.length ? '' : 'disabled'),
+      submitDisabled: () => (slotsForSport(initialSport).length ? '' : 'disabled'),
     });
-    $('#match-form').onsubmit = (e) => {
+    const form = $('#match-form');
+    const sportSelect = form.elements.namedItem('sportId');
+    const slotSelect = form.elements.namedItem('slotId');
+    function updateSlots() {
+      const available = slotsForSport(sportSelect.value);
+      const selected = slotSelect.value;
+      slotSelect.innerHTML = slotOptions(available, selected);
+      slotSelect.disabled = available.length === 0;
+      form.querySelector('button[type="submit"], button:not([type])').disabled = available.length === 0;
+      $('#match-slot-hint').textContent = available.length
+        ? 'Chỉ hiển thị lịch sân của môn đã chọn, được duyệt và chưa có trận đang mở.'
+        : 'Chưa có lịch sân phù hợp cho môn này. Hãy đặt sân và chờ chủ sân duyệt trước.';
+    }
+    // Chỉ cập nhật danh sách lịch, giữ tên trận, ghi chú và các thông tin đang nhập.
+    sportSelect.onchange = () => {
+      updateSlots();
+      $('#match-error').hidden = true;
+    };
+    updateSlots();
+    form.onsubmit = (e) => {
       e.preventDefault();
       try {
         const d = Object.fromEntries(new FormData(e.currentTarget));
+        if (!slotsForSport(d.sportId).some((s) => s.id === d.slotId))
+          throw Error('Chọn lịch sân đã duyệt thuộc môn thể thao đã chọn.');
+        // Môn của trận được xác định từ slot → sân; không lưu thêm một sportId dễ lệch dữ liệu.
+        delete d.sportId;
         d.level = +d.level;
         d.capacity = +d.capacity;
         CC.saveMatch(d, m?.id);
