@@ -59,10 +59,10 @@ for (const file of fs.readdirSync(root).filter((name) => name.endsWith('.html'))
   );
   assert.equal(
     html.includes('src="js/ai.js"'),
-    ['player-skill-match.html', 'organizer-team-lineup.html', 'venue-no-show-risk.html'].includes(
+    ['player-skill-match.html', 'organizer-team-lineup.html'].includes(
       file
     ),
-    `${file}: AI chỉ trên 3 trang gợi ý`
+    `${file}: AI chỉ trên 2 trang gợi ý`
   );
   assert.deepEqual(
     [...html.matchAll(/data-fragment="([^"]+)"/g)].map(m => m[1]),

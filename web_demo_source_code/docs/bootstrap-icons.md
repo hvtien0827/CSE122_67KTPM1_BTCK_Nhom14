@@ -1,5 +1,7 @@
 # Bootstrap Icons qua CDN
 
+> Cập nhật phạm vi 23/10/2026: trang phân tích vắng mặt của chủ sân đã gỡ. Hiện có 41 trang chức năng, 2 URL tương thích; AI còn Skill Match và Team Balancer. Các số liệu bên dưới ghi nhận đợt kiểm tra trước khi gỡ. Xem [phạm vi hiện hành](screen-list.md).
+
 Mỗi trang nạp cùng phiên bản cố định:
 
 ```html

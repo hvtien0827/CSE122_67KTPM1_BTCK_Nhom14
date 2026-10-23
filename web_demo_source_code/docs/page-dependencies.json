@@ -397,12 +397,6 @@
     ],
     "datePicker": true
   },
-  "venue-no-show-risk.html": {
-    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/ai.js", "js/app.js"],
-    "styles": ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css", "css/common.css", "css/navigation.css", "css/venue.css"],
-    "fragments": [],
-    "datePicker": false
-  },
   "venue-revenue.html": {
     "scripts": [
       "js/theme.js",

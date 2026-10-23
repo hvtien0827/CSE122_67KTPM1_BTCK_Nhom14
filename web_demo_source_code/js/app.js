@@ -140,7 +140,6 @@
     'profile-public': () => Community.publicProfile(),
     'admin-player-reports': () => Community.reports(),
     'venue-booking-management': () => Venue.bookings(),
-    'venue-no-show-risk': () => AI.risk(),
     'organizer-event-management': () => Organizer.events(),
     'organizer-event-detail': () => Organizer.eventDetail(),
     'organizer-player-roster': () => Organizer.roster(),

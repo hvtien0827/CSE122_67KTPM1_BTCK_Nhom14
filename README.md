@@ -6,14 +6,14 @@ CourtConnect là website tìm và đặt sân thể thao, ghép người chơi t
 
 Nhóm sử dụng bản mã nguồn trong **[web_demo_source_code](web_demo_source_code/)**, giữ đủ 4 vai trò theo [đề bài gốc](docs/BTL-28_courtconnect-at-san-va-ghep-nguoi-choi-theo-trinh-o.md): **Người chơi, Chủ sân, Điều phối CLB, Quản trị viên**.
 
-Bản hiện tại có **42 trang chức năng và 2 file HTML chuyển hướng tương thích**. Ba trải nghiệm AI được mô phỏng theo quy tắc: **Skill Match**, **No-show Risk** và **Team Balancer**. Giao diện hỗ trợ desktop/mobile và chế độ sáng/tối. Dữ liệu lưu bằng localStorage; chưa kết nối backend, email, thanh toán hoặc AI thật.
+Bản hiện tại có **41 trang chức năng và 2 file HTML chuyển hướng tương thích**. Hai trải nghiệm AI được mô phỏng theo quy tắc: **Skill Match** và **Team Balancer**. Giao diện hỗ trợ desktop/mobile và chế độ sáng/tối. Dữ liệu lưu bằng localStorage; chưa kết nối backend, email, thanh toán hoặc AI thật.
 
 ## Phân công 4 thành viên
 
 | Thành viên                 | Vai trò phụ trách | Công việc chính                                                                                                                        | Nhánh phụ trách  |
 | -------------------------- | ----------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | Hoàng&nbsp;Văn&nbsp;Tiến   | Người chơi        | Xây dựng giao diện và chức năng cho người chơi: tìm/đặt sân, hoạt động, tạo/tham gia trận, Skill Match, đánh giá sân và bạn chơi.      | `feat/player`    |
-| Phùng&nbsp;Quang&nbsp;Dũng | Chủ sân           | Xây dựng giao diện và chức năng cho chủ sân: quản lý sân và lịch khung giờ, xử lý đơn đặt, No-show Risk, doanh thu và đánh giá sân.    | `feat/venue`     |
+| Phùng&nbsp;Quang&nbsp;Dũng | Chủ sân           | Xây dựng giao diện và chức năng cho chủ sân: quản lý sân và lịch khung giờ, xử lý đơn đặt, doanh thu và đánh giá sân.    | `feat/venue`     |
 | Đỗ&nbsp;Minh&nbsp;Thư      | Điều phối CLB     | Xây dựng giao diện và chức năng cho điều phối CLB: quản lý sự kiện, danh sách người chơi, đội hình và Team Balancer.                   | `feat/organizer` |
 | Bùi&nbsp;Minh&nbsp;Trang   | Quản trị viên     | Xây dựng giao diện và chức năng cho quản trị viên: quản lý môn thể thao, tài khoản, báo cáo hoạt động/CSV và xử lý báo cáo người chơi. | `feat/admin`     |
 
@@ -38,7 +38,7 @@ Bố cục và form chính nằm trong từng HTML. Controller riêng gồm `js/
 | [figma](figma/) — [Tóm tắt](docs/UI_Figma.md)                              | PDF giao diện trang chủ và luồng tài khoản.      |
 | [web_demo_source_code](web_demo_source_code/) — [Tóm tắt](docs/TOM_TAT.md) | Mã nguồn demo 4 vai trò, tài nguyên và kiểm thử. |
 
-Danh mục 42 trang chức năng của 4 vai trò được mô tả tại [bảng màn hình](web_demo_source_code/docs/screen-list.md) và [tài liệu phân loại giao diện](prompt/phan_loai_giao_dien_he_thong.md).
+Danh mục 41 trang chức năng của 4 vai trò được mô tả tại [bảng màn hình](web_demo_source_code/docs/screen-list.md) và [tài liệu phân loại giao diện](prompt/phan_loai_giao_dien_he_thong.md).
 
 ## Chạy thử
 

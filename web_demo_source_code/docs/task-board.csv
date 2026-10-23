@@ -22,7 +22,6 @@ TASK-20,Kiểm chứng và hoàn thiện Ghép trận thông minh,player-skill-m
 TASK-21,Kiểm chứng và hoàn thiện Quản lý sân,venue-court-management.html,SV2,Chưa chốt,CẦN LÀM,feature/venue-court-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
 TASK-22,Kiểm chứng và hoàn thiện Quản lý khung giờ,venue-slot-management.html,SV2,Chưa chốt,CẦN LÀM,feature/venue-slot-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
 TASK-23,Kiểm chứng và hoàn thiện Quản lý đặt sân,venue-booking-management.html,SV2,Chưa chốt,CẦN LÀM,feature/venue-booking-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
-TASK-24,Kiểm chứng và hoàn thiện Cảnh báo vắng mặt,venue-no-show-risk.html,SV2,Chưa chốt,CẦN LÀM,feature/venue-no-show-risk,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
 TASK-25,Kiểm chứng và hoàn thiện Sự kiện CLB,organizer-event-management.html,SV3,Chưa chốt,CẦN LÀM,feature/organizer-event-management,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
 TASK-26,Kiểm chứng và hoàn thiện Chi tiết sự kiện,organizer-event-detail.html,SV3,Chưa chốt,CẦN LÀM,feature/organizer-event-detail,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế
 TASK-27,Kiểm chứng và hoàn thiện Danh sách người chơi,organizer-player-roster.html,SV3,Chưa chốt,CẦN LÀM,feature/organizer-player-roster,,,,,Chưa duyệt; mã AI cần sinh viên review và sửa thực tế

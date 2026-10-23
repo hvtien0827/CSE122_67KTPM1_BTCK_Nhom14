@@ -122,7 +122,6 @@
       status: 'approved',
       note: 'Đặt sân cho trận giao lưu',
       createdAt: date(),
-      risk: null,
     }));
     bookings.push({
       id: 'b4',
@@ -131,7 +130,6 @@
       status: 'pending',
       note: 'Nhóm 4 người, cảm ơn chủ sân.',
       createdAt: date(),
-      risk: null,
     });
     return {
       version: 1,
@@ -296,7 +294,6 @@
         u.verified &&
         get('players', u.id)?.status === 'active'
     );
-    const owner = data.users.find((u) => u.role === 'venue' && u.status === 'active');
     const organizer = data.users.find((u) => u.role === 'organizer' && u.status === 'active');
     const admin = data.users.find((u) => u.role === 'admin' && u.status === 'active');
     const courts = data.courts.filter(
@@ -363,17 +360,6 @@
             status,
             note: 'Dữ liệu mẫu: lịch chơi để trải nghiệm website.',
             createdAt: stamp,
-            risk:
-              label === 'risk-sample'
-                ? {
-                    level: 'Trung bình',
-                    decision: 'Yêu cầu xác nhận lại',
-                    note: 'Nhận định mẫu: liên hệ xác nhận trước giờ chơi.',
-                    reason:
-                      'Dữ liệu mẫu để trải nghiệm nhận định đã lưu; không tự động từ chối đơn.',
-                    createdAt: stamp,
-                  }
-                : null,
           });
           return { slot, booking };
         }
@@ -454,21 +440,6 @@
     }
     if (!data.bookings.some((b) => b.status === 'rejected'))
       reserve(courts[0], 8, [player.id], 'rejected', 'rejected');
-    if (owner && !data.bookings.some((b) => b.risk)) {
-      const court = courts.find((c) => c.ownerId === owner.id);
-      const reserved =
-        court && reserve(court, 6, [(peers[0] || player).id], 'risk-sample', 'pending');
-      if (reserved)
-        put('aiHistory', {
-          id: 'demo-ai-risk',
-          userId: owner.id,
-          type: 'risk',
-          input: { bookingId: reserved.booking.id },
-          result: reserved.booking.risk,
-          status: 'saved',
-          createdAt: stamp,
-        });
-    }
     let history = null;
     courts.forEach((court, i) => {
       if (
@@ -663,6 +634,23 @@
         });
     data.demoContentVersion = 1;
   }
+  // Dọn metadata của tính năng đã gỡ, giữ nguyên đơn đặt và lịch sử CLB.
+  function removeRetiredVenueAnalysis(data) {
+    for (const group of [data, data.legacy].filter(Boolean)) {
+      for (const booking of Array.isArray(group.bookings) ? group.bookings : [])
+        delete booking.risk;
+      for (const table of ['aiHistory', 'otherAI']) {
+        if (Array.isArray(group[table]))
+          group[table] = group[table].filter((entry) => entry.type !== 'risk');
+      }
+      if (Array.isArray(group.notifications))
+        group.notifications = group.notifications.filter(
+          (entry) =>
+            !String(entry.href || '').includes('venue-no-show-risk.html') &&
+            entry.text !== 'Chủ sân đề nghị bạn xác nhận lại lịch. Vui lòng kiểm tra đơn đặt.'
+        );
+    }
+  }
   let db,
     loadError = '';
   try {
@@ -689,6 +677,7 @@
       throw Error('Dữ liệu không đúng định dạng');
     removeRetiredCourtData(db);
     restoreFourRoles(db);
+    removeRetiredVenueAnalysis(db);
     // Migrations must be safe to repeat: older demos may have a version marker
     // while individual tables were removed by a different project scope.
     for (const table of ['courtReviews', 'opponentReviews', 'playerReports']) {
@@ -805,7 +794,6 @@
         note,
         status: 'pending',
         createdAt: date(),
-        risk: null,
       };
       db.bookings.push(result);
       notify(courtFor(s).ownerId, 'Có yêu cầu đặt sân mới.', 'venue-booking-management.html');

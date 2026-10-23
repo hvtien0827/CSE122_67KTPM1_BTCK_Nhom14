@@ -1,5 +1,5 @@
 {
-  "pages": 168,
+  "pages": 164,
   "errors": [],
   "results": [
     {
@@ -243,16 +243,6 @@
       "small": "13.5px"
     },
     {
-      "page": "venue-no-show-risk",
-      "width": 1440,
-      "overflow": false,
-      "theme": "light",
-      "toggles": 1,
-      "error": false,
-      "bg": "rgb(248, 250, 248)",
-      "small": "13.5px"
-    },
-    {
       "page": "organizer-event-management",
       "width": 1440,
       "overflow": false,
@@ -654,16 +644,6 @@
     },
     {
       "page": "venue-booking-management",
-      "width": 1440,
-      "overflow": false,
-      "theme": "dark",
-      "toggles": 1,
-      "error": false,
-      "bg": "rgb(10, 15, 12)",
-      "small": "13.5px"
-    },
-    {
-      "page": "venue-no-show-risk",
       "width": 1440,
       "overflow": false,
       "theme": "dark",
@@ -1083,16 +1063,6 @@
       "small": "13.5px"
     },
     {
-      "page": "venue-no-show-risk",
-      "width": 390,
-      "overflow": false,
-      "theme": "light",
-      "toggles": 1,
-      "error": false,
-      "bg": "rgb(248, 250, 248)",
-      "small": "13.5px"
-    },
-    {
       "page": "organizer-event-management",
       "width": 390,
       "overflow": false,
@@ -1494,16 +1464,6 @@
     },
     {
       "page": "venue-booking-management",
-      "width": 390,
-      "overflow": false,
-      "theme": "dark",
-      "toggles": 1,
-      "error": false,
-      "bg": "rgb(10, 15, 12)",
-      "small": "13.5px"
-    },
-    {
-      "page": "venue-no-show-risk",
       "width": 390,
       "overflow": false,
       "theme": "dark",

@@ -191,16 +191,6 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
     'Saved lineup can be deleted',
     await p.evaluate((id) => CC.find('events', id).teams === null, event)
   );
-  await role('venue');
-  await go('venue-no-show-risk.html');
-  check('No-show Risk hides internal failure controls', await p.locator('[name=simulateError]').count() === 0);
-  await injectAIFailure(p, 'players');
-  await p.click('#risk-submit');
-  await p.waitForSelector('#risk-result .notice.warning');
-  check(
-    'Risk processing failure offers retry',
-    await p.locator('[data-action=retry-risk]').isVisible()
-  );
   await role('admin');
   await go('admin-user-management.html');
   await p.click('[data-action=entity-new]');

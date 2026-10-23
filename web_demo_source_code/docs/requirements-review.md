@@ -6,11 +6,11 @@ Nguồn: [đề bài gốc](../../docs/BTL-28_courtconnect-at-san-va-ghep-nguoi-
 |---|---|---|
 | 1–4 lĩnh vực/ngữ cảnh/vấn đề | Sân, trận, lịch, slot và cân bằng CLB | Xác nhận phạm vi với thầy |
 | 5–7 mục tiêu/role/luồng | 4 role, luồng liên kết và tài liệu user-flows | Giảng viên duyệt luồng |
-| Nguyên tắc phạm vi | 42 trang chức năng và 2 URL chuyển hướng; không giới hạn 12 | Duyệt bảng kiểm kê và mockup bổ sung |
+| Nguyên tắc phạm vi | 41 trang chức năng và 2 URL chuyển hướng; không giới hạn 12 | Duyệt bảng kiểm kê và mockup bổ sung |
 | 8 danh sách nền tảng | Có đủ 12 HTML đúng tên | Đối chiếu khi duyệt |
 | 9 chuẩn từng giao diện | Semantic DOM, layout chung, responsive, tương tác, form validation, trạng thái | Nhóm tự review và quay minh chứng |
 | 10 CRUD | courts/slots/bookings/matches/players/events cùng các entity quản trị | D được biểu diễn bằng hủy/lưu trữ khi phù hợp |
-| 11–12 AI | Ba AI theo quy tắc, có lý do, quyền sửa/lưu/từ chối, lỗi/thủ công | Nhóm giải thích thuật toán khi bảo vệ |
+| 11–12 AI | Hai AI theo quy tắc, có lý do, quyền sửa/lưu/từ chối, lỗi/thủ công | Nhóm giải thích thuật toán khi bảo vệ |
 | 13 dữ liệu | Module seed tập trung + localStorage, chưa gọi API mạng | Theo yêu cầu bổ sung được nhóm thông báo: cần tích hợp mock REST API; nhóm đã chọn hướng JSON Server nhưng chưa triển khai, không đánh dấu hoàn thành |
 | 14 nhân sự | 4 người phụ trách 4 vai trò; phần còn lại làm chung | Điền tên và xác nhận công việc thực tế |
 | 15 GitHub | Tài liệu hỗ trợ quy trình nhánh công việc và Pull Request vào main | Nhóm tự đối chiếu và bổ sung commit/PR/review thực tế; tài liệu này chưa kiểm chứng tiến độ trên GitHub |

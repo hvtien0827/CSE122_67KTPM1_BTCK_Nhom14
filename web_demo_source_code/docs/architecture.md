@@ -15,7 +15,7 @@ Không cần framework, bước build hoặc API bên ngoài để chạy websit
 | sports | danh mục môn |
 | courts | sportId, ownerId → users |
 | slots | courtId, date/start/end, giá toàn slot |
-| bookings | slotId, playerId → users; trạng thái; nhận định risk |
+| bookings | slotId, playerId → users; trạng thái |
 | matches | slotId, hostId, playerIds, trình độ, sức chứa |
 | events | organizerId, sportId, playerIds; teams a/b |
 | reports | khoảng ngày, snapshot số đơn và doanh thu hoàn thành |
@@ -35,7 +35,6 @@ Không cần framework, bước build hoặc API bên ngoài để chạy websit
 - Cấm sửa slot đã có booking; cấm lưu trữ sân có đơn pending/approved.
 - Người dùng không tự khóa/gỡ quyền quản trị hiện tại. Giữ nguyên role của tài khoản đã tạo để bảo toàn liên kết.
 - Đóng sự kiện khóa danh sách; thay đổi roster làm mất hiệu lực lineup cũ.
-- Không coi thiếu lịch sử là rủi ro thấp. Không tự từ chối booking theo AI.
 
 ## Bảo mật của nguyên mẫu
 

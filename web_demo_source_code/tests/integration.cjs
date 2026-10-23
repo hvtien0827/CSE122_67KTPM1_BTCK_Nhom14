@@ -281,29 +281,6 @@ fs.mkdirSync(out, { recursive: true });
   await page.selectOption('#dialog-form [name=playerId]', 'u8');
   await submitDialog();
   await switchRole('venue');
-  await go('venue-no-show-risk.html');
-  await page.selectOption('[name=bookingId]', 'b1');
-  await page.click('#risk-submit');
-  await page.waitForSelector('#risk-save');
-  await page.selectOption('[name=riskLevel]', 'Chưa chắc chắn');
-  await page.fill('[name=note]', 'Cần trao đổi trực tiếp với người chơi');
-  await page.click('#risk-save button:not([type=button])');
-  check(
-    'Risk assessment stores human override without rejecting booking',
-    await evalDB(
-      () =>
-        CC.find('bookings', 'b1').risk.level === 'Chưa chắc chắn' &&
-        CC.find('bookings', 'b1').status === 'approved'
-    )
-  );
-  await page.evaluate(() => CC.transaction(() => (CC.find('players', 'u1').played = 0)));
-  await page.selectOption('[name=bookingId]', 'b4');
-  await page.click('#risk-submit');
-  await page.waitForSelector('#risk-result .notice.warning');
-  check(
-    'No history gives uncertainty, not low risk',
-    (await page.textContent('#risk-result')).includes('Không đủ dữ liệu')
-  );
   await go('venue-court-management.html');
   await page.click('[data-action=court-calendar][data-id=c1]');
   await page.click('[data-action=calendar-new]');

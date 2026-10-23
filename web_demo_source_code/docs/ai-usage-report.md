@@ -24,7 +24,7 @@ Codex được người dùng yêu cầu tạo website HTML/CSS/JS từ đề Ma
 Chạy kiểm tra cú pháp JS, kiểm tra các trang desktop/mobile bằng trình duyệt headless, kiểm thử xuyên vai trò và tình huống lỗi, xem ảnh render. Kết quả lịch sử và kiểm thử bản hiện tại được phân biệt tại [test-report.md](test-report.md).
 
 ## Phân biệt mock / API thật
-Auth, OTP email, booking và 3 AI là mô phỏng. Không xử lý thanh toán thật; trò chuyện đã gỡ trong bản hiện tại. Không gọi API mạng. Thuật toán AI đọc được trong js/ai.js.
+Auth, OTP email, booking và 2 AI là mô phỏng. Không xử lý thanh toán thật; trò chuyện đã gỡ trong bản hiện tại. Không gọi API mạng. Thuật toán AI đọc được trong js/ai.js.
 
 ## Sinh viên cần bổ sung trung thực
 | Thành viên | Phần tự chỉnh | Lỗi tự tìm / cách kiểm chứng | Điều học được | Commit/PR thật |
@@ -37,7 +37,7 @@ Auth, OTP email, booking và 3 AI là mô phỏng. Không xử lý thanh toán t
 
 ## Phạm vi cập nhật hiện tại
 
-Nhóm giữ 4 vai trò; mỗi người xây dựng một vai trò trên `feat/player`, `feat/venue`, `feat/organizer`, `feat/admin`; các phần dùng chung do cả nhóm phối hợp. Danh mục hiện hành là 42 trang chức năng và 2 URL chuyển hướng.
+Nhóm giữ 4 vai trò; mỗi người xây dựng một vai trò trên `feat/player`, `feat/venue`, `feat/organizer`, `feat/admin`; các phần dùng chung do cả nhóm phối hợp. Danh mục hiện hành là 41 trang chức năng và 2 URL chuyển hướng.
 
 AI đã hỗ trợ sửa lỗi tài khoản CLB còn bị khóa do dữ liệu bản 28 trang: khôi phục có điều kiện, giữ khóa thủ công, dữ liệu hiện hành và thêm `tests/restore-four-roles.cjs`. Ở phiên sửa ban đầu mới kiểm tra dữ liệu do thiếu trình duyệt. Trong đợt kiểm tra ngày 21/10/2026, bài hồi quy này và các luồng trình duyệt đã chạy đạt; xem [báo cáo kiểm thử mới nhất](structure-refactor-report.md). Bảng công việc sinh viên phía trên vẫn cần nhóm cập nhật từ công việc thực tế, không suy ra từ việc AI đã sửa code.
 
