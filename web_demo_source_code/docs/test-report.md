@@ -1,5 +1,14 @@
 # Cập nhật kiểm thử dọn mã — 22/10/2026
 
+## Ghép trận và tham gia trực tiếp — 23/10/2026
+
+- Ghép trận không còn bước chọn/lưu gợi ý. Nút Tôi muốn tham gia đăng ký thành viên thật; thẻ Trận đấu đã lưu dùng dữ liệu tham gia sắp tới, có chi tiết và hủy tham gia. Hủy trận từ chủ trận cập nhật trạng thái ở tài khoản người tham gia.
+- Tiêu chí/bản nháp được giữ riêng theo tài khoản trong sessionStorage, kết quả tính lại khi quay lại từ chi tiết và khi dữ liệu thay đổi giữa các tab.
+- `skill-participation.cjs`: 21 kiểm tra, gồm chủ trận tạo từ UI, đăng nhập tài khoản phụ, tham gia/rút/tái tham gia, số chỗ, thông báo chủ trận, không trùng thành viên, chặn trùng lịch, trận đầy, chủ trận hủy, reload/Back, dữ liệu cũ, giữ mật khẩu/trạng thái đã sửa và bố cục 320/390px.
+- Tài khoản demo phụ: p2@demo.vn / 123456. Demo nhiều Player dùng hai tab cùng trình duyệt và cùng origin, không bật Ghi nhớ đăng nhập. localStorage không đồng bộ giữa hai máy hoặc hai trình duyệt riêng.
+- Đã kiểm tra ảnh desktop/mobile, sáng/tối; các bộ test nghiệp vụ, giao diện và icon được chạy lại. Các nhận xét về chọn/lưu gợi ý bên dưới thuộc luồng cũ.
+
+
 ## Gỡ trang phân tích vắng mặt — kiểm tra 23/10/2026
 
 - Hiện có 41 trang chức năng, 2 URL chuyển hướng; trang đã gỡ trả HTTP 404, không còn liên kết menu hoặc route xử lý.

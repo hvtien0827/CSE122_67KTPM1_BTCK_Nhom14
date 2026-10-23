@@ -17,7 +17,7 @@
     "Domain rejects over-capacity join",
     "Player can withdraw from match",
     "Booking cancellation releases slot and cancels associated match",
-    "Skill Match saves accepted recommendation",
+    "Skill Match directly joins and displays the saved match",
     "Skill Match hides internal failure controls",
     "Skill Match failure has manual fallback",
     "Skill Match retry recovers after a processing failure",

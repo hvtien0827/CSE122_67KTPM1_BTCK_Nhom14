@@ -4,6 +4,14 @@ Ngày cập nhật tài liệu: **23/10/2026**. Áp dụng cho thư mục `web_d
 
 Nhật ký tổng hợp từ các thay đổi đã xác nhận trong cuộc trao đổi và mã nguồn/tài liệu hiện có. Đây không phải bản trích xuất lịch sử Git. Những cải tiến cũ không xác định được ngày thực hiện được ghi theo nhóm chức năng, không gán ngày hay người thực hiện. Bản thiết kế lại đã bị loại bỏ không thuộc nhật ký này.
 
+## 23/10/2026 — Tham gia trực tiếp từ Ghép trận thông minh
+
+- Bỏ chọn/lưu/từ chối gợi ý theo nhiều bước và nhãn “Có giải thích”; mỗi trận đề xuất có nút Tôi muốn tham gia.
+- Thẻ Trận đấu đã lưu lấy từ danh sách thành viên thật, có chi tiết, trạng thái, số người và Hủy tham gia. Chủ trận nhận thông báo khi có người tham gia/rút.
+- Giữ tiêu chí, bản nháp riêng theo tài khoản khi đi sang chi tiết và quay lại; tính lại kết quả từ dữ liệu hiện tại.
+- Thêm tài khoản demo phụ p2@demo.vn / 123456 cho dữ liệu mới/cũ, giữ nguyên chỉnh sửa tài khoản hiện có. Đăng nhập không áp dụng lại quy tắc độ dài của lúc đăng ký.
+- Bỏ gợi ý lưu mẫu không còn sử dụng; kiểm tra sân hoạt động khi ghép/tham gia và chặn rút sau khi trận đã bắt đầu.
+
 ## 23/10/2026 — Gỡ trang phân tích vắng mặt của chủ sân
 
 - Xóa trang cảnh báo, route, menu desktop/mobile, liên kết trong quản lý đơn và thuật toán riêng.

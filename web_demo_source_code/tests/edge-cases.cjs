@@ -166,7 +166,10 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
     await save();
   }
   await go('organizer-team-lineup.html?event=' + event);
-  check('Team Balancer hides internal failure controls', await p.locator('[name=simulateError]').count() === 0);
+  check(
+    'Team Balancer hides internal failure controls',
+    (await p.locator('[name=simulateError]').count()) === 0
+  );
   await injectAIFailure(p, 'players');
   await p.click('#team-submit');
   await p.waitForSelector('#team-result .notice.error');
@@ -231,7 +234,13 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
     await p.evaluate(
       (id) =>
         CC.find('reports', id).snapshot.revenue ===
-        CC.db.bookings.filter(b => {const s=CC.find('slots',b.slotId),r=CC.find('reports',id);return b.status === 'completed' && s.date >= r.from && s.date <= r.to;}).reduce((sum,b)=>sum+CC.find('slots',b.slotId).price,0),
+        CC.db.bookings
+          .filter((b) => {
+            const s = CC.find('slots', b.slotId),
+              r = CC.find('reports', id);
+            return b.status === 'completed' && s.date >= r.from && s.date <= r.to;
+          })
+          .reduce((sum, b) => sum + CC.find('slots', b.slotId).price, 0),
       report
     )
   );
@@ -316,7 +325,14 @@ const base = process.env.BASE_URL || 'http://127.0.0.1:4173',
   await p.waitForURL('**/index.html');
   check(
     'Confirmed reset restores usable seed data',
-    await p.evaluate(() => CC.db.users.length === 8 && !CC.loadError)
+    await p.evaluate(
+      () =>
+        CC.db.users.some((u) => u.email === 'p2@demo.vn') &&
+        ['player', 'venue', 'organizer', 'admin'].every((role) =>
+          CC.db.users.some((u) => u.role === role)
+        ) &&
+        !CC.loadError
+    )
   );
   check('Edge tests have no runtime errors', errors.length === 0);
   fs.writeFileSync(

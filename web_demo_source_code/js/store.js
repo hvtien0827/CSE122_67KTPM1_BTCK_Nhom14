@@ -576,26 +576,6 @@
           createdAt: stamp,
         });
     }
-    const suggested = upcomingOpen().find((m) => !m.playerIds.includes(player.id));
-    if (
-      suggested &&
-      !data.aiHistory.some(
-        (h) => h.userId === player.id && h.type === 'skill' && h.status === 'saved'
-      )
-    )
-      put('aiHistory', {
-        id: 'demo-ai-skill',
-        userId: player.id,
-        type: 'skill',
-        input: { date: get('slots', suggested.slotId).date },
-        result: {
-          id: suggested.id,
-          score: 85,
-          reason: 'Gợi ý mẫu để trải nghiệm danh sách đã lưu.',
-        },
-        status: 'saved',
-        createdAt: stamp,
-      });
     if (admin && !data.reports.length) {
       const rows = data.bookings.filter(
         (b) => get('slots', b.slotId)?.date >= date(-30) && get('slots', b.slotId)?.date <= today
@@ -651,6 +631,31 @@
         );
     }
   }
+  // Tài khoản thứ hai để demo ghép trận; không ghi đè chỉnh sửa hoặc khóa của người dùng.
+  function ensureDemoPartner(data) {
+    const id = 'demo-player-2';
+    if (data.users.some((user) => user.id === id || user.email === 'p2@demo.vn')) return;
+    data.users.push({
+      id,
+      name: 'Người chơi Demo 2',
+      role: 'player',
+      email: 'p2@demo.vn',
+      password: '123456',
+      verified: true,
+      status: 'active',
+      phone: '',
+      level: 2,
+    });
+    data.players.push({
+      id,
+      name: 'Người chơi Demo 2',
+      userId: id,
+      status: 'active',
+      levels: { badminton: 2, pickleball: 2 },
+      played: 0,
+      noShows: 0,
+    });
+  }
   let db,
     loadError = '';
   try {
@@ -692,6 +697,7 @@
     db.courts.forEach((c) => {
       if (c.autoSchedule === undefined) c.autoSchedule = ['c1', 'c2', 'c3'].includes(c.id);
     });
+    ensureDemoPartner(db);
     supplementDemoData(db);
     localStorage.setItem(KEY, JSON.stringify(db));
   } catch (e) {
@@ -845,7 +851,13 @@
     const u = requireRole('player'),
       m = find('matches', key),
       s = find('slots', m?.slotId);
-    if (!m || m.status !== 'open' || !future(s) || !sportActive(courtFor(s)?.sportId))
+    if (
+      !m ||
+      m.status !== 'open' ||
+      !future(s) ||
+      courtFor(s)?.status !== 'active' ||
+      !sportActive(courtFor(s)?.sportId)
+    )
       throw Error('Trận không còn nhận người chơi.');
     if (m.playerIds.includes(u.id)) throw Error('Bạn đã tham gia trận này.');
     if (m.playerIds.length >= m.capacity) throw Error('Trận đã đủ người.');
@@ -862,7 +874,8 @@
       m = find('matches', key);
     if (!m || !m.playerIds.includes(u.id)) throw Error('Bạn chưa tham gia trận.');
     if (m.hostId === u.id) throw Error('Chủ trận cần dùng thao tác hủy trận.');
-    if (m.status !== 'open') throw Error('Trận đã đóng.');
+    if (m.status !== 'open' || !future(find('slots', m.slotId)))
+      throw Error('Trận đã bắt đầu hoặc đã đóng.');
     transaction(() => {
       m.withdrawnIds = [...new Set([...(m.withdrawnIds || []), u.id])];
       m.playerIds = m.playerIds.filter((x) => x !== u.id);

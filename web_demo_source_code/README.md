@@ -33,6 +33,8 @@ Nút mặt trăng / mặt trời ở thanh điều hướng đổi chế độ s
 | Điều phối CLB | organizer@courtconnect.demo | Court123! |
 | Quản trị viên | admin@courtconnect.demo | Court123! |
 
+Để demo hai người chơi, dùng tài khoản phụ **`p2@demo.vn` / `123456`** (Người chơi Demo 2). Mở hai tab cùng trình duyệt và cùng địa chỉ/cổng, mỗi tab đăng nhập một tài khoản; bỏ chọn “Ghi nhớ đăng nhập”. Dữ liệu localStorage dùng chung giữa các tab, phiên đăng nhập lưu riêng trong sessionStorage. Hai trình duyệt hoặc hai máy khác nhau không chia sẻ dữ liệu này.
+
 Trang đăng nhập có mục **Trải nghiệm nhanh với 4 tài khoản mẫu** để điền và đăng nhập. Để đổi vai trò, bấm ảnh đại diện ở góc trên bên phải → **Đăng xuất / đổi vai trò**. Nút ở cuối menu bên trái vẫn được giữ trên desktop.
 
 Tài khoản tự đăng ký có vai trò Người chơi. Mã xác minh/khôi phục mẫu: **482915**, hết hạn sau 5 phút; gửi lại sau 60 giây. Không gửi email thật và không kết nối Google OAuth. Nút Google giải thích giới hạn, không giả vờ đăng nhập thành công.
@@ -44,7 +46,7 @@ Mỗi người phụ trách một vai trò: Thành viên 1 — Người chơi; T
 ## Những luồng đã triển khai
 
 - Tài khoản: đăng ký, xác minh, sai/hết hạn mã, đăng nhập, ghi nhớ phiên, khôi phục/đổi mật khẩu, hồ sơ, thông báo, cài đặt.
-- Người chơi: tìm/lọc sân và trận; xem chi tiết; gửi/hủy đơn; tạo/sửa/hủy trận từ lịch sân đã duyệt; tham gia/rút trận; ghép trận và lưu gợi ý.
+- Người chơi: tìm/lọc sân và trận; xem chi tiết; gửi/hủy đơn; tạo/sửa/hủy trận từ lịch sân đã duyệt; tham gia/rút trận; ghép trận, tham gia trực tiếp và hủy tham gia.
 - Chủ sân: tạo/sửa/xoá/lưu trữ sân, tải ảnh từ máy; lịch khung giờ ngay trong cửa sổ lịch sân; chặn slot trùng; duyệt/từ chối/hủy/hoàn thành đơn do người chơi gửi; doanh thu và đánh giá sân.
 - CLB: tạo/sửa/xoá/lưu trữ/hoàn thành sự kiện có giờ bắt đầu–kết thúc; quản lý hồ sơ và danh sách; chia đội tự động hoặc thủ công; chỉnh và lưu/xóa đội hình.
 - Quản trị: tạo/sửa/vô hiệu hóa/kích hoạt tài khoản; quản lý môn; tạo/sửa/xoá/lưu trữ báo cáo hoạt động và tải CSV; xem xét báo cáo người chơi.
@@ -159,3 +161,9 @@ Kiểm tra phần này: `node tests/interface-polish.cjs`.
 Bắt đầu từ [bản đồ code và hướng dẫn vấn đáp](docs/code-map.md). HTML chỉ giữ form popup liên quan, controller quản lý tách theo role; JavaScript cập nhật dữ liệu với tên binding rõ nghĩa. Đây vẫn là bản localStorage, chưa tích hợp JSON Server.
 
 Đã rà soát và dọn mã ngày 22/10/2026: [phạm vi thay đổi và kiểm thử](docs/source-cleanup-report.md).
+
+## Ghép trận thông minh — luồng tham gia
+
+Điền tiêu chí rồi bấm Tìm trận phù hợp. Mỗi thẻ có nút Tôi muốn tham gia; thao tác cập nhật thành viên trận thật và gửi thông báo cho chủ trận. Trận xuất hiện trong Trận đấu đã lưu và Hoạt động của tôi. Hủy tham gia giải phóng chỗ, giữ nguyên trận và lịch sân của chủ trận.
+
+Trận đấu đã lưu lấy từ dữ liệu thành viên hiện tại; lịch sử gợi ý cũ không tự biến thành đăng ký tham gia. Tiêu chí và bản nháp lưu trong sessionStorage riêng theo tài khoản, còn kết quả tính lại khi quay về từ chi tiết để loại trận đầy/đóng hoặc trùng lịch. Điểm phù hợp là điểm theo quy tắc, không phải xác suất.

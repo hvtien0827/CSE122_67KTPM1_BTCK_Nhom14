@@ -389,3 +389,26 @@
 [data-activity][hidden] {
   display: none !important;
 }
+
+/* Thẻ trận đã tham gia trong trang ghép trận. */
+.saved-match-card {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.saved-match-card:first-child {
+  padding-top: 0;
+}
+.saved-match-card:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.saved-match-card h4 {
+  margin: 0 0 12px;
+}
+.saved-match-card .actions {
+  flex-wrap: wrap;
+}
+.skill-match-card h3 {
+  overflow-wrap: anywhere;
+}
