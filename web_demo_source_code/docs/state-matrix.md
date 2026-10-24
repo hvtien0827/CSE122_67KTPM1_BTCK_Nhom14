@@ -8,7 +8,7 @@
 | Tìm sân/trận | render dữ liệu cục bộ, bộ lọc | không có kết quả | còn chỗ / đủ người / hết giờ | xóa bộ lọc |
 | Booking | gửi form, hiện kết quả | slot bị giữ, trùng lịch | pending / approved / rejected / cancelled / completed | chọn slot khác / xem lịch |
 | CRUD | form, lưu, toast | validation, ràng buộc, danh sách rỗng | active/open / archived/disabled | sửa input / tạo mới |
-| Skill Match | đang xử lý, khóa submit | lỗi xử lý dữ liệu, không có trận phù hợp | chọn / lưu / từ chối | sửa tiêu chí / tạo lại / tìm thủ công |
+| Skill Match | đang xử lý, khóa submit | lỗi xử lý dữ liệu, không có trận phù hợp | tham gia thật / thẻ đã tham gia / hủy tham gia | đổi tiêu chí / thử lại / tìm thủ công |
 | Team Balancer | đang xử lý | <2 người, thiếu trình độ, lỗi xử lý dữ liệu, lineup sai | đề xuất / sửa / lưu / xóa | chỉnh roster / chia thủ công |
 | Thông báo | danh sách | chưa có thông báo | chưa đọc / đã đọc | đọc từng thông báo / đọc tất cả |
 | Lịch sân | lịch tuần desktop / danh sách ngày mobile | chưa mở slot, slot trùng hoặc đã có đơn | trống / chờ duyệt / đã thuê / hoàn thành / đã đóng | đổi ngày / sửa lịch hợp lệ |

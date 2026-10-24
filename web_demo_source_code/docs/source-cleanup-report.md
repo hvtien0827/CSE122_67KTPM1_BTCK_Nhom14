@@ -17,11 +17,12 @@ Rà tĩnh đối chiếu khai báo/phạm vi JS, tên hàm công khai và nơi g
 
 Kết quả xác minh 24/10:
 
-- **17 bộ kiểm tra đạt**: structure, smoke, static-html, integration, edge-cases, community, date-picker, usability-regression, interface-polish, mobile-activities, restore-four-roles, theme, retired-court, match-sport, bootstrap-icons và redirects. Nguồn đem thử khớp từng byte với HTML/JS/CSS, test hiện hành, package và manifest trong repo.
+- **18 bộ kiểm tra đạt**: structure, smoke, static-html, integration, edge-cases, community, date-picker, usability-regression, interface-polish, mobile-activities, restore-four-roles, theme, retired-court, match-sport, bootstrap-icons, redirects và skill-participation. Nguồn đem thử khớp từng byte với HTML/JS/CSS, test hiện hành, package và manifest trong repo.
+- Skill Match: 21 kiểm tra đạt trên bản kết hợp, gồm tài khoản phụ, nhiều player, tham gia/rút/tái tham gia, chỗ trống, thông báo, hủy trận và giữ trạng thái.
 - Smoke: 82 lượt trang desktop/mobile; icon và theme: 164 lượt mỗi bộ; không lỗi runtime/tràn ngang trong các lượt này. Redirects: 20 trường hợp trên desktop/mobile cộng luồng đăng nhập rồi mở lịch sân, giữ dữ liệu và quyền.
-- **188 cặp ảnh trước/sau khớp pixel**: 41 trang × 2 chiều rộng × 2 theme, 16 popup và 8 menu mobile. Hai cặp khác ở vùng ảnh sân trong lượt đầu đã được chụp lại; cặp cuối khớp. Nội dung hiển thị và dữ liệu khởi tạo cũng khớp.
-- Kiểm tra 1.325 tham chiếu tài nguyên/liên kết cục bộ trong HTML, ID trùng, binding, template, biến/selector CSS và cú pháp JS. Không phát hiện tham chiếu cục bộ hỏng, ID trùng hay binding thiếu trong phạm vi rà.
-- Bản đầu vào là `main` local tại `b0ab8d6`, chậm hơn GitHub. Đối chiếu GitHub sau đó xác nhận PR #7 đã merge commit `af746f9` vào `main` remote tại `59b93f9`; local và nhánh dọn còn thiếu 2 commit. Các kết quả trên kiểm chứng bản đầu vào local cùng phần dọn, chưa kiểm chứng bản kết hợp với main mới. Cần đồng bộ và chạy lại các kiểm tra liên quan trước khi chốt PR. Bài thử bổ sung tài khoản `p2@demo.vn` dừng ở đăng nhập vì bản đầu vào cũ chưa có tài khoản này, không được tính là kiểm tra đạt.
+- **188 cặp ảnh trước/sau khớp pixel**: 41 trang × 2 chiều rộng × 2 theme, 16 popup và 8 menu mobile. Đối chiếu bản dọn đã kết hợp với main mới `59b93f9`: toàn bộ 188 cặp khớp pixel, nội dung hiển thị và dữ liệu khởi tạo cũng khớp.
+- Kiểm tra tham chiếu tài nguyên/liên kết cục bộ trong HTML, ID trùng, binding, template, biến/selector CSS và cú pháp JS. Không phát hiện tham chiếu cục bộ hỏng, ID trùng hay binding thiếu trong phạm vi rà.
+- Nhánh dọn ban đầu dựa trên main local `b0ab8d6`. Sau khi xác nhận PR #7 đã merge, đã đưa `origin/main` tại `59b93f9` vào nhánh dọn và kiểm tra lại bản kết hợp. Xung đột package.json được xử lý bằng cách giữ cả hai script `test:redirects` và `test:skill-participation`. Tài khoản phụ và luồng ghép trận mới từ PR #7 được giữ nguyên; 18 bộ kiểm tra trên bản kết hợp đều đạt.
 
 Không stage/commit/push hay đổi nhánh. Không kiểm thử trên thiết bị thật, Firefox hoặc Safari; kết quả xác nhận các tình huống Chrome và kiểm tra tĩnh đã nêu, không phải bảo đảm mọi trạng thái có thể xảy ra. Các số liệu đợt 22/10 phía dưới là lịch sử, không phải số lượng file hiện hành.
 

@@ -4,16 +4,26 @@
 
 Bản đem thử có 41 trang chức năng và 2 URL chuyển hướng; dữ liệu localStorage, chưa tích hợp JSON Server. Chạy bằng Chrome với hồ sơ/dữ liệu thử riêng, trên bản sao khớp mã nguồn trong nhánh `refactor/remove-unused-code`.
 
-**Phạm vi đầu vào:** nhánh dọn bắt đầu từ main local `b0ab8d6`, đang thiếu 2 commit so với main trên GitHub (`59b93f9`, đã merge PR #7). Các kết quả dưới đây chưa xác nhận bản kết hợp với main mới; cần đồng bộ và kiểm tra lại trước khi chốt PR.
+**Phạm vi đầu vào:** bản kết hợp phần dọn với main mới `59b93f9` (đã merge PR #7). Đã giữ cả kiểm tra chuyển hướng và ghép trận khi xử lý xung đột package.json, rồi chạy lại toàn bộ các bộ kiểm tra dưới đây.
 
-- 17 bộ kiểm tra hiện hành đều đạt; bao gồm 82 lượt smoke và 164 lượt mỗi bộ icon/theme, nghiệp vụ đặt sân/tạo-tham gia trận, cộng đồng, lịch, phân quyền, khôi phục dữ liệu và responsive.
+- 18 bộ kiểm tra hiện hành đều đạt; bao gồm 82 lượt smoke và 164 lượt mỗi bộ icon/theme, nghiệp vụ đặt sân/tạo-tham gia trận, cộng đồng, lịch, phân quyền, khôi phục dữ liệu và responsive.
+- `tests/skill-participation.cjs`: 21 kiểm tra tương tác nhiều player, tài khoản phụ, tham gia/rút, hết chỗ, thông báo, hủy trận và giữ trạng thái đều đạt trên bản kết hợp.
 - `tests/redirects.cjs`: 20 trường hợp khách/bốn role ở desktop/mobile, kiểm tra dữ liệu được giữ và đăng nhập từ URL cũ rồi mở lịch sân. Chạy bằng `npm run test:redirects` khi server đang hoạt động.
-- 188 cặp ảnh trước/sau cuối cùng khớp pixel; nội dung và dữ liệu cũng khớp. Hai ảnh sân cần chụp lại để loại trừ khác biệt thời điểm vẽ ảnh.
+- 188 cặp ảnh đối chiếu với main mới `59b93f9` đều khớp pixel; nội dung và dữ liệu cũng khớp.
 - Rà đường dẫn/ID, binding/template, JS/CSS và đối chiếu nguồn kiểm thử đạt. Ảnh/log mới nằm ngoài repo, không ghi đè minh chứng cũ trong `tests/artifacts`.
 
 Chi tiết phạm vi, bản đầu vào và các giới hạn tại [báo cáo dọn mã](source-cleanup-report.md). Chưa kiểm thử trên Firefox/Safari hoặc điện thoại vật lý. Những mục bên dưới là lịch sử; nhận xét thiếu trình duyệt ở đợt cũ không áp dụng cho lần chạy ngày 24/10.
 
 ## Các đợt kiểm tra trước (lịch sử)
+
+## Ghép trận và tham gia trực tiếp — 23/10/2026
+
+- Ghép trận không còn bước chọn/lưu gợi ý. Nút Tôi muốn tham gia đăng ký thành viên thật; thẻ Trận đấu đã lưu dùng dữ liệu tham gia sắp tới, có chi tiết và hủy tham gia. Hủy trận từ chủ trận cập nhật trạng thái ở tài khoản người tham gia.
+- Tiêu chí/bản nháp được giữ riêng theo tài khoản trong sessionStorage, kết quả tính lại khi quay lại từ chi tiết và khi dữ liệu thay đổi giữa các tab.
+- `skill-participation.cjs`: 21 kiểm tra, gồm chủ trận tạo từ UI, đăng nhập tài khoản phụ, tham gia/rút/tái tham gia, số chỗ, thông báo chủ trận, không trùng thành viên, chặn trùng lịch, trận đầy, chủ trận hủy, reload/Back, dữ liệu cũ, giữ mật khẩu/trạng thái đã sửa và bố cục 320/390px.
+- Tài khoản demo phụ: p2@demo.vn / 123456. Demo nhiều Player dùng hai tab cùng trình duyệt và cùng origin, không bật Ghi nhớ đăng nhập. localStorage không đồng bộ giữa hai máy hoặc hai trình duyệt riêng.
+- Đã kiểm tra ảnh desktop/mobile, sáng/tối; các bộ test nghiệp vụ, giao diện và icon được chạy lại. Các nhận xét về chọn/lưu gợi ý bên dưới thuộc luồng cũ.
+
 
 ## Gỡ trang phân tích vắng mặt — kiểm tra 23/10/2026
 
