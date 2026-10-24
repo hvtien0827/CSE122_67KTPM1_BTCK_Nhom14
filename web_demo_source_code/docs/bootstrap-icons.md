@@ -2,13 +2,15 @@
 
 > Cập nhật phạm vi 23/10/2026: trang phân tích vắng mặt của chủ sân đã gỡ. Hiện có 41 trang chức năng, 2 URL tương thích; AI còn Skill Match và Team Balancer. Các số liệu bên dưới ghi nhận đợt kiểm tra trước khi gỡ. Xem [phạm vi hiện hành](screen-list.md).
 
-Mỗi trang nạp cùng phiên bản cố định:
+Mỗi trang chức năng nạp cùng phiên bản cố định:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" />
 ```
 
 Đặt trước `css/common.css` để CSS dự án điều chỉnh kích thước và màu. Website cần Internet để tải stylesheet/font, không lưu bộ icon offline và không nạp framework Bootstrap. CDN không thay đổi nơi lưu dữ liệu nghiệp vụ.
+
+Hai URL chuyển hướng cũ không có icon/giao diện riêng nên không nạp CDN. `UI.icon()` chỉ giữ các tên đang được JavaScript gọi; icon tĩnh ở menu vẫn nằm trực tiếp trong HTML.
 
 ## Cách đọc và sửa
 

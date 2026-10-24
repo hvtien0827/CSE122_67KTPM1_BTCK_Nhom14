@@ -2,9 +2,11 @@
 
 ## Nguyên tắc
 
-HTML nhiều trang chứa bố cục, nội dung chính, form và template popup. CSS có hai file luôn dùng chung (`common.css`, `navigation.css`); lịch ngày chỉ được nạp ở trang cần dùng. Tổng cộng có ba file thành phần chung (`common.css`, `navigation.css`, `date-picker.css`) và sáu file theo nhóm trang (`player.css`, `venue.css`, `organizer.css`, `admin.css`, `auth.css`, `home.css`). JavaScript xử lý dữ liệu, sự kiện, bộ lọc và kiểm tra form; `views.js` cập nhật các vùng dữ liệu đã đánh dấu trong HTML, giữ nguyên bố cục khi lọc/lưu. Xem [hướng dẫn cấu trúc frontend](frontend-structure.md).
+HTML nhiều trang chứa bố cục, nội dung chính, form và template popup. Trang chức năng dùng hai file CSS chung (`common.css`, `navigation.css`); lịch ngày chỉ được nạp ở trang cần dùng. Tổng cộng có ba file thành phần chung (`common.css`, `navigation.css`, `date-picker.css`) và sáu file theo nhóm trang (`player.css`, `venue.css`, `organizer.css`, `admin.css`, `auth.css`, `home.css`). JavaScript xử lý dữ liệu, sự kiện, bộ lọc và kiểm tra form; `views.js` cập nhật các vùng dữ liệu đã đánh dấu trong HTML, giữ nguyên bố cục khi lọc/lưu. Xem [hướng dẫn cấu trúc frontend](frontend-structure.md).
 
-Không cần framework, bước build hoặc API bên ngoài để chạy website. `store.js` khởi tạo dữ liệu mẫu và nâng cấp dữ liệu cộng đồng đúng một lần, sau đó đọc localStorage `courtconnect.v1`. Mọi thay đổi đi qua hàm nghiệp vụ và `transaction()`; nếu ghi thất bại thì khôi phục trạng thái trước đó trong bộ nhớ. Dữ liệu hỏng được báo và yêu cầu khôi phục trước khi tiếp tục ghi.
+Hai URL tương thích dùng `redirect.js` sau `store.js`, không nạp bộ giao diện; đích đến giữ chức năng hiện hành và việc kiểm tra quyền.
+
+Không cần framework, bước build hoặc API nghiệp vụ bên ngoài để chạy website. `store.js` khởi tạo dữ liệu mẫu và nâng cấp dữ liệu cộng đồng đúng một lần, sau đó đọc localStorage `courtconnect.v1`. Mọi thay đổi đi qua hàm nghiệp vụ và `transaction()`; nếu ghi thất bại thì khôi phục trạng thái trước đó trong bộ nhớ. Dữ liệu hỏng được báo và yêu cầu khôi phục trước khi tiếp tục ghi.
 
 ## Liên kết
 

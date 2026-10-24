@@ -10,8 +10,12 @@ const htmlFiles = fs.readdirSync(root).filter((f) => f.endsWith('.html'));
 const names = new Set();
 for (const file of htmlFiles) {
   const html = read(file);
-  assert.equal(html.split(cdn).length - 1, 1, file + ': one pinned CDN');
-  assert.ok(html.indexOf(cdn) < html.indexOf('href="css/common.css"'), file + ': style order');
+  if (html.includes('data-redirect=')) {
+    assert.equal(html.split(cdn).length - 1, 0, file + ': redirect has no icons or CDN');
+  } else {
+    assert.equal(html.split(cdn).length - 1, 1, file + ': one pinned CDN');
+    assert.ok(html.indexOf(cdn) < html.indexOf('href="css/common.css"'), file + ': style order');
+  }
   assert.ok(html.includes('href="assets/favicon.png" type="image/png"'), file + ': PNG favicon');
   for (const m of html.matchAll(/class="bi bi-([\w-]+)"/g)) names.add(m[1]);
 }
@@ -73,28 +77,18 @@ assert.ok(
     const helpers = await page.evaluate(() =>
       [
         'menu',
-        'logout',
         'search',
         'court',
-        'users',
         'calendar',
         'pin',
         'clock',
-        'chart',
         'bell',
-        'settings',
-        'home',
         'check',
-        'shield',
         'close',
-        'prev',
-        'next',
         'arrowLeft',
         'arrowRight',
         'star',
         'starEmpty',
-        'ai',
-        'plus',
       ].map((n) => UI.icon(n))
     );
     // Exercise every statically used icon, social icon and dynamic helper, even in hidden templates.
@@ -161,6 +155,17 @@ assert.ok(
           results.push({ name, width, theme });
         }
       }
+    // Player home retains the desktop sidebar toggle; workspaces hide it below.
+    await page.evaluate(() => CC.login(CC.db.users.find(user => user.role === 'player')));
+    await page.setViewportSize({ width: 1440, height: 960 });
+    await page.goto(`${base}/index.html`);
+    const homeToggle = page.locator('.header-left [data-action=toggle-sidebar]');
+    assert.equal(await homeToggle.isVisible(), true);
+    await homeToggle.click();
+    assert.equal(await page.locator('.home-sidebar').evaluate(node => node.classList.contains('is-open')), true);
+    await homeToggle.click();
+    assert.equal(await page.locator('.home-sidebar').evaluate(node => node.classList.contains('is-open')), false);
+    await page.setViewportSize({ width: 390, height: 960 });
     const homes = {
       player: 'player-open-matches',
       venue: 'venue-court-management',

@@ -69,14 +69,14 @@ for (const file of fs.readdirSync(root).filter((name) => name.endsWith('.html'))
     expected.fragments,
     `${file}: chỉ giữ popup đã khai báo cho trang`
   );
-  const role = roles.find((role) => file.startsWith(role + '-'));
+  const role = !html.includes('data-redirect=') && roles.find((role) => file.startsWith(role + '-'));
   if (role) {
     assert.equal(
       html.includes(`src="js/${role}.js"`),
       dependencies[file].scripts.includes(`js/${role}.js`),
       `${file}: controller đúng nhu cầu trang`
     );
-    assert.ok(html.includes(`href="css/${role}.css"`), `${file}: stylesheet đúng role`);
+    assert.equal(html.includes(`href="css/${role}.css"`), expected.styles.includes(`css/${role}.css`), `${file}: CSS theo nhu cầu trang`);
     for (const other of [...roles, 'player'].filter((other) => other !== role)) {
       assert.ok(!html.includes(`src="js/${other}.js"`), `${file}: không nạp ${other}.js`);
     }

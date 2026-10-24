@@ -16,9 +16,11 @@ Mở **http://127.0.0.1:4173**. Giữ nguyên cùng địa chỉ/cổng khi chuy
 
 ## Biểu tượng
 
-Website dùng **Bootstrap Icons 1.13.2 qua CDN jsDelivr**, cần Internet để tải CSS và font biểu tượng. Mỗi HTML nạp stylesheet trước `css/common.css`; không cần cài npm và không nạp framework Bootstrap.
+Website dùng **Bootstrap Icons 1.13.2 qua CDN jsDelivr**, cần Internet để tải CSS và font biểu tượng. Mỗi trang chức năng nạp stylesheet trước `css/common.css`; không cần cài npm và không nạp framework Bootstrap.
 
 Icon tĩnh dùng `<i class="bi bi-search" aria-hidden="true"></i>`. Icon sinh bởi JS dùng `UI.icon('search')`; bảng tên nằm trong `js/ui.js`. Giữ nhãn chữ/`aria-label` ở nút và liên kết. Logo Zalo không có trong thư viện nên dùng `bi-chat-dots` với nhãn Zalo. Favicon chữ C dùng PNG. Xem [hướng dẫn icon](docs/bootstrap-icons.md).
+
+Hai URL cũ `chat.html` và `venue-slot-management.html` chỉ nạp `store.js` và `redirect.js`, kiểm tra đăng nhập/role rồi chuyển tới trang hiện hành; không nạp CSS hoặc icon. Quản lý khung giờ: **Quản lý sân → Xem lịch sân**.
 
 ## Giao diện sáng / tối
 

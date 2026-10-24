@@ -20,7 +20,11 @@
       "js/community.js",
       "js/app.js"
     ],
-    "styles": ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css", "css/common.css", "css/navigation.css", "css/admin.css"],
+    "styles": [
+      "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css",
+      "css/common.css",
+      "css/navigation.css"
+    ],
     "fragments": [],
     "datePicker": false
   },
@@ -84,8 +88,11 @@
     "datePicker": false
   },
   "chat.html": {
-    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
-    "styles": ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css", "css/common.css", "css/navigation.css", "css/player.css"],
+    "scripts": [
+      "js/store.js",
+      "js/redirect.js"
+    ],
+    "styles": [],
     "fragments": [],
     "datePicker": false
   },
@@ -169,8 +176,16 @@
       "js/community.js",
       "js/app.js"
     ],
-    "styles": ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css", "css/common.css", "css/navigation.css", "css/date-picker.css", "css/organizer.css"],
-    "fragments": ["manage-edit-dialog-3", "ui-confirm-dialog-1"],
+    "styles": [
+      "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css",
+      "css/common.css",
+      "css/navigation.css",
+      "css/date-picker.css"
+    ],
+    "fragments": [
+      "manage-edit-dialog-3",
+      "ui-confirm-dialog-1"
+    ],
     "datePicker": true
   },
   "organizer-event-management.html": {
@@ -183,8 +198,16 @@
       "js/organizer.js",
       "js/app.js"
     ],
-    "styles": ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css", "css/common.css", "css/navigation.css", "css/date-picker.css", "css/organizer.css"],
-    "fragments": ["manage-edit-dialog-3", "ui-confirm-dialog-1"],
+    "styles": [
+      "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css",
+      "css/common.css",
+      "css/navigation.css",
+      "css/date-picker.css"
+    ],
+    "fragments": [
+      "manage-edit-dialog-3",
+      "ui-confirm-dialog-1"
+    ],
     "datePicker": true
   },
   "organizer-player-roster.html": {
@@ -196,8 +219,16 @@
       "js/organizer.js",
       "js/app.js"
     ],
-    "styles": ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css", "css/common.css", "css/navigation.css", "css/organizer.css"],
-    "fragments": ["manage-edit-dialog-4", "manage-actions-dialog-8", "ui-confirm-dialog-1"],
+    "styles": [
+      "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css",
+      "css/common.css",
+      "css/navigation.css"
+    ],
+    "fragments": [
+      "manage-edit-dialog-4",
+      "manage-actions-dialog-8",
+      "ui-confirm-dialog-1"
+    ],
     "datePicker": false
   },
   "organizer-team-lineup.html": {
@@ -425,8 +456,11 @@
     "datePicker": false
   },
   "venue-slot-management.html": {
-    "scripts": ["js/theme.js", "js/store.js", "js/ui.js", "js/views.js", "js/app.js"],
-    "styles": ["https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css", "css/common.css", "css/navigation.css", "css/venue.css"],
+    "scripts": [
+      "js/store.js",
+      "js/redirect.js"
+    ],
+    "styles": [],
     "fragments": [],
     "datePicker": false
   },

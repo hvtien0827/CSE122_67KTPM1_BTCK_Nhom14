@@ -1,4 +1,32 @@
-# Rà soát và dọn mã nguồn — 22/10/2026
+# Rà soát và dọn mã nguồn
+
+## Đợt 24/10/2026 — nhánh `refactor/remove-unused-code`
+
+Rà trực tiếp mã hiện hành trong `Repository/web_demo_source_code`: 43 HTML (41 trang chức năng và 2 URL tương thích), JavaScript, CSS, tài nguyên, kiểm thử và tài liệu liên quan. Bản đối chiếu và ảnh/log thử nghiệm nằm ngoài repo; không dùng storage của trình duyệt cá nhân.
+
+- Thu gọn `chat.html` và `venue-slot-management.html` về nội dung chuyển hướng dự phòng, từ 517 dòng xuống 38 dòng tổng cộng. Bỏ header/sidebar, template và tài nguyên giao diện không được dùng ở hai URL này. `redirect.js` dùng chung kiểm tra đăng nhập/role; không xoá URL cũ hoặc dữ liệu người dùng.
+- Giữ quản lý khung giờ trong **Quản lý sân → Xem lịch sân**. Khách truy cập URL cũ vẫn qua đăng nhập, ghi nhớ URL cần quay lại; sai role vẫn bị từ chối.
+- Thay bảng menu JS cũ chứa nhãn/icon không còn được render bằng bốn URL trang chính của role. Menu hiển thị vẫn do HTML quản lý.
+- Bỏ hàm tạo textarea không được gọi, 10 tên icon động không dùng và 8 tên công khai không có nơi gọi. Giữ các hàm nội bộ đang xử lý nghiệp vụ và các API được bộ kiểm thử sử dụng.
+- Bỏ 3 rule CSS không có nơi dùng; giữ biến màu tím vì lịch sân vẫn dùng cho đơn hoàn thành. Bỏ 4 lượt nạp CSS role không có thành phần tương ứng.
+- Bỏ 56 chú thích HTML mô tả hộp thoại/lịch đã không còn ở phía dưới. Giữ template lỗi, form xác nhận, popup và lịch đang được gọi trực tiếp hoặc gián tiếp.
+- Cập nhật manifest phụ thuộc, hướng dẫn cấu trúc, icon và task khung giờ; không tự đánh dấu tiến độ của thành viên.
+- Bỏ `tests/verify-user-reqs.cjs` cũ: script ghi ảnh vào thư mục IDE cá nhân và còn đòi bấm nút desktop đã được gỡ. Kiểm tra menu trang chủ được giữ trong `bootstrap-icons.cjs`; kiểm tra menu workspace/mobile nằm trong các bộ hiện hành.
+
+Rà tĩnh đối chiếu khai báo/phạm vi JS, tên hàm công khai và nơi gọi, binding HTML–JS, template/popup, selector/biến CSS, phụ thuộc và tài nguyên cục bộ. Các tham số `_` giữ vị trí đối số, CSS trạng thái/mobile và mã nâng cấp localStorage cũ được giữ vì vẫn có tác dụng. Không xoá code chỉ vì nó không xuất hiện ở trạng thái giao diện đầu tiên.
+
+Kết quả xác minh 24/10:
+
+- **18 bộ kiểm tra đạt**: structure, smoke, static-html, integration, edge-cases, community, date-picker, usability-regression, interface-polish, mobile-activities, restore-four-roles, theme, retired-court, match-sport, bootstrap-icons, redirects và skill-participation. Nguồn đem thử khớp từng byte với HTML/JS/CSS, test hiện hành, package và manifest trong repo.
+- Skill Match: 21 kiểm tra đạt trên bản kết hợp, gồm tài khoản phụ, nhiều player, tham gia/rút/tái tham gia, chỗ trống, thông báo, hủy trận và giữ trạng thái.
+- Smoke: 82 lượt trang desktop/mobile; icon và theme: 164 lượt mỗi bộ; không lỗi runtime/tràn ngang trong các lượt này. Redirects: 20 trường hợp trên desktop/mobile cộng luồng đăng nhập rồi mở lịch sân, giữ dữ liệu và quyền.
+- **188 cặp ảnh trước/sau khớp pixel**: 41 trang × 2 chiều rộng × 2 theme, 16 popup và 8 menu mobile. Đối chiếu bản dọn đã kết hợp với main mới `59b93f9`: toàn bộ 188 cặp khớp pixel, nội dung hiển thị và dữ liệu khởi tạo cũng khớp.
+- Kiểm tra tham chiếu tài nguyên/liên kết cục bộ trong HTML, ID trùng, binding, template, biến/selector CSS và cú pháp JS. Không phát hiện tham chiếu cục bộ hỏng, ID trùng hay binding thiếu trong phạm vi rà.
+- Nhánh dọn ban đầu dựa trên main local `b0ab8d6`. Sau khi xác nhận PR #7 đã merge, đã đưa `origin/main` tại `59b93f9` vào nhánh dọn và kiểm tra lại bản kết hợp. Xung đột package.json được xử lý bằng cách giữ cả hai script `test:redirects` và `test:skill-participation`. Tài khoản phụ và luồng ghép trận mới từ PR #7 được giữ nguyên; 18 bộ kiểm tra trên bản kết hợp đều đạt.
+
+Không stage/commit/push hay đổi nhánh. Không kiểm thử trên thiết bị thật, Firefox hoặc Safari; kết quả xác nhận các tình huống Chrome và kiểm tra tĩnh đã nêu, không phải bảo đảm mọi trạng thái có thể xảy ra. Các số liệu đợt 22/10 phía dưới là lịch sử, không phải số lượng file hiện hành.
+
+## Đợt 22/10/2026 (lịch sử)
 
 > Cập nhật phạm vi 23/10/2026: trang phân tích vắng mặt của chủ sân đã gỡ. Hiện có 41 trang chức năng, 2 URL tương thích; AI còn Skill Match và Team Balancer. Các số liệu bên dưới ghi nhận đợt kiểm tra trước khi gỡ. Xem [phạm vi hiện hành](screen-list.md).
 
