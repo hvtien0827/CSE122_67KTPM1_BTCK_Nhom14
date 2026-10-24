@@ -586,14 +586,10 @@
   });
   window.Community = {
     saveReview,
-    report,
-    playerStats,
     opponentCards,
     reviewList,
-    calendar,
     revenue,
     revenueRows,
-    periodRange,
     courtReviews,
     socialLinks,
     socialIcons,

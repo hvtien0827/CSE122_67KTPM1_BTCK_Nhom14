@@ -1,4 +1,19 @@
-# Cập nhật kiểm thử dọn mã — 22/10/2026
+# Báo cáo kiểm thử
+
+## Xác minh dọn mã ngày 24/10/2026
+
+Bản đem thử có 41 trang chức năng và 2 URL chuyển hướng; dữ liệu localStorage, chưa tích hợp JSON Server. Chạy bằng Chrome với hồ sơ/dữ liệu thử riêng, trên bản sao khớp mã nguồn trong nhánh `refactor/remove-unused-code`.
+
+**Phạm vi đầu vào:** nhánh dọn bắt đầu từ main local `b0ab8d6`, đang thiếu 2 commit so với main trên GitHub (`59b93f9`, đã merge PR #7). Các kết quả dưới đây chưa xác nhận bản kết hợp với main mới; cần đồng bộ và kiểm tra lại trước khi chốt PR.
+
+- 17 bộ kiểm tra hiện hành đều đạt; bao gồm 82 lượt smoke và 164 lượt mỗi bộ icon/theme, nghiệp vụ đặt sân/tạo-tham gia trận, cộng đồng, lịch, phân quyền, khôi phục dữ liệu và responsive.
+- `tests/redirects.cjs`: 20 trường hợp khách/bốn role ở desktop/mobile, kiểm tra dữ liệu được giữ và đăng nhập từ URL cũ rồi mở lịch sân. Chạy bằng `npm run test:redirects` khi server đang hoạt động.
+- 188 cặp ảnh trước/sau cuối cùng khớp pixel; nội dung và dữ liệu cũng khớp. Hai ảnh sân cần chụp lại để loại trừ khác biệt thời điểm vẽ ảnh.
+- Rà đường dẫn/ID, binding/template, JS/CSS và đối chiếu nguồn kiểm thử đạt. Ảnh/log mới nằm ngoài repo, không ghi đè minh chứng cũ trong `tests/artifacts`.
+
+Chi tiết phạm vi, bản đầu vào và các giới hạn tại [báo cáo dọn mã](source-cleanup-report.md). Chưa kiểm thử trên Firefox/Safari hoặc điện thoại vật lý. Những mục bên dưới là lịch sử; nhận xét thiếu trình duyệt ở đợt cũ không áp dụng cho lần chạy ngày 24/10.
+
+## Các đợt kiểm tra trước (lịch sử)
 
 ## Gỡ trang phân tích vắng mặt — kiểm tra 23/10/2026
 
@@ -145,7 +160,7 @@ Chưa chạy trên điện thoại vật lý, Safari/iOS hoặc Firefox; không 
 - Kết quả chi tiết: `tests/artifacts/theme-results.json`.
 
 
-## Bản hiện tại và kiểm tra cần chạy lại
+## Bản ngày 12/10/2026 và kiểm tra khi đó
 
 Danh mục hiện tại có 42 trang chức năng và 2 URL chuyển hướng. Các kết quả lịch sử cập nhật cộng đồng nằm trong [community-update.md](community-update.md); chúng không phải kết quả chạy mới ngày 12/10/2026. Các trang hoạt động/đặt sân dùng thẻ trên mobile, lịch sân dùng danh sách theo ngày. Chat đã gỡ, URL cũ chỉ chuyển hướng.
 

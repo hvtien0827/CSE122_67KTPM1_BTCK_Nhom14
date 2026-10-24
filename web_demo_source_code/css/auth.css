@@ -135,10 +135,6 @@
   outline: none;
 }
 
-.auth-main.success .auth-card {
-  padding: 48px 36px;
-  text-align: center;
-}
 @media (max-width: 760px) {
   .auth-main {
     align-items: flex-start;
@@ -166,9 +162,6 @@
   }
   .auth-footer nav {
     gap: 15px;
-  }
-  .auth-main.success .auth-card {
-    padding: 35px 0;
   }
   .otp-inputs {
     gap: 7px;

@@ -39,5 +39,5 @@
   window.addEventListener('storage', (event) => {
     if (event.key === key || event.key === null) apply(savedTheme());
   });
-  window.Theme = { button: markup, refresh: () => apply(savedTheme()) };
+  window.Theme = { refresh: () => apply(savedTheme()) };
 })();

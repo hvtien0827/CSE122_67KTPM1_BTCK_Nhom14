@@ -22,7 +22,7 @@
 | Hai tính năng hỗ trợ bằng thuật toán quy tắc | `js/ai.js` |
 | Định tuyến theo tên file, hồ sơ, cài đặt, thông báo, lỗi | `js/app.js` |
 
-Mỗi trang nạp `common.css` và `navigation.css` trước CSS nhóm trang. Chỉ 8 trang có input ngày mới nạp `date-picker.css`, `date-picker.js` và hai template lịch. `auth.js` chỉ nạp trên 10 trang xác thực; `ai.js` chỉ nạp trên 2 trang AI. Controller role và `community.js` chỉ được nạp khi trang gọi tới chúng. Danh sách cụ thể nằm trong [page-dependencies.json](page-dependencies.json), được `tests/structure.cjs` kiểm tra. Các trang hồ sơ/cài đặt dùng chung vẫn hỗ trợ bốn role.
+Mỗi trang chức năng nạp `common.css` và `navigation.css`; CSS nhóm trang chỉ nạp khi có thành phần cần dùng. Hai URL tương thích chỉ nạp `store.js` và `redirect.js`, không giữ header/sidebar/template sao chép. Chỉ 8 trang có input ngày mới nạp `date-picker.css`, `date-picker.js` và hai template lịch. `auth.js` chỉ nạp trên 10 trang xác thực; `ai.js` chỉ nạp trên 2 trang AI. Controller role và `community.js` chỉ được nạp khi trang gọi tới chúng. Danh sách cụ thể nằm trong [page-dependencies.json](page-dependencies.json), được `tests/structure.cjs` kiểm tra. Các trang hồ sơ/cài đặt dùng chung vẫn hỗ trợ bốn role.
 
 ## HTML và dữ liệu
 
@@ -53,4 +53,4 @@ Các bản PR cũ ở ngoài thư mục này dựa trên `manage.js` cũ. Xem ph
 
 ## Rà soát ngày 22/10/2026
 
-Xem [báo cáo dọn mã và kiểm thử](source-cleanup-report.md). Khởi tạo/nâng cấp dữ liệu cộng đồng đã chuyển sang `store.js`; `community.js` chỉ chứa chức năng giao diện/nghiệp vụ cộng đồng. Trang chi tiết sân/trận gọi hàm đánh giá trực tiếp trong `player.js`, không ghi đè hàm Player từ file khác. URL khung giờ cũ vẫn chuyển hướng về quản lý sân, không giữ bản CRUD khung giờ thứ hai.
+Xem [báo cáo dọn mã và kiểm thử](source-cleanup-report.md). Khởi tạo/nâng cấp dữ liệu cộng đồng đã chuyển sang `store.js`; `community.js` chỉ chứa chức năng giao diện/nghiệp vụ cộng đồng. Trang chi tiết sân/trận gọi hàm đánh giá trực tiếp trong `player.js`, không ghi đè hàm Player từ file khác. URL khung giờ cũ vẫn chuyển hướng về quản lý sân, không giữ bản CRUD khung giờ thứ hai. Đợt 24/10 đã thu gọn cả HTML của hai URL cũ; xem mục mới nhất trong báo cáo dọn mã.

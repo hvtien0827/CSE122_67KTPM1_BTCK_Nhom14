@@ -17,28 +17,18 @@
     );
   const icons = {
     menu: 'list',
-    logout: 'box-arrow-right',
     search: 'search',
     court: 'grid-3x3',
-    users: 'people',
     calendar: 'calendar-event',
     pin: 'geo-alt',
     clock: 'clock',
-    chart: 'bar-chart-line',
     bell: 'bell',
-    settings: 'gear',
-    home: 'house',
     check: 'check-lg',
-    shield: 'shield-check',
     close: 'x-lg',
-    prev: 'chevron-left',
-    next: 'chevron-right',
     arrowLeft: 'arrow-left',
     arrowRight: 'arrow-right',
     star: 'star-fill',
     starEmpty: 'star',
-    ai: 'stars',
-    plus: 'plus-lg',
   };
   const icon = (name) => `<i class="bi bi-${icons[name] || icons.court}" aria-hidden="true"></i>`;
   const btn = (text, action = '', style = '', attrs = '') =>
@@ -73,8 +63,6 @@
     `<label class="field">${label}<input name="${name}" type="${type}" value="${esc(value)}" ${extra}></label>`;
   const select = (label, name, options, extra = '') =>
     `<label class="field">${label}<select name="${name}" ${extra}>${options}</select></label>`;
-  const textarea = (label, name, value = '') =>
-    `<label class="field">${label}<textarea name="${name}" maxlength="1000">${esc(value)}</textarea></label>`;
   const empty = (
     title = 'Chưa có dữ liệu',
     description = 'Hãy tạo dữ liệu đầu tiên hoặc thử điều kiện khác.',
@@ -167,40 +155,20 @@
     modal('Đăng nhập để tiếp tục', Views.fragment('ui-requireLogin-dialog-2', {}));
     return false;
   }
-  const navs = {
-    player: [
-      ['player-court-search.html', 'Tìm sân', 'search'],
-      ['player-open-matches.html', 'Tìm trận đấu', 'users'],
-      ['player-my-sports.html', 'Hoạt động của tôi', 'calendar'],
-      ['player-skill-match.html', 'Ghép trận thông minh', 'chart'],
-      ['player-match-create.html', 'Tạo trận đấu', 'calendar'],
-    ],
-    venue: [
-      ['venue-court-management.html', 'Quản lý sân', 'court'],
-      ['venue-revenue.html', 'Thống kê doanh thu', 'chart'],
-      ['venue-reviews.html', 'Đánh giá sân', 'users'],
-      ['venue-booking-management.html', 'Quản lý đặt sân', 'calendar'],
-    ],
-    organizer: [
-      ['organizer-event-management.html', 'Sự kiện CLB', 'calendar'],
-      ['organizer-player-roster.html', 'Danh sách người chơi', 'users'],
-      ['organizer-team-lineup.html', 'Đội hình & chia đội', 'court'],
-    ],
-    admin: [
-      ['admin-sport-management.html', 'Môn thể thao', 'court'],
-      ['admin-user-management.html', 'Quản lý tài khoản', 'users'],
-      ['admin-sports-report.html', 'Báo cáo hoạt động', 'chart'],
-      ['admin-player-reports.html', 'Báo cáo người chơi', 'shield'],
-    ],
+  const roleHomes = {
+    player: 'player-court-search.html',
+    venue: 'venue-court-management.html',
+    organizer: 'organizer-event-management.html',
+    admin: 'admin-sport-management.html',
   };
-  const homeFor = (role) => navs[role]?.[0][0] || 'index.html';
+  const homeFor = (role) => Object.hasOwn(roleHomes, role) ? roleHomes[role] : 'index.html';
   // Guest previews remain public, but signed-in accounts must use their own role.
   const roleForPage = (href) => {
     const page = href.split('?')[0].replace(/\.html$/, '');
     if (['court-detail', 'match-detail', 'booking', 'booking-success'].includes(page))
       return 'player';
     const prefix = page.split('-')[0];
-    return Object.hasOwn(navs, prefix) ? prefix : null;
+    return Object.hasOwn(roleHomes, prefix) ? prefix : null;
   };
 
   const courtImage = (c) =>
@@ -510,11 +478,9 @@
     levels,
     field,
     select,
-    textarea,
     empty,
     toast,
     modal,
-    close,
     confirm,
     formDialog,
     requireLogin,

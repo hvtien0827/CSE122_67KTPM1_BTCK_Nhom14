@@ -44,4 +44,4 @@ Danh mục 41 trang chức năng của 4 vai trò được mô tả tại [bản
 
 Mở **web_demo_source_code** bằng VS Code và chạy `index.html` qua Live Server. Hoặc chạy `npm start` trong thư mục đó rồi truy cập http://127.0.0.1:4173. Xem [hướng dẫn và 4 tài khoản demo](web_demo_source_code/README.md).
 
-Rà soát mã nguồn ngày 22/10/2026: [báo cáo dọn mã và kiểm thử](web_demo_source_code/docs/source-cleanup-report.md), [phụ thuộc script/CSS/popup từng trang](web_demo_source_code/docs/page-dependencies.json).
+Rà soát mã nguồn ngày 24/10/2026: [báo cáo dọn mã và kiểm thử](web_demo_source_code/docs/source-cleanup-report.md), [phụ thuộc script/CSS/popup từng trang](web_demo_source_code/docs/page-dependencies.json).

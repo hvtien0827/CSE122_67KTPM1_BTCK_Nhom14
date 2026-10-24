@@ -488,12 +488,6 @@ small,
   border-color: #cbd5e1;
 }
 
-.tag.purple {
-  background: var(--purple-bg);
-  color: var(--purple-text);
-  border-color: #e9d5ff;
-}
-
 .divider {
   height: 1px;
   background: var(--line);

@@ -25,6 +25,7 @@ Không cần đọc từ dòng đầu đến dòng cuối của toàn bộ proje
 | `js/ui.js` | Thông báo, popup, nút, điều hướng và tiện ích giao diện. |
 | `js/views.js` | Điền dữ liệu vào các vị trí đã đánh dấu trong HTML; không tạo lại toàn bộ trang. |
 | `js/app.js` | Chọn hàm xử lý theo URL, kiểm tra đăng nhập/role; hồ sơ, cài đặt, thông báo, trang lỗi. |
+| `js/redirect.js` | Hai URL cũ: giữ kiểm tra đăng nhập/role và chuyển tới trang hiện hành; không render giao diện. |
 | `js/theme.js` | Đọc/lưu chế độ sáng tối. |
 | `js/date-picker.js` | Chọn ngày, bàn phím, min/max. |
 | `js/auth.js` | Luồng đăng nhập, đăng ký, xác minh, khôi phục mô phỏng. |
@@ -82,7 +83,7 @@ Views.update('player-courtDetail', {
 
 ## CSS chia như thế nào?
 
-Mỗi trang nạp theo thứ tự: `common.css` → `navigation.css` → `date-picker.css` (chỉ khi có input ngày) → CSS của nhóm trang. Xem [danh sách phụ thuộc theo trang](page-dependencies.json) và [báo cáo dọn mã](source-cleanup-report.md).
+Mỗi trang chức năng nạp theo thứ tự: `common.css` → `navigation.css` → `date-picker.css` (chỉ khi có input ngày) → CSS của nhóm trang khi có thành phần cần dùng. Hai URL chuyển hướng không nạp CSS. Xem [danh sách phụ thuộc theo trang](page-dependencies.json) và [báo cáo dọn mã](source-cleanup-report.md).
 
 - `common.css`: biến màu sáng/tối, chữ, nút/input, panel/bảng và responsive dùng chung. File còn dài vì các thành phần này có mặt ở nhiều role, không tách bằng cách chép trùng.
 - `navigation.css`: header, sidebar, menu tài khoản, điều hướng mobile.

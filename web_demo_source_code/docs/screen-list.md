@@ -51,7 +51,7 @@ Bảng này không xác nhận giảng viên đã duyệt hay minh chứng đã 
 ## URL chuyển hướng tương thích
 
 - `chat.html` → `player-my-sports.html`: trò chuyện đã gỡ.
-- `venue-slot-management.html` → `venue-court-management.html`: quản lý khung giờ trong lịch sân.
+- `venue-slot-management.html` → `venue-court-management.html`: quản lý khung giờ trong lịch sân (**Quản lý sân → Xem lịch sân**).
 
 Hai file này không tính là trang chức năng. Các phần bổ sung doanh thu, đánh giá sân, hồ sơ công khai và báo cáo người chơi đã được liệt kê trong bảng hiện hành.
 

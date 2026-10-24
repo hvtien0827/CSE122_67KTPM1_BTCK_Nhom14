@@ -1219,7 +1219,6 @@
     me,
     requireRole,
     transaction,
-    notify,
     seed,
     login,
     logout,

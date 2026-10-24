@@ -34,8 +34,14 @@ const cssFiles = [
     const html = fs.readFileSync(path.join(root, name), 'utf8');
     assert.match(html, /<main\b/, name);
     assert.match(html, /<h1\b/, name);
-    assert.match(html, /data-page-view=/, name);
-    assert.match(html, /href="css\/common.css"/, name);
+    if (html.includes('data-redirect=')) {
+      assert.deepEqual(dependencies[name].scripts, ['js/store.js', 'js/redirect.js']);
+      assert.deepEqual(dependencies[name].styles, []);
+      assert.doesNotMatch(html, /<header\b|<aside\b|<template\b/, name);
+    } else {
+      assert.match(html, /data-page-view=/, name);
+      assert.match(html, /href="css\/common.css"/, name);
+    }
     assert.equal(
       (html.match(/rel="stylesheet"/g) || []).length,
       dependencies[name].styles.length,
